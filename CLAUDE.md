@@ -7,13 +7,13 @@ This is a personal engineer learning notebook — not a blog, tutorial site, or 
 ## Repository Structure
 
 - **Hugo static site** using the [hugo-book](https://github.com/alex-shpak/hugo-book) theme
-- Content lives in `content/docs/` organized into eight volumes
+- Content lives in `content/docs/` organized into eight sections
 - Built with `make html` (runs `hugo --minify`)
 - Local dev server with `make server`
 
-## Volume Structure
+## Section Structure
 
-Content is organized into eight volumes, each a subdirectory of `content/docs/`:
+Content is organized into eight sections, each a subdirectory of `content/docs/`:
 
 | Weight | Directory | Title |
 |--------|-----------|-------|
@@ -28,7 +28,7 @@ Content is organized into eight volumes, each a subdirectory of `content/docs/`:
 
 ## Adding a New Entry
 
-Create a markdown file directly inside the appropriate volume directory (flat structure, no subdirectories within volumes):
+Create a markdown file directly inside the appropriate section directory (flat structure, no subdirectories within sections):
 
 ```
 content/docs/fundamentals/ohms-law.md
@@ -44,7 +44,7 @@ weight: 10
 ```
 
 - **title**: Descriptive name for the entry
-- **weight**: Controls ordering within the volume; use increments of 10 to leave room for future entries
+- **weight**: Controls ordering within the section; use increments of 10 to leave room for future entries
 
 ## Content Conventions
 
