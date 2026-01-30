@@ -15,6 +15,7 @@ Design does not happen in isolation. It is shaped by component availability, phy
 ## Sections
 
 - **[Ideation & Requirements]({{< relref "ideation-and-requirements" >}})** — Deciding what you're actually building: problem definition, constraints, and knowing when not to build.
+- **[Proof of Concept]({{< relref "proof-of-concept" >}})** — Testing the hard parts before committing: breadboarding, simulation, dev boards, and structured experiments that answer the riskiest questions.
 - **[System Architecture]({{< relref "system-architecture" >}})** — Decomposing complexity: block diagrams, partitioning, interfaces, and avoiding accidental complexity.
 - **[Schematic Design]({{< relref "schematic-design" >}})** — Encoding intent into circuits: reference designs, tolerance analysis, simulation, testability, and design reviews.
 - **[Part Selection & Sourcing]({{< relref "part-selection-and-sourcing" >}})** — Where design meets supply chain: availability, lifecycle, second-sourcing, and designing for substitution.
