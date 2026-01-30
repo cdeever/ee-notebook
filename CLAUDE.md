@@ -74,6 +74,7 @@ L1 sections (in weight order):
 | 80 | `digital-logic-protocols/` | Digital Logic & Protocols |
 | 85 | `audio-analog/` | Audio & Analog Circuits |
 | 90 | `noise-interference-grounding/` | Noise, Interference & Grounding |
+| 95 | `test-instruments/` | Test Instruments |
 | 100 | `calibration-confidence/` | Calibration & Measurement Confidence |
 
 ## Content Conventions
