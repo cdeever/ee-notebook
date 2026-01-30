@@ -14,7 +14,7 @@ This section covers the simplest measurements — but they're often the first on
 
 Measurement intent — the questions you're trying to answer at the bench:
 
-- **Is this joint making contact?** — Solder joints, crimp connections, header pins, socket contacts. Continuity beep vs. resistance measurement for marginal joints.
-- **Is there a short between these nets?** — Board faults, solder bridges, damaged traces. Using resistance and diode mode to find shorts, and techniques for narrowing down location.
-- **Which pin maps to which wire?** — Cable tracing, connector pinouts, and verifying wiring against a schematic. Especially useful for unfamiliar harnesses or hand-wired assemblies.
-- **Is this connection intermittent?** — Cracked solder joints, fractured traces, loose connectors. Techniques for catching faults that only appear under vibration, flex, or thermal stress.
+- **[Is this joint making contact?]({{< relref "joint-contact" >}})** — Solder joints, crimp connections, header pins, socket contacts. Continuity beep vs. resistance measurement for marginal joints.
+- **[Is there a short between these nets?]({{< relref "short-between-nets" >}})** — Board faults, solder bridges, damaged traces. Using resistance and diode mode to find shorts, and techniques for narrowing down location.
+- **[Which pin maps to which wire?]({{< relref "pin-wire-mapping" >}})** — Cable tracing, connector pinouts, and verifying wiring against a schematic. Especially useful for unfamiliar harnesses or hand-wired assemblies.
+- **[Is this connection intermittent?]({{< relref "intermittent-connection" >}})** — Cracked solder joints, fractured traces, loose connectors. Techniques for catching faults that only appear under vibration, flex, or thermal stress.
