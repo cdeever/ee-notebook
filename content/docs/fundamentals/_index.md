@@ -6,9 +6,9 @@ bookCollapseSection: true
 
 # Fundamentals
 
-The building blocks everything else rests on: Ohm's law, Kirchhoff's laws, power and energy calculations, passive component behavior, basic circuit analysis techniques, and the unit system that ties it all together.
+Nature's rules and universal constraints — the physics layer that everything else is built on. Ohm's law, Kirchhoff's laws, power and energy, passive component behavior, circuit analysis techniques, and the unit system that ties it all together.
 
-Entries here cover the concepts I keep coming back to — the stuff that seems simple until you actually need to apply it to a real circuit on the bench.
+All of it seems simple until you actually need to apply it to a real circuit on the bench. Analog and digital design are human-engineered behavior layered on top of these rules. When something doesn't add up, the answer is almost always here.
 
 ## Sections
 
