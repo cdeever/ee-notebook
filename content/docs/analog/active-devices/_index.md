@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Active Devices
 
-How analog behavior is created. Passive components obey constraints — active devices exploit them to produce gain, switching, regulation, and signal shaping. Diodes, BJTs, and MOSFETs are the building blocks. Everything else in analog electronics is a combination of these devices wired up with passives.
+How analog behavior is created. Passive components obey constraints — active devices exploit them to produce gain, switching, regulation, and signal shaping. In this section, "active" refers to devices with nonlinear, state-dependent behavior that control current or voltage — even when they do not provide power gain. Diodes, BJTs, and MOSFETs are the building blocks. Everything else in analog electronics is a combination of these devices wired up with passives.
 
 Understanding active devices means understanding their real behavior, not just the ideal textbook model. Every device has regions of operation, parasitic effects, and failure modes that matter at the bench.
 
