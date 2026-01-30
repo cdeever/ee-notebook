@@ -28,7 +28,7 @@ Content is organized into eight sections, each a subdirectory of `content/docs/`
 
 ## Adding a New Entry
 
-Create a markdown file directly inside the appropriate section directory (flat structure, no subdirectories within sections):
+Most sections use a flat structure — create a markdown file directly inside the section directory:
 
 ```
 content/docs/fundamentals/ohms-law.md
@@ -45,6 +45,36 @@ weight: 10
 
 - **title**: Descriptive name for the entry
 - **weight**: Controls ordering within the section; use increments of 10 to leave room for future entries
+
+### Measurement & Test: Nested Structure
+
+The `measurement/` section uses a 3-level structure to organize content by measurement situation rather than by instrument:
+
+| Level | What it answers | Hugo structure |
+|-------|----------------|----------------|
+| **Level 1** — Use Case | "What am I working on?" | Subdirectory with `_index.md` under `measurement/` |
+| **Level 2** — Measurement Intent | "What am I trying to learn?" | Pages (`.md` files) inside each L1 subdirectory |
+| **Level 3** — Tool + Settings | "How do I measure this, specifically?" | Sections within L2 pages (not separate files) |
+
+L1 subdirectories use `bookCollapseSection: true` in their `_index.md` frontmatter so they appear as collapsible items in the sidebar.
+
+Example path: `content/docs/measurement/power-rails-supplies/ripple-and-noise.md`
+
+L1 sections (in weight order):
+
+| Weight | Directory | Title |
+|--------|-----------|-------|
+| 10 | `safety-high-energy/` | Safety & High Energy |
+| 20 | `probing-technique/` | Probing & Measurement Technique |
+| 30 | `continuity-connections/` | Continuity & Connections |
+| 40 | `component-testing/` | Component Testing |
+| 50 | `power-rails-supplies/` | Power Rails & Supplies |
+| 60 | `signals-waveforms/` | Signals & Waveforms |
+| 70 | `time-frequency-spectrum/` | Time, Frequency & Spectrum |
+| 80 | `digital-logic-protocols/` | Digital Logic & Protocols |
+| 85 | `audio-analog/` | Audio & Analog Circuits |
+| 90 | `noise-interference-grounding/` | Noise, Interference & Grounding |
+| 100 | `calibration-confidence/` | Calibration & Measurement Confidence |
 
 ## Content Conventions
 

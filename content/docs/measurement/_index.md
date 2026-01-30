@@ -6,6 +6,6 @@ bookCollapseSection: true
 
 # Measurement & Test
 
-Oscilloscope techniques, multimeter usage, signal generators, probing methods, and calibration practices. Good measurement is the foundation of good electronics work — you can't fix what you can't see.
+Organized by what you're trying to measure, not by which instrument you pick up. Each subsection starts with a measurement situation — safety, probing, power rails, signals, noise — and works through the practical questions you face at the bench.
 
-Entries cover instrument operation, measurement pitfalls, probe compensation, and the practical skills that make bench work productive.
+Subsections are ordered prerequisites-first: safety and probing technique before anything else, simple checks (continuity, components) before complex ones (signals, spectrum, protocols), and cross-cutting skills (noise, calibration) at the end.
