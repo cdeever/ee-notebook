@@ -50,6 +50,8 @@ A 10–100 Ω resistor in series with a power rail during first power-up of a ne
 
 A ¼ W or ½ W resistor is usually fine for initial bring-up. If you need to pass more current through it, use a beefier resistor or reduce the resistance — but at that point you're probably past the "is it shorted?" phase.
 
+**Dim bulb tester — the same idea at higher power:** For mains-powered equipment (home amplifiers, power supplies, tube gear), wire an incandescent light bulb in series with the AC input. If the circuit is healthy, the bulb glows dimly or not at all — the load draws normally and most of the voltage drops across the circuit. If there's a short, the bulb lights up fully and absorbs the fault current instead of the circuit. A 60–100 W bulb is typical for mains work. For 12 V car amplifiers, a 12 V automotive tail light or headlamp bulb does the same job. Same principle as the series resistor — a filament bulb is just a power resistor that gives you a visible indicator for free.
+
 ## Probing Fixtures
 
 Hands-free access to circuit nodes makes debugging dramatically easier. Holding a probe in each hand while also trying to press a button or read a screen is a recipe for frustration and unreliable measurements.
