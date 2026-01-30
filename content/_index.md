@@ -5,9 +5,7 @@ type: docs
 
 # EE Notebook
 
-A working reference for electronics and electrical engineering — concepts, experiments, procedures, gotchas, and patterns organized for practical use.
-
-The tone is exploratory and honest. Entries capture understanding as it develops — sometimes incomplete, sometimes corrected, always straightforward about what is and isn't yet known. Each section holds evergreen entries that get revised and expanded over time rather than dated posts that grow stale.
+A working reference for electronics and electrical engineering — concepts, procedures, gotchas, and patterns organized for practical use. The goal is a single resource that covers the full landscape from fundamentals through design and manufacturing, organized so that any topic can scale from a concise overview into deeper treatment as the subject demands.
 
 ## How It's Organized
 
