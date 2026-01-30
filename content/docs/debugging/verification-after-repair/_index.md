@@ -1,11 +1,14 @@
 ---
 title: "Verification After Repair"
 weight: 60
+bookCollapseSection: true
 ---
 
 # Verification After Repair
 
 Replacing the faulty component is only half the job. The repair isn't done until you've confirmed the circuit works correctly — and that the repair didn't introduce new problems.
+
+This page covers the general verification framework. For device-specific verification plans — full checklists tailored to a particular type of DUT — see the sub-pages below.
 
 ## Before Power-Up
 
@@ -85,6 +88,12 @@ The circuit passes functional tests under normal conditions. The original fault 
 The circuit passes functional tests under stress conditions (temperature, load, vibration, extended run time). You've tested enough to trust it in its actual operating environment. This level requires deliberate stress testing — you can't reach it by running the board on your bench for five minutes.
 
 **Be explicit about which level you've reached** when you declare a repair "done." If you've only reached "boots," say so — don't assume stability.
+
+## DUT-Specific Verification Plans
+
+The general framework above applies to everything. The pages below are full verification checklists for specific device types — what to measure, in what order, and what the pass criteria are.
+
+- **[Car Audio Amplifier]({{< relref "car-audio-amp" >}})** — Full verification plan for high-power 12 V automotive amplifiers
 
 ## Cross-References
 
