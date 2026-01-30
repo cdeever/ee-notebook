@@ -1,5 +1,5 @@
 ---
-title: "Analog Electronics"
+title: "🎛️ Analog Electronics"
 weight: 2
 bookCollapseSection: true
 ---

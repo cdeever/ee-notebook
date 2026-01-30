@@ -1,5 +1,5 @@
 ---
-title: "Digital Electronics"
+title: "🔢 Digital Electronics"
 weight: 3
 bookCollapseSection: true
 ---

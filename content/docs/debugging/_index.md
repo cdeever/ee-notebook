@@ -1,6 +1,6 @@
 ---
-title: "Debugging, Failure & Repair"
-weight: 8
+title: "🐛 Debugging, Failure & Repair"
+weight: 9
 bookCollapseSection: true
 ---
 

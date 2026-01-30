@@ -7,13 +7,13 @@ This is a personal engineer learning notebook — not a blog, tutorial site, or 
 ## Repository Structure
 
 - **Hugo static site** using the [hugo-book](https://github.com/alex-shpak/hugo-book) theme
-- Content lives in `content/docs/` organized into eight sections
+- Content lives in `content/docs/` organized into nine sections
 - Built with `make html` (runs `hugo --minify`)
 - Local dev server with `make server`
 
 ## Section Structure
 
-Content is organized into eight sections, each a subdirectory of `content/docs/`:
+Content is organized into nine sections, each a subdirectory of `content/docs/`:
 
 | Weight | Directory | Title |
 |--------|-----------|-------|
@@ -23,8 +23,9 @@ Content is organized into eight sections, each a subdirectory of `content/docs/`
 | 4 | `embedded/` | Microcontrollers & Embedded Systems |
 | 5 | `audio-signal/` | Audio & Signal Processing |
 | 6 | `radio-rf/` | Radio & RF |
-| 7 | `measurement/` | Measurement & Test |
-| 8 | `debugging/` | Debugging, Failure & Repair |
+| 7 | `design-development/` | Design & Development |
+| 8 | `measurement/` | Measurement & Test |
+| 9 | `debugging/` | Debugging, Failure & Repair |
 
 ## Adding a New Entry
 

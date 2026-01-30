@@ -1,5 +1,5 @@
 ---
-title: "Radio & RF"
+title: "📡 Radio & RF"
 weight: 6
 bookCollapseSection: true
 ---

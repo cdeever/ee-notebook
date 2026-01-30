@@ -1,5 +1,5 @@
 ---
-title: "Audio & Signal Processing"
+title: "🎵 Audio & Signal Processing"
 weight: 5
 bookCollapseSection: true
 ---

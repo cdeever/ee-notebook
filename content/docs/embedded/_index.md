@@ -1,5 +1,5 @@
 ---
-title: "Microcontrollers & Embedded Systems"
+title: "🔌 Microcontrollers & Embedded Systems"
 weight: 4
 bookCollapseSection: true
 ---
