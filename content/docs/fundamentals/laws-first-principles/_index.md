@@ -6,7 +6,9 @@ bookCollapseSection: true
 
 # Laws & First Principles
 
-The non-negotiable rules. These are the constraints that every circuit obeys regardless of topology, frequency, or how clever the designer thinks they are. When something doesn't add up at the bench, it's almost always because I'm misapplying one of these — not because the law is wrong.
+The fundamental requirements. These are the non-negotiable constraints that every circuit obeys, regardless of topology, frequency, or how clever the designer thinks they are. They are not design choices or implementation details — they are the minimum physical requirements for a circuit to behave at all.
+
+Much like fuel, air, and spark in an internal combustion engine, these requirements are not optional. When something doesn't add up at the bench, it's almost always because one of these requirements is being misapplied — not because the law itself is wrong.
 
 ## What This Section Covers
 
