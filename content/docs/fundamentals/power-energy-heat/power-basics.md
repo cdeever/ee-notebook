@@ -59,6 +59,3 @@ The reactive component determines how much current flows; the resistive componen
 - **P = I^2 R is a trap with AC** — It works if I is RMS and R is the actual resistance (not impedance magnitude). Using impedance magnitude gives you apparent power, not real power
 - **Power ratings are thermal limits** — A "1/4 W resistor" can dissipate 1/4 W before it overheats. The actual power it dissipates is determined by the circuit, not the rating. The rating is the maximum, not the actual
 - **Decibels and power** — dBm is referenced to 1 mW. 0 dBm = 1 mW. +3 dB doubles the power. This comes up constantly in RF and audio
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

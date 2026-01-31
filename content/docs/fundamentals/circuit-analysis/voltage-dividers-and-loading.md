@@ -95,6 +95,3 @@ Voltage dividers aren't limited to resistors. Capacitive and inductive dividers 
 - **Voltage dividers waste power** — The current through R1 and R2 is wasted as heat. In battery-powered designs, use the highest impedance the load allows, or replace the divider with a switched/regulated solution
 - **Don't use voltage dividers as power supplies** — A voltage divider can set a voltage, but it can't regulate it. Any load variation changes the output. For stable supply voltages, use a regulator
 - **Potentiometers are variable voltage dividers** — A pot is R1 and R2 in one package with an adjustable tap. All the loading analysis applies — the pot's output impedance varies with the wiper position (maximum at the midpoint)
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

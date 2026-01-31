@@ -1,18 +1,18 @@
 [
   {
-    "term": "0 \u03a9 resistor",
+    "term": "0 Ω resistor",
     "definition": "SMD jumper wire in resistor form.",
     "anchor": "0-ohm-resistor"
+  },
+  {
+    "term": "10× probe",
+    "definition": "Oscilloscope probe with 10:1 attenuation.",
+    "anchor": "10x-probe"
   },
   {
     "term": "3 dB point",
     "definition": "The frequency at which a filter's output drops to 70.7% of its passband value, corresponding to half power.",
     "anchor": "3db-point"
-  },
-  {
-    "term": "10\u00d7 probe",
-    "definition": "Oscilloscope probe with 10:1 attenuation.",
-    "anchor": "10x-probe"
   },
   {
     "term": "AC coupling",
@@ -25,9 +25,22 @@
     "anchor": "accuracy"
   },
   {
+    "term": "Active filter",
+    "definition": "A filter using op-amps or other active devices to shape frequency response without inductors.",
+    "anchor": "active-filter"
+  },
+  {
     "term": "Active probe",
     "definition": "Oscilloscope probe with a built-in amplifier at the tip, presenting very low capacitance (~1 pF) and high impedance.",
     "anchor": "active-probe"
+  },
+  {
+    "term": "AGC",
+    "definition": "Automatic Gain Control — a feedback loop that adjusts gain to maintain constant output amplitude.",
+    "anchor": "agc",
+    "aliases": [
+      "Automatic Gain Control"
+    ]
   },
   {
     "term": "Aging",
@@ -38,19 +51,40 @@
     "term": "Ampere",
     "definition": "SI unit of electric current.",
     "anchor": "ampere",
-    "aliases": ["A"]
+    "aliases": [
+      "A"
+    ]
+  },
+  {
+    "term": "AND gate",
+    "definition": "A logic gate that outputs 1 only when all inputs are 1.",
+    "anchor": "and-gate"
   },
   {
     "term": "Angular frequency",
-    "definition": "Frequency expressed in radians per second: \u03c9 = 2\u03c0f.",
+    "definition": "Frequency expressed in radians per second: ω = 2πf.",
     "anchor": "angular-frequency",
-    "aliases": ["\u03c9"]
+    "aliases": [
+      "ω"
+    ]
+  },
+  {
+    "term": "Anti-aliasing filter",
+    "definition": "A low-pass filter before an ADC that prevents frequencies above half the sample rate from folding back as false signals.",
+    "anchor": "anti-aliasing-filter"
   },
   {
     "term": "Apparent power",
     "definition": "The product of RMS voltage and RMS current, measured in volt-amperes (VA).",
     "anchor": "apparent-power",
-    "aliases": ["S"]
+    "aliases": [
+      "S"
+    ]
+  },
+  {
+    "term": "Asynchronous FIFO",
+    "definition": "A FIFO buffer with independent read and write clocks for cross-domain data transfer.",
+    "anchor": "asynchronous-fifo"
   },
   {
     "term": "Auto-ranging",
@@ -58,10 +92,86 @@
     "anchor": "auto-ranging"
   },
   {
+    "term": "Avalanche breakdown",
+    "definition": "Non-destructive reverse breakdown in a diode where carrier multiplication occurs at high electric field.",
+    "anchor": "avalanche-breakdown"
+  },
+  {
+    "term": "Band-pass filter",
+    "definition": "A filter that passes frequencies between low and high cutoff points and attenuates outside that range.",
+    "anchor": "band-pass-filter"
+  },
+  {
+    "term": "Band-stop filter",
+    "definition": "A filter that attenuates a specific range of frequencies while passing those above and below.",
+    "anchor": "band-stop-filter",
+    "aliases": [
+      "notch filter"
+    ]
+  },
+  {
+    "term": "Bandgap reference",
+    "definition": "A reference circuit exploiting complementary temperature coefficients to produce a temperature-stable output near 1.25 V.",
+    "anchor": "bandgap-reference"
+  },
+  {
+    "term": "Bandwidth shrinkage",
+    "definition": "The reduction in overall bandwidth when identical amplifier stages are cascaded.",
+    "anchor": "bandwidth-shrinkage"
+  },
+  {
+    "term": "Barkhausen criterion",
+    "definition": "The condition for sustained oscillation: loop gain ≥ 1 and total phase shift = 360°.",
+    "anchor": "barkhausen-criterion"
+  },
+  {
+    "term": "Baud rate",
+    "definition": "The data rate of a serial interface in bits per second.",
+    "anchor": "baud-rate"
+  },
+  {
+    "term": "Bessel response",
+    "definition": "Filter response with the best phase linearity and minimal step-response overshoot.",
+    "anchor": "bessel-response"
+  },
+  {
+    "term": "Beta (β)",
+    "definition": "The DC current gain of a BJT, defined as I_C / I_B, varying widely between devices.",
+    "anchor": "beta",
+    "aliases": [
+      "h_FE"
+    ]
+  },
+  {
     "term": "BGA",
     "definition": "IC package with solder balls on the bottom surface instead of pins on the perimeter.",
     "anchor": "bga",
-    "aliases": ["Ball Grid Array"]
+    "aliases": [
+      "Ball Grid Array"
+    ]
+  },
+  {
+    "term": "Bitstream",
+    "definition": "The binary configuration file that programs an FPGA.",
+    "anchor": "bitstream"
+  },
+  {
+    "term": "BJT",
+    "definition": "A bipolar junction transistor — a current-controlled device where small base current controls large collector current.",
+    "anchor": "bjt",
+    "aliases": [
+      "Bipolar Junction Transistor"
+    ]
+  },
+  {
+    "term": "Bode plot",
+    "definition": "A two-panel graph showing magnitude (dB) and phase (degrees) versus frequency on a logarithmic scale.",
+    "anchor": "bode-plot"
+  },
+  {
+    "term": "Body diode",
+    "definition": "The parasitic diode between source and drain in a MOSFET, conducting when drain voltage drops below source.",
+    "anchor": "body-diode"
   },
   {
     "term": "Boost converter",
@@ -69,14 +179,22 @@
     "anchor": "boost-converter"
   },
   {
+    "term": "BRAM",
+    "definition": "Block RAM — dedicated dual-port SRAM blocks in FPGAs.",
+    "anchor": "block-ram",
+    "aliases": [
+      "Block RAM"
+    ]
+  },
+  {
     "term": "Branch",
     "definition": "A path between two nodes in a circuit, carrying a single current.",
     "anchor": "branch"
   },
   {
-    "term": "Buck-boost converter",
-    "definition": "Switching topology that can produce an output voltage either higher or lower than the input, with inverted polarity in the basic form.",
-    "anchor": "buck-boost-converter"
+    "term": "Bridge rectifier",
+    "definition": "A four-diode configuration that converts AC to DC by conducting both polarities through two diodes each.",
+    "anchor": "bridge-rectifier"
   },
   {
     "term": "Buck converter",
@@ -84,9 +202,19 @@
     "anchor": "buck-converter"
   },
   {
+    "term": "Buck-boost converter",
+    "definition": "Switching topology that can produce an output voltage either higher or lower than the input, with inverted polarity in the basic form.",
+    "anchor": "buck-boost-converter"
+  },
+  {
     "term": "Burden voltage",
     "definition": "Voltage drop across an ammeter's internal shunt resistor.",
     "anchor": "burden-voltage"
+  },
+  {
+    "term": "Butterworth response",
+    "definition": "Filter response with maximally flat passband and monotonic roll-off.",
+    "anchor": "butterworth-response"
   },
   {
     "term": "Bypass capacitor",
@@ -104,9 +232,50 @@
     "anchor": "carbon-composition"
   },
   {
+    "term": "Carry lookahead",
+    "definition": "A fast adder technique computing all carries in parallel instead of rippling through stages.",
+    "anchor": "carry-lookahead"
+  },
+  {
+    "term": "Cascode",
+    "definition": "A two-transistor configuration combining common-emitter with common-base to improve bandwidth and output impedance.",
+    "anchor": "cascode"
+  },
+  {
+    "term": "CDC",
+    "definition": "Clock Domain Crossing — a signal passing between circuits driven by different clocks.",
+    "anchor": "clock-domain-crossing",
+    "aliases": [
+      "Clock Domain Crossing"
+    ]
+  },
+  {
+    "term": "Characteristic impedance",
+    "definition": "The impedance of a transmission line determined by its geometry and dielectric.",
+    "anchor": "characteristic-impedance",
+    "aliases": [
+      "Z0"
+    ]
+  },
+  {
+    "term": "Charge injection",
+    "definition": "Transient voltage disturbance caused by capacitive coupling from the gate when a MOSFET switch toggles.",
+    "anchor": "charge-injection"
+  },
+  {
+    "term": "Charge pump",
+    "definition": "A voltage converter using switched capacitors instead of inductors, simpler but lower power than inductor-based converters.",
+    "anchor": "charge-pump"
+  },
+  {
     "term": "Chassis ground",
     "definition": "Electrical connection to the equipment's metal chassis or frame.",
     "anchor": "chassis-ground"
+  },
+  {
+    "term": "Chebyshev response",
+    "definition": "Filter response with steeper roll-off than Butterworth at the cost of passband ripple.",
+    "anchor": "chebyshev-response"
   },
   {
     "term": "Clamp",
@@ -114,14 +283,82 @@
     "anchor": "clamp"
   },
   {
+    "term": "Clamping",
+    "definition": "Using a diode and capacitor to shift the DC level of an AC signal without changing its shape.",
+    "anchor": "clamping"
+  },
+  {
+    "term": "Clipping",
+    "definition": "Using diodes or other components to limit signal excursion by conducting when a threshold is exceeded.",
+    "anchor": "clipping"
+  },
+  {
+    "term": "Clock skew",
+    "definition": "The difference in clock arrival time between two points in a system.",
+    "anchor": "clock-skew"
+  },
+  {
+    "term": "Clock tree",
+    "definition": "A balanced distribution network of buffers ensuring equal clock delay to all flip-flops.",
+    "anchor": "clock-tree"
+  },
+  {
+    "term": "Clock-to-Q delay",
+    "definition": "The propagation delay from a clock edge to when the flip-flop output changes.",
+    "anchor": "clock-to-q"
+  },
+  {
+    "term": "Closed-loop gain",
+    "definition": "The gain of a circuit with feedback applied, approximately 1/β when loop gain is large.",
+    "anchor": "closed-loop-gain"
+  },
+  {
+    "term": "CMOS",
+    "definition": "A logic family built from complementary NMOS and PMOS transistor pairs, now dominant in digital design.",
+    "anchor": "cmos",
+    "aliases": [
+      "Complementary Metal-Oxide-Semiconductor"
+    ]
+  },
+  {
+    "term": "Common base",
+    "definition": "A BJT amplifier with input at the emitter and output at the collector, providing current gain and high bandwidth.",
+    "anchor": "common-base"
+  },
+  {
+    "term": "Common emitter",
+    "definition": "A BJT amplifier configuration with input at the base and output at the collector, providing voltage gain with phase inversion.",
+    "anchor": "common-emitter"
+  },
+  {
+    "term": "Common gate",
+    "definition": "A MOSFET amplifier with input at the source and output at the drain, analogous to common base.",
+    "anchor": "common-gate"
+  },
+  {
+    "term": "Common source",
+    "definition": "A MOSFET amplifier with input at the gate and output at the drain, analogous to common emitter.",
+    "anchor": "common-source"
+  },
+  {
     "term": "Common-mode rejection",
     "definition": "An instrument's or amplifier's ability to ignore voltage that appears equally on both inputs.",
     "anchor": "common-mode-rejection"
   },
   {
+    "term": "Comparator",
+    "definition": "A circuit that compares two voltages and outputs a binary high or low result.",
+    "anchor": "comparator"
+  },
+  {
     "term": "Composite core",
     "definition": "Inductor core made from magnetic particles suspended in resin.",
     "anchor": "composite-core"
+  },
+  {
+    "term": "Controlled impedance",
+    "definition": "PCB traces designed with specific dimensions relative to the ground plane to achieve a target characteristic impedance.",
+    "anchor": "controlled-impedance"
   },
   {
     "term": "Conventional current",
@@ -134,15 +371,55 @@
     "anchor": "copper-pour"
   },
   {
+    "term": "Corner frequency (noise)",
+    "definition": "The frequency below which flicker noise exceeds white noise in a device's noise spectrum.",
+    "anchor": "corner-frequency-noise"
+  },
+  {
     "term": "Coulomb",
     "definition": "SI unit of electric charge.",
     "anchor": "coulomb",
-    "aliases": ["C"]
+    "aliases": [
+      "C"
+    ]
+  },
+  {
+    "term": "Counter",
+    "definition": "A register that increments or decrements its value on each clock cycle.",
+    "anchor": "counter"
   },
   {
     "term": "Coupling capacitor",
     "definition": "Capacitor in series with a signal path that passes AC while blocking DC.",
     "anchor": "coupling-capacitor"
+  },
+  {
+    "term": "CPLD",
+    "definition": "Complex Programmable Logic Device — multiple PLD blocks connected by a programmable routing matrix.",
+    "anchor": "cpld",
+    "aliases": [
+      "Complex Programmable Logic Device"
+    ]
+  },
+  {
+    "term": "Critical path",
+    "definition": "The longest propagation delay path between flip-flops, limiting maximum clock frequency.",
+    "anchor": "critical-path"
+  },
+  {
+    "term": "Crossover distortion",
+    "definition": "Distortion in push-pull output stages caused by both transistors being off near the signal's zero crossing.",
+    "anchor": "crossover-distortion"
+  },
+  {
+    "term": "Crosstalk",
+    "definition": "Unintended signal coupling between adjacent conductors through parasitic capacitance or mutual inductance.",
+    "anchor": "crosstalk"
+  },
+  {
+    "term": "Crystal oscillator",
+    "definition": "A quartz crystal vibrating at a precise frequency, used as a clock source.",
+    "anchor": "crystal-oscillator"
   },
   {
     "term": "Curie temperature",
@@ -155,9 +432,47 @@
     "anchor": "cut-trace"
   },
   {
+    "term": "Cutoff frequency",
+    "definition": "The frequency at which a filter's response is 3 dB below the passband level.",
+    "anchor": "cutoff-frequency",
+    "aliases": [
+      "f_c"
+    ]
+  },
+  {
+    "term": "D flip-flop",
+    "definition": "An edge-triggered memory element that captures D input on a clock edge and holds it.",
+    "anchor": "d-flip-flop"
+  },
+  {
+    "term": "D latch",
+    "definition": "A latch controlled by a data input and enable signal, transparent when enable is active.",
+    "anchor": "d-latch"
+  },
+  {
+    "term": "dBm",
+    "definition": "Power measured in decibels referenced to 1 milliwatt.",
+    "anchor": "dbm"
+  },
+  {
+    "term": "dBu",
+    "definition": "Voltage in decibels referenced to 0.775 V (the voltage that produces 1 mW into 600 Ω).",
+    "anchor": "dbu"
+  },
+  {
+    "term": "dBV",
+    "definition": "Voltage in decibels referenced to 1 volt.",
+    "anchor": "dbv"
+  },
+  {
     "term": "DC bias effect",
     "definition": "Loss of capacitance in ceramic capacitors when DC voltage is applied.",
     "anchor": "dc-bias-effect"
+  },
+  {
+    "term": "DC biasing",
+    "definition": "Setting the DC operating point of an active device to ensure it operates in the correct region for signal amplification.",
+    "anchor": "dc-biasing"
   },
   {
     "term": "DC coupling",
@@ -168,22 +483,24 @@
     "term": "DCR",
     "definition": "The resistance of an inductor's winding measured at DC.",
     "anchor": "dcr",
-    "aliases": ["DC Resistance"]
+    "aliases": [
+      "DC Resistance"
+    ]
   },
   {
-    "term": "dBm",
-    "definition": "Power measured in decibels referenced to 1 milliwatt.",
-    "anchor": "dbm"
+    "term": "De Morgan's Theorem",
+    "definition": "The complement of AND is OR with complemented inputs, and vice versa.",
+    "anchor": "de-morgans-theorem"
   },
   {
-    "term": "dBu",
-    "definition": "Voltage in decibels referenced to 0.775 V (the voltage that produces 1 mW into 600 \u03a9).",
-    "anchor": "dbu"
+    "term": "Dead time",
+    "definition": "The interval between turning off one switch and turning on the complementary switch in a bridge circuit to prevent shoot-through.",
+    "anchor": "dead-time"
   },
   {
-    "term": "dBV",
-    "definition": "Voltage in decibels referenced to 1 volt.",
-    "anchor": "dbv"
+    "term": "Decoder",
+    "definition": "A combinational circuit that activates one of 2^n outputs based on an n-bit input code.",
+    "anchor": "decoder"
   },
   {
     "term": "Decoupling",
@@ -191,7 +508,7 @@
     "anchor": "decoupling"
   },
   {
-    "term": "Delta-wye (\u0394-Y) transformation",
+    "term": "Delta-wye (Δ-Y) transformation",
     "definition": "Mathematical technique for converting between triangle (delta) and star (wye) resistor network topologies.",
     "anchor": "delta-wye"
   },
@@ -199,6 +516,11 @@
     "term": "Dependent source",
     "definition": "A voltage or current source whose value is controlled by another voltage or current elsewhere in the circuit.",
     "anchor": "dependent-source"
+  },
+  {
+    "term": "Depletion-mode MOSFET",
+    "definition": "A MOSFET that is normally on, conducting with zero gate voltage.",
+    "anchor": "depletion-mode-mosfet"
   },
   {
     "term": "Derating",
@@ -211,10 +533,22 @@
     "anchor": "dielectric"
   },
   {
+    "term": "Differential pair",
+    "definition": "Two matched transistors with tied emitters/sources and a common current source, the fundamental building block of analog ICs.",
+    "anchor": "differential-pair"
+  },
+  {
     "term": "DMM",
     "definition": "The fundamental bench instrument for measuring voltage, current, and resistance.",
     "anchor": "dmm",
-    "aliases": ["Digital Multimeter"]
+    "aliases": [
+      "Digital Multimeter"
+    ]
+  },
+  {
+    "term": "Dominant pole compensation",
+    "definition": "Adding a low-frequency pole to ensure gain drops below unity before phase accumulates to 360°.",
+    "anchor": "dominant-pole-compensation"
   },
   {
     "term": "Dot convention",
@@ -222,9 +556,39 @@
     "anchor": "dot-convention"
   },
   {
+    "term": "Drive strength",
+    "definition": "The amount of current a logic output can source or sink.",
+    "anchor": "drive-strength"
+  },
+  {
+    "term": "Dropout voltage",
+    "definition": "The minimum input-to-output voltage difference required for a regulator to maintain regulation.",
+    "anchor": "dropout-voltage"
+  },
+  {
+    "term": "DSP block",
+    "definition": "Dedicated multiply-accumulate hardware in FPGAs for signal processing.",
+    "anchor": "dsp-block"
+  },
+  {
+    "term": "Duty cycle",
+    "definition": "The fraction of time the main switch is on in a switching regulator, determining the voltage conversion ratio.",
+    "anchor": "duty-cycle"
+  },
+  {
     "term": "Dynamic resistance",
     "definition": "The slope of the I-V curve at a specific operating point (dV/dI).",
     "anchor": "dynamic-resistance"
+  },
+  {
+    "term": "Early effect",
+    "definition": "The slight increase in BJT collector current with higher V_CE, caused by base-width modulation.",
+    "anchor": "early-effect"
+  },
+  {
+    "term": "Early voltage",
+    "definition": "A BJT parameter (V_A) representing the extrapolated voltage at which collector current would become zero.",
+    "anchor": "early-voltage"
   },
   {
     "term": "Earth ground",
@@ -247,27 +611,91 @@
     "anchor": "electron-flow"
   },
   {
+    "term": "Emitter degeneration",
+    "definition": "An unbypassed emitter resistor providing negative feedback that stabilizes gain at the cost of reduced voltage gain.",
+    "anchor": "emitter-degeneration"
+  },
+  {
+    "term": "Emitter follower",
+    "definition": "A BJT buffer with unity voltage gain and low output impedance, also called common collector.",
+    "anchor": "emitter-follower"
+  },
+  {
+    "term": "Encoder",
+    "definition": "A combinational circuit that converts one-hot inputs to a binary code.",
+    "anchor": "encoder"
+  },
+  {
+    "term": "Enhancement-mode MOSFET",
+    "definition": "A MOSFET that is normally off, requiring gate voltage above threshold to conduct.",
+    "anchor": "enhancement-mode-mosfet"
+  },
+  {
+    "term": "Equalization",
+    "definition": "Compensation for frequency-dependent channel loss using transmitter and/or receiver techniques.",
+    "anchor": "equalization"
+  },
+  {
     "term": "Equivalent resistance",
     "definition": "A single resistance value that replaces a series, parallel, or complex combination of resistors for analysis purposes.",
     "anchor": "equivalent-resistance"
   },
   {
-    "term": "ESR",
-    "definition": "The effective series resistance inside a capacitor, representing all resistive losses.",
-    "anchor": "esr",
-    "aliases": ["Equivalent Series Resistance"]
+    "term": "ESD protection",
+    "definition": "Using clamping diodes to steer electrostatic discharge current away from sensitive inputs.",
+    "anchor": "esd-protection"
   },
   {
     "term": "ESL",
     "definition": "Parasitic inductance in a capacitor from its leads, internal connections, and plate geometry.",
     "anchor": "esl",
-    "aliases": ["Equivalent Series Inductance"]
+    "aliases": [
+      "Equivalent Series Inductance"
+    ]
+  },
+  {
+    "term": "ESR",
+    "definition": "The effective series resistance inside a capacitor, representing all resistive losses.",
+    "anchor": "esr",
+    "aliases": [
+      "Equivalent Series Resistance"
+    ]
+  },
+  {
+    "term": "Eye diagram",
+    "definition": "A visual representation of signal quality showing timing and voltage margins at the receiver.",
+    "anchor": "eye-diagram"
+  },
+  {
+    "term": "Fan-out",
+    "definition": "The number of inputs a logic output can drive while maintaining valid logic levels.",
+    "anchor": "fan-out"
   },
   {
     "term": "Farad",
     "definition": "SI unit of capacitance.",
     "anchor": "farad",
-    "aliases": ["F"]
+    "aliases": [
+      "F"
+    ]
+  },
+  {
+    "term": "Fast-recovery diode",
+    "definition": "A diode optimized for low reverse recovery time, suitable for switching power supply applications.",
+    "anchor": "fast-recovery-diode"
+  },
+  {
+    "term": "Feedback fraction",
+    "definition": "The portion of the output signal returned to the input through the feedback network.",
+    "anchor": "feedback-fraction",
+    "aliases": [
+      "β"
+    ]
+  },
+  {
+    "term": "Ferrite bead",
+    "definition": "A frequency-dependent resistive component in series with supply traces to attenuate high-frequency noise while passing DC.",
+    "anchor": "ferrite-bead"
   },
   {
     "term": "Ferrite core",
@@ -280,9 +708,22 @@
     "anchor": "film-capacitor"
   },
   {
+    "term": "Filter order",
+    "definition": "The number of poles in a filter, determining the asymptotic roll-off rate at 20 dB/decade per pole.",
+    "anchor": "filter-order"
+  },
+  {
     "term": "Flat schematic",
     "definition": "Multi-sheet schematic where all sheets exist at the same hierarchy level, connected by net names.",
     "anchor": "flat-schematic"
+  },
+  {
+    "term": "Flicker noise",
+    "definition": "Noise whose power spectral density increases at lower frequencies, dominant below the corner frequency.",
+    "anchor": "flicker-noise",
+    "aliases": [
+      "1/f noise"
+    ]
   },
   {
     "term": "Flyback",
@@ -295,9 +736,74 @@
     "anchor": "flyback-diode"
   },
   {
+    "term": "Forward active",
+    "definition": "The BJT operating region where the base-emitter junction is forward biased and collector-base is reverse biased.",
+    "anchor": "forward-active"
+  },
+  {
+    "term": "Forward voltage",
+    "definition": "The voltage drop across a diode when current flows in the forward direction, typically 0.6-0.7 V for silicon.",
+    "anchor": "forward-voltage"
+  },
+  {
+    "term": "FPGA",
+    "definition": "Field-Programmable Gate Array — a programmable chip with configurable logic blocks and routing.",
+    "anchor": "fpga",
+    "aliases": [
+      "Field-Programmable Gate Array"
+    ]
+  },
+  {
+    "term": "FSM",
+    "definition": "Finite State Machine — a sequential circuit that moves through defined states according to inputs.",
+    "anchor": "state-machine",
+    "aliases": [
+      "Finite State Machine",
+      "state machine"
+    ]
+  },
+  {
+    "term": "Full adder",
+    "definition": "A circuit that adds two 1-bit inputs plus carry-in to produce a sum and carry-out.",
+    "anchor": "full-adder"
+  },
+  {
+    "term": "Full-wave rectifier",
+    "definition": "A rectifier circuit using four diodes in a bridge configuration to convert both polarities of AC to DC.",
+    "anchor": "full-wave-rectifier"
+  },
+  {
+    "term": "Gain margin",
+    "definition": "The stability margin in dB between loop gain and 0 dB at the frequency where phase equals 360°.",
+    "anchor": "gain-margin"
+  },
+  {
+    "term": "Gain peaking",
+    "definition": "An unintended rise in gain near cutoff frequency, indicating underdamped response or insufficient phase margin.",
+    "anchor": "gain-peaking"
+  },
+  {
+    "term": "GBW",
+    "definition": "Gain-bandwidth product — the product of closed-loop gain and bandwidth, approximately constant for a given op-amp.",
+    "anchor": "gbw",
+    "aliases": [
+      "Gain-bandwidth product"
+    ]
+  },
+  {
+    "term": "Glitch",
+    "definition": "A momentary incorrect output caused by different propagation delays through logic paths.",
+    "anchor": "glitch"
+  },
+  {
     "term": "Global net",
     "definition": "A named electrical connection that spans multiple schematic sheets without explicit wiring.",
     "anchor": "global-net"
+  },
+  {
+    "term": "Gray code",
+    "definition": "A binary encoding where only one bit changes per count, avoiding multi-bit transition glitches.",
+    "anchor": "gray-code"
   },
   {
     "term": "Ground bounce",
@@ -310,16 +816,40 @@
     "anchor": "ground-plane"
   },
   {
+    "term": "Group delay",
+    "definition": "The time delay experienced by signal components at a given frequency, the derivative of phase versus frequency.",
+    "anchor": "group-delay"
+  },
+  {
+    "term": "Guard ring",
+    "definition": "A driven shield trace at the same potential as a sensitive node, reducing capacitive leakage and coupling.",
+    "anchor": "guard-ring"
+  },
+  {
+    "term": "Half adder",
+    "definition": "A circuit that adds two 1-bit inputs to produce a sum and carry.",
+    "anchor": "half-adder"
+  },
+  {
+    "term": "Half-wave rectifier",
+    "definition": "A rectifier circuit using one diode to convert one polarity of an AC signal to DC.",
+    "anchor": "half-wave-rectifier"
+  },
+  {
     "term": "Henry",
     "definition": "SI unit of inductance.",
     "anchor": "henry",
-    "aliases": ["H"]
+    "aliases": [
+      "H"
+    ]
   },
   {
     "term": "Hertz",
     "definition": "SI unit of frequency.",
     "anchor": "hertz",
-    "aliases": ["Hz"]
+    "aliases": [
+      "Hz"
+    ]
   },
   {
     "term": "Hidden power pin",
@@ -332,6 +862,16 @@
     "anchor": "hierarchical-schematic"
   },
   {
+    "term": "High-pass filter",
+    "definition": "A filter that passes frequencies above a cutoff and attenuates frequencies below it.",
+    "anchor": "high-pass-filter"
+  },
+  {
+    "term": "Hold time",
+    "definition": "The minimum time data must remain stable after the clock edge for reliable capture.",
+    "anchor": "hold-time"
+  },
+  {
     "term": "Holdup time",
     "definition": "Duration that a capacitor can sustain a load after the input power is removed.",
     "anchor": "holdup-time"
@@ -342,10 +882,20 @@
     "anchor": "hysteresis-loss"
   },
   {
+    "term": "I2C",
+    "definition": "Inter-Integrated Circuit — a synchronous, half-duplex, multi-master serial bus using two open-drain lines.",
+    "anchor": "i2c",
+    "aliases": [
+      "Inter-Integrated Circuit"
+    ]
+  },
+  {
     "term": "Impedance",
     "definition": "Generalized resistance for AC circuits, including both resistive (real) and reactive (imaginary) components.",
     "anchor": "impedance",
-    "aliases": ["Z"]
+    "aliases": [
+      "Z"
+    ]
   },
   {
     "term": "Impedance matching",
@@ -356,13 +906,27 @@
     "term": "Inductance",
     "definition": "The property of a component that resists changes in current by storing energy in a magnetic field.",
     "anchor": "inductance",
-    "aliases": ["L"]
+    "aliases": [
+      "L"
+    ]
+  },
+  {
+    "term": "Input bias current",
+    "definition": "Small current drawn by an op-amp's input terminals, nanoamps for BJT inputs and picoamps for FET inputs.",
+    "anchor": "input-bias-current"
   },
   {
     "term": "Input impedance",
     "definition": "The impedance presented by a circuit or instrument at its input terminals.",
     "anchor": "input-impedance",
-    "aliases": ["Z_in"]
+    "aliases": [
+      "Z_in"
+    ]
+  },
+  {
+    "term": "Input offset voltage",
+    "definition": "A small DC voltage difference between the inputs of a real op-amp that produces output error in precision circuits.",
+    "anchor": "input-offset-voltage"
   },
   {
     "term": "Inrush current",
@@ -370,14 +934,24 @@
     "anchor": "inrush-current"
   },
   {
+    "term": "Instantaneous power",
+    "definition": "The product of voltage and current at any specific moment: P(t) = V(t) × I(t).",
+    "anchor": "instantaneous-power"
+  },
+  {
     "term": "Insulation breakdown",
     "definition": "Degradation of a dielectric material leading to increased leakage current or catastrophic short circuit.",
     "anchor": "insulation-breakdown"
   },
   {
-    "term": "Instantaneous power",
-    "definition": "The product of voltage and current at any specific moment: P(t) = V(t) \u00d7 I(t).",
-    "anchor": "instantaneous-power"
+    "term": "Interstage coupling",
+    "definition": "The method of connecting amplifier stages — AC-coupled (capacitive) or DC-coupled (direct).",
+    "anchor": "interstage-coupling"
+  },
+  {
+    "term": "Inverting amplifier",
+    "definition": "An op-amp configuration with input at the inverting terminal through a resistor, gain set by the feedback resistor ratio.",
+    "anchor": "inverting-amplifier"
   },
   {
     "term": "IR thermometer",
@@ -385,28 +959,67 @@
     "anchor": "ir-thermometer"
   },
   {
+    "term": "Jitter",
+    "definition": "Variation in clock edge timing from cycle to cycle.",
+    "anchor": "jitter"
+  },
+  {
+    "term": "JK flip-flop",
+    "definition": "A flip-flop with J and K inputs that can set, reset, hold, or toggle.",
+    "anchor": "jk-flip-flop"
+  },
+  {
     "term": "Johnson noise",
     "definition": "Random voltage noise generated by thermal motion of electrons in any resistor.",
     "anchor": "johnson-noise",
-    "aliases": ["thermal noise"]
+    "aliases": [
+      "thermal noise"
+    ]
   },
   {
     "term": "Joule",
     "definition": "SI unit of energy.",
     "anchor": "joule",
-    "aliases": ["J"]
+    "aliases": [
+      "J"
+    ]
+  },
+  {
+    "term": "Junction capacitance",
+    "definition": "The capacitance of a reverse-biased diode that varies with the applied reverse voltage.",
+    "anchor": "junction-capacitance"
+  },
+  {
+    "term": "Karnaugh map",
+    "definition": "A graphical method for simplifying Boolean functions by grouping adjacent truth table entries.",
+    "anchor": "karnaugh-map",
+    "aliases": [
+      "K-map"
+    ]
   },
   {
     "term": "KCL",
     "definition": "The sum of currents entering a node equals the sum of currents leaving.",
     "anchor": "kcl",
-    "aliases": ["Kirchhoff's Current Law"]
+    "aliases": [
+      "Kirchhoff's Current Law"
+    ]
   },
   {
     "term": "KVL",
     "definition": "The sum of voltage drops around any closed loop equals zero.",
     "anchor": "kvl",
-    "aliases": ["Kirchhoff's Voltage Law"]
+    "aliases": [
+      "Kirchhoff's Voltage Law"
+    ]
+  },
+  {
+    "term": "LDO",
+    "definition": "Low-dropout regulator — a linear regulator designed to operate with very small input-to-output voltage difference.",
+    "anchor": "ldo",
+    "aliases": [
+      "Low-dropout regulator"
+    ]
   },
   {
     "term": "Leakage current",
@@ -414,9 +1027,40 @@
     "anchor": "leakage-current"
   },
   {
+    "term": "Level shifting",
+    "definition": "Converting a signal from one voltage level to another when interfacing different logic families.",
+    "anchor": "level-shifting",
+    "aliases": [
+      "level translation"
+    ]
+  },
+  {
+    "term": "LFSR",
+    "definition": "Linear Feedback Shift Register — generates pseudo-random sequences using XOR feedback.",
+    "anchor": "linear-feedback-shift-register",
+    "aliases": [
+      "Linear Feedback Shift Register"
+    ]
+  },
+  {
+    "term": "Line regulation",
+    "definition": "How much a regulator's output changes per volt of input change.",
+    "anchor": "line-regulation"
+  },
+  {
     "term": "Linear circuit",
     "definition": "A circuit that obeys the superposition principle: the response to a sum of inputs equals the sum of the individual responses.",
     "anchor": "linear-circuit"
+  },
+  {
+    "term": "Linear regulator",
+    "definition": "A voltage regulator that maintains constant output by dissipating excess voltage as heat across a series pass element.",
+    "anchor": "linear-regulator"
+  },
+  {
+    "term": "Load regulation",
+    "definition": "How much a voltage source's output changes per unit of load current change.",
+    "anchor": "load-regulation"
   },
   {
     "term": "Loading",
@@ -424,9 +1068,45 @@
     "anchor": "loading"
   },
   {
+    "term": "Logic-level MOSFET",
+    "definition": "A MOSFET designed to be fully on with 3.3 V or 5 V gate drive.",
+    "anchor": "logic-level-mosfet"
+  },
+  {
     "term": "Loop",
     "definition": "Any closed path through a circuit, traversing one or more branches and returning to the starting node.",
     "anchor": "loop"
+  },
+  {
+    "term": "Loop compensation",
+    "definition": "Design of the feedback network in a switching regulator to ensure stability across all operating conditions.",
+    "anchor": "loop-compensation"
+  },
+  {
+    "term": "Loop gain",
+    "definition": "The product of forward gain and feedback fraction (T = A × β), determining feedback effectiveness.",
+    "anchor": "loop-gain"
+  },
+  {
+    "term": "Low-pass filter",
+    "definition": "A filter that passes frequencies below a cutoff and attenuates frequencies above it.",
+    "anchor": "low-pass-filter"
+  },
+  {
+    "term": "LUT",
+    "definition": "Lookup table — a small memory implementing arbitrary Boolean functions in FPGAs.",
+    "anchor": "lookup-table",
+    "aliases": [
+      "Lookup table"
+    ]
+  },
+  {
+    "term": "LVDS",
+    "definition": "Low-Voltage Differential Signaling — a standard for high-speed data and clock distribution.",
+    "anchor": "lvds",
+    "aliases": [
+      "Low-Voltage Differential Signaling"
+    ]
   },
   {
     "term": "Magnetic field",
@@ -439,15 +1119,19 @@
     "anchor": "magnetostriction"
   },
   {
-    "term": "Milliamp-hour",
-    "definition": "Unit of electric charge commonly used to rate battery capacity.",
-    "anchor": "mah",
-    "aliases": ["mAh"]
+    "term": "Matched components",
+    "definition": "Components selected or designed to track each other's temperature coefficient for ratiometric stability.",
+    "anchor": "matched-components"
   },
   {
     "term": "Maximum power transfer",
     "definition": "Occurs when load resistance equals the source's Thevenin resistance.",
     "anchor": "maximum-power-transfer"
+  },
+  {
+    "term": "Mealy machine",
+    "definition": "A state machine where outputs depend on both current state and current inputs.",
+    "anchor": "mealy-machine"
   },
   {
     "term": "Mesh analysis",
@@ -460,9 +1144,61 @@
     "anchor": "metal-film-resistor"
   },
   {
+    "term": "Metastability",
+    "definition": "A state where a flip-flop output is indeterminate between HIGH and LOW for an uncertain duration.",
+    "anchor": "metastability"
+  },
+  {
     "term": "Microphonic",
     "definition": "The property of some components (especially ceramic capacitors) to generate voltage when subjected to mechanical vibration, due to the piezoelectric effect.",
     "anchor": "microphonic"
+  },
+  {
+    "term": "Microstrip",
+    "definition": "A PCB trace on an outer layer with a ground plane beneath, the most common controlled-impedance structure.",
+    "anchor": "microstrip"
+  },
+  {
+    "term": "Miller effect",
+    "definition": "The multiplication of gate-drain capacitance by voltage gain, slowing switching and potentially causing oscillation.",
+    "anchor": "miller-effect"
+  },
+  {
+    "term": "Milliamp-hour",
+    "definition": "Unit of electric charge commonly used to rate battery capacity.",
+    "anchor": "mah",
+    "aliases": [
+      "mAh"
+    ]
+  },
+  {
+    "term": "Moore machine",
+    "definition": "A state machine where outputs depend only on the current state.",
+    "anchor": "moore-machine"
+  },
+  {
+    "term": "MOSFET",
+    "definition": "A voltage-controlled transistor where gate voltage controls drain current through an insulated gate.",
+    "anchor": "mosfet",
+    "aliases": [
+      "Metal-Oxide-Semiconductor FET"
+    ]
+  },
+  {
+    "term": "MTBF",
+    "definition": "Mean Time Between Failures — average time between metastability-induced failures.",
+    "anchor": "mtbf",
+    "aliases": [
+      "Mean Time Between Failures"
+    ]
+  },
+  {
+    "term": "Multiplexer",
+    "definition": "A combinational circuit that selects one of several data inputs and routes it to a single output.",
+    "anchor": "multiplexer",
+    "aliases": [
+      "mux"
+    ]
   },
   {
     "term": "Mutual inductance",
@@ -470,20 +1206,32 @@
     "anchor": "mutual-inductance"
   },
   {
+    "term": "NAND gate",
+    "definition": "AND followed by NOT; a universal gate capable of implementing any Boolean function.",
+    "anchor": "nand-gate"
+  },
+  {
+    "term": "Negative feedback",
+    "definition": "Feedback where the returned signal opposes the input, creating self-correction that stabilizes gain and reduces distortion.",
+    "anchor": "negative-feedback"
+  },
+  {
     "term": "Net name",
     "definition": "A label applied to a wire or connection in a schematic that replaces physical wire drawings.",
     "anchor": "net-name"
   },
   {
+    "term": "Network analyzer",
+    "definition": "An instrument that measures frequency response with both amplitude and phase information.",
+    "anchor": "network-analyzer"
+  },
+  {
     "term": "No connect",
     "definition": "An explicit marker on a schematic indicating that an IC pin is intentionally left unconnected.",
     "anchor": "no-connect",
-    "aliases": ["NC"]
-  },
-  {
-    "term": "Node",
-    "definition": "A junction where two or more branches meet in a circuit.",
-    "anchor": "node"
+    "aliases": [
+      "NC"
+    ]
   },
   {
     "term": "Nodal analysis",
@@ -491,14 +1239,65 @@
     "anchor": "nodal-analysis"
   },
   {
+    "term": "Node",
+    "definition": "A junction where two or more branches meet in a circuit.",
+    "anchor": "node"
+  },
+  {
+    "term": "Noise figure",
+    "definition": "A measure of how much noise a circuit adds beyond the thermal noise of its source impedance.",
+    "anchor": "noise-figure",
+    "aliases": [
+      "NF"
+    ]
+  },
+  {
+    "term": "Noise floor",
+    "definition": "The minimum detectable signal level, limited by the sum of all noise sources in the circuit.",
+    "anchor": "noise-floor"
+  },
+  {
+    "term": "Noise gain",
+    "definition": "The gain that applies to noise and offset voltage in an op-amp circuit, which may differ from signal gain.",
+    "anchor": "noise-gain"
+  },
+  {
+    "term": "Noise margin",
+    "definition": "The voltage difference between guaranteed output levels and required input thresholds.",
+    "anchor": "noise-margin"
+  },
+  {
+    "term": "Noise spectral density",
+    "definition": "Noise voltage or current per unit bandwidth, typically expressed in nV/√Hz or pA/√Hz.",
+    "anchor": "noise-spectral-density"
+  },
+  {
     "term": "Nominal voltage",
     "definition": "The approximate or stated voltage under no-load or standard conditions.",
     "anchor": "nominal-voltage"
   },
   {
+    "term": "Non-inverting amplifier",
+    "definition": "An op-amp configuration with input at the non-inverting terminal, gain set by 1 + R_f/R_in.",
+    "anchor": "non-inverting-amplifier"
+  },
+  {
+    "term": "NOR gate",
+    "definition": "OR followed by NOT; a universal gate capable of implementing any Boolean function.",
+    "anchor": "nor-gate"
+  },
+  {
     "term": "Norton equivalent",
     "definition": "Any linear circuit reduced to a current source (I_n) in parallel with a resistance (R_n).",
     "anchor": "norton-equivalent"
+  },
+  {
+    "term": "NOT gate",
+    "definition": "A logic gate that outputs the complement of its input.",
+    "anchor": "not-gate",
+    "aliases": [
+      "inverter"
+    ]
   },
   {
     "term": "NTC thermistor",
@@ -509,19 +1308,51 @@
     "term": "Ohm",
     "definition": "SI unit of electrical resistance.",
     "anchor": "ohm",
-    "aliases": ["\u03a9"]
+    "aliases": [
+      "Ω"
+    ]
   },
   {
     "term": "Ohm's Law",
     "definition": "The fundamental relationship between voltage, current, and resistance.",
     "anchor": "ohms-law",
-    "aliases": ["V = IR"]
+    "aliases": [
+      "V = IR"
+    ]
+  },
+  {
+    "term": "Op-amp",
+    "definition": "An operational amplifier — a high-gain differential amplifier used as a universal analog building block with external feedback.",
+    "anchor": "op-amp",
+    "aliases": [
+      "operational amplifier"
+    ]
   },
   {
     "term": "Open-circuit voltage",
     "definition": "The voltage measured across a source's terminals when no load is connected.",
     "anchor": "open-circuit-voltage",
-    "aliases": ["V_oc"]
+    "aliases": [
+      "V_oc"
+    ]
+  },
+  {
+    "term": "Open-drain",
+    "definition": "A logic output with only a pull-down transistor, requiring an external pull-up for the HIGH level.",
+    "anchor": "open-drain",
+    "aliases": [
+      "open-collector"
+    ]
+  },
+  {
+    "term": "Open-loop gain",
+    "definition": "The gain of an op-amp without feedback, typically 100,000 V/V or more at DC.",
+    "anchor": "open-loop-gain"
+  },
+  {
+    "term": "OR gate",
+    "definition": "A logic gate that outputs 1 when any input is 1.",
+    "anchor": "or-gate"
   },
   {
     "term": "Oscilloscope probe",
@@ -532,7 +1363,19 @@
     "term": "Output impedance",
     "definition": "The impedance a circuit presents at its output terminals.",
     "anchor": "output-impedance",
-    "aliases": ["Z_out"]
+    "aliases": [
+      "Z_out"
+    ]
+  },
+  {
+    "term": "Output ripple",
+    "definition": "AC voltage variation superimposed on the DC output of a switching regulator.",
+    "anchor": "output-ripple"
+  },
+  {
+    "term": "Parallel",
+    "definition": "Components connected across the same two nodes so that they share the same voltage.",
+    "anchor": "parallel"
   },
   {
     "term": "Parasitic capacitance",
@@ -543,6 +1386,32 @@
     "term": "Parasitic inductance",
     "definition": "Unintended inductance in component leads, wires, and PCB traces.",
     "anchor": "parasitic-inductance"
+  },
+  {
+    "term": "Pass element",
+    "definition": "The series transistor in a linear regulator whose resistance adjusts to maintain constant output voltage.",
+    "anchor": "pass-element"
+  },
+  {
+    "term": "PDN",
+    "definition": "Power Distribution Network — the complete power delivery path from regulator to transistors.",
+    "anchor": "power-distribution-network",
+    "aliases": [
+      "Power Distribution Network"
+    ]
+  },
+  {
+    "term": "PFM",
+    "definition": "Pulse frequency modulation — a light-load operating mode where switching frequency reduces to maintain efficiency.",
+    "anchor": "pfm",
+    "aliases": [
+      "Pulse frequency modulation"
+    ]
+  },
+  {
+    "term": "Phase margin",
+    "definition": "The stability margin — difference between actual phase and 360° at the frequency where loop gain equals unity.",
+    "anchor": "phase-margin"
   },
   {
     "term": "Piezoelectric effect",
@@ -560,14 +1429,40 @@
     "anchor": "pin-number"
   },
   {
+    "term": "Place and Route",
+    "definition": "The FPGA design step assigning logic to physical locations and connecting them.",
+    "anchor": "place-and-route",
+    "aliases": [
+      "P&R"
+    ]
+  },
+  {
+    "term": "PLL",
+    "definition": "Phase-Locked Loop — a feedback circuit synchronizing output frequency with a reference.",
+    "anchor": "pll",
+    "aliases": [
+      "Phase-Locked Loop"
+    ]
+  },
+  {
     "term": "Polarity",
     "definition": "The directional convention for voltage measurement.",
     "anchor": "polarity"
   },
   {
+    "term": "Pole",
+    "definition": "A frequency in a transfer function that contributes -20 dB/decade roll-off and up to -90° of phase shift.",
+    "anchor": "pole"
+  },
+  {
     "term": "Port",
     "definition": "A connection point in a hierarchical schematic that links a sub-sheet to the level above.",
     "anchor": "port"
+  },
+  {
+    "term": "Positive feedback",
+    "definition": "Feedback where the returned signal reinforces the input, causing output to diverge. Used in oscillators and latches.",
+    "anchor": "positive-feedback"
   },
   {
     "term": "Potentiometer",
@@ -593,7 +1488,9 @@
     "term": "Power factor",
     "definition": "The ratio of real power to apparent power.",
     "anchor": "power-factor",
-    "aliases": ["PF"]
+    "aliases": [
+      "PF"
+    ]
   },
   {
     "term": "Power flag / symbol",
@@ -609,13 +1506,35 @@
     "term": "ppm",
     "definition": "A measure of ratio.",
     "anchor": "ppm",
-    "aliases": ["Parts Per Million"]
+    "aliases": [
+      "Parts Per Million"
+    ]
+  },
+  {
+    "term": "Pre-emphasis",
+    "definition": "High-frequency signal boost at the transmitter to compensate for channel attenuation.",
+    "anchor": "pre-emphasis"
   },
   {
     "term": "Precision",
     "definition": "The consistency of repeated measurements.",
     "anchor": "precision",
-    "aliases": ["Repeatability"]
+    "aliases": [
+      "Repeatability"
+    ]
+  },
+  {
+    "term": "Prescaler",
+    "definition": "A counter used to divide a clock frequency by a fixed amount.",
+    "anchor": "prescaler",
+    "aliases": [
+      "clock divider"
+    ]
+  },
+  {
+    "term": "Priority encoder",
+    "definition": "An encoder that outputs the binary code of the highest-priority active input.",
+    "anchor": "priority-encoder"
   },
   {
     "term": "Probe loading",
@@ -626,7 +1545,30 @@
     "term": "PTC",
     "definition": "A component whose resistance increases with temperature.",
     "anchor": "ptc",
-    "aliases": ["Positive Temperature Coefficient"]
+    "aliases": [
+      "Positive Temperature Coefficient"
+    ]
+  },
+  {
+    "term": "Pull-up resistor",
+    "definition": "A resistor connected to supply voltage to establish the HIGH level for open-drain outputs.",
+    "anchor": "pull-up-resistor"
+  },
+  {
+    "term": "Q-point",
+    "definition": "The DC operating point of a transistor, determined by the bias circuit.",
+    "anchor": "q-point",
+    "aliases": [
+      "quiescent point"
+    ]
+  },
+  {
+    "term": "Quality factor",
+    "definition": "A measure of how selective a resonant circuit or filter is, with higher Q meaning narrower bandwidth.",
+    "anchor": "quality-factor",
+    "aliases": [
+      "Q factor"
+    ]
   },
   {
     "term": "Quiescent current",
@@ -634,16 +1576,30 @@
     "anchor": "quiescent-current"
   },
   {
+    "term": "R_DS(on)",
+    "definition": "The on-resistance of a MOSFET when fully enhanced, a key parameter for switching efficiency.",
+    "anchor": "rds-on"
+  },
+  {
+    "term": "Rail-to-rail",
+    "definition": "An op-amp whose output can swing close to both supply rails, typically within 50-200 mV.",
+    "anchor": "rail-to-rail"
+  },
+  {
     "term": "Reactive power",
     "definition": "Power that cycles back and forth between source and reactive components (capacitors, inductors) without performing net work.",
     "anchor": "reactive-power",
-    "aliases": ["Q"]
+    "aliases": [
+      "Q"
+    ]
   },
   {
     "term": "Real power",
     "definition": "The power actually dissipated as heat or converted to useful work, measured in watts.",
     "anchor": "real-power",
-    "aliases": ["P"]
+    "aliases": [
+      "P"
+    ]
   },
   {
     "term": "Reference designator",
@@ -659,7 +1615,14 @@
     "term": "Reference node",
     "definition": "The node assigned zero volts in nodal analysis.",
     "anchor": "reference-node",
-    "aliases": ["ground"]
+    "aliases": [
+      "ground"
+    ]
+  },
+  {
+    "term": "Register",
+    "definition": "A group of flip-flops sharing a common clock, storing a multi-bit word.",
+    "anchor": "register"
   },
   {
     "term": "Regulation",
@@ -672,9 +1635,32 @@
     "anchor": "resolution"
   },
   {
+    "term": "Resonant frequency",
+    "definition": "The frequency at which an LC circuit oscillates with maximum amplitude.",
+    "anchor": "resonant-frequency",
+    "aliases": [
+      "f_0"
+    ]
+  },
+  {
+    "term": "Reverse polarity protection",
+    "definition": "Using a series or parallel diode to block current if the supply is connected backwards.",
+    "anchor": "reverse-polarity-protection"
+  },
+  {
+    "term": "Reverse recovery time",
+    "definition": "The time during which a forward-conducting diode continues to conduct briefly in reverse while stored charge is swept out.",
+    "anchor": "reverse-recovery-time"
+  },
+  {
     "term": "Rework",
     "definition": "Manual modifications to a PCB after assembly: bodge wires, component swaps, cut traces.",
     "anchor": "rework"
+  },
+  {
+    "term": "Ringing",
+    "definition": "Damped oscillation in a step response, indicating marginal stability or underdamped poles.",
+    "anchor": "ringing"
   },
   {
     "term": "Ripple current",
@@ -682,10 +1668,40 @@
     "anchor": "ripple-current"
   },
   {
+    "term": "Rise time",
+    "definition": "The time for an output to transition from 10% to 90% of its final value in response to a step input.",
+    "anchor": "rise-time"
+  },
+  {
     "term": "RMS",
     "definition": "The effective value of a time-varying signal.",
     "anchor": "rms",
-    "aliases": ["Root Mean Square"]
+    "aliases": [
+      "Root Mean Square"
+    ]
+  },
+  {
+    "term": "RS-232",
+    "definition": "A UART electrical standard using ±3 to ±15 V signal levels.",
+    "anchor": "rs-232"
+  },
+  {
+    "term": "RS-485",
+    "definition": "A differential serial standard supporting multi-drop networks over long distances.",
+    "anchor": "rs-485"
+  },
+  {
+    "term": "RTL",
+    "definition": "Register Transfer Level — the abstraction level describing data storage and movement between registers.",
+    "anchor": "register-transfer-level",
+    "aliases": [
+      "Register Transfer Level"
+    ]
+  },
+  {
+    "term": "Sallen-Key filter",
+    "definition": "The most common active filter topology, using a single op-amp in non-inverting configuration.",
+    "anchor": "sallen-key-filter"
   },
   {
     "term": "Saturation current",
@@ -693,10 +1709,32 @@
     "anchor": "saturation-current"
   },
   {
+    "term": "Saturation region (BJT)",
+    "definition": "The BJT operating region where both junctions are forward biased and the transistor acts as a low-impedance switch.",
+    "anchor": "saturation-region-bjt"
+  },
+  {
+    "term": "Schottky diode",
+    "definition": "A diode with a metal-semiconductor junction exhibiting lower forward voltage and faster switching than conventional junction diodes.",
+    "anchor": "schottky-diode"
+  },
+  {
+    "term": "Second breakdown",
+    "definition": "A destructive failure mode where localized heating causes current focusing in high-voltage BJTs.",
+    "anchor": "second-breakdown"
+  },
+  {
+    "term": "Self-heating",
+    "definition": "Power dissipation within a component raising its own temperature, changing its electrical parameters.",
+    "anchor": "self-heating"
+  },
+  {
     "term": "Self-resonant frequency",
     "definition": "The frequency at which a capacitor's ESL resonates with its capacitance, causing impedance to reach a minimum.",
     "anchor": "self-resonant-frequency",
-    "aliases": ["SRF"]
+    "aliases": [
+      "SRF"
+    ]
   },
   {
     "term": "Sense resistor",
@@ -704,14 +1742,32 @@
     "anchor": "sense-resistor"
   },
   {
+    "term": "SEPIC converter",
+    "definition": "A non-inverting buck-boost topology producing output voltage above or below input with same polarity.",
+    "anchor": "sepic-converter"
+  },
+  {
+    "term": "SerDes",
+    "definition": "Serializer-deserializer — dedicated high-speed transceiver blocks for multi-gigabit communication.",
+    "anchor": "serdes",
+    "aliases": [
+      "serializer-deserializer"
+    ]
+  },
+  {
     "term": "Series",
     "definition": "Components connected end-to-end so that the same current flows through each.",
     "anchor": "series"
   },
   {
-    "term": "Parallel",
-    "definition": "Components connected across the same two nodes so that they share the same voltage.",
-    "anchor": "parallel"
+    "term": "Series termination",
+    "definition": "A resistor at the driver matching line impedance to prevent reflections.",
+    "anchor": "series-termination"
+  },
+  {
+    "term": "Setup time",
+    "definition": "The minimum time data must be stable before the clock edge for reliable capture.",
+    "anchor": "setup-time"
   },
   {
     "term": "Shielded inductor",
@@ -719,10 +1775,27 @@
     "anchor": "shielded-inductor"
   },
   {
+    "term": "Shift register",
+    "definition": "A register where data moves one position per clock cycle through cascaded flip-flops.",
+    "anchor": "shift-register"
+  },
+  {
     "term": "Short-circuit current",
     "definition": "The current that flows when a source's output terminals are connected together.",
     "anchor": "short-circuit-current",
-    "aliases": ["I_sc"]
+    "aliases": [
+      "I_sc"
+    ]
+  },
+  {
+    "term": "Shot noise",
+    "definition": "Random noise caused by the discrete nature of charge carriers crossing a barrier, proportional to DC current.",
+    "anchor": "shot-noise"
+  },
+  {
+    "term": "Shunt reference",
+    "definition": "A two-terminal voltage reference that sinks current to maintain a fixed voltage.",
+    "anchor": "shunt-reference"
   },
   {
     "term": "Shunt resistor",
@@ -731,7 +1804,7 @@
   },
   {
     "term": "SI prefixes",
-    "definition": "Standard multipliers for units: tera (10\u00b9\u00b2), giga (10\u2079), mega (10\u2076), kilo (10\u00b3), milli (10\u207b\u00b3), micro (10\u207b\u2076), nano (10\u207b\u2079), pico (10\u207b\u00b9\u00b2), femto (10\u207b\u00b9\u2075).",
+    "definition": "Standard multipliers for units: tera (10¹²), giga (10⁹), mega (10⁶), kilo (10³), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹), pico (10⁻¹²), femto (10⁻¹⁵).",
     "anchor": "si-prefixes"
   },
   {
@@ -740,9 +1813,37 @@
     "anchor": "signal-ground"
   },
   {
+    "term": "Skin effect",
+    "definition": "High-frequency phenomenon where current flows only in a thin surface layer of a conductor.",
+    "anchor": "skin-effect"
+  },
+  {
+    "term": "Slack",
+    "definition": "The difference between required and actual signal arrival time; positive means constraint is met.",
+    "anchor": "slack"
+  },
+  {
+    "term": "Slew rate",
+    "definition": "The maximum rate at which an op-amp output can change voltage, typically expressed in V/µs.",
+    "anchor": "slew-rate"
+  },
+  {
+    "term": "Small-signal analysis",
+    "definition": "Linear circuit analysis describing device response to small AC signals around a DC operating point.",
+    "anchor": "small-signal-analysis"
+  },
+  {
     "term": "SMD resistor marking",
     "definition": "Three or four digit code: for a 3-digit code, the first two digits are significant and the third is the exponent.",
     "anchor": "smd-resistor-marking"
+  },
+  {
+    "term": "SNR",
+    "definition": "Signal-to-noise ratio — the ratio of signal power to noise power, usually in decibels.",
+    "anchor": "snr",
+    "aliases": [
+      "Signal-to-Noise Ratio"
+    ]
   },
   {
     "term": "Snubber",
@@ -750,9 +1851,66 @@
     "anchor": "snubber"
   },
   {
+    "term": "SOA",
+    "definition": "Safe Operating Area — the I-V region where a transistor can safely operate without exceeding voltage, current, or power limits.",
+    "anchor": "soa",
+    "aliases": [
+      "Safe Operating Area"
+    ]
+  },
+  {
+    "term": "Soft-start",
+    "definition": "A circuit feature that gradually ramps output voltage during startup to limit inrush current.",
+    "anchor": "soft-start"
+  },
+  {
     "term": "Source deactivation",
     "definition": "The process of \"turning off\" independent sources to find equivalent resistance: voltage sources become short circuits; current sources become open circuits.",
     "anchor": "source-deactivation"
+  },
+  {
+    "term": "Source degeneration",
+    "definition": "A source resistor in a MOSFET amplifier providing stabilizing feedback, analogous to emitter degeneration.",
+    "anchor": "source-degeneration"
+  },
+  {
+    "term": "Source follower",
+    "definition": "A MOSFET buffer with unity voltage gain and low output impedance, also called common drain.",
+    "anchor": "source-follower"
+  },
+  {
+    "term": "SPI",
+    "definition": "Serial Peripheral Interface — a synchronous, full-duplex, master-slave serial bus.",
+    "anchor": "spi",
+    "aliases": [
+      "Serial Peripheral Interface"
+    ]
+  },
+  {
+    "term": "SR latch",
+    "definition": "The simplest memory element from two cross-coupled gates with Set and Reset inputs.",
+    "anchor": "sr-latch"
+  },
+  {
+    "term": "SSO",
+    "definition": "Simultaneous Switching Output — number of pins switching at once, affecting power integrity.",
+    "anchor": "sso",
+    "aliases": [
+      "Simultaneous Switching Output"
+    ]
+  },
+  {
+    "term": "STA",
+    "definition": "Static Timing Analysis — automated timing verification by analyzing all paths without simulation.",
+    "anchor": "static-timing-analysis",
+    "aliases": [
+      "Static Timing Analysis"
+    ]
+  },
+  {
+    "term": "Static hazard",
+    "definition": "A condition where the output should remain constant but momentarily produces the opposite value.",
+    "anchor": "static-hazard"
   },
   {
     "term": "Stiff source",
@@ -760,14 +1918,24 @@
     "anchor": "stiff-source"
   },
   {
+    "term": "Storage time",
+    "definition": "The delay caused by excess base charge that must be removed before a saturated BJT can turn off.",
+    "anchor": "storage-time"
+  },
+  {
+    "term": "Stripline",
+    "definition": "A PCB trace between two ground planes providing controlled impedance and field containment.",
+    "anchor": "stripline"
+  },
+  {
+    "term": "Sub-threshold conduction",
+    "definition": "Exponential drain current below threshold voltage in a MOSFET, exploited in ultra-low-power design.",
+    "anchor": "sub-threshold-conduction"
+  },
+  {
     "term": "Supercapacitor",
     "definition": "Very high-capacitance component (farads to hundreds of farads) used for energy storage and extended holdup time.",
     "anchor": "supercapacitor"
-  },
-  {
-    "term": "Supernode",
-    "definition": "In nodal analysis, a boundary drawn around a voltage source and its two adjacent nodes, allowing KCL to be applied to the combined region.",
-    "anchor": "supernode"
   },
   {
     "term": "Supermesh",
@@ -775,14 +1943,34 @@
     "anchor": "supermesh"
   },
   {
+    "term": "Supernode",
+    "definition": "In nodal analysis, a boundary drawn around a voltage source and its two adjacent nodes, allowing KCL to be applied to the combined region.",
+    "anchor": "supernode"
+  },
+  {
     "term": "Superposition",
     "definition": "The principle that in a linear circuit, the total response equals the sum of the responses due to each independent source acting alone.",
     "anchor": "superposition"
   },
   {
-    "term": "Tantalum capacitor",
-    "definition": "Polarized capacitor with high volumetric efficiency.",
-    "anchor": "tantalum-capacitor"
+    "term": "Switch node",
+    "definition": "The highest-noise node in a switching regulator, at the junction between the switch and inductor.",
+    "anchor": "switch-node"
+  },
+  {
+    "term": "Synchronous counter",
+    "definition": "A counter where all flip-flops are clocked simultaneously.",
+    "anchor": "synchronous-counter"
+  },
+  {
+    "term": "Synthesis",
+    "definition": "Converting an HDL description into a netlist of logic elements.",
+    "anchor": "synthesis"
+  },
+  {
+    "term": "T flip-flop",
+    "definition": "A flip-flop that toggles its output when T input is 1.",
+    "anchor": "t-flip-flop"
   },
   {
     "term": "Tank circuit",
@@ -790,10 +1978,22 @@
     "anchor": "tank-circuit"
   },
   {
+    "term": "Tantalum capacitor",
+    "definition": "Polarized capacitor with high volumetric efficiency.",
+    "anchor": "tantalum-capacitor"
+  },
+  {
     "term": "Temperature coefficient",
-    "definition": "The change in a component's value per degree Celsius, usually expressed in ppm/\u00b0C.",
+    "definition": "The change in a component's value per degree Celsius, usually expressed in ppm/°C.",
     "anchor": "temperature-coefficient",
-    "aliases": ["tempco"]
+    "aliases": [
+      "tempco"
+    ]
+  },
+  {
+    "term": "Testbench",
+    "definition": "Non-synthesizable HDL code that drives a design with stimulus and checks outputs.",
+    "anchor": "testbench"
   },
   {
     "term": "Thermal camera",
@@ -806,6 +2006,11 @@
     "anchor": "thermal-coupling"
   },
   {
+    "term": "Thermal gradient",
+    "definition": "Temperature variation across a PCB causing different components to operate at different temperatures.",
+    "anchor": "thermal-gradient"
+  },
+  {
     "term": "Thermal paste",
     "definition": "Interface material applied between a component and heatsink to fill microscopic air gaps and reduce thermal resistance.",
     "anchor": "thermal-paste"
@@ -814,7 +2019,9 @@
     "term": "Thermal resistance",
     "definition": "Resistance to heat flow, analogous to electrical resistance.",
     "anchor": "thermal-resistance",
-    "aliases": ["\u03b8"]
+    "aliases": [
+      "θ"
+    ]
   },
   {
     "term": "Thermal runaway",
@@ -822,9 +2029,17 @@
     "anchor": "thermal-runaway"
   },
   {
-    "term": "Th\u00e9venin equivalent",
-    "definition": "Any linear circuit reduced to a voltage source (V_th) in series with a resistance (R_th).",
-    "anchor": "thevenin-equivalent"
+    "term": "Thermal shutdown",
+    "definition": "A protection circuit that disables a device if junction temperature exceeds a safe limit.",
+    "anchor": "thermal-shutdown"
+  },
+  {
+    "term": "Thermal voltage",
+    "definition": "kT/q, approximately 26 mV at room temperature, appearing throughout semiconductor equations.",
+    "anchor": "thermal-voltage",
+    "aliases": [
+      "V_T"
+    ]
   },
   {
     "term": "Thick-film resistor",
@@ -842,10 +2057,22 @@
     "anchor": "three-digit-cap-code"
   },
   {
+    "term": "Thévenin equivalent",
+    "definition": "Any linear circuit reduced to a voltage source (V_th) in series with a resistance (R_th).",
+    "anchor": "thevenin-equivalent"
+  },
+  {
     "term": "Time constant",
     "definition": "The characteristic response time of an RC or RL circuit.",
     "anchor": "time-constant",
-    "aliases": ["\u03c4"]
+    "aliases": [
+      "τ"
+    ]
+  },
+  {
+    "term": "Timing closure",
+    "definition": "The iterative process of modifying a design until all timing constraints are met.",
+    "anchor": "timing-closure"
   },
   {
     "term": "Tolerance",
@@ -858,14 +2085,71 @@
     "anchor": "tolerance-stacking"
   },
   {
+    "term": "Transconductance",
+    "definition": "The ratio of output current change to input voltage change, a key gain parameter for transistors.",
+    "anchor": "transconductance",
+    "aliases": [
+      "g_m"
+    ]
+  },
+  {
+    "term": "Transfer function",
+    "definition": "The mathematical ratio of output to input as a function of frequency, fully describing a linear circuit's behavior.",
+    "anchor": "transfer-function"
+  },
+  {
     "term": "Transient",
     "definition": "A brief, fast-changing voltage or current event.",
     "anchor": "transient"
   },
   {
+    "term": "Transmission line",
+    "definition": "A conductor pair with distributed L and C causing reflection and wave effects at high frequencies.",
+    "anchor": "transmission-line"
+  },
+  {
     "term": "Trigger",
     "definition": "Oscilloscope feature that synchronizes the display to a specific event on the waveform, producing a stable, readable display.",
     "anchor": "trigger"
+  },
+  {
+    "term": "Triode region",
+    "definition": "The MOSFET operating region where it behaves as a voltage-controlled resistor.",
+    "anchor": "triode-region"
+  },
+  {
+    "term": "Truth table",
+    "definition": "A table listing every input combination and corresponding output for a logic function.",
+    "anchor": "truth-table"
+  },
+  {
+    "term": "TTL",
+    "definition": "Transistor-Transistor Logic — a logic family built from bipolar transistors.",
+    "anchor": "ttl",
+    "aliases": [
+      "Transistor-Transistor Logic"
+    ]
+  },
+  {
+    "term": "TVS",
+    "definition": "A transient voltage suppressor diode designed to absorb large transient energy pulses with well-defined clamping voltage.",
+    "anchor": "tvs",
+    "aliases": [
+      "Transient Voltage Suppressor"
+    ]
+  },
+  {
+    "term": "Two-flip-flop synchronizer",
+    "definition": "Two flip-flops in series for safely synchronizing signals between clock domains.",
+    "anchor": "two-flip-flop-synchronizer"
+  },
+  {
+    "term": "UART",
+    "definition": "Universal Asynchronous Receiver-Transmitter — an asynchronous serial interface without a dedicated clock.",
+    "anchor": "uart",
+    "aliases": [
+      "Universal Asynchronous Receiver-Transmitter"
+    ]
   },
   {
     "term": "Unity power factor",
@@ -878,10 +2162,40 @@
     "anchor": "unshielded-inductor"
   },
   {
+    "term": "Varactor",
+    "definition": "A diode whose junction capacitance varies with reverse voltage, used for frequency tuning and modulation.",
+    "anchor": "varactor"
+  },
+  {
+    "term": "VCO",
+    "definition": "Voltage Controlled Oscillator — output frequency controlled by input voltage.",
+    "anchor": "vco",
+    "aliases": [
+      "Voltage Controlled Oscillator"
+    ]
+  },
+  {
+    "term": "Verilog",
+    "definition": "A hardware description language for designing and simulating digital circuits.",
+    "anchor": "verilog"
+  },
+  {
+    "term": "VHDL",
+    "definition": "A hardware description language for designing and simulating digital circuits.",
+    "anchor": "vhdl"
+  },
+  {
+    "term": "Virtual ground",
+    "definition": "The condition in a negative-feedback op-amp circuit where both inputs are at effectively the same voltage.",
+    "anchor": "virtual-ground"
+  },
+  {
     "term": "Volt",
     "definition": "SI unit of electric potential difference.",
     "anchor": "volt",
-    "aliases": ["V"]
+    "aliases": [
+      "V"
+    ]
   },
   {
     "term": "Voltage coefficient",
@@ -894,16 +2208,40 @@
     "anchor": "voltage-divider"
   },
   {
+    "term": "Voltage divider bias",
+    "definition": "The standard BJT biasing topology using a resistor divider to set base voltage and an emitter resistor to stabilize collector current.",
+    "anchor": "voltage-divider-bias"
+  },
+  {
+    "term": "Voltage headroom",
+    "definition": "The available voltage range for signal swing between supply rails and saturation/cutoff limits.",
+    "anchor": "voltage-headroom"
+  },
+  {
+    "term": "Voltage reference",
+    "definition": "A circuit producing a precise, stable voltage used as a comparison standard in regulators, ADCs, and measurement.",
+    "anchor": "voltage-reference"
+  },
+  {
+    "term": "Watchdog timer",
+    "definition": "A timer that resets a system if it fails to complete a sequence within bounded time.",
+    "anchor": "watchdog-timer"
+  },
+  {
     "term": "Watt",
     "definition": "SI unit of power.",
     "anchor": "watt",
-    "aliases": ["W"]
+    "aliases": [
+      "W"
+    ]
   },
   {
     "term": "Watt-hour",
     "definition": "Unit of energy.",
     "anchor": "watt-hour",
-    "aliases": ["Wh"]
+    "aliases": [
+      "Wh"
+    ]
   },
   {
     "term": "Wiper",
@@ -917,17 +2255,37 @@
   },
   {
     "term": "X5R",
-    "definition": "Class II ceramic dielectric rated for -55\u00b0C to +85\u00b0C with \u00b115% capacitance variation over temperature.",
+    "definition": "Class II ceramic dielectric rated for -55°C to +85°C with ±15% capacitance variation over temperature.",
     "anchor": "x5r"
   },
   {
     "term": "X7R",
-    "definition": "Class II ceramic dielectric rated for -55\u00b0C to +125\u00b0C with \u00b115% capacitance variation over temperature.",
+    "definition": "Class II ceramic dielectric rated for -55°C to +125°C with ±15% capacitance variation over temperature.",
     "anchor": "x7r"
+  },
+  {
+    "term": "XOR gate",
+    "definition": "A logic gate that outputs 1 when inputs differ.",
+    "anchor": "xor-gate"
   },
   {
     "term": "Y5V",
     "definition": "Class III ceramic dielectric with very high capacitance density but terrible stability: +22% / -82% over temperature range.",
     "anchor": "y5v"
+  },
+  {
+    "term": "Zener diode",
+    "definition": "A diode designed to operate in reverse breakdown at a specific voltage, used for voltage references and simple regulators.",
+    "anchor": "zener-diode"
+  },
+  {
+    "term": "Zener regulator",
+    "definition": "A simple voltage regulator consisting of a Zener diode fed through a current-limiting resistor.",
+    "anchor": "zener-regulator"
+  },
+  {
+    "term": "Zero",
+    "definition": "A frequency in a transfer function that contributes +20 dB/decade gain and up to +90° of phase advance.",
+    "anchor": "zero"
   }
 ]

@@ -48,6 +48,3 @@ Ohm's law is the go-to sanity check:
 - **V = IR is not a universal law of nature** — It's a property of resistive materials. Calling it a "law" can be misleading if you start applying it to things that aren't resistive
 - **Contact resistance** — Probes, connectors, and corroded joints add resistance you didn't account for. Your measurement might include resistance that isn't in the schematic
 - **Temperature dependence** — Resistance changes with temperature. A wire-wound resistor's value at room temperature isn't the same as its value at 150 C under load
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

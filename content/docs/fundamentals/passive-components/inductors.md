@@ -84,6 +84,3 @@ Core losses add to DCR losses. At high switching frequencies, core losses can do
 - **Parallel inductors need care** — Unlike resistors, paralleling inductors is complicated by mutual inductance. Two inductors close together on a board may couple magnetically, changing the effective inductance
 - **Self-resonant frequency** — Like capacitors, inductors have parasitic capacitance (between turns). Above the SRF, the "inductor" becomes capacitive. For RF work, always check SRF vs. operating frequency
 - **Current rating vs. saturation rating** — Some datasheets list two current ratings: thermal (how much current before overheating due to DCR losses) and saturation (how much current before inductance drops). Use the lower of the two as your design limit
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

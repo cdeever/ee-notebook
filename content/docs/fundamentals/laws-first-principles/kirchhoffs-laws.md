@@ -63,6 +63,3 @@ The laws aren't wrong. The model or the measurement is.
 - **Current budget check** — KCL says the current drawn from a supply must equal the sum of currents into each branch. If the total doesn't add up, there's a path you're not accounting for (leakage, a shorted component, a floating pin drawing current)
 - **Voltage accounting** — KVL says voltages in a series path must sum to the supply. If you measure every drop in a series chain and they don't add up, you're missing a drop somewhere (trace resistance, connector drop, wire resistance)
 - **Ground path debugging** — "Ground" is a node like any other. KCL applies to the ground node too. Current returning through the ground plane must equal current sourced into the circuit. Ground bounce and voltage differences between "ground" points are KVL telling you about resistive and inductive drops in the return path
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

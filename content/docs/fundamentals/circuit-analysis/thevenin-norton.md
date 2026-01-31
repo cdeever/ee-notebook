@@ -97,6 +97,3 @@ The Thevenin/Norton equivalent captures the DC or single-frequency behavior perf
 - **R_th is not always resistive** — In AC circuits, Z_th can be complex (resistive + reactive). The "resistance" is actually an impedance
 - **Negative R_th means instability** — Some active circuits present negative output impedance in certain frequency ranges. This can cause oscillation when connected to certain loads. If your measured R_th comes out negative, investigate stability
 - **Don't confuse open-circuit voltage with nominal voltage** — A 9 V battery's V_th is 9 V only when fresh and unloaded. Under load, the terminal voltage drops by I x R_internal. The "9 V" on the label is the nominal (approximately open-circuit) voltage
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

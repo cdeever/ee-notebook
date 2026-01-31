@@ -96,6 +96,3 @@ Things that vary between schematics and can cause confusion:
 - **"No connect" pins** — A pin with an X or "NC" marking should genuinely be left unconnected. But some ICs reuse "NC" pins in later revisions. Check the specific part revision
 - **Schematic ≠ layout** — Component placement on the schematic has no relationship to physical placement on the PCB. Two adjacent components on the schematic might be on opposite sides of the board
 - **Outdated schematics** — Schematics don't always match the built hardware. Rework, component substitutions, and cut traces create discrepancies. When debugging a physical board, verify critical connections, don't just trust the drawing
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*
