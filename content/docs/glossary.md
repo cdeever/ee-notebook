@@ -662,6 +662,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="flicker-noise"></a>
 **Flicker noise (1/f noise)** — Noise whose power spectral density increases at lower frequencies, dominant below the corner frequency. See [Noise Sources]({{< relref "/docs/analog/noise-stability-reality/noise-sources" >}}).
 
+<a id="floating"></a>
+**Floating** — A node or pin with no defined connection to a voltage source, ground, or driven signal. Floating inputs are susceptible to noise pickup and undefined logic states. Unused IC inputs should be tied to a defined level per the datasheet.
+
 <a id="flyback"></a>
 **Flyback** — The voltage spike produced when current through an inductor is suddenly interrupted. The inductor's stored energy must go somewhere — without a defined path (flyback diode, snubber), it creates destructive voltage spikes.
 

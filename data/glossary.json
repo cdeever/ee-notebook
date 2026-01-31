@@ -1212,6 +1212,16 @@
     ]
   },
   {
+    "term": "Floating",
+    "definition": "A node or pin with no defined connection to a voltage source, ground, or driven signal. Floating inputs are susceptible to noise pickup and undefined logic states.",
+    "anchor": "floating",
+    "aliases": [
+      "floating pin",
+      "floating node",
+      "floating input"
+    ]
+  },
+  {
     "term": "Flyback",
     "definition": "The voltage spike produced when current through an inductor is suddenly interrupted.",
     "anchor": "flyback"
