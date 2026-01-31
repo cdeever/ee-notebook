@@ -100,6 +100,3 @@ Train yourself to convert fluently. Mixing up prefixes during calculation is a c
 - **dB is not a unit** — It's a ratio. dBm is referenced to 1 mW. dBV is referenced to 1 V. dBu is referenced to 0.775 V. Don't mix them up
 - **Percent vs. ppm** — 1% = 10,000 ppm. Temperature coefficients in ppm/C and tolerance in percent are measuring the same kind of thing at different scales
 - **Angular frequency vs. frequency** — omega = 2 x pi x f. Forgetting the 2 pi gives you an answer that's off by a factor of 6.28. Some formulas use omega, some use f. Know which one you're working with
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

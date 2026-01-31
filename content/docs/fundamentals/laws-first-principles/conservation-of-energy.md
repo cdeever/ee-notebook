@@ -60,6 +60,3 @@ When something doesn't add up:
 - **Reactive power isn't "lost"** — In AC circuits, capacitors and inductors cause current to flow without doing real work. The power factor tells you how much of the apparent power is actually being dissipated. Don't confuse VA with W
 - **Transient vs. steady state** — During power-up, energy is being stored in caps and inductors. The power balance only works as "source = dissipation" after everything has settled
 - **Negative resistance isn't free energy** — Tunnel diodes and certain oscillator circuits exhibit negative resistance in a limited region. This doesn't violate energy conservation — there's always an external energy source enabling the behavior
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

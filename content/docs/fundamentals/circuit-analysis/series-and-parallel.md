@@ -64,6 +64,3 @@ Some networks (bridges, T-networks, pi-networks) can't be fully reduced by serie
 - **Parallel elements must share the same two nodes** — If two elements connect between the same pair of nodes, they're in parallel. If they don't share both nodes, they're not parallel, even if they look close on the schematic
 - **Real components aren't purely R, C, or L** — A real capacitor in a series chain adds its ESR as a series resistance and its ESL as a series inductance. At some frequency, this changes the effective impedance significantly
 - **Don't over-simplify for AC** — At AC, you need impedances, not just resistances. A 1 kohm resistor in parallel with a 100 nF cap has different equivalent impedance at every frequency. Series/parallel reduction still works, but with complex numbers
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

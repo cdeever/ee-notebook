@@ -88,6 +88,3 @@ Red flags that suggest the measurement might not mean what you think:
 - **AC coupling vs. DC coupling** — AC coupling blocks the DC component. Useful for seeing small AC signals on top of a DC rail. But it also filters out low-frequency content below the coupling capacitor's cutoff
 - **Know your trigger** — On an oscilloscope, an unstable or wrong trigger makes the waveform look wrong even when the signal is fine. Set the trigger appropriately before interpreting what you see
 - **Measure twice, differently** — If a measurement is surprising, verify with a different instrument, different probe, or different technique. Agreement between independent measurements builds confidence
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

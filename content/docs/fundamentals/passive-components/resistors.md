@@ -52,6 +52,3 @@ The textbook formulas are straightforward. The practical nuances:
 - **High-value resistors pick up noise** — A 10 Mohm resistor in a high-impedance circuit is an antenna. Guard rings, shielding, and short leads help
 - **SMD resistor markings** — 4.7 kohm might be marked "472" (47 x 10^2). "4R7" means 4.7 ohm. "0" means 0 ohm (jumper). Worth memorizing the common codes
 - **0 ohm resistors exist** — They're jumpers in SMD form. Used for routing flexibility on PCBs. They have milliohms of actual resistance and limited current ratings
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

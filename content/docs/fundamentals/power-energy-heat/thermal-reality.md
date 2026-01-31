@@ -72,6 +72,3 @@ The spectacular failures (magic smoke, fire, package cracking) happen when therm
 - **Thermal coupling** — Heat from one component conducts through the PCB to neighboring components. A hot regulator can raise the temperature of nearby electrolytics
 - **Copper pours help** — PCB copper area acts as a heatsink. Datasheets for power components often specify minimum copper area. Skimping on copper area reduces the effective power rating
 - **Transient thermal behavior** — Thermal mass provides short-term protection. A component can survive brief power pulses above its continuous rating because it takes time to heat up. But thermal mass runs out — this is borrowed time, not a design margin
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

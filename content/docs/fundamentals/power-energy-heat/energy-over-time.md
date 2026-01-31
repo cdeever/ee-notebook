@@ -81,6 +81,3 @@ Same exponential behavior, but for current in an inductor. After one time consta
 - **mAh is charge, not energy** — A 2000 mAh battery at 3.7 V has 7.4 Wh. A 2000 mAh battery at 1.2 V has 2.4 Wh. Same mAh rating, very different energy
 - **Time constants assume linear circuits** — The exponential response assumes constant R and C (or L and R). Nonlinear elements (voltage-dependent capacitance, current-dependent inductance) change the dynamics
 - **Supercapacitors bridge the gap** — With farads of capacitance, supercaps can provide seconds to minutes of holdup. But they have limited voltage ranges and high ESR compared to batteries
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*

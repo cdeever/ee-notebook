@@ -84,6 +84,3 @@ After solving:
 - **Dependent sources** — Transistor models and op-amp models include dependent sources (voltage or current controlled by another voltage or current). These add equations but don't add unknowns. Include their controlling variable in your equations
 - **Non-planar circuits** — Mesh analysis only works directly for planar circuits (circuits you can draw without crossing wires). Non-planar circuits need node analysis or generalized loop analysis
 - **Overcounting or undercounting equations** — For node analysis: you need (N-1) equations for N nodes. For mesh analysis: you need M equations for M independent meshes. Getting the count wrong means an unsolvable or redundant system
-
----
-*Terms on this page are defined in the [Glossary]({{< relref "/docs/glossary" >}}).*
