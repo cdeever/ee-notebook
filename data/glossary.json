@@ -1,0 +1,933 @@
+[
+  {
+    "term": "0 \u03a9 resistor",
+    "definition": "SMD jumper wire in resistor form.",
+    "anchor": "0-ohm-resistor"
+  },
+  {
+    "term": "3 dB point",
+    "definition": "The frequency at which a filter's output drops to 70.7% of its passband value, corresponding to half power.",
+    "anchor": "3db-point"
+  },
+  {
+    "term": "10\u00d7 probe",
+    "definition": "Oscilloscope probe with 10:1 attenuation.",
+    "anchor": "10x-probe"
+  },
+  {
+    "term": "AC coupling",
+    "definition": "Signal path that blocks DC and passes only the time-varying component.",
+    "anchor": "ac-coupling"
+  },
+  {
+    "term": "Accuracy",
+    "definition": "How close a measurement reading is to the true value.",
+    "anchor": "accuracy"
+  },
+  {
+    "term": "Active probe",
+    "definition": "Oscilloscope probe with a built-in amplifier at the tip, presenting very low capacitance (~1 pF) and high impedance.",
+    "anchor": "active-probe"
+  },
+  {
+    "term": "Aging",
+    "definition": "Logarithmic capacitance loss over time in Class II and III ceramic capacitors.",
+    "anchor": "aging"
+  },
+  {
+    "term": "Ampere",
+    "definition": "SI unit of electric current.",
+    "anchor": "ampere",
+    "aliases": ["A"]
+  },
+  {
+    "term": "Angular frequency",
+    "definition": "Frequency expressed in radians per second: \u03c9 = 2\u03c0f.",
+    "anchor": "angular-frequency",
+    "aliases": ["\u03c9"]
+  },
+  {
+    "term": "Apparent power",
+    "definition": "The product of RMS voltage and RMS current, measured in volt-amperes (VA).",
+    "anchor": "apparent-power",
+    "aliases": ["S"]
+  },
+  {
+    "term": "Auto-ranging",
+    "definition": "Instrument feature that automatically selects the measurement range.",
+    "anchor": "auto-ranging"
+  },
+  {
+    "term": "BGA",
+    "definition": "IC package with solder balls on the bottom surface instead of pins on the perimeter.",
+    "anchor": "bga",
+    "aliases": ["Ball Grid Array"]
+  },
+  {
+    "term": "Boost converter",
+    "definition": "Switching power supply topology that produces an output voltage higher than its input.",
+    "anchor": "boost-converter"
+  },
+  {
+    "term": "Branch",
+    "definition": "A path between two nodes in a circuit, carrying a single current.",
+    "anchor": "branch"
+  },
+  {
+    "term": "Buck-boost converter",
+    "definition": "Switching topology that can produce an output voltage either higher or lower than the input, with inverted polarity in the basic form.",
+    "anchor": "buck-boost-converter"
+  },
+  {
+    "term": "Buck converter",
+    "definition": "Switching power supply topology that produces an output voltage lower than its input.",
+    "anchor": "buck-converter"
+  },
+  {
+    "term": "Burden voltage",
+    "definition": "Voltage drop across an ammeter's internal shunt resistor.",
+    "anchor": "burden-voltage"
+  },
+  {
+    "term": "Bypass capacitor",
+    "definition": "Capacitor placed near an IC's power pins to supply instantaneous current demands and shunt high-frequency noise to ground.",
+    "anchor": "bypass-capacitor"
+  },
+  {
+    "term": "C0G / NP0",
+    "definition": "Class I ceramic dielectric.",
+    "anchor": "c0g"
+  },
+  {
+    "term": "Carbon composition resistor",
+    "definition": "Vintage resistor type made from a solid slug of carbon and binder.",
+    "anchor": "carbon-composition"
+  },
+  {
+    "term": "Chassis ground",
+    "definition": "Electrical connection to the equipment's metal chassis or frame.",
+    "anchor": "chassis-ground"
+  },
+  {
+    "term": "Clamp",
+    "definition": "Protection component (typically a diode or TVS) that limits voltage excursions by conducting when a threshold is exceeded.",
+    "anchor": "clamp"
+  },
+  {
+    "term": "Common-mode rejection",
+    "definition": "An instrument's or amplifier's ability to ignore voltage that appears equally on both inputs.",
+    "anchor": "common-mode-rejection"
+  },
+  {
+    "term": "Composite core",
+    "definition": "Inductor core made from magnetic particles suspended in resin.",
+    "anchor": "composite-core"
+  },
+  {
+    "term": "Conventional current",
+    "definition": "The standard engineering convention: current flows from positive to negative.",
+    "anchor": "conventional-current"
+  },
+  {
+    "term": "Copper pour",
+    "definition": "Large area of copper on a PCB layer, typically connected to ground or power.",
+    "anchor": "copper-pour"
+  },
+  {
+    "term": "Coulomb",
+    "definition": "SI unit of electric charge.",
+    "anchor": "coulomb",
+    "aliases": ["C"]
+  },
+  {
+    "term": "Coupling capacitor",
+    "definition": "Capacitor in series with a signal path that passes AC while blocking DC.",
+    "anchor": "coupling-capacitor"
+  },
+  {
+    "term": "Curie temperature",
+    "definition": "Temperature above which a ferroelectric ceramic's dielectric properties degrade sharply.",
+    "anchor": "curie-temperature"
+  },
+  {
+    "term": "Cut trace",
+    "definition": "A PCB trace intentionally severed, usually as a rework modification.",
+    "anchor": "cut-trace"
+  },
+  {
+    "term": "DC bias effect",
+    "definition": "Loss of capacitance in ceramic capacitors when DC voltage is applied.",
+    "anchor": "dc-bias-effect"
+  },
+  {
+    "term": "DC coupling",
+    "definition": "Signal path that passes all frequencies including DC.",
+    "anchor": "dc-coupling"
+  },
+  {
+    "term": "DCR",
+    "definition": "The resistance of an inductor's winding measured at DC.",
+    "anchor": "dcr",
+    "aliases": ["DC Resistance"]
+  },
+  {
+    "term": "dBm",
+    "definition": "Power measured in decibels referenced to 1 milliwatt.",
+    "anchor": "dbm"
+  },
+  {
+    "term": "dBu",
+    "definition": "Voltage in decibels referenced to 0.775 V (the voltage that produces 1 mW into 600 \u03a9).",
+    "anchor": "dbu"
+  },
+  {
+    "term": "dBV",
+    "definition": "Voltage in decibels referenced to 1 volt.",
+    "anchor": "dbv"
+  },
+  {
+    "term": "Decoupling",
+    "definition": "Placing capacitors near IC power pins to supply instantaneous switching current and prevent noise from propagating through the power distribution network.",
+    "anchor": "decoupling"
+  },
+  {
+    "term": "Delta-wye (\u0394-Y) transformation",
+    "definition": "Mathematical technique for converting between triangle (delta) and star (wye) resistor network topologies.",
+    "anchor": "delta-wye"
+  },
+  {
+    "term": "Dependent source",
+    "definition": "A voltage or current source whose value is controlled by another voltage or current elsewhere in the circuit.",
+    "anchor": "dependent-source"
+  },
+  {
+    "term": "Derating",
+    "definition": "Reducing a component's maximum allowable power, voltage, or current as operating conditions (typically temperature) move away from the rated conditions.",
+    "anchor": "derating"
+  },
+  {
+    "term": "Dielectric",
+    "definition": "Insulating material between capacitor plates that determines capacitance, voltage rating, stability, and loss characteristics.",
+    "anchor": "dielectric"
+  },
+  {
+    "term": "DMM",
+    "definition": "The fundamental bench instrument for measuring voltage, current, and resistance.",
+    "anchor": "dmm",
+    "aliases": ["Digital Multimeter"]
+  },
+  {
+    "term": "Dot convention",
+    "definition": "Dots placed on transformer winding symbols to indicate which terminals have the same instantaneous polarity.",
+    "anchor": "dot-convention"
+  },
+  {
+    "term": "Dynamic resistance",
+    "definition": "The slope of the I-V curve at a specific operating point (dV/dI).",
+    "anchor": "dynamic-resistance"
+  },
+  {
+    "term": "Earth ground",
+    "definition": "Physical connection to the earth, typically through the building's grounding system.",
+    "anchor": "earth-ground"
+  },
+  {
+    "term": "Eddy current loss",
+    "definition": "Power dissipated by circulating currents induced in a conductive core by the changing magnetic field.",
+    "anchor": "eddy-current-loss"
+  },
+  {
+    "term": "Electrolytic capacitor",
+    "definition": "Polarized capacitor using a liquid or polymer electrolyte to achieve high capacitance density.",
+    "anchor": "electrolytic-capacitor"
+  },
+  {
+    "term": "Electron flow",
+    "definition": "The physical movement of electrons from negative to positive.",
+    "anchor": "electron-flow"
+  },
+  {
+    "term": "Equivalent resistance",
+    "definition": "A single resistance value that replaces a series, parallel, or complex combination of resistors for analysis purposes.",
+    "anchor": "equivalent-resistance"
+  },
+  {
+    "term": "ESR",
+    "definition": "The effective series resistance inside a capacitor, representing all resistive losses.",
+    "anchor": "esr",
+    "aliases": ["Equivalent Series Resistance"]
+  },
+  {
+    "term": "ESL",
+    "definition": "Parasitic inductance in a capacitor from its leads, internal connections, and plate geometry.",
+    "anchor": "esl",
+    "aliases": ["Equivalent Series Inductance"]
+  },
+  {
+    "term": "Farad",
+    "definition": "SI unit of capacitance.",
+    "anchor": "farad",
+    "aliases": ["F"]
+  },
+  {
+    "term": "Ferrite core",
+    "definition": "Ceramic magnetic core material made from iron oxide compounds.",
+    "anchor": "ferrite-core"
+  },
+  {
+    "term": "Film capacitor",
+    "definition": "Capacitor using plastic film as the dielectric.",
+    "anchor": "film-capacitor"
+  },
+  {
+    "term": "Flat schematic",
+    "definition": "Multi-sheet schematic where all sheets exist at the same hierarchy level, connected by net names.",
+    "anchor": "flat-schematic"
+  },
+  {
+    "term": "Flyback",
+    "definition": "The voltage spike produced when current through an inductor is suddenly interrupted.",
+    "anchor": "flyback"
+  },
+  {
+    "term": "Flyback diode",
+    "definition": "Diode placed across an inductive load to provide a safe current path when the driving switch opens.",
+    "anchor": "flyback-diode"
+  },
+  {
+    "term": "Global net",
+    "definition": "A named electrical connection that spans multiple schematic sheets without explicit wiring.",
+    "anchor": "global-net"
+  },
+  {
+    "term": "Ground bounce",
+    "definition": "Voltage spike on the ground network caused by fast-changing currents flowing through resistive and inductive ground paths.",
+    "anchor": "ground-bounce"
+  },
+  {
+    "term": "Ground plane",
+    "definition": "A continuous copper layer on a PCB dedicated to ground.",
+    "anchor": "ground-plane"
+  },
+  {
+    "term": "Henry",
+    "definition": "SI unit of inductance.",
+    "anchor": "henry",
+    "aliases": ["H"]
+  },
+  {
+    "term": "Hertz",
+    "definition": "SI unit of frequency.",
+    "anchor": "hertz",
+    "aliases": ["Hz"]
+  },
+  {
+    "term": "Hidden power pin",
+    "definition": "IC power connection that exists in the component model but is not explicitly shown on the schematic symbol.",
+    "anchor": "hidden-power-pin"
+  },
+  {
+    "term": "Hierarchical schematic",
+    "definition": "Schematic organized as a top-level block diagram with each block implemented as a separate sheet.",
+    "anchor": "hierarchical-schematic"
+  },
+  {
+    "term": "Holdup time",
+    "definition": "Duration that a capacitor can sustain a load after the input power is removed.",
+    "anchor": "holdup-time"
+  },
+  {
+    "term": "Hysteresis loss",
+    "definition": "Energy dissipated in a magnetic core each AC cycle as magnetic domains reverse direction.",
+    "anchor": "hysteresis-loss"
+  },
+  {
+    "term": "Impedance",
+    "definition": "Generalized resistance for AC circuits, including both resistive (real) and reactive (imaginary) components.",
+    "anchor": "impedance",
+    "aliases": ["Z"]
+  },
+  {
+    "term": "Impedance matching",
+    "definition": "Selecting load impedance to maximize power transfer from a source.",
+    "anchor": "impedance-matching"
+  },
+  {
+    "term": "Inductance",
+    "definition": "The property of a component that resists changes in current by storing energy in a magnetic field.",
+    "anchor": "inductance",
+    "aliases": ["L"]
+  },
+  {
+    "term": "Input impedance",
+    "definition": "The impedance presented by a circuit or instrument at its input terminals.",
+    "anchor": "input-impedance",
+    "aliases": ["Z_in"]
+  },
+  {
+    "term": "Inrush current",
+    "definition": "The large transient current drawn when power is first applied to a circuit, typically caused by charging initially discharged capacitors.",
+    "anchor": "inrush-current"
+  },
+  {
+    "term": "Insulation breakdown",
+    "definition": "Degradation of a dielectric material leading to increased leakage current or catastrophic short circuit.",
+    "anchor": "insulation-breakdown"
+  },
+  {
+    "term": "Instantaneous power",
+    "definition": "The product of voltage and current at any specific moment: P(t) = V(t) \u00d7 I(t).",
+    "anchor": "instantaneous-power"
+  },
+  {
+    "term": "IR thermometer",
+    "definition": "Non-contact temperature measurement tool that reads infrared radiation from a surface.",
+    "anchor": "ir-thermometer"
+  },
+  {
+    "term": "Johnson noise",
+    "definition": "Random voltage noise generated by thermal motion of electrons in any resistor.",
+    "anchor": "johnson-noise",
+    "aliases": ["thermal noise"]
+  },
+  {
+    "term": "Joule",
+    "definition": "SI unit of energy.",
+    "anchor": "joule",
+    "aliases": ["J"]
+  },
+  {
+    "term": "KCL",
+    "definition": "The sum of currents entering a node equals the sum of currents leaving.",
+    "anchor": "kcl",
+    "aliases": ["Kirchhoff's Current Law"]
+  },
+  {
+    "term": "KVL",
+    "definition": "The sum of voltage drops around any closed loop equals zero.",
+    "anchor": "kvl",
+    "aliases": ["Kirchhoff's Voltage Law"]
+  },
+  {
+    "term": "Leakage current",
+    "definition": "Small, undesired current flowing through a nominally insulating path.",
+    "anchor": "leakage-current"
+  },
+  {
+    "term": "Linear circuit",
+    "definition": "A circuit that obeys the superposition principle: the response to a sum of inputs equals the sum of the individual responses.",
+    "anchor": "linear-circuit"
+  },
+  {
+    "term": "Loading",
+    "definition": "The effect of connecting a load to a circuit, which draws current and may change the operating voltage.",
+    "anchor": "loading"
+  },
+  {
+    "term": "Loop",
+    "definition": "Any closed path through a circuit, traversing one or more branches and returning to the starting node.",
+    "anchor": "loop"
+  },
+  {
+    "term": "Magnetic field",
+    "definition": "The energy storage medium in inductors and transformers.",
+    "anchor": "magnetic-field"
+  },
+  {
+    "term": "Magnetostriction",
+    "definition": "Physical deformation of a magnetic core material caused by the changing magnetic field.",
+    "anchor": "magnetostriction"
+  },
+  {
+    "term": "Milliamp-hour",
+    "definition": "Unit of electric charge commonly used to rate battery capacity.",
+    "anchor": "mah",
+    "aliases": ["mAh"]
+  },
+  {
+    "term": "Maximum power transfer",
+    "definition": "Occurs when load resistance equals the source's Thevenin resistance.",
+    "anchor": "maximum-power-transfer"
+  },
+  {
+    "term": "Mesh analysis",
+    "definition": "Systematic circuit analysis method that applies KVL around independent loops (meshes) and solves for loop currents.",
+    "anchor": "mesh-analysis"
+  },
+  {
+    "term": "Metal-film resistor",
+    "definition": "Through-hole resistor type with low noise, tight tolerance, and good temperature stability.",
+    "anchor": "metal-film-resistor"
+  },
+  {
+    "term": "Microphonic",
+    "definition": "The property of some components (especially ceramic capacitors) to generate voltage when subjected to mechanical vibration, due to the piezoelectric effect.",
+    "anchor": "microphonic"
+  },
+  {
+    "term": "Mutual inductance",
+    "definition": "Magnetic coupling between adjacent inductors or windings.",
+    "anchor": "mutual-inductance"
+  },
+  {
+    "term": "Net name",
+    "definition": "A label applied to a wire or connection in a schematic that replaces physical wire drawings.",
+    "anchor": "net-name"
+  },
+  {
+    "term": "No connect",
+    "definition": "An explicit marker on a schematic indicating that an IC pin is intentionally left unconnected.",
+    "anchor": "no-connect",
+    "aliases": ["NC"]
+  },
+  {
+    "term": "Node",
+    "definition": "A junction where two or more branches meet in a circuit.",
+    "anchor": "node"
+  },
+  {
+    "term": "Nodal analysis",
+    "definition": "Systematic circuit analysis method that applies KCL at each node and solves for node voltages.",
+    "anchor": "nodal-analysis"
+  },
+  {
+    "term": "Nominal voltage",
+    "definition": "The approximate or stated voltage under no-load or standard conditions.",
+    "anchor": "nominal-voltage"
+  },
+  {
+    "term": "Norton equivalent",
+    "definition": "Any linear circuit reduced to a current source (I_n) in parallel with a resistance (R_n).",
+    "anchor": "norton-equivalent"
+  },
+  {
+    "term": "NTC thermistor",
+    "definition": "Negative Temperature Coefficient resistor whose resistance decreases with temperature.",
+    "anchor": "ntc-thermistor"
+  },
+  {
+    "term": "Ohm",
+    "definition": "SI unit of electrical resistance.",
+    "anchor": "ohm",
+    "aliases": ["\u03a9"]
+  },
+  {
+    "term": "Ohm's Law",
+    "definition": "The fundamental relationship between voltage, current, and resistance.",
+    "anchor": "ohms-law",
+    "aliases": ["V = IR"]
+  },
+  {
+    "term": "Open-circuit voltage",
+    "definition": "The voltage measured across a source's terminals when no load is connected.",
+    "anchor": "open-circuit-voltage",
+    "aliases": ["V_oc"]
+  },
+  {
+    "term": "Oscilloscope probe",
+    "definition": "Coupling device between the circuit under test and the oscilloscope input.",
+    "anchor": "oscilloscope-probe"
+  },
+  {
+    "term": "Output impedance",
+    "definition": "The impedance a circuit presents at its output terminals.",
+    "anchor": "output-impedance",
+    "aliases": ["Z_out"]
+  },
+  {
+    "term": "Parasitic capacitance",
+    "definition": "Unintended capacitance present between conductors, component leads, PCB traces, and other structures.",
+    "anchor": "parasitic-capacitance"
+  },
+  {
+    "term": "Parasitic inductance",
+    "definition": "Unintended inductance in component leads, wires, and PCB traces.",
+    "anchor": "parasitic-inductance"
+  },
+  {
+    "term": "Piezoelectric effect",
+    "definition": "Generation of voltage from mechanical stress in certain materials.",
+    "anchor": "piezoelectric-effect"
+  },
+  {
+    "term": "Pin name",
+    "definition": "The functional label of an IC pin (e.g., CLK, RESET, VCC).",
+    "anchor": "pin-name"
+  },
+  {
+    "term": "Pin number",
+    "definition": "The physical location identifier of an IC pin on the package.",
+    "anchor": "pin-number"
+  },
+  {
+    "term": "Polarity",
+    "definition": "The directional convention for voltage measurement.",
+    "anchor": "polarity"
+  },
+  {
+    "term": "Port",
+    "definition": "A connection point in a hierarchical schematic that links a sub-sheet to the level above.",
+    "anchor": "port"
+  },
+  {
+    "term": "Potentiometer",
+    "definition": "A three-terminal variable resistor with an adjustable wiper contact.",
+    "anchor": "potentiometer"
+  },
+  {
+    "term": "Powdered iron core",
+    "definition": "Inductor core made from iron particles with insulating gaps between them.",
+    "anchor": "powdered-iron-core"
+  },
+  {
+    "term": "Power budget",
+    "definition": "An accounting of all power sources, conversions, and dissipation in a system.",
+    "anchor": "power-budget"
+  },
+  {
+    "term": "Power derating",
+    "definition": "Reduction in a component's maximum allowable power dissipation at temperatures above a specified threshold.",
+    "anchor": "power-derating"
+  },
+  {
+    "term": "Power factor",
+    "definition": "The ratio of real power to apparent power.",
+    "anchor": "power-factor",
+    "aliases": ["PF"]
+  },
+  {
+    "term": "Power flag / symbol",
+    "definition": "Schematic symbols (VCC, VDD, 3V3, 5V, GND) representing global power connections.",
+    "anchor": "power-flag"
+  },
+  {
+    "term": "Power rating",
+    "definition": "The maximum continuous power a component can dissipate at a specified ambient temperature without exceeding its maximum operating temperature.",
+    "anchor": "power-rating"
+  },
+  {
+    "term": "ppm",
+    "definition": "A measure of ratio.",
+    "anchor": "ppm",
+    "aliases": ["Parts Per Million"]
+  },
+  {
+    "term": "Precision",
+    "definition": "The consistency of repeated measurements.",
+    "anchor": "precision",
+    "aliases": ["Repeatability"]
+  },
+  {
+    "term": "Probe loading",
+    "definition": "The distortion introduced by a measurement probe's input impedance (resistive and capacitive) on the circuit being measured.",
+    "anchor": "probe-loading"
+  },
+  {
+    "term": "PTC",
+    "definition": "A component whose resistance increases with temperature.",
+    "anchor": "ptc",
+    "aliases": ["Positive Temperature Coefficient"]
+  },
+  {
+    "term": "Quiescent current",
+    "definition": "The current drawn by a circuit when no signal is applied and no load is driven.",
+    "anchor": "quiescent-current"
+  },
+  {
+    "term": "Reactive power",
+    "definition": "Power that cycles back and forth between source and reactive components (capacitors, inductors) without performing net work.",
+    "anchor": "reactive-power",
+    "aliases": ["Q"]
+  },
+  {
+    "term": "Real power",
+    "definition": "The power actually dissipated as heat or converted to useful work, measured in watts.",
+    "anchor": "real-power",
+    "aliases": ["P"]
+  },
+  {
+    "term": "Reference designator",
+    "definition": "The unique identifier for each component on a schematic and PCB: R1, C2, U3, Q4, etc.",
+    "anchor": "reference-designator"
+  },
+  {
+    "term": "Reference direction",
+    "definition": "The assumed direction of current flow or voltage polarity assigned during circuit analysis.",
+    "anchor": "reference-direction"
+  },
+  {
+    "term": "Reference node",
+    "definition": "The node assigned zero volts in nodal analysis.",
+    "anchor": "reference-node",
+    "aliases": ["ground"]
+  },
+  {
+    "term": "Regulation",
+    "definition": "How well a voltage source maintains its output under varying load conditions.",
+    "anchor": "regulation"
+  },
+  {
+    "term": "Resolution",
+    "definition": "The smallest change in a measured quantity that an instrument can display.",
+    "anchor": "resolution"
+  },
+  {
+    "term": "Rework",
+    "definition": "Manual modifications to a PCB after assembly: bodge wires, component swaps, cut traces.",
+    "anchor": "rework"
+  },
+  {
+    "term": "Ripple current",
+    "definition": "AC current superimposed on DC current flowing through a capacitor.",
+    "anchor": "ripple-current"
+  },
+  {
+    "term": "RMS",
+    "definition": "The effective value of a time-varying signal.",
+    "anchor": "rms",
+    "aliases": ["Root Mean Square"]
+  },
+  {
+    "term": "Saturation current",
+    "definition": "The current at which an inductor's core can no longer store additional magnetic energy, causing inductance to drop.",
+    "anchor": "saturation-current"
+  },
+  {
+    "term": "Self-resonant frequency",
+    "definition": "The frequency at which a capacitor's ESL resonates with its capacitance, causing impedance to reach a minimum.",
+    "anchor": "self-resonant-frequency",
+    "aliases": ["SRF"]
+  },
+  {
+    "term": "Sense resistor",
+    "definition": "A low-value precision resistor placed in a current path so that the voltage drop across it indicates the current flowing.",
+    "anchor": "sense-resistor"
+  },
+  {
+    "term": "Series",
+    "definition": "Components connected end-to-end so that the same current flows through each.",
+    "anchor": "series"
+  },
+  {
+    "term": "Parallel",
+    "definition": "Components connected across the same two nodes so that they share the same voltage.",
+    "anchor": "parallel"
+  },
+  {
+    "term": "Shielded inductor",
+    "definition": "Inductor with a magnetic structure that contains the magnetic field, reducing radiated interference and susceptibility to external fields.",
+    "anchor": "shielded-inductor"
+  },
+  {
+    "term": "Short-circuit current",
+    "definition": "The current that flows when a source's output terminals are connected together.",
+    "anchor": "short-circuit-current",
+    "aliases": ["I_sc"]
+  },
+  {
+    "term": "Shunt resistor",
+    "definition": "Low-value resistor used inside ammeters and current-sense circuits to convert current into a measurable voltage.",
+    "anchor": "shunt-resistor"
+  },
+  {
+    "term": "SI prefixes",
+    "definition": "Standard multipliers for units: tera (10\u00b9\u00b2), giga (10\u2079), mega (10\u2076), kilo (10\u00b3), milli (10\u207b\u00b3), micro (10\u207b\u2076), nano (10\u207b\u2079), pico (10\u207b\u00b9\u00b2), femto (10\u207b\u00b9\u2075).",
+    "anchor": "si-prefixes"
+  },
+  {
+    "term": "Signal ground",
+    "definition": "The reference point for signal voltages in a circuit.",
+    "anchor": "signal-ground"
+  },
+  {
+    "term": "SMD resistor marking",
+    "definition": "Three or four digit code: for a 3-digit code, the first two digits are significant and the third is the exponent.",
+    "anchor": "smd-resistor-marking"
+  },
+  {
+    "term": "Snubber",
+    "definition": "An RC or RCD network that absorbs energy from switching transients, reducing voltage spikes and ringing.",
+    "anchor": "snubber"
+  },
+  {
+    "term": "Source deactivation",
+    "definition": "The process of \"turning off\" independent sources to find equivalent resistance: voltage sources become short circuits; current sources become open circuits.",
+    "anchor": "source-deactivation"
+  },
+  {
+    "term": "Stiff source",
+    "definition": "A voltage source with low output impedance, meaning its voltage barely changes when load current varies.",
+    "anchor": "stiff-source"
+  },
+  {
+    "term": "Supercapacitor",
+    "definition": "Very high-capacitance component (farads to hundreds of farads) used for energy storage and extended holdup time.",
+    "anchor": "supercapacitor"
+  },
+  {
+    "term": "Supernode",
+    "definition": "In nodal analysis, a boundary drawn around a voltage source and its two adjacent nodes, allowing KCL to be applied to the combined region.",
+    "anchor": "supernode"
+  },
+  {
+    "term": "Supermesh",
+    "definition": "In mesh analysis, a combined loop formed when a current source appears in a branch shared by two meshes.",
+    "anchor": "supermesh"
+  },
+  {
+    "term": "Superposition",
+    "definition": "The principle that in a linear circuit, the total response equals the sum of the responses due to each independent source acting alone.",
+    "anchor": "superposition"
+  },
+  {
+    "term": "Tantalum capacitor",
+    "definition": "Polarized capacitor with high volumetric efficiency.",
+    "anchor": "tantalum-capacitor"
+  },
+  {
+    "term": "Tank circuit",
+    "definition": "A resonant LC circuit that stores energy by oscillating between the electric field of the capacitor and the magnetic field of the inductor.",
+    "anchor": "tank-circuit"
+  },
+  {
+    "term": "Temperature coefficient",
+    "definition": "The change in a component's value per degree Celsius, usually expressed in ppm/\u00b0C.",
+    "anchor": "temperature-coefficient",
+    "aliases": ["tempco"]
+  },
+  {
+    "term": "Thermal camera",
+    "definition": "Imaging device that maps surface temperatures across a PCB or system.",
+    "anchor": "thermal-camera"
+  },
+  {
+    "term": "Thermal coupling",
+    "definition": "Heat transfer between physically adjacent components.",
+    "anchor": "thermal-coupling"
+  },
+  {
+    "term": "Thermal paste",
+    "definition": "Interface material applied between a component and heatsink to fill microscopic air gaps and reduce thermal resistance.",
+    "anchor": "thermal-paste"
+  },
+  {
+    "term": "Thermal resistance",
+    "definition": "Resistance to heat flow, analogous to electrical resistance.",
+    "anchor": "thermal-resistance",
+    "aliases": ["\u03b8"]
+  },
+  {
+    "term": "Thermal runaway",
+    "definition": "A positive feedback loop where increased temperature causes increased current (or power), which further increases temperature.",
+    "anchor": "thermal-runaway"
+  },
+  {
+    "term": "Th\u00e9venin equivalent",
+    "definition": "Any linear circuit reduced to a voltage source (V_th) in series with a resistance (R_th).",
+    "anchor": "thevenin-equivalent"
+  },
+  {
+    "term": "Thick-film resistor",
+    "definition": "The most common SMD resistor type.",
+    "anchor": "thick-film-resistor"
+  },
+  {
+    "term": "Thin-film resistor",
+    "definition": "Precision SMD resistor with tight tolerance (0.1% or better), excellent tempco, and low noise.",
+    "anchor": "thin-film-resistor"
+  },
+  {
+    "term": "Three-digit capacitor code",
+    "definition": "Marking system where the first two digits are significant and the third is a power-of-ten multiplier in picofarads.",
+    "anchor": "three-digit-cap-code"
+  },
+  {
+    "term": "Time constant",
+    "definition": "The characteristic response time of an RC or RL circuit.",
+    "anchor": "time-constant",
+    "aliases": ["\u03c4"]
+  },
+  {
+    "term": "Tolerance",
+    "definition": "The allowable deviation of a component's actual value from its nominal value, expressed as a percentage.",
+    "anchor": "tolerance"
+  },
+  {
+    "term": "Tolerance stacking",
+    "definition": "The accumulated uncertainty when multiple components' tolerances combine in a circuit.",
+    "anchor": "tolerance-stacking"
+  },
+  {
+    "term": "Transient",
+    "definition": "A brief, fast-changing voltage or current event.",
+    "anchor": "transient"
+  },
+  {
+    "term": "Trigger",
+    "definition": "Oscilloscope feature that synchronizes the display to a specific event on the waveform, producing a stable, readable display.",
+    "anchor": "trigger"
+  },
+  {
+    "term": "Unity power factor",
+    "definition": "Power factor of 1, meaning voltage and current are perfectly in phase.",
+    "anchor": "unity-power-factor"
+  },
+  {
+    "term": "Unshielded inductor",
+    "definition": "Inductor with an open magnetic path that allows the magnetic field to radiate.",
+    "anchor": "unshielded-inductor"
+  },
+  {
+    "term": "Volt",
+    "definition": "SI unit of electric potential difference.",
+    "anchor": "volt",
+    "aliases": ["V"]
+  },
+  {
+    "term": "Voltage coefficient",
+    "definition": "The change in a component's value with applied voltage.",
+    "anchor": "voltage-coefficient"
+  },
+  {
+    "term": "Voltage divider",
+    "definition": "A network (typically two resistors in series) that produces an output voltage proportional to the input voltage.",
+    "anchor": "voltage-divider"
+  },
+  {
+    "term": "Watt",
+    "definition": "SI unit of power.",
+    "anchor": "watt",
+    "aliases": ["W"]
+  },
+  {
+    "term": "Watt-hour",
+    "definition": "Unit of energy.",
+    "anchor": "watt-hour",
+    "aliases": ["Wh"]
+  },
+  {
+    "term": "Wiper",
+    "definition": "The moving contact in a potentiometer that slides along the resistive element, creating a variable voltage divider.",
+    "anchor": "wiper"
+  },
+  {
+    "term": "Wirewound resistor",
+    "definition": "Precision resistor made by winding resistance wire on a form.",
+    "anchor": "wirewound-resistor"
+  },
+  {
+    "term": "X5R",
+    "definition": "Class II ceramic dielectric rated for -55\u00b0C to +85\u00b0C with \u00b115% capacitance variation over temperature.",
+    "anchor": "x5r"
+  },
+  {
+    "term": "X7R",
+    "definition": "Class II ceramic dielectric rated for -55\u00b0C to +125\u00b0C with \u00b115% capacitance variation over temperature.",
+    "anchor": "x7r"
+  },
+  {
+    "term": "Y5V",
+    "definition": "Class III ceramic dielectric with very high capacitance density but terrible stability: +22% / -82% over temperature range.",
+    "anchor": "y5v"
+  }
+]
