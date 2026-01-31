@@ -17,36 +17,28 @@ digraph uart {
   bgcolor="transparent"
   node [fontname="Helvetica" fontsize=11]
   edge [fontname="Helvetica" fontsize=10]
-  graph [fontname="Helvetica" fontsize=11]
-  newrank=true
 
-  subgraph cluster_mcu {
-    label="MCU"
-    style="rounded,filled"
-    fillcolor="#2a2a3a"
-    color="#6666aa"
-    fontcolor="#cccccc"
+  mcu [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="6" BGCOLOR="#2a2a3a" COLOR="#6666aa">
+      <TR><TD><B><FONT COLOR="#cccccc">MCU</FONT></B></TD></TR>
+      <TR><TD PORT="tx" BGCOLOR="#3e3e5a"><FONT COLOR="#e8e8e8"> TX </FONT></TD></TR>
+      <TR><TD PORT="rx" BGCOLOR="#3e3e5a"><FONT COLOR="#e8e8e8"> RX </FONT></TD></TR>
+      <TR><TD PORT="gnd" BGCOLOR="#3a3a3a"><FONT COLOR="#999999"> GND </FONT></TD></TR>
+    </TABLE>
+  >]
 
-    mcu_tx [label="TX" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.7]
-    mcu_rx [label="RX" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.7]
-    mcu_gnd [label="GND" shape=box style="rounded,filled" fillcolor="#3a3a3a" fontcolor="#999999" color="#666666" width=0.7]
-  }
+  dev [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="6" BGCOLOR="#2a3a2a" COLOR="#66aa66">
+      <TR><TD><B><FONT COLOR="#cccccc">Peripheral</FONT></B></TD></TR>
+      <TR><TD PORT="rx" BGCOLOR="#3e5a3e"><FONT COLOR="#e8e8e8"> RX </FONT></TD></TR>
+      <TR><TD PORT="tx" BGCOLOR="#3e5a3e"><FONT COLOR="#e8e8e8"> TX </FONT></TD></TR>
+      <TR><TD PORT="gnd" BGCOLOR="#3a3a3a"><FONT COLOR="#999999"> GND </FONT></TD></TR>
+    </TABLE>
+  >]
 
-  subgraph cluster_dev {
-    label="Peripheral\n(GPS, BT module, etc.)"
-    style="rounded,filled"
-    fillcolor="#2a3a2a"
-    color="#66aa66"
-    fontcolor="#cccccc"
-
-    dev_rx [label="RX" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.7]
-    dev_tx [label="TX" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.7]
-    dev_gnd [label="GND" shape=box style="rounded,filled" fillcolor="#3a3a3a" fontcolor="#999999" color="#666666" width=0.7]
-  }
-
-  mcu_tx -> dev_rx [label=" TX→RX " color="#8888cc" fontcolor="#8888cc"]
-  dev_tx -> mcu_rx [label=" TX→RX " color="#88cc88" fontcolor="#88cc88"]
-  mcu_gnd -> dev_gnd [label=" common ground " color="#888888" fontcolor="#999999" style=dashed]
+  mcu:tx -> dev:rx [color="#8888cc" label=" data " fontcolor="#8888cc"]
+  dev:tx -> mcu:rx [color="#88cc88" label=" data " fontcolor="#88cc88"]
+  mcu:gnd -> dev:gnd [color="#666666" style=dashed]
 }
 {{< /graphviz >}}
 
@@ -72,83 +64,78 @@ digraph spi {
   bgcolor="transparent"
   node [fontname="Helvetica" fontsize=11]
   edge [fontname="Helvetica" fontsize=10]
-  graph [fontname="Helvetica" fontsize=11]
-  newrank=true
-  splines=polyline
+  splines=ortho
+  nodesep=0.4
+  ranksep=1.2
 
-  subgraph cluster_master {
-    label="MCU (Master)"
-    style="rounded,filled"
-    fillcolor="#2a2a3a"
-    color="#6666aa"
-    fontcolor="#cccccc"
+  mcu [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="4" BGCOLOR="#2a2a3a" COLOR="#6666aa">
+      <TR><TD COLSPAN="1"><B><FONT COLOR="#cccccc">MCU (Master)</FONT></B></TD></TR>
+      <TR><TD PORT="mosi" BGCOLOR="#3e3e5a"><FONT COLOR="#8888cc"> MOSI </FONT></TD></TR>
+      <TR><TD PORT="miso" BGCOLOR="#3e3e5a"><FONT COLOR="#88cc88"> MISO </FONT></TD></TR>
+      <TR><TD PORT="sck"  BGCOLOR="#3e3e5a"><FONT COLOR="#cccc88"> SCK </FONT></TD></TR>
+      <TR><TD PORT="cs0"  BGCOLOR="#3e3e5a"><FONT COLOR="#cc8888"> CS0 (GPIO) </FONT></TD></TR>
+      <TR><TD PORT="cs1"  BGCOLOR="#3e3e5a"><FONT COLOR="#cc8888"> CS1 (GPIO) </FONT></TD></TR>
+      <TR><TD PORT="cs2"  BGCOLOR="#3e3e5a"><FONT COLOR="#cc8888"> CS2 (GPIO) </FONT></TD></TR>
+    </TABLE>
+  >]
 
-    mosi [label="MOSI" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
-    miso [label="MISO" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
-    sck  [label="SCK"  shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
-    cs0  [label="CS0 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
-    cs1  [label="CS1 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
-    cs2  [label="CS2 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
-  }
+  flash [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="4" BGCOLOR="#2a3a2a" COLOR="#66aa66">
+      <TR><TD COLSPAN="1"><B><FONT COLOR="#cccccc">Flash</FONT></B></TD></TR>
+      <TR><TD PORT="di"  BGCOLOR="#3e5a3e"><FONT COLOR="#8888cc"> DI </FONT></TD></TR>
+      <TR><TD PORT="do"  BGCOLOR="#3e5a3e"><FONT COLOR="#88cc88"> DO </FONT></TD></TR>
+      <TR><TD PORT="clk" BGCOLOR="#3e5a3e"><FONT COLOR="#cccc88"> CLK </FONT></TD></TR>
+      <TR><TD PORT="cs"  BGCOLOR="#3e5a3e"><FONT COLOR="#cc8888"> C&#x305;S&#x305; </FONT></TD></TR>
+    </TABLE>
+  >]
 
-  subgraph cluster_s0 {
-    label="Flash"
-    style="rounded,filled"
-    fillcolor="#2a3a2a"
-    color="#66aa66"
-    fontcolor="#cccccc"
+  adc [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="4" BGCOLOR="#2a3a2a" COLOR="#66aa66">
+      <TR><TD COLSPAN="1"><B><FONT COLOR="#cccccc">ADC</FONT></B></TD></TR>
+      <TR><TD PORT="di"  BGCOLOR="#3e5a3e"><FONT COLOR="#8888cc"> DI </FONT></TD></TR>
+      <TR><TD PORT="do"  BGCOLOR="#3e5a3e"><FONT COLOR="#88cc88"> DO </FONT></TD></TR>
+      <TR><TD PORT="clk" BGCOLOR="#3e5a3e"><FONT COLOR="#cccc88"> CLK </FONT></TD></TR>
+      <TR><TD PORT="cs"  BGCOLOR="#3e5a3e"><FONT COLOR="#cc8888"> C&#x305;S&#x305; </FONT></TD></TR>
+    </TABLE>
+  >]
 
-    s0_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s0_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s0_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s0_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
-  }
+  display [shape=plain label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="4" BGCOLOR="#2a3a2a" COLOR="#66aa66">
+      <TR><TD COLSPAN="1"><B><FONT COLOR="#cccccc">Display</FONT></B></TD></TR>
+      <TR><TD PORT="di"  BGCOLOR="#3e5a3e"><FONT COLOR="#8888cc"> DI </FONT></TD></TR>
+      <TR><TD PORT="do"  BGCOLOR="#3e5a3e"><FONT COLOR="#88cc88"> DO </FONT></TD></TR>
+      <TR><TD PORT="clk" BGCOLOR="#3e5a3e"><FONT COLOR="#cccc88"> CLK </FONT></TD></TR>
+      <TR><TD PORT="cs"  BGCOLOR="#3e5a3e"><FONT COLOR="#cc8888"> C&#x305;S&#x305; </FONT></TD></TR>
+    </TABLE>
+  >]
 
-  subgraph cluster_s1 {
-    label="ADC"
-    style="rounded,filled"
-    fillcolor="#2a3a2a"
-    color="#66aa66"
-    fontcolor="#cccccc"
+  // Stack peripherals vertically
+  flash -> adc -> display [style=invis]
 
-    s1_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s1_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s1_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s1_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
-  }
+  // Shared bus: MOSI (blue)
+  mcu:mosi -> flash:di   [color="#8888cc"]
+  mcu:mosi -> adc:di     [color="#8888cc"]
+  mcu:mosi -> display:di [color="#8888cc"]
 
-  subgraph cluster_s2 {
-    label="Display"
-    style="rounded,filled"
-    fillcolor="#2a3a2a"
-    color="#66aa66"
-    fontcolor="#cccccc"
+  // Shared bus: MISO (green) — data flows slave→master
+  flash:do   -> mcu:miso [color="#88cc88"]
+  adc:do     -> mcu:miso [color="#88cc88"]
+  display:do -> mcu:miso [color="#88cc88"]
 
-    s2_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s2_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s2_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
-    s2_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
-  }
+  // Shared bus: SCK (yellow)
+  mcu:sck -> flash:clk   [color="#cccc88"]
+  mcu:sck -> adc:clk     [color="#cccc88"]
+  mcu:sck -> display:clk [color="#cccc88"]
 
-  mosi -> s0_di [color="#8888cc"]
-  mosi -> s1_di [color="#8888cc"]
-  mosi -> s2_di [color="#8888cc"]
-
-  s0_do -> miso [color="#88cc88"]
-  s1_do -> miso [color="#88cc88"]
-  s2_do -> miso [color="#88cc88"]
-
-  sck -> s0_clk [color="#cccc88"]
-  sck -> s1_clk [color="#cccc88"]
-  sck -> s2_clk [color="#cccc88"]
-
-  cs0 -> s0_cs [label=" " color="#cc8888"]
-  cs1 -> s1_cs [label=" " color="#cc8888"]
-  cs2 -> s2_cs [label=" " color="#cc8888"]
+  // Individual CS lines (red) — one per device
+  mcu:cs0 -> flash:cs   [color="#cc8888"]
+  mcu:cs1 -> adc:cs     [color="#cc8888"]
+  mcu:cs2 -> display:cs [color="#cc8888"]
 }
 {{< /graphviz >}}
 
-MOSI, MISO, and SCK are shared — all slaves see the same clock and data. Chip select lines (red) are individual: only the device whose CS is pulled LOW responds. The master controls CS via GPIO, selecting one device at a time. Devices with CS HIGH ignore the bus and tri-state their DO output.
+MOSI (blue), MISO (green), and SCK (yellow) are shared — all slaves see the same clock and data lines. Chip select lines (red) are individual: only the device whose CS is pulled LOW responds. The master controls CS via GPIO, selecting one device at a time. Devices with CS HIGH ignore the bus and tri-state their DO output.
 
 ### Configuration Essentials
 
