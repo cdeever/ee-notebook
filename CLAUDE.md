@@ -86,6 +86,22 @@ L1 sections (in weight order):
 - **Practical focus**: Prefer bench experience, real measurements, and working circuits over pure theory
 - **Entry types**: Concepts, procedures, experiments, patterns, gotchas — no formal taxonomy required, just pick what fits
 
+## Glossary & Tooltip System
+
+An automatic glossary tooltip system links terms on every page (except the glossary itself) to their definitions.
+
+**Key files:**
+- `data/glossary.json` — single source of truth (term, definition, anchor, aliases)
+- `content/docs/glossary.md` — rendered glossary page (weight 100, last sidebar item)
+- `static/js/glossary.js` — client-side auto-linking (first occurrence per term per page)
+- `static/css/glossary.css` — tooltip styling
+- `layouts/partials/docs/inject/body.html` — injects glossary data + JS
+- `layouts/partials/docs/inject/head.html` — injects glossary CSS
+
+**Coverage:** Fundamentals, Analog, and Digital terms are done (~403 entries). Remaining sections (Embedded, Audio & Signal, Radio & RF, Design & Development, Measurement, Debugging) still need term extraction.
+
+**Known bug — false positive context matching:** The JS uses word-boundary regex matching, which catches polysemous terms used in non-EE contexts. Example: "series" (EE: series circuit) highlights incorrectly in "The Cortex-M series is specifically designed for microcontroller use" where "series" means product family. Other likely false positives: "gain," "ground," "bias," "load," "sink," "source," "node," "net." Fix TBD — possible approaches include requiring minimum surrounding-context signals, maintaining an exclusion list per term, or switching to phrase-level matching for ambiguous terms.
+
 ## Build & Verify
 
 ```sh
