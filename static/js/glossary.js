@@ -95,12 +95,8 @@
       link.href = (window.__glossaryBase || "/docs/glossary/") + "#" + entry.anchor;
       link.setAttribute("data-anchor", entry.anchor);
 
-      // Tooltip span
-      var tip = document.createElement("span");
-      tip.className = "glossary-tip";
-      tip.textContent = entry.def;
       link.appendChild(document.createTextNode(matchedText));
-      link.appendChild(tip);
+      link.setAttribute("data-glossary-def", entry.def);
 
       var parent = node.parentNode;
       if (before) parent.insertBefore(document.createTextNode(before), node);
@@ -113,15 +109,23 @@
     }
   });
 
-  // Position tooltips with fixed coordinates so they render above the sidebar
+  // Shared tooltip element on document.body — avoids overflow clipping from tables etc.
+  var tip = document.createElement("div");
+  tip.className = "glossary-tip";
+  tip.style.display = "none";
+  document.body.appendChild(tip);
+
   document.querySelectorAll(".glossary-term").forEach(function (el) {
     el.addEventListener("mouseenter", function () {
-      var tip = el.querySelector(".glossary-tip");
-      if (!tip) return;
+      var def = el.getAttribute("data-glossary-def");
+      if (!def) return;
 
-      // Briefly show to measure dimensions
+      tip.textContent = def;
+
+      // Show hidden to measure
       tip.style.visibility = "hidden";
       tip.style.display = "block";
+      tip.classList.remove("tip-below");
 
       var termRect = el.getBoundingClientRect();
       var tipRect = tip.getBoundingClientRect();
@@ -136,8 +140,7 @@
         left = window.innerWidth - tipRect.width - 8;
       }
 
-      // If no room above, flip below the term
-      tip.classList.remove("tip-below");
+      // If no room above, flip below
       if (top < 8) {
         top = termRect.bottom + 6;
         tip.classList.add("tip-below");
@@ -153,8 +156,6 @@
     });
 
     el.addEventListener("mouseleave", function () {
-      var tip = el.querySelector(".glossary-tip");
-      if (!tip) return;
       tip.style.display = "none";
     });
   });

@@ -10,8 +10,8 @@
   border-bottom-color: rgba(128, 128, 128, 0.9);
 }
 
-/* Tooltip — uses position:fixed so it paints above the sidebar */
-.glossary-term .glossary-tip {
+/* Tooltip — lives on document.body to escape overflow containers */
+.glossary-tip {
   display: none;
   position: fixed;
   background: #2d2d2d;
@@ -33,7 +33,7 @@
 }
 
 /* Arrow */
-.glossary-term .glossary-tip::after {
+.glossary-tip::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -44,7 +44,7 @@
 }
 
 /* Arrow when tooltip flips below the term */
-.glossary-term .glossary-tip.tip-below::after {
+.glossary-tip.tip-below::after {
   top: auto;
   bottom: 100%;
   border-top-color: transparent;
