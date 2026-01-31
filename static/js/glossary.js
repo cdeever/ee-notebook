@@ -113,18 +113,49 @@
     }
   });
 
-  // Adjust tooltip positions near viewport edges
+  // Position tooltips with fixed coordinates so they render above the sidebar
   document.querySelectorAll(".glossary-term").forEach(function (el) {
     el.addEventListener("mouseenter", function () {
       var tip = el.querySelector(".glossary-tip");
       if (!tip) return;
-      tip.classList.remove("tip-left", "tip-right");
-      var rect = el.getBoundingClientRect();
-      if (rect.left < 180) {
-        tip.classList.add("tip-left");
-      } else if (window.innerWidth - rect.right < 180) {
-        tip.classList.add("tip-right");
+
+      // Briefly show to measure dimensions
+      tip.style.visibility = "hidden";
+      tip.style.display = "block";
+
+      var termRect = el.getBoundingClientRect();
+      var tipRect = tip.getBoundingClientRect();
+
+      // Center above the term
+      var top = termRect.top - tipRect.height - 6;
+      var left = termRect.left + termRect.width / 2 - tipRect.width / 2;
+
+      // Clamp horizontally to viewport
+      if (left < 8) left = 8;
+      if (left + tipRect.width > window.innerWidth - 8) {
+        left = window.innerWidth - tipRect.width - 8;
       }
+
+      // If no room above, flip below the term
+      tip.classList.remove("tip-below");
+      if (top < 8) {
+        top = termRect.bottom + 6;
+        tip.classList.add("tip-below");
+      }
+
+      // Point arrow at the term center
+      var arrowLeft = termRect.left + termRect.width / 2 - left;
+      tip.style.setProperty("--arrow-left", arrowLeft + "px");
+
+      tip.style.top = top + "px";
+      tip.style.left = left + "px";
+      tip.style.visibility = "visible";
+    });
+
+    el.addEventListener("mouseleave", function () {
+      var tip = el.querySelector(".glossary-tip");
+      if (!tip) return;
+      tip.style.display = "none";
     });
   });
 })();
