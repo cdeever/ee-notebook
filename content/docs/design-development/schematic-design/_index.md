@@ -16,6 +16,7 @@ Schematic design is not just drawing symbols and wires. It includes translating 
 
 - **[Translating Blocks into Schematics]({{< relref "translating-blocks-into-schematics" >}})** — Moving from system block diagrams to organized, multi-sheet schematics that preserve design intent.
 - **[Reference Designs: How to Use Them Safely]({{< relref "reference-designs" >}})** — Leveraging vendor reference designs as starting points without inheriting their hidden assumptions.
+- **[Grounding Strategy in Schematics]({{< relref "grounding-strategy-in-schematics" >}})** — Defining ground domains, connection topologies, and return-path intent before layout.
 - **[Designing for Tolerance & Variation]({{< relref "designing-for-tolerance-and-variation" >}})** — Ensuring the circuit works across the full range of component tolerances, temperature, and supply variation.
 - **[Simulation Before Commitment]({{< relref "simulation-before-commitment" >}})** — Using SPICE and other simulation tools to catch problems before they're etched in copper.
 - **[Design for Test]({{< relref "design-for-test" >}})** — Building measurement access and debug features into the design from the start.
