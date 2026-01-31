@@ -382,23 +382,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="enhancement-mode-mosfet"></a>
 **Enhancement-mode MOSFET** — A MOSFET that is normally off, requiring gate voltage above threshold to conduct. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
 
-<a id="equivalent-resistance"></a>
-**Equivalent resistance** — A single resistance value that replaces a series, parallel, or complex combination of resistors for analysis purposes.
-
 <a id="equalization"></a>
 **Equalization** — Compensation for frequency-dependent channel loss using transmitter and/or receiver techniques.
+
+<a id="equivalent-resistance"></a>
+**Equivalent resistance** — A single resistance value that replaces a series, parallel, or complex combination of resistors for analysis purposes.
 
 <a id="esd-protection"></a>
 **ESD protection** — Using clamping diodes to steer electrostatic discharge current away from sensitive inputs. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
 
-<a id="eye-diagram"></a>
-**Eye diagram** — A visual representation of signal quality at the receiver, showing timing and voltage margins.
+<a id="esl"></a>
+**ESL (Equivalent Series Inductance)** — Parasitic inductance in a capacitor from its leads, internal connections, and plate geometry. Determines the self-resonant frequency.
 
 <a id="esr"></a>
 **ESR (Equivalent Series Resistance)** — The effective series resistance inside a capacitor, representing all resistive losses. Causes real power dissipation and limits the capacitor's ability to supply fast transients.
 
-<a id="esl"></a>
-**ESL (Equivalent Series Inductance)** — Parasitic inductance in a capacitor from its leads, internal connections, and plate geometry. Determines the self-resonant frequency.
+<a id="eye-diagram"></a>
+**Eye diagram** — A visual representation of signal quality at the receiver, showing timing and voltage margins.
 
 ---
 
@@ -407,11 +407,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="farad"></a>
 **Farad (F)** — SI unit of capacitance. One farad stores one coulomb at one volt. Practical capacitors range from picofarads to millifarads.
 
-<a id="fast-recovery-diode"></a>
-**Fast-recovery diode** — A diode optimized for low reverse recovery time, suitable for switching power supply applications. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
-
 <a id="fan-out"></a>
 **Fan-out** — The number of inputs a logic output can drive while maintaining valid logic levels.
+
+<a id="fast-recovery-diode"></a>
+**Fast-recovery diode** — A diode optimized for low reverse recovery time, suitable for switching power supply applications. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
 
 <a id="feedback-fraction"></a>
 **Feedback fraction (β)** — The portion of the output signal returned to the input through the feedback network. See [Feedback & Loop Intuition]({{< relref "/docs/analog/noise-stability-reality/feedback-and-loop-intuition" >}}).
@@ -514,11 +514,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="hierarchical-schematic"></a>
 **Hierarchical schematic** — Schematic organized as a top-level block diagram with each block implemented as a separate sheet. Scales better than flat schematics for complex designs.
 
-<a id="hold-time"></a>
-**Hold time** — The minimum time data must remain stable after the clock edge for reliable capture.
-
 <a id="high-pass-filter"></a>
 **High-pass filter** — A filter that passes frequencies above a cutoff frequency and attenuates frequencies below it. See [RC & RL Filters]({{< relref "/docs/analog/filters-frequency-behavior/rc-and-rl-filters" >}}).
+
+<a id="hold-time"></a>
+**Hold time** — The minimum time data must remain stable after the clock edge for reliable capture.
 
 <a id="holdup-time"></a>
 **Holdup time** — Duration that a capacitor can sustain a load after the input power is removed. Determined by capacitance, load current, and allowable voltage droop.
@@ -530,14 +530,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 ## I
 
+<a id="i2c"></a>
+**I2C (Inter-Integrated Circuit)** — A synchronous, half-duplex, multi-master serial bus using two open-drain lines (SCL, SDA) with pull-ups.
+
 <a id="impedance"></a>
 **Impedance (Z)** — Generalized resistance for AC circuits, including both resistive (real) and reactive (imaginary) components. Measured in ohms. Varies with frequency.
 
 <a id="impedance-matching"></a>
 **Impedance matching** — Selecting load impedance to maximize power transfer from a source. Critical in RF and audio systems. Maximum power transfer occurs when load impedance equals the complex conjugate of the source impedance.
-
-<a id="i2c"></a>
-**I2C (Inter-Integrated Circuit)** — A synchronous, half-duplex, multi-master serial bus using two open-drain lines (SCL, SDA) with pull-ups.
 
 <a id="inductance"></a>
 **Inductance (L)** — The property of a component that resists changes in current by storing energy in a magnetic field. V = L × (dI/dt).
@@ -573,14 +573,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 ## J
 
-<a id="johnson-noise"></a>
-**Johnson noise (thermal noise)** — Random voltage noise generated by thermal motion of electrons in any resistor. Proportional to resistance, temperature, and bandwidth. Present in all resistors regardless of construction.
-
 <a id="jitter"></a>
 **Jitter** — Variation in clock edge timing from cycle to cycle, degrading timing margins.
 
 <a id="jk-flip-flop"></a>
 **JK flip-flop** — A flip-flop with J and K inputs that can set, reset, hold, or toggle based on the input combination.
+
+<a id="johnson-noise"></a>
+**Johnson noise (thermal noise)** — Random voltage noise generated by thermal motion of electrons in any resistor. Proportional to resistance, temperature, and bandwidth. Present in all resistors regardless of construction.
 
 <a id="joule"></a>
 **Joule (J)** — SI unit of energy. One joule equals one watt for one second. One watt-hour equals 3,600 joules.
@@ -592,11 +592,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 ## K
 
-<a id="kcl"></a>
-**KCL (Kirchhoff's Current Law)** — The sum of currents entering a node equals the sum of currents leaving. A direct consequence of conservation of charge. See [Kirchhoff's Laws]({{< relref "/docs/fundamentals/laws-first-principles/kirchhoffs-laws" >}}).
-
 <a id="karnaugh-map"></a>
 **Karnaugh map** — A graphical method for simplifying Boolean functions by grouping adjacent truth table entries.
+
+<a id="kcl"></a>
+**KCL (Kirchhoff's Current Law)** — The sum of currents entering a node equals the sum of currents leaving. A direct consequence of conservation of charge. See [Kirchhoff's Laws]({{< relref "/docs/fundamentals/laws-first-principles/kirchhoffs-laws" >}}).
 
 <a id="kvl"></a>
 **KVL (Kirchhoff's Voltage Law)** — The sum of voltage drops around any closed loop equals zero. A direct consequence of conservation of energy. See [Kirchhoff's Laws]({{< relref "/docs/fundamentals/laws-first-principles/kirchhoffs-laws" >}}).
@@ -635,6 +635,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="logic-level-mosfet"></a>
 **Logic-level MOSFET** — A MOSFET designed to be fully on with 3.3 V or 5 V gate drive, without needing higher voltage. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
 
+<a id="lookup-table"></a>
+**Lookup table (LUT)** — A small memory implementing arbitrary Boolean functions, the basic building block of FPGAs.
+
 <a id="loop"></a>
 **Loop** — Any closed path through a circuit, traversing one or more branches and returning to the starting node.
 
@@ -643,9 +646,6 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="loop-gain"></a>
 **Loop gain** — The product of forward gain and feedback fraction (T = A × β), determining how effectively feedback controls the circuit. See [Feedback & Loop Intuition]({{< relref "/docs/analog/noise-stability-reality/feedback-and-loop-intuition" >}}).
-
-<a id="lookup-table"></a>
-**Lookup table (LUT)** — A small memory implementing arbitrary Boolean functions, the basic building block of FPGAs.
 
 <a id="low-pass-filter"></a>
 **Low-pass filter** — A filter that passes frequencies below a cutoff frequency and attenuates frequencies above it. See [RC & RL Filters]({{< relref "/docs/analog/filters-frequency-behavior/rc-and-rl-filters" >}}).
@@ -669,11 +669,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="matched-components"></a>
 **Matched components** — Components selected or designed to track each other's temperature coefficient for ratiometric stability. See [Temperature & Drift]({{< relref "/docs/analog/biasing-operating-points/temperature-and-drift" >}}).
 
-<a id="mealy-machine"></a>
-**Mealy machine** — A state machine where outputs depend on both current state and current inputs.
-
 <a id="maximum-power-transfer"></a>
 **Maximum power transfer** — Occurs when load resistance equals the source's Thevenin resistance. Transfers maximum power to the load but at only 50% efficiency.
+
+<a id="mealy-machine"></a>
+**Mealy machine** — A state machine where outputs depend on both current state and current inputs.
 
 <a id="mesh-analysis"></a>
 **Mesh analysis** — Systematic circuit analysis method that applies KVL around independent loops (meshes) and solves for loop currents. Complementary to nodal analysis.
@@ -684,20 +684,20 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="metastability"></a>
 **Metastability** — A state where a flip-flop output is indeterminate between HIGH and LOW for an uncertain duration.
 
-<a id="microstrip"></a>
-**Microstrip** — A PCB trace on an outer layer with a ground plane beneath, the most common controlled-impedance structure.
-
 <a id="microphonic"></a>
 **Microphonic** — The property of some components (especially ceramic capacitors) to generate voltage when subjected to mechanical vibration, due to the piezoelectric effect.
+
+<a id="microstrip"></a>
+**Microstrip** — A PCB trace on an outer layer with a ground plane beneath, the most common controlled-impedance structure.
 
 <a id="miller-effect"></a>
 **Miller effect** — The multiplication of gate-drain capacitance by the voltage gain, slowing switching transitions and potentially causing oscillation. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
 
-<a id="mosfet"></a>
-**MOSFET (Metal-Oxide-Semiconductor FET)** — A voltage-controlled transistor where gate voltage controls drain current through an insulated gate. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
-
 <a id="moore-machine"></a>
 **Moore machine** — A state machine where outputs depend only on the current state.
+
+<a id="mosfet"></a>
+**MOSFET (Metal-Oxide-Semiconductor FET)** — A voltage-controlled transistor where gate voltage controls drain current through an insulated gate. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
 
 <a id="mtbf"></a>
 **MTBF (Mean Time Between Failures)** — The average time between metastability-induced failures in a synchronizer.
@@ -739,11 +739,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="noise-floor"></a>
 **Noise floor** — The minimum detectable signal level in a circuit, limited by the sum of all noise sources. See [Noise Sources]({{< relref "/docs/analog/noise-stability-reality/noise-sources" >}}).
 
-<a id="noise-margin"></a>
-**Noise margin** — The voltage difference between guaranteed output levels and required input thresholds, representing noise immunity.
-
 <a id="noise-gain"></a>
 **Noise gain** — The gain that applies to noise and offset voltage in an op-amp circuit, which may differ from signal gain. See [Op-Amps]({{< relref "/docs/analog/amplifiers-gain-stages/op-amps" >}}).
+
+<a id="noise-margin"></a>
+**Noise margin** — The voltage difference between guaranteed output levels and required input thresholds, representing noise immunity.
 
 <a id="noise-spectral-density"></a>
 **Noise spectral density** — Noise voltage or current per unit bandwidth, typically expressed in nV/√Hz or pA/√Hz. See [Noise Sources]({{< relref "/docs/analog/noise-stability-reality/noise-sources" >}}).
@@ -1026,11 +1026,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="shielded-inductor"></a>
 **Shielded inductor** — Inductor with a magnetic structure that contains the magnetic field, reducing radiated interference and susceptibility to external fields.
 
-<a id="short-circuit-current"></a>
-**Short-circuit current (I_sc)** — The current that flows when a source's output terminals are connected together. Equal to the Norton current.
-
 <a id="shift-register"></a>
 **Shift register** — A register where data moves one position per clock cycle through cascaded flip-flops.
+
+<a id="short-circuit-current"></a>
+**Short-circuit current (I_sc)** — The current that flows when a source's output terminals are connected together. Equal to the Norton current.
 
 <a id="shot-noise"></a>
 **Shot noise** — Random noise caused by the discrete nature of charge carriers crossing a barrier, proportional to DC current. See [Noise Sources]({{< relref "/docs/analog/noise-stability-reality/noise-sources" >}}).
@@ -1207,11 +1207,11 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="transfer-function"></a>
 **Transfer function** — The mathematical ratio of output to input as a function of frequency, fully describing a linear circuit's frequency behavior. See [Active Filters]({{< relref "/docs/analog/filters-frequency-behavior/active-filters" >}}).
 
-<a id="transmission-line"></a>
-**Transmission line** — A conductor pair whose distributed inductance and capacitance cause reflection and wave propagation effects at high frequencies.
-
 <a id="transient"></a>
 **Transient** — A brief, fast-changing voltage or current event. Switching events, power-on surges, and ESD are common transient sources.
+
+<a id="transmission-line"></a>
+**Transmission line** — A conductor pair whose distributed inductance and capacitance cause reflection and wave propagation effects at high frequencies.
 
 <a id="trigger"></a>
 **Trigger** — Oscilloscope feature that synchronizes the display to a specific event on the waveform, producing a stable, readable display.
