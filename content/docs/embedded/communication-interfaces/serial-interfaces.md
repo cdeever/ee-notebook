@@ -11,6 +11,47 @@ UART, SPI, and I2C are the three serial buses that show up on practically every 
 
 Asynchronous, point-to-point, no shared clock. The simplest serial interface conceptually, and the one most likely to be used for debug output and console shells.
 
+{{< graphviz >}}
+digraph uart {
+  rankdir=LR
+  bgcolor="transparent"
+  node [fontname="Helvetica" fontsize=11]
+  edge [fontname="Helvetica" fontsize=10]
+  graph [fontname="Helvetica" fontsize=11]
+  newrank=true
+
+  subgraph cluster_mcu {
+    label="MCU"
+    style="rounded,filled"
+    fillcolor="#2a2a3a"
+    color="#6666aa"
+    fontcolor="#cccccc"
+
+    mcu_tx [label="TX" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.7]
+    mcu_rx [label="RX" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.7]
+    mcu_gnd [label="GND" shape=box style="rounded,filled" fillcolor="#3a3a3a" fontcolor="#999999" color="#666666" width=0.7]
+  }
+
+  subgraph cluster_dev {
+    label="Peripheral\n(GPS, BT module, etc.)"
+    style="rounded,filled"
+    fillcolor="#2a3a2a"
+    color="#66aa66"
+    fontcolor="#cccccc"
+
+    dev_rx [label="RX" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.7]
+    dev_tx [label="TX" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.7]
+    dev_gnd [label="GND" shape=box style="rounded,filled" fillcolor="#3a3a3a" fontcolor="#999999" color="#666666" width=0.7]
+  }
+
+  mcu_tx -> dev_rx [label=" TX→RX " color="#8888cc" fontcolor="#8888cc"]
+  dev_tx -> mcu_rx [label=" TX→RX " color="#88cc88" fontcolor="#88cc88"]
+  mcu_gnd -> dev_gnd [label=" common ground " color="#888888" fontcolor="#999999" style=dashed]
+}
+{{< /graphviz >}}
+
+TX and RX cross over — each device transmits on its TX and the other receives on its RX. There is no clock line; both sides must agree on baud rate independently. The common ground connection is required for the voltage levels to be referenced correctly.
+
 ### Configuration Essentials
 
 The MCU's UART peripheral needs a baud rate, a frame format (almost always 8N1), and a clock source. The baud rate generator divides the peripheral clock to produce the bit timing. This is where things get quietly wrong: if the peripheral clock and the desired baud rate do not divide evenly, the actual baud rate deviates from the target. The receiver can tolerate roughly plus or minus 2% mismatch before bits get sampled at the wrong time. At 115200 baud with a 48 MHz peripheral clock, the divisor works out cleanly. At 9600 baud from a 72 MHz clock, check the actual error — the datasheet or reference manual usually has a table.
@@ -24,6 +65,90 @@ UART is the default for debug consoles, GPS modules, Bluetooth modules (which of
 ## SPI
 
 Synchronous, full-duplex, fast. The master generates the clock, so there is no baud rate matching problem — the slave just follows the clock edges.
+
+{{< graphviz >}}
+digraph spi {
+  rankdir=LR
+  bgcolor="transparent"
+  node [fontname="Helvetica" fontsize=11]
+  edge [fontname="Helvetica" fontsize=10]
+  graph [fontname="Helvetica" fontsize=11]
+  newrank=true
+  splines=polyline
+
+  subgraph cluster_master {
+    label="MCU (Master)"
+    style="rounded,filled"
+    fillcolor="#2a2a3a"
+    color="#6666aa"
+    fontcolor="#cccccc"
+
+    mosi [label="MOSI" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
+    miso [label="MISO" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
+    sck  [label="SCK"  shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#6666aa" width=0.8]
+    cs0  [label="CS0 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
+    cs1  [label="CS1 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
+    cs2  [label="CS2 (GPIO)" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#aa6666" width=1.1]
+  }
+
+  subgraph cluster_s0 {
+    label="Flash"
+    style="rounded,filled"
+    fillcolor="#2a3a2a"
+    color="#66aa66"
+    fontcolor="#cccccc"
+
+    s0_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s0_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s0_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s0_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
+  }
+
+  subgraph cluster_s1 {
+    label="ADC"
+    style="rounded,filled"
+    fillcolor="#2a3a2a"
+    color="#66aa66"
+    fontcolor="#cccccc"
+
+    s1_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s1_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s1_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s1_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
+  }
+
+  subgraph cluster_s2 {
+    label="Display"
+    style="rounded,filled"
+    fillcolor="#2a3a2a"
+    color="#66aa66"
+    fontcolor="#cccccc"
+
+    s2_di  [label="DI"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s2_do  [label="DO"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s2_clk [label="CLK" shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#66aa66" width=0.6]
+    s2_cs  [label="C̅S̅"  shape=box style="rounded,filled" fillcolor="#3e5a3e" fontcolor="#e8e8e8" color="#aa6666" width=0.6]
+  }
+
+  mosi -> s0_di [color="#8888cc"]
+  mosi -> s1_di [color="#8888cc"]
+  mosi -> s2_di [color="#8888cc"]
+
+  s0_do -> miso [color="#88cc88"]
+  s1_do -> miso [color="#88cc88"]
+  s2_do -> miso [color="#88cc88"]
+
+  sck -> s0_clk [color="#cccc88"]
+  sck -> s1_clk [color="#cccc88"]
+  sck -> s2_clk [color="#cccc88"]
+
+  cs0 -> s0_cs [label=" " color="#cc8888"]
+  cs1 -> s1_cs [label=" " color="#cc8888"]
+  cs2 -> s2_cs [label=" " color="#cc8888"]
+}
+{{< /graphviz >}}
+
+MOSI, MISO, and SCK are shared — all slaves see the same clock and data. Chip select lines (red) are individual: only the device whose CS is pulled LOW responds. The master controls CS via GPIO, selecting one device at a time. Devices with CS HIGH ignore the bus and tri-state their DO output.
 
 ### Configuration Essentials
 
@@ -42,6 +167,57 @@ There is no addressing, no ACK, and no flow control. The selected device respond
 ## I2C
 
 Synchronous, half-duplex, two wires, addressing built in. I2C is the go-to bus for connecting a handful of slow peripherals — sensors, EEPROMs, RTCs, I/O expanders — with minimal pin count.
+
+{{< graphviz >}}
+digraph i2c {
+  rankdir=TB
+  bgcolor="transparent"
+  node [fontname="Helvetica" fontsize=11]
+  edge [fontname="Helvetica" fontsize=10]
+  graph [fontname="Helvetica" fontsize=11]
+
+  vdd [label="VDD" shape=none fontcolor="#cccc88"]
+
+  subgraph cluster_pullups {
+    label=""
+    style=invis
+
+    rp_sda [label="Rp\n(4.7k)" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.7 height=0.5]
+    rp_scl [label="Rp\n(4.7k)" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.7 height=0.5]
+  }
+
+  vdd -> rp_sda [color="#aaaa66"]
+  vdd -> rp_scl [color="#aaaa66"]
+
+  sda_bus [label="SDA" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#8888cc" width=5.5 height=0.35]
+  scl_bus [label="SCL" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#88cc88" width=5.5 height=0.35]
+
+  rp_sda -> sda_bus [color="#aaaa66"]
+  rp_scl -> scl_bus [color="#aaaa66"]
+
+  subgraph cluster_devices {
+    label=""
+    style=invis
+
+    mcu  [label="MCU\n(Master)\n0x--" shape=box style="rounded,filled" fillcolor="#2a2a3a" fontcolor="#e8e8e8" color="#6666aa" width=1.2 height=0.8]
+    sens [label="Sensor\n0x48"       shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
+    eep  [label="EEPROM\n0x50"       shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
+    rtc  [label="RTC\n0x68"          shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
+  }
+
+  sda_bus -> mcu  [color="#8888cc" dir=both arrowsize=0.6]
+  sda_bus -> sens [color="#8888cc" dir=both arrowsize=0.6]
+  sda_bus -> eep  [color="#8888cc" dir=both arrowsize=0.6]
+  sda_bus -> rtc  [color="#8888cc" dir=both arrowsize=0.6]
+
+  scl_bus -> mcu  [color="#88cc88" dir=both arrowsize=0.6]
+  scl_bus -> sens [color="#88cc88" dir=both arrowsize=0.6]
+  scl_bus -> eep  [color="#88cc88" dir=both arrowsize=0.6]
+  scl_bus -> rtc  [color="#88cc88" dir=both arrowsize=0.6]
+}
+{{< /graphviz >}}
+
+All devices share the same two wires — SDA (data) and SCL (clock). Pull-up resistors to VDD are required because all drivers are open-drain. The master addresses each device by its 7-bit address; no chip select lines needed. Any number of devices can share the bus as long as addresses don't conflict.
 
 ### Configuration Essentials
 
