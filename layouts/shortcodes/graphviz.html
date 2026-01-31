@@ -11,16 +11,14 @@
 
 <script>
 (function() {
-  const containers = document.querySelectorAll('.graphviz-diagram');
-  containers.forEach(container => {
-    const script = container.querySelector('script[type="text/graphviz"]');
-    if (script && !container.querySelector('svg')) {
-      Viz.instance().then(viz => {
-        const svg = viz.renderSVGElement(script.textContent);
-        container.appendChild(svg);
-        script.remove();
-      });
-    }
-  });
+  const container = document.currentScript.previousElementSibling;
+  const script = container.querySelector('script[type="text/graphviz"]');
+  if (script) {
+    Viz.instance().then(viz => {
+      const svg = viz.renderSVGElement(script.textContent);
+      container.appendChild(svg);
+      script.remove();
+    });
+  }
 })();
 </script>

@@ -161,46 +161,38 @@ digraph i2c {
   bgcolor="transparent"
   node [fontname="Helvetica" fontsize=11]
   edge [fontname="Helvetica" fontsize=10]
-  graph [fontname="Helvetica" fontsize=11]
+  splines=ortho
+  nodesep=0.3
+  ranksep=0.5
 
   vdd [label="VDD" shape=none fontcolor="#cccc88"]
 
-  subgraph cluster_pullups {
-    label=""
-    style=invis
-
-    rp_sda [label="Rp\n(4.7k)" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.7 height=0.5]
-    rp_scl [label="Rp\n(4.7k)" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.7 height=0.5]
-  }
+  rp_sda [label="Rp\n4.7k" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.6 height=0.4]
+  rp_scl [label="Rp\n4.7k" shape=box style="filled" fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66" width=0.6 height=0.4]
 
   vdd -> rp_sda [color="#aaaa66"]
   vdd -> rp_scl [color="#aaaa66"]
 
-  sda_bus [label="SDA" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#8888cc" width=5.5 height=0.35]
-  scl_bus [label="SCL" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#88cc88" width=5.5 height=0.35]
+  sda_bus [label="SDA" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#8888cc" width=3.5 height=0.3]
+  scl_bus [label="SCL" shape=box style="rounded,filled" fillcolor="#3e3e5a" fontcolor="#e8e8e8" color="#88cc88" width=3.5 height=0.3]
 
   rp_sda -> sda_bus [color="#aaaa66"]
   rp_scl -> scl_bus [color="#aaaa66"]
 
-  subgraph cluster_devices {
-    label=""
-    style=invis
+  mcu  [label="MCU\n0x--"     shape=box style="rounded,filled" fillcolor="#2a2a3a" fontcolor="#e8e8e8" color="#6666aa" width=0.8 height=0.6]
+  sens [label="Sensor\n0x48"  shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=0.8 height=0.6]
+  eep  [label="EEPROM\n0x50"  shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=0.8 height=0.6]
+  rtc  [label="RTC\n0x68"     shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=0.8 height=0.6]
 
-    mcu  [label="MCU\n(Master)\n0x--" shape=box style="rounded,filled" fillcolor="#2a2a3a" fontcolor="#e8e8e8" color="#6666aa" width=1.2 height=0.8]
-    sens [label="Sensor\n0x48"       shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
-    eep  [label="EEPROM\n0x50"       shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
-    rtc  [label="RTC\n0x68"          shape=box style="rounded,filled" fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66" width=1.2 height=0.8]
-  }
+  sda_bus -> mcu  [color="#8888cc"]
+  sda_bus -> sens [color="#8888cc"]
+  sda_bus -> eep  [color="#8888cc"]
+  sda_bus -> rtc  [color="#8888cc"]
 
-  sda_bus -> mcu  [color="#8888cc" dir=both arrowsize=0.6]
-  sda_bus -> sens [color="#8888cc" dir=both arrowsize=0.6]
-  sda_bus -> eep  [color="#8888cc" dir=both arrowsize=0.6]
-  sda_bus -> rtc  [color="#8888cc" dir=both arrowsize=0.6]
-
-  scl_bus -> mcu  [color="#88cc88" dir=both arrowsize=0.6]
-  scl_bus -> sens [color="#88cc88" dir=both arrowsize=0.6]
-  scl_bus -> eep  [color="#88cc88" dir=both arrowsize=0.6]
-  scl_bus -> rtc  [color="#88cc88" dir=both arrowsize=0.6]
+  scl_bus -> mcu  [color="#88cc88"]
+  scl_bus -> sens [color="#88cc88"]
+  scl_bus -> eep  [color="#88cc88"]
+  scl_bus -> rtc  [color="#88cc88"]
 }
 {{< /graphviz >}}
 
