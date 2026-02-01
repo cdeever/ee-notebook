@@ -13,3 +13,4 @@ Deceptively simple parts. Resistors, capacitors, and inductors look straightforw
 - **[Resistors]({{< relref "resistors" >}})** — Ideal vs. real, tolerance and tempco, noise, and series/parallel beyond the textbook.
 - **[Capacitors]({{< relref "capacitors" >}})** — Dielectric types, ESR, leakage, frequency behavior, and why 10 uF isn't always 10 uF.
 - **[Inductors]({{< relref "inductors" >}})** — Stored energy, saturation, and why inductors misbehave when you least expect it.
+- **[Transformers]({{< relref "transformers" >}})** — Coupled inductors: isolation, voltage conversion, impedance matching, and the real-world limits of magnetic coupling.

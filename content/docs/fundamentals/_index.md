@@ -21,8 +21,11 @@ All of it seems simple until you actually need to apply it to a real circuit on 
 - **[Power, Energy & Heat]({{< relref "power-energy-heat" >}})** — Where theory gets physical: power calculations, energy storage, and thermal limits.
   *What this section covers:* Power Basics · Energy Over Time · Thermal Reality
 
-- **[Passive Components]({{< relref "passive-components" >}})** — Resistors, capacitors, and inductors beyond the ideal models.
-  *What this section covers:* Resistors · Capacitors · Inductors
+- **[Passive Components]({{< relref "passive-components" >}})** — Resistors, capacitors, inductors, and transformers beyond the ideal models.
+  *What this section covers:* Resistors · Capacitors · Inductors · Transformers
+
+- **[Electromechanical Devices]({{< relref "electromechanical-devices" >}})** — Components where electrical signals create physical motion or sound: relays, reed switches, contactors, speakers, and buzzers.
+  *What this section covers:* Relays · Reed Switches · Contactors · Speakers & Buzzers
 
 - **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
   *What this section covers:* Series & Parallel · Voltage Dividers & Loading · Node & Loop Analysis · Thévenin & Norton
