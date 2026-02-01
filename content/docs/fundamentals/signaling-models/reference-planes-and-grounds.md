@@ -81,11 +81,37 @@ An earth-referenced system has its ground connected to the building's earth grou
 
 Schematics use several ground symbols, and the conventions are not always consistent:
 
-| Symbol style | Typical meaning |
-|-------------|----------------|
-| Three decreasing horizontal lines (triangle) | Earth ground — connection to building earth |
-| Three horizontal lines of equal length | Chassis ground — connection to equipment enclosure |
-| Single horizontal line or downward-pointing triangle | Signal / circuit ground — the reference node |
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 720px; width: 100%;">
+  <!-- Earth Ground -->
+  <g transform="translate(120, 10)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#88cc88" stroke-width="2.5"/>
+    <line x1="-30" y1="40" x2="30" y2="40" stroke="#88cc88" stroke-width="2.5"/>
+    <line x1="-20" y1="52" x2="20" y2="52" stroke="#88cc88" stroke-width="2.5"/>
+    <line x1="-10" y1="64" x2="10" y2="64" stroke="#88cc88" stroke-width="2.5"/>
+    <text x="0" y="95" text-anchor="middle" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold">Earth Ground</text>
+    <text x="0" y="115" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">Connection to</text>
+    <text x="0" y="132" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">building earth</text>
+  </g>
+  <!-- Chassis Ground -->
+  <g transform="translate(360, 10)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#cccc88" stroke-width="2.5"/>
+    <line x1="-30" y1="40" x2="30" y2="40" stroke="#cccc88" stroke-width="2.5"/>
+    <line x1="-30" y1="52" x2="30" y2="52" stroke="#cccc88" stroke-width="2.5"/>
+    <line x1="-30" y1="64" x2="30" y2="64" stroke="#cccc88" stroke-width="2.5"/>
+    <text x="0" y="95" text-anchor="middle" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold">Chassis Ground</text>
+    <text x="0" y="115" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">Connection to</text>
+    <text x="0" y="132" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">equipment enclosure</text>
+  </g>
+  <!-- Signal Ground -->
+  <g transform="translate(600, 10)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#8888cc" stroke-width="2.5"/>
+    <line x1="-30" y1="40" x2="30" y2="40" stroke="#8888cc" stroke-width="2.5"/>
+    <polygon points="0,68 -18,40 18,40" fill="#8888cc"/>
+    <text x="0" y="95" text-anchor="middle" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold">Signal Ground</text>
+    <text x="0" y="115" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">Circuit reference</text>
+    <text x="0" y="132" text-anchor="middle" fill="#999999" font-family="Helvetica, Arial, sans-serif" font-size="12">node (0 V)</text>
+  </g>
+</svg>
 
 When reading someone else's schematic, don't assume all ground symbols mean the same net. Check whether the design distinguishes between earth, chassis, and signal ground — especially in any design with a power supply, a metal enclosure, or connections to other equipment.
 
