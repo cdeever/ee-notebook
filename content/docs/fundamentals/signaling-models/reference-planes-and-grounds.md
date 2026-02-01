@@ -113,6 +113,15 @@ Schematics use several ground symbols, and the conventions are not always consis
   </g>
 </svg>
 
+| Symbol | Name | What it really means | Common pitfall |
+|--------|------|---------------------|----------------|
+| ⏚ | Earth Ground | Physical earth reference | Assuming it's safe to clip anywhere |
+| ⏚⏚⏚ | Chassis Ground | Enclosure reference | Assuming it's signal return |
+| ▽ | Signal / 0 V | Local reference node | Assuming it's earth |
+
+> [!IMPORTANT]
+> Ground symbols in schematics describe design intent, not guaranteed electrical behavior. Two nets with different ground symbols may or may not be connected, and two nets with the same symbol may only be connected at a specific point or frequency.
+
 When reading someone else's schematic, don't assume all ground symbols mean the same net. Check whether the design distinguishes between earth, chassis, and signal ground — especially in any design with a power supply, a metal enclosure, or connections to other equipment.
 
 ## Gotchas
