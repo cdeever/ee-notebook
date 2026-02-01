@@ -8,9 +8,11 @@ bookCollapseSection: true
 
 Understanding old designs isn't nostalgia — it's how you stop guessing when the datasheet is missing.
 
-Legacy electronics persist because they work, because replacing them costs more than maintaining them, and because their failure modes are understood through decades of field use. Working with older circuits — repairing vintage equipment, maintaining industrial controls, reverse-engineering a discontinued module — means understanding the assumptions and constraints that shaped the original design. The conventions, voltage levels, grounding strategies, and component choices of earlier eras look arbitrary until you understand the tradeoffs that drove them.
+Legacy electronics persist because they work, because replacing them costs more than maintaining them, and because their failure modes are understood through decades of field use. Working with older circuits — repairing vintage equipment, maintaining industrial controls, reverse-engineering a discontinued module — means understanding the assumptions and constraints that shaped the original design. Entries here cover era-specific design constraints, legacy signaling standards still in active use, aging and failure patterns unique to older components, sourcing and substitution, and bridging old systems to modern electronics.
 
-This section covers that ground: era-specific design constraints, legacy signaling standards still in active use, failure modes unique to aging components, sourcing and substitution, and bridging old systems to modern electronics. It assumes familiarity with [Fundamentals]({{< relref "/docs/fundamentals" >}}). For general repair methodology, see [Debugging, Failure & Repair]({{< relref "/docs/debugging" >}}). For modern design workflow, see [Design & Development]({{< relref "/docs/design-development" >}}).
+Older designs also expose underlying physics more directly than modern integrated solutions. When every gain stage, bias network, and feedback loop is built from discrete parts, you can see every design decision on the schematic. That visibility builds intuition that transfers directly to understanding the ICs that replaced those circuits.
+
+This is not a history of electronics or a museum catalog — historical context appears where it explains a design choice, not as an end in itself. The boundary with [Debugging, Failure & Repair]({{< relref "/docs/debugging" >}}) is about specificity: Debugging covers general methodology; this section covers the legacy-specific challenges that make older systems a distinct category of work. It assumes familiarity with [Fundamentals]({{< relref "/docs/fundamentals" >}}). For modern design workflow, see [Design & Development]({{< relref "/docs/design-development" >}}).
 
 ## Sections
 

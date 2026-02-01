@@ -30,8 +30,4 @@ When a voltage regulator is three transistors and a Zener diode instead of an LD
 
 This visibility builds intuition that transfers directly to understanding what's happening inside the ICs that replaced those circuits. An LM317 is just a better version of that three-transistor regulator. An NE5532 is a pair of carefully optimized differential amplifier stages. Understanding the discrete ancestry makes the IC behavior less mysterious — especially when the IC misbehaves and you need to reason about what's happening internally.
 
-## What This Section Is Not
 
-This is not a history of electronics or a museum catalog. The focus is practical: understanding older designs well enough to maintain, repair, modify, and interface with them. Historical context appears where it explains a design choice, not as an end in itself.
-
-The boundary with [Debugging, Failure & Repair]({{< relref "/docs/debugging" >}}) is about specificity: Debugging covers general methodology (fault isolation, triage, verification). This section covers the legacy-specific challenges — obsolete parts, undocumented circuits, era-specific assumptions — that make older systems a distinct category of work.
