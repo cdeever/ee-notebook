@@ -73,7 +73,7 @@ Most MCU I2C peripherals can communicate with SMBus devices without modification
 
 If a device datasheet says "SMBus compatible," your I2C peripheral will almost certainly communicate with it. Start with a normal I2C read/write and see if it responds. Then check whether the specific commands you need require PEC — many devices accept commands with or without PEC, but a few refuse commands that lack it. The PMBus specification is particularly strict about PEC for certain write operations.
 
-The clock low timeout is worth implementing in firmware regardless of SMBus — it protects against [I2C bus lockup]({{< relref "serial-interfaces" >}}), which is a real failure mode on any I2C bus.
+The clock low timeout is worth implementing in firmware regardless of SMBus — it protects against [I2C bus lockup]({{< relref "spi-and-i2c" >}}), which is a real failure mode on any I2C bus.
 
 ## Gotchas
 
@@ -81,4 +81,4 @@ The clock low timeout is worth implementing in firmware regardless of SMBus — 
 - **1-Wire reads 85.0 degrees C from DS18B20** — This is the power-on reset value. If you read it, the device either has not completed its conversion (you did not wait long enough or parasitic power was insufficient) or has been reset mid-operation. It is *not* a valid temperature reading, though it is a plausible one, which makes it easy to miss.
 - **1-Wire bus length affects reliability** — The protocol's tight timing means long wires (more than a few meters) add capacitance that slows the rising edge. The pull-up resistor may need to be decreased (2.2k or lower) to compensate, and parasitic power becomes less reliable over distance.
 - **SMBus PEC failures are silent if you don't check** — The device sends the PEC byte at the end of a read, but if your I2C driver does not compute and compare it, corrupted data passes through undetected. This is the whole point of PEC — but you have to actually use it.
-- **SMBus timeout recovery is not free** — When the 35ms clock-low timeout fires, the bus needs to be reset. Some I2C peripherals handle this automatically; others require firmware to toggle the clock manually to release a stuck slave, similar to the [I2C bus lockup recovery]({{< relref "serial-interfaces" >}}) described on the serial interfaces page.
+- **SMBus timeout recovery is not free** — When the 35ms clock-low timeout fires, the bus needs to be reset. Some I2C peripherals handle this automatically; others require firmware to toggle the clock manually to release a stuck slave, similar to the [I2C bus lockup recovery]({{< relref "spi-and-i2c" >}}) described on the SPI & I2C page.

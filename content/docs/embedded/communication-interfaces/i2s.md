@@ -61,7 +61,7 @@ MCU-as-master is simpler for firmware but puts the clock accuracy burden on the 
 
 ## DMA Is Not Optional
 
-Unlike [UART or low-speed I2C]({{< relref "serial-interfaces" >}}), I2S generates a continuous stream of data at a fixed rate. At 48 kHz, 16-bit stereo, that is 192 KB/s — a new sample pair every 20.8 microseconds. If the CPU misses a sample, you get an audible glitch. Polling is out of the question. Interrupts per sample are feasible but create high overhead.
+Unlike [UART]({{< relref "uart" >}}) or low-speed [I2C]({{< relref "spi-and-i2c" >}}), I2S generates a continuous stream of data at a fixed rate. At 48 kHz, 16-bit stereo, that is 192 KB/s — a new sample pair every 20.8 microseconds. If the CPU misses a sample, you get an audible glitch. Polling is out of the question. Interrupts per sample are feasible but create high overhead.
 
 DMA with double-buffering (ping-pong) is the standard approach: while DMA fills one buffer, firmware processes the other. The DMA half-transfer and transfer-complete interrupts signal buffer swaps. This decouples audio processing from the sample clock entirely — firmware runs at buffer-rate (every few milliseconds), not sample-rate. See [DMA]({{< relref "dma" >}}) for the mechanics.
 

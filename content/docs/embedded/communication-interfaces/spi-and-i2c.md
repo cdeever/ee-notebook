@@ -1,58 +1,11 @@
 ---
-title: "UART, SPI & I2C"
+title: "SPI & I2C"
 weight: 10
 ---
 
-# Serial Interfaces
+# SPI & I2C
 
-UART, SPI, and I2C are the three serial buses you encounter on nearly every embedded project. The digital electronics section covers their [bus-level protocols and timing]({{< relref "/docs/digital/data-transfer-and-buses/common-bus-protocols" >}}) — signal timing, voltage levels, frame formats. This page focuses on the MCU side: how you configure these peripherals in firmware, what choices you make, and what actually goes wrong on the bench.
-
-## UART
-
-Asynchronous, point-to-point, no shared clock. The simplest serial interface conceptually, and the one most likely to be used for debug output and console shells.
-
-{{< graphviz >}}
-digraph uart {
-  rankdir=LR
-  bgcolor="transparent"
-  node [fontname="Helvetica" fontsize=11]
-  edge [fontname="Helvetica" fontsize=10]
-
-  mcu [shape=plain label=<
-    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="6" BGCOLOR="#2a2a3a" COLOR="#6666aa">
-      <TR><TD><B><FONT COLOR="#cccccc">MCU</FONT></B></TD></TR>
-      <TR><TD PORT="tx" BGCOLOR="#3e3e5a"><FONT COLOR="#e8e8e8"> TX </FONT></TD></TR>
-      <TR><TD PORT="rx" BGCOLOR="#3e3e5a"><FONT COLOR="#e8e8e8"> RX </FONT></TD></TR>
-      <TR><TD PORT="gnd" BGCOLOR="#3a3a3a"><FONT COLOR="#999999"> GND </FONT></TD></TR>
-    </TABLE>
-  >]
-
-  dev [shape=plain label=<
-    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="6" BGCOLOR="#2a3a2a" COLOR="#66aa66">
-      <TR><TD><B><FONT COLOR="#cccccc">Peripheral</FONT></B></TD></TR>
-      <TR><TD PORT="rx" BGCOLOR="#3e5a3e"><FONT COLOR="#e8e8e8"> RX </FONT></TD></TR>
-      <TR><TD PORT="tx" BGCOLOR="#3e5a3e"><FONT COLOR="#e8e8e8"> TX </FONT></TD></TR>
-      <TR><TD PORT="gnd" BGCOLOR="#3a3a3a"><FONT COLOR="#999999"> GND </FONT></TD></TR>
-    </TABLE>
-  >]
-
-  mcu:tx -> dev:rx [color="#8888cc" label=" data " fontcolor="#8888cc"]
-  dev:tx -> mcu:rx [color="#88cc88" label=" data " fontcolor="#88cc88"]
-  mcu:gnd -> dev:gnd [color="#666666" style=dashed]
-}
-{{< /graphviz >}}
-
-TX and RX cross over — each device transmits on its TX and the other receives on its RX. There is no clock line; both sides must agree on baud rate independently. The common ground connection is required for the voltage levels to be referenced correctly.
-
-### Configuration Essentials
-
-The MCU's UART peripheral needs a baud rate, a frame format (almost always 8N1), and a clock source. The baud rate generator divides the peripheral clock to produce the bit timing. This is where things get quietly wrong: if the peripheral clock and the desired baud rate do not divide evenly, the actual baud rate deviates from the target. The receiver can tolerate roughly plus or minus 2% mismatch before bits get sampled at the wrong time. At 115200 baud with a 48 MHz peripheral clock, the divisor works out cleanly. At 9600 baud from a 72 MHz clock, check the actual error — the datasheet or reference manual usually has a table.
-
-TX and RX are independent. You can transmit without receiving, and vice versa. Each direction has its own buffer — sometimes a single register, sometimes a small hardware FIFO (4 to 16 bytes is common). FIFO depth matters for burst handling: if the CPU is busy when data arrives and the FIFO overflows, bytes are lost silently. There is no error interrupt for "you were too slow" on most parts — the overrun flag is there, but easy to miss.
-
-### When UART Fits
-
-UART is the default for debug consoles, GPS modules, Bluetooth modules (which often present a UART interface), and any point-to-point link where simplicity matters more than speed. The lack of a clock line means fewer wires, but it also means both sides must agree on timing before they start talking — there is no discovery or negotiation.
+The two synchronous serial buses that show up on nearly every embedded project. SPI is fast and simple — a master-driven clock, full-duplex, one chip select per device. I2C is slower but pin-efficient — two shared wires for the whole bus, with addressing built into the protocol. The digital electronics section covers their [bus-level protocols and timing]({{< relref "/docs/digital/data-transfer-and-buses/common-bus-protocols" >}}); this page focuses on the MCU side.
 
 ## SPI
 
@@ -274,37 +227,31 @@ Each device has a 7-bit address (10-bit addressing exists but is rare). Many dev
 
 The ACK/NACK mechanism provides basic error feedback: if no device responds to an address, the master sees a NACK and can flag an error. This is the simplest way to detect a missing or dead device.
 
-## MCU-Side Data Handling
-
-For all three buses, the firmware must decide how data moves between the peripheral and memory. The options are polling, interrupts, and DMA.
-
-**Polling** is simplest: check a status register, read or write the data register, repeat. Fine for low data rates and simple programs, but the CPU does nothing else while waiting. For UART at 9600 baud, polling is usually acceptable. For SPI at 10 MHz, polling wastes most of the CPU's time on tight loops.
-
-**Interrupts** let the CPU do other work between bytes. The peripheral raises an interrupt when data is ready (RX) or when the transmit buffer is empty (TX). The ISR moves data between the peripheral and a software buffer. This is the standard approach for UART and I2C. The overhead per byte is small but nonzero — entering and exiting an ISR costs cycles.
-
-**DMA** moves data without CPU involvement at all. Essential for high-throughput SPI transfers (reading a flash chip, driving a display) and high-rate ADC acquisition. See [DMA]({{< relref "dma" >}}) for the details.
-
-## Choosing the Right Bus
-
-**UART** — point-to-point debug, console, GPS, Bluetooth module, any link where simplicity wins and speed above 1 Mbaud is not needed.
+## Choosing Between SPI and I2C
 
 **SPI** — fast chip-to-chip: flash memory, displays, ADCs, DACs, radio transceivers. Pin-hungry (one CS per device) but dead simple electrically and very fast.
 
 **I2C** — slow multi-device buses: sensors, EEPROMs, RTCs. Two wires for the whole bus regardless of device count, but limited speed and half-duplex.
 
-If the peripheral offers I2C and SPI, and you have the pins, SPI is almost always easier to bring up and debug. I2C's strength is pin efficiency, not ease of use.
+If the peripheral offers both I2C and SPI, and you have the pins, SPI is almost always easier to bring up and debug. I2C's strength is pin efficiency, not ease of use.
 
-## Debugging Serial Buses
+## Data Handling
 
-A logic analyzer is the single most useful tool for serial bus problems. Reading MCU status registers can tell you that a transfer failed, but not why. Seeing the actual waveforms — clock edges, data transitions, CS timing — reveals whether the issue is configuration (wrong clock mode), electrical (slow rise times), or firmware (CS toggled at the wrong time). Even a cheap 8-channel logic analyzer with protocol decoding changes serial bus debugging from guesswork to direct observation.
+**Polling** works for low-speed I2C reads and short SPI transfers, but the CPU does nothing else while waiting. For SPI at 10 MHz, polling wastes most of the CPU's time on tight loops.
+
+**Interrupts** let the CPU do other work between bytes. The peripheral raises an interrupt when data is ready (RX) or when the transmit buffer is empty (TX). The ISR moves data between the peripheral and a software buffer. This is the standard approach for I2C.
+
+**DMA** moves data without CPU involvement at all. Essential for high-throughput SPI transfers — reading a flash chip, driving a display, or streaming ADC data. See [DMA]({{< relref "dma" >}}) for the details.
+
+## Debugging SPI and I2C
+
+A logic analyzer with protocol decoding is the single most useful tool for SPI and I2C problems. Reading MCU status registers can tell you that a transfer failed, but not why. Seeing the actual waveforms — clock edges, data transitions, CS timing — reveals whether the issue is configuration (wrong clock mode), electrical (slow rise times), or firmware (CS toggled at the wrong time). Even a cheap 8-channel logic analyzer with protocol decoding changes serial bus debugging from guesswork to direct observation.
 
 For I2C specifically, an oscilloscope is also valuable because rise time and signal shape matter. A logic analyzer shows you the decoded bits; an oscilloscope shows you whether the pull-ups are adequate. Both views are useful. See [Probing & Measurement Technique]({{< relref "/docs/measurement/probing-technique" >}}) for connection details.
 
 ## Gotchas
 
 - **Wrong SPI clock mode looks almost right** — A CPOL or CPHA mismatch often produces data that is bit-shifted or byte-shifted rather than completely garbled. This makes it tempting to "fix" the issue in software rather than checking the mode setting against the datasheet. Always check the mode first.
-- **UART overrun errors are silent unless you look** — If the receive FIFO overflows because firmware was too slow, the UART peripheral sets an overrun flag, but most code never checks it. Data is quietly lost. If you see intermittent missing bytes, read the error flags.
 - **I2C pull-up resistor value is not a suggestion** — Too high and the rising edges are too slow for the bus speed. Too low and weak devices cannot pull the bus down. The result in both cases is intermittent NACK or corrupted data, and it only shows up under specific conditions (temperature, bus load, specific device combinations).
 - **Hardware CS on SPI often misbehaves for multi-byte transfers** — Many MCU SPI peripherals deassert CS between each byte when using hardware chip select. Most SPI devices expect CS held low for the entire transaction. Use GPIO-controlled CS unless you have verified the hardware CS behavior matches the device requirement.
 - **I2C bus lockup is a real failure mode** — If a slave gets confused mid-transfer (due to noise, reset, or a firmware bug), it can hold SDA low indefinitely, locking up the entire bus. Recovery requires clocking SCL manually until the slave releases SDA — something the MCU's I2C peripheral usually cannot do automatically.
-- **Baud rate error accumulates across the frame** — A UART with 1.5% baud rate error might work at 8N1 (10 bits per frame) but fail at 8N2 (11 bits) or with 9-bit data. The sampling error compounds with each bit, so longer frames are less tolerant of clock mismatch.

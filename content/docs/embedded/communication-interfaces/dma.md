@@ -13,7 +13,7 @@ Without DMA, every byte transferred between a peripheral and memory requires CPU
 
 DMA offloads this data movement to a dedicated hardware engine. The CPU sets up the transfer — source address, destination address, number of items, transfer width, triggers — and then the DMA controller executes it autonomously. When the transfer completes (or reaches a halfway point), the DMA controller raises an interrupt so firmware can process the data.
 
-This is essential for any high-throughput data path: continuous ADC sampling, SPI communication with flash memory or displays, I2S audio streaming, and UART reception where data arrives unpredictably and must not be lost. See [Serial Interfaces]({{< relref "serial-interfaces" >}}) for the peripheral side of these buses.
+This is essential for any high-throughput data path: continuous ADC sampling, SPI communication with flash memory or displays, [I2S]({{< relref "i2s" >}}) audio streaming, and [UART]({{< relref "uart" >}}) reception where data arrives unpredictably and must not be lost.
 
 ## Channels, Requests, and Mapping
 

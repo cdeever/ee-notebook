@@ -25,7 +25,7 @@ There are two fundamentally different ways to add Bluetooth to an MCU project, a
 
 ### External Module (UART/SPI-based)
 
-Modules like HC-05/HC-06 (Classic, old but still everywhere in tutorials), RN4870/RN4678 (Microchip, BLE/dual), and ESP32 (WiFi + BLE combo) contain their own Bluetooth stack and radio. The MCU talks to the module over [UART]({{< relref "serial-interfaces" >}}) (most common) or SPI using AT commands or a proprietary command API.
+Modules like HC-05/HC-06 (Classic, old but still everywhere in tutorials), RN4870/RN4678 (Microchip, BLE/dual), and ESP32 (WiFi + BLE combo) contain their own Bluetooth stack and radio. The MCU talks to the module over [UART]({{< relref "uart" >}}) (most common) or SPI using AT commands or a proprietary command API.
 
 Advantages:
 - No Bluetooth stack needed on the MCU — the module handles everything
@@ -158,4 +158,4 @@ The radio is by far the largest power consumer on a BLE SoC. Minimizing radio-on
 
 - **Interference in the 2.4 GHz band** — BLE shares the 2.4 GHz ISM band with WiFi, microwave ovens, Zigbee, and countless other devices. BLE uses frequency hopping across 40 channels (37 data channels, 3 advertising channels) to mitigate interference, but in a noisy environment (trade show floor, apartment building with dozens of WiFi networks), connection quality can degrade. Advertising on all three advertising channels provides redundancy, but data connections on a single channel are more vulnerable. This is mostly invisible during bench testing and shows up in the field.
 
-- **[DMA]({{< relref "dma" >}}) interaction with BLE stacks** — On SoCs with integrated BLE, the radio peripheral often uses DMA internally to move packets between radio memory and the packet buffer. The BLE stack manages this, and application firmware generally does not interact with radio DMA directly. But if you are also using DMA for other peripherals ([UART]({{< relref "serial-interfaces" >}}), SPI, ADC), be aware that DMA channels are a shared resource and the BLE stack's DMA usage may constrain what is available for your application.
+- **[DMA]({{< relref "dma" >}}) interaction with BLE stacks** — On SoCs with integrated BLE, the radio peripheral often uses DMA internally to move packets between radio memory and the packet buffer. The BLE stack manages this, and application firmware generally does not interact with radio DMA directly. But if you are also using DMA for other peripherals ([UART]({{< relref "uart" >}}), SPI, ADC), be aware that DMA channels are a shared resource and the BLE stack's DMA usage may constrain what is available for your application.

@@ -9,7 +9,7 @@ CAN (Controller Area Network) and LIN (Local Interconnect Network) are the two b
 
 Both buses originated in the automotive world, but CAN has spread widely into industrial automation, medical devices, and robotics. LIN stays mostly in vehicles, where it quietly handles seat motors, mirror adjustment, rain sensors, and interior lighting without anyone thinking about it much.
 
-This page covers CAN and LIN from the MCU and firmware perspective. The [serial interfaces]({{< relref "serial-interfaces" >}}) page covers UART, SPI, I2C, and I2S; the [USB]({{< relref "usb" >}}) page covers USB, and [WiFi & Networking]({{< relref "wifi-and-networking" >}}) covers Ethernet and WiFi. For DMA-based data handling applicable to CAN receive buffers and high-throughput configurations, see [DMA]({{< relref "dma" >}}).
+This page covers CAN and LIN from the MCU and firmware perspective. Other communication interfaces are covered separately: [UART]({{< relref "uart" >}}), [SPI & I2C]({{< relref "spi-and-i2c" >}}), [USB]({{< relref "usb" >}}), and [WiFi & Networking]({{< relref "wifi-and-networking" >}}). For DMA-based data handling applicable to CAN receive buffers and high-throughput configurations, see [DMA]({{< relref "dma" >}}).
 
 ## CAN
 

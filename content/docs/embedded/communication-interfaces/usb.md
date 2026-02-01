@@ -5,7 +5,7 @@ weight: 30
 
 # USB
 
-USB is one of those interfaces where the hardware peripheral does surprisingly little and the firmware does almost everything. The MCU provides the electrical interface and handles low-level packet mechanics, but enumeration, device class behavior, descriptor management, and data flow are all firmware's problem. Compared to [serial interfaces]({{< relref "serial-interfaces" >}}) like UART or SPI where you configure a few registers and start moving bytes, USB requires a complete protocol stack to do anything useful.
+USB is one of those interfaces where the hardware peripheral does surprisingly little and the firmware does almost everything. The MCU provides the electrical interface and handles low-level packet mechanics, but enumeration, device class behavior, descriptor management, and data flow are all firmware's problem. Compared to [UART]({{< relref "uart" >}}) or [SPI]({{< relref "spi-and-i2c" >}}) where you configure a few registers and start moving bytes, USB requires a complete protocol stack to do anything useful.
 
 This page covers USB from the MCU/firmware perspective — what the hardware provides, what firmware must handle, and the practical realities of getting a USB device working on an embedded system.
 
