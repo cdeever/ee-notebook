@@ -15,6 +15,14 @@
     "anchor": "3db-point"
   },
   {
+    "term": "4-20 mA loop",
+    "definition": "An industrial signaling standard where sensor readings are encoded as current between 4 mA (zero) and 20 mA (full scale), immune to wire resistance errors.",
+    "anchor": "4-20-ma-loop",
+    "aliases": [
+      "Current loop"
+    ]
+  },
+  {
     "term": "A-weighting",
     "definition": "Frequency-weighting curve approximating human hearing sensitivity, attenuating low and high frequencies while emphasizing 1–6 kHz.",
     "anchor": "a-weighting"
@@ -23,6 +31,20 @@
     "term": "AC coupling",
     "definition": "Signal path that blocks DC and passes only the time-varying component.",
     "anchor": "ac-coupling"
+  },
+  {
+    "term": "AC termination",
+    "definition": "Transmission line termination using a series capacitor and resistor, providing correct impedance at signal frequencies while blocking DC current draw.",
+    "anchor": "ac-termination"
+  },
+  {
+    "term": "Accumulated jitter",
+    "definition": "The timing error that builds up over many clock cycles, measured as the deviation of the Nth edge from its ideal position.",
+    "anchor": "accumulated-jitter",
+    "aliases": [
+      "Long-term jitter",
+      "TIE"
+    ]
   },
   {
     "term": "Accuracy",
@@ -136,6 +158,11 @@
     ]
   },
   {
+    "term": "Audio analyzer",
+    "definition": "A dedicated test instrument for measuring audio performance metrics including THD, THD+N, SNR, frequency response, and crosstalk.",
+    "anchor": "audio-analyzer"
+  },
+  {
     "term": "Auto-ranging",
     "definition": "Instrument feature that automatically selects the measurement range.",
     "anchor": "auto-ranging"
@@ -149,6 +176,11 @@
     "term": "Axial ratio",
     "definition": "For circularly polarized antennas, the ratio of major to minor axis of the polarization ellipse.",
     "anchor": "axial-ratio"
+  },
+  {
+    "term": "Backed-out terminal",
+    "definition": "A wire terminal that has slipped partially out of its connector housing, appearing connected but making intermittent or no electrical contact.",
+    "anchor": "backed-out-terminal"
   },
   {
     "term": "Balun",
@@ -172,6 +204,14 @@
     "term": "Bandgap reference",
     "definition": "A reference circuit exploiting complementary temperature coefficients to produce a temperature-stable output near 1.25 V.",
     "anchor": "bandgap-reference"
+  },
+  {
+    "term": "Bandwidth limit",
+    "definition": "An oscilloscope setting that engages a low-pass filter (typically 20 MHz) to reduce high-frequency noise on the displayed waveform.",
+    "anchor": "bandwidth-limit",
+    "aliases": [
+      "BW limit"
+    ]
   },
   {
     "term": "Bandwidth shrinkage",
@@ -234,6 +274,15 @@
     ]
   },
   {
+    "term": "Bipolar rails",
+    "definition": "Symmetrical positive and negative supply voltages (e.g., +/-35 V) used to power audio amplifier output stages.",
+    "anchor": "bipolar-rails",
+    "aliases": [
+      "Split supply",
+      "Dual supply"
+    ]
+  },
+  {
     "term": "Biquad",
     "definition": "Second-order IIR filter section with 5 coefficients, commonly cascaded to build complex digital filters.",
     "anchor": "biquad"
@@ -257,14 +306,35 @@
     ]
   },
   {
+    "term": "Bleeder resistor",
+    "definition": "A resistor placed across a capacitor to safely discharge stored energy when power is removed.",
+    "anchor": "bleeder-resistor"
+  },
+  {
     "term": "Bode plot",
     "definition": "A two-panel graph showing magnitude (dB) and phase (degrees) versus frequency on a logarithmic scale.",
     "anchor": "bode-plot"
   },
   {
+    "term": "Bodge wire",
+    "definition": "A jumper wire added to a PCB after assembly to correct a design error, add a missing connection, or repair a broken trace.",
+    "anchor": "bodge-wire",
+    "aliases": [
+      "Jumper wire"
+    ]
+  },
+  {
     "term": "Body diode",
     "definition": "The parasitic diode between source and drain in a MOSFET, conducting when drain voltage drops below source.",
     "anchor": "body-diode"
+  },
+  {
+    "term": "BOM",
+    "definition": "Bill of Materials — the list of every component, quantity, and reference designator needed to build a PCB assembly.",
+    "anchor": "bom",
+    "aliases": [
+      "Bill of Materials"
+    ]
   },
   {
     "term": "Boost converter",
@@ -293,6 +363,15 @@
     "term": "Bridge rectifier",
     "definition": "A four-diode configuration that converts AC to DC by conducting both polarities through two diodes each.",
     "anchor": "bridge-rectifier"
+  },
+  {
+    "term": "Bridged mode",
+    "definition": "Amplifier configuration where two channels drive opposite ends of a load, doubling the voltage swing and quadrupling the power into the load.",
+    "anchor": "bridged-mode",
+    "aliases": [
+      "Bridge-tied load",
+      "BTL"
+    ]
   },
   {
     "term": "Brownout detection",
@@ -326,6 +405,11 @@
     "term": "Burden voltage",
     "definition": "Voltage drop across an ammeter's internal shunt resistor.",
     "anchor": "burden-voltage"
+  },
+  {
+    "term": "Bus contention",
+    "definition": "A fault condition where two or more drivers simultaneously assert conflicting levels on a shared bus, causing excess current and indeterminate logic levels.",
+    "anchor": "bus-contention"
   },
   {
     "term": "Butterworth filter",
@@ -365,6 +449,16 @@
     ]
   },
   {
+    "term": "Capacitor dry-out",
+    "definition": "Gradual evaporation of the liquid electrolyte in an electrolytic capacitor, causing ESR to rise and capacitance to drop over time, especially at elevated temperatures.",
+    "anchor": "capacitor-dry-out"
+  },
+  {
+    "term": "Capacitor reforming",
+    "definition": "Gradually applying voltage to an old or long-stored electrolytic capacitor to rebuild its oxide dielectric layer before full operation.",
+    "anchor": "capacitor-reforming"
+  },
+  {
     "term": "Carbon composition resistor",
     "definition": "Vintage resistor type made from a solid slug of carbon and binder.",
     "anchor": "carbon-composition"
@@ -383,6 +477,15 @@
     "term": "Cascode",
     "definition": "A two-transistor configuration combining common-emitter with common-base to improve bandwidth and output impedance.",
     "anchor": "cascode"
+  },
+  {
+    "term": "CAT rating",
+    "definition": "IEC 61010 measurement category indicating the transient voltage environment an instrument is rated for, from CAT I (low energy) to CAT IV (utility entrance).",
+    "anchor": "cat-rating",
+    "aliases": [
+      "Measurement category",
+      "IEC 61010"
+    ]
   },
   {
     "term": "CCM memory",
@@ -459,6 +562,11 @@
     "anchor": "clock-skew"
   },
   {
+    "term": "Clock stretching",
+    "definition": "An I2C feature where a slave device holds the clock line (SCL) low to pause communication while it processes data.",
+    "anchor": "clock-stretching"
+  },
+  {
     "term": "Clock tree",
     "definition": "A balanced distribution network of buffers ensuring equal clock delay to all flip-flops.",
     "anchor": "clock-tree"
@@ -490,6 +598,19 @@
     ]
   },
   {
+    "term": "Cold junction compensation",
+    "definition": "Correction applied to thermocouple measurements to account for the temperature of the measurement junction (cold junction) not being at 0 degrees C.",
+    "anchor": "cold-junction-compensation",
+    "aliases": [
+      "CJC"
+    ]
+  },
+  {
+    "term": "Cold solder joint",
+    "definition": "A solder connection that did not properly reflow, appearing dull or grainy and causing intermittent high resistance.",
+    "anchor": "cold-solder-joint"
+  },
+  {
     "term": "Common base",
     "definition": "A BJT amplifier with input at the emitter and output at the collector, providing current gain and high bandwidth.",
     "anchor": "common-base"
@@ -508,6 +629,11 @@
     "term": "Common source",
     "definition": "A MOSFET amplifier with input at the gate and output at the drain, analogous to common emitter.",
     "anchor": "common-source"
+  },
+  {
+    "term": "Common-mode noise",
+    "definition": "Noise voltage that appears equally on both signal conductors relative to ground, often from ground loops or radiated pickup.",
+    "anchor": "common-mode-noise"
   },
   {
     "term": "Common-mode rejection",
@@ -532,6 +658,21 @@
       "P1dB",
       "1 dB compression"
     ]
+  },
+  {
+    "term": "Conducted emission",
+    "definition": "Electromagnetic interference that travels along wires and cables rather than through the air.",
+    "anchor": "conducted-emission"
+  },
+  {
+    "term": "Conformal coating",
+    "definition": "Protective polymer layer applied over assembled PCBs to guard against moisture, dust, and contamination.",
+    "anchor": "conformal-coating"
+  },
+  {
+    "term": "Contact cleaner",
+    "definition": "Solvent spray that removes oxidation and contamination from electrical contacts and connector pins to restore reliable connections.",
+    "anchor": "contact-cleaner"
   },
   {
     "term": "Context switching",
@@ -600,11 +741,27 @@
     "anchor": "coupling-factor"
   },
   {
+    "term": "CPHA",
+    "definition": "SPI Clock Phase — determines whether data is sampled on the leading (0) or trailing (1) clock edge.",
+    "anchor": "cpha",
+    "aliases": [
+      "Clock Phase"
+    ]
+  },
+  {
     "term": "CPLD",
     "definition": "Complex Programmable Logic Device — multiple PLD blocks connected by a programmable routing matrix.",
     "anchor": "cpld",
     "aliases": [
       "Complex Programmable Logic Device"
+    ]
+  },
+  {
+    "term": "CPOL",
+    "definition": "SPI Clock Polarity — determines the idle state of the SPI clock line (0 = idle low, 1 = idle high).",
+    "anchor": "cpol",
+    "aliases": [
+      "Clock Polarity"
     ]
   },
   {
@@ -646,6 +803,20 @@
     "anchor": "curie-temperature"
   },
   {
+    "term": "Current clamp probe",
+    "definition": "A probe that measures current by sensing the magnetic field around a conductor without breaking the circuit.",
+    "anchor": "current-clamp-probe",
+    "aliases": [
+      "Current clamp",
+      "Clamp-on probe"
+    ]
+  },
+  {
+    "term": "Current-limited power-up",
+    "definition": "First applying power through a current-limited bench supply after repair, so that a remaining short draws only the set limit instead of causing cascading damage.",
+    "anchor": "current-limited-power-up"
+  },
+  {
     "term": "Cut trace",
     "definition": "A PCB trace intentionally severed, usually as a rework modification.",
     "anchor": "cut-trace"
@@ -657,6 +828,11 @@
     "aliases": [
       "f_c"
     ]
+  },
+  {
+    "term": "Cycle-to-cycle jitter",
+    "definition": "The difference in duration between two adjacent clock periods, capturing short-term timing variation.",
+    "anchor": "cycle-to-cycle-jitter"
   },
   {
     "term": "D flip-flop",
@@ -707,6 +883,11 @@
     "term": "DC coupling",
     "definition": "Signal path that passes all frequencies including DC.",
     "anchor": "dc-coupling"
+  },
+  {
+    "term": "DC offset",
+    "definition": "Unwanted DC voltage present at an amplifier output that should be at zero volts with no signal applied; excessive DC offset can damage speakers or downstream loads.",
+    "anchor": "dc-offset"
   },
   {
     "term": "DCR",
@@ -776,6 +957,11 @@
     "anchor": "decoupling"
   },
   {
+    "term": "Delamination",
+    "definition": "Separation of PCB laminate layers caused by excessive heat, moisture absorption, or mechanical stress, compromising board structural and electrical integrity.",
+    "anchor": "delamination"
+  },
+  {
     "term": "Delay spread",
     "definition": "Difference in propagation time between first-arriving and last significant signal component; causes frequency-selective fading.",
     "anchor": "delay-spread"
@@ -801,14 +987,46 @@
     "anchor": "derating"
   },
   {
+    "term": "Desoldering pump",
+    "definition": "Spring-loaded vacuum tool that sucks molten solder from through-hole joints, used for component removal.",
+    "anchor": "desoldering-pump",
+    "aliases": [
+      "Solder sucker"
+    ]
+  },
+  {
     "term": "Determinism",
     "definition": "Property that execution meets timing deadlines predictably; hard real-time requires deterministic worst-case behavior.",
     "anchor": "determinism"
   },
   {
+    "term": "Deterministic jitter",
+    "definition": "Jitter with identifiable causes and bounded amplitude, including data-dependent, periodic, and duty-cycle distortion components.",
+    "anchor": "deterministic-jitter",
+    "aliases": [
+      "DJ"
+    ]
+  },
+  {
+    "term": "DI box",
+    "definition": "Direct Injection box — an audio device using a transformer or active circuit to convert unbalanced high-impedance signals to balanced low-impedance, breaking ground loops.",
+    "anchor": "di-box",
+    "aliases": [
+      "Direct box"
+    ]
+  },
+  {
     "term": "Dielectric",
     "definition": "Insulating material between capacitor plates that determines capacitance, voltage rating, stability, and loss characteristics.",
     "anchor": "dielectric"
+  },
+  {
+    "term": "Dielectric absorption",
+    "definition": "The tendency of a capacitor to recover a portion of its charge after being briefly discharged, also called soakback.",
+    "anchor": "dielectric-absorption",
+    "aliases": [
+      "Soakback"
+    ]
   },
   {
     "term": "Dielectric constant",
@@ -824,9 +1042,37 @@
     "anchor": "differential-pair"
   },
   {
+    "term": "Differential probe",
+    "definition": "An oscilloscope probe that measures the voltage difference between two points, neither of which needs to be ground.",
+    "anchor": "differential-probe"
+  },
+  {
+    "term": "Differential-mode noise",
+    "definition": "Noise voltage that appears between the two signal conductors, indistinguishable from the wanted signal and harder to filter without affecting the signal.",
+    "anchor": "differential-mode-noise"
+  },
+  {
     "term": "Diffraction",
     "definition": "Bending of electromagnetic waves around obstacles or edges; more pronounced at lower frequencies.",
     "anchor": "diffraction"
+  },
+  {
+    "term": "Dim bulb tester",
+    "definition": "A series incandescent light bulb wired inline with a power input that limits fault current and provides a visual indicator — glows brightly if the DUT is shorted.",
+    "anchor": "dim-bulb-tester"
+  },
+  {
+    "term": "Diode check",
+    "definition": "DMM test mode that forward-biases a junction and displays the voltage drop, used to verify transistor junctions and identify shorted or open semiconductor devices.",
+    "anchor": "diode-check",
+    "aliases": [
+      "Diode test"
+    ]
+  },
+  {
+    "term": "Diode test mode",
+    "definition": "DMM mode that forces a small current through a semiconductor junction and displays the forward voltage drop, useful for checking diodes and BJT junctions.",
+    "anchor": "diode-test-mode"
   },
   {
     "term": "Diplexer",
@@ -844,9 +1090,19 @@
     "anchor": "directivity"
   },
   {
+    "term": "Display counts",
+    "definition": "The maximum number a DMM can show on its display (e.g., 6000 counts for a 3 3/4-digit meter), determining resolution on each range.",
+    "anchor": "display-counts"
+  },
+  {
     "term": "Dither",
     "definition": "Intentionally added noise before quantization that randomizes quantization error, converting distortion into perceptually preferable noise.",
     "anchor": "dither"
+  },
+  {
+    "term": "Divide and conquer",
+    "definition": "Fault isolation strategy that splits the signal chain at a midpoint and tests each half, halving the search space with each measurement.",
+    "anchor": "divide-and-conquer"
   },
   {
     "term": "DMA",
@@ -888,6 +1144,11 @@
     "anchor": "dot-convention"
   },
   {
+    "term": "Drag soldering",
+    "definition": "Technique for soldering fine-pitch IC pins by dragging a fluxed, lightly tinned iron tip across the row of pins, relying on surface tension to keep solder on the pads.",
+    "anchor": "drag-soldering"
+  },
+  {
     "term": "Drive strength",
     "definition": "The amount of current a logic output can source or sink.",
     "anchor": "drive-strength"
@@ -903,9 +1164,22 @@
     "anchor": "dsp-block"
   },
   {
+    "term": "Dummy load",
+    "definition": "A resistive load that substitutes for the real load (such as a speaker) during bench testing, providing a known, stable impedance for repeatable measurements.",
+    "anchor": "dummy-load"
+  },
+  {
     "term": "Duplexer",
     "definition": "Device allowing simultaneous transmission and reception on the same antenna by separating frequency bands.",
     "anchor": "duplexer"
+  },
+  {
+    "term": "DUT",
+    "definition": "Device Under Test — the circuit, board, or component being debugged, measured, or verified.",
+    "anchor": "dut",
+    "aliases": [
+      "Device Under Test"
+    ]
   },
   {
     "term": "Duty cycle",
@@ -1067,6 +1341,11 @@
     ]
   },
   {
+    "term": "ESR meter",
+    "definition": "Test instrument that measures equivalent series resistance of capacitors, essential for detecting dried-out electrolytics that a basic capacitance meter would miss.",
+    "anchor": "esr-meter"
+  },
+  {
     "term": "ETM",
     "definition": "ARM CoreSight feature recording every instruction executed for complete instruction trace, requiring a trace-capable debug probe.",
     "anchor": "etm-trace",
@@ -1091,6 +1370,14 @@
     "term": "Eye diagram",
     "definition": "A visual representation of signal quality showing timing and voltage margins at the receiver.",
     "anchor": "eye-diagram"
+  },
+  {
+    "term": "f_knee",
+    "definition": "The frequency below which a signal's spectral content is negligible, approximated as 0.5 / rise_time for digital signals.",
+    "anchor": "f-knee",
+    "aliases": [
+      "Knee frequency"
+    ]
   },
   {
     "term": "Fan-out",
@@ -1125,6 +1412,11 @@
     "aliases": [
       "β"
     ]
+  },
+  {
+    "term": "Feedthrough capacitor",
+    "definition": "A capacitor designed to mount through a shielding wall, filtering signals as they pass between shielded compartments.",
+    "anchor": "feedthrough-capacitor"
   },
   {
     "term": "Ferrite bead",
@@ -1184,6 +1476,11 @@
     "anchor": "firmware"
   },
   {
+    "term": "Five senses check",
+    "definition": "Pre-measurement triage step using sight, smell, hearing, touch, and context to identify obvious faults before powering up or probing.",
+    "anchor": "five-senses-check"
+  },
+  {
     "term": "Flash memory",
     "definition": "Non-volatile memory storing firmware code and data, requiring erase-then-program cycles for modification.",
     "anchor": "flash-memory"
@@ -1197,6 +1494,11 @@
     "term": "Flat schematic",
     "definition": "Multi-sheet schematic where all sheets exist at the same hierarchy level, connected by net names.",
     "anchor": "flat-schematic"
+  },
+  {
+    "term": "Flat-top window",
+    "definition": "Windowing function optimized for accurate amplitude measurement in spectral analysis at the cost of poor frequency resolution.",
+    "anchor": "flat-top-window"
   },
   {
     "term": "Fletcher-Munson curves",
@@ -1220,6 +1522,11 @@
       "floating node",
       "floating input"
     ]
+  },
+  {
+    "term": "Flux residue",
+    "definition": "Corrosive or conductive residue left on a PCB after soldering that can cause leakage currents, corrosion, and unreliable measurements if not cleaned.",
+    "anchor": "flux-residue"
   },
   {
     "term": "Flyback",
@@ -1258,9 +1565,24 @@
     ]
   },
   {
+    "term": "Framing error",
+    "definition": "A UART error where the receiver does not find a valid stop bit at the expected position, typically caused by baud rate mismatch.",
+    "anchor": "framing-error"
+  },
+  {
     "term": "FreeRTOS",
     "definition": "Most widely used open-source RTOS for embedded systems, running on virtually every MCU with 4 KB or more SRAM.",
     "anchor": "freertos"
+  },
+  {
+    "term": "Freeze spray",
+    "definition": "Aerosol coolant used to rapidly chill individual components during debugging to isolate temperature-dependent faults.",
+    "anchor": "freeze-spray"
+  },
+  {
+    "term": "Frequency counter",
+    "definition": "A test instrument that precisely measures signal frequency by counting cycles over a gated time interval.",
+    "anchor": "frequency-counter"
   },
   {
     "term": "Fresnel zone",
@@ -1307,12 +1629,30 @@
     "anchor": "gain-staging"
   },
   {
+    "term": "Gate oxide breakdown",
+    "definition": "Irreversible damage to a MOSFET's thin gate insulator caused by excessive gate-to-source voltage or ESD, resulting in a shorted or leaky gate.",
+    "anchor": "gate-oxide-breakdown"
+  },
+  {
+    "term": "Gauge factor",
+    "definition": "The sensitivity of a strain gauge, defined as the ratio of fractional resistance change to fractional length change (strain).",
+    "anchor": "gauge-factor",
+    "aliases": [
+      "GF"
+    ]
+  },
+  {
     "term": "GBW",
     "definition": "Gain-bandwidth product — the product of closed-loop gain and bandwidth, approximately constant for a given op-amp.",
     "anchor": "gbw",
     "aliases": [
       "Gain-bandwidth product"
     ]
+  },
+  {
+    "term": "Ghost voltage",
+    "definition": "False voltage reading caused by capacitive coupling to nearby live conductors, eliminated by using LoZ mode on a DMM.",
+    "anchor": "ghost-voltage"
   },
   {
     "term": "Gilbert cell",
@@ -1351,6 +1691,11 @@
     "term": "Ground bounce",
     "definition": "Voltage spike on the ground network caused by fast-changing currents flowing through resistive and inductive ground paths.",
     "anchor": "ground-bounce"
+  },
+  {
+    "term": "Ground loop",
+    "definition": "A condition where multiple ground connections between equipment create a closed loop that picks up magnetically induced currents, causing hum or interference.",
+    "anchor": "ground-loop"
   },
   {
     "term": "Ground plane",
@@ -1453,6 +1798,15 @@
     "term": "Holdup time",
     "definition": "Duration that a capacitor can sustain a load after the input power is removed.",
     "anchor": "holdup-time"
+  },
+  {
+    "term": "HRC fuse",
+    "definition": "High Rupturing Capacity fuse rated to safely interrupt high fault currents, required in DMMs rated for high-energy circuits.",
+    "anchor": "hrc-fuse",
+    "aliases": [
+      "High Rupturing Capacity fuse",
+      "Ceramic fuse"
+    ]
   },
   {
     "term": "Hysteresis loss",
@@ -1586,6 +1940,11 @@
     "anchor": "insulation-breakdown"
   },
   {
+    "term": "Insulation resistance",
+    "definition": "The resistance of an insulating material or component's dielectric, typically measured with a megohmmeter at elevated voltage.",
+    "anchor": "insulation-resistance"
+  },
+  {
     "term": "Intermodulation",
     "definition": "New frequency components generated when multiple signals mix nonlinearly in a circuit.",
     "anchor": "intermodulation"
@@ -1625,6 +1984,11 @@
     "term": "ISM band",
     "definition": "Unlicensed frequency bands for Industrial, Scientific, and Medical use; includes 915 MHz and 2.4 GHz.",
     "anchor": "ism-band"
+  },
+  {
+    "term": "Isolation transformer",
+    "definition": "A 1:1 transformer that breaks the galvanic path between mains and the device under test, allowing safe measurement of mains-referenced circuits.",
+    "anchor": "isolation-transformer"
   },
   {
     "term": "Isolator",
@@ -1692,6 +2056,14 @@
     "anchor": "kaiser-window"
   },
   {
+    "term": "Kapton tape",
+    "definition": "Heat-resistant polyimide adhesive tape used to shield nearby components during hot-air rework and to secure jumper wires on reworked boards.",
+    "anchor": "kapton-tape",
+    "aliases": [
+      "Polyimide tape"
+    ]
+  },
+  {
     "term": "Karnaugh map",
     "definition": "A graphical method for simplifying Boolean functions by grouping adjacent truth table entries.",
     "anchor": "karnaugh-map",
@@ -1708,6 +2080,20 @@
     ]
   },
   {
+    "term": "Kelvin measurement",
+    "definition": "A 4-wire measurement technique that eliminates lead resistance error by using separate force and sense connections.",
+    "anchor": "kelvin-measurement",
+    "aliases": [
+      "4-wire measurement",
+      "Kelvin connection"
+    ]
+  },
+  {
+    "term": "Known-good substitution",
+    "definition": "Debugging technique of swapping a suspected component or module with a verified working one to determine if the original is faulty.",
+    "anchor": "known-good-substitution"
+  },
+  {
     "term": "KVL",
     "definition": "The sum of voltage drops around any closed loop equals zero.",
     "anchor": "kvl",
@@ -1721,9 +2107,19 @@
     "anchor": "lambda"
   },
   {
+    "term": "Latch-up",
+    "definition": "A parasitic thyristor condition in CMOS ICs where a trigger event locks the device into a low-impedance state, drawing excessive current until power is removed.",
+    "anchor": "latch-up"
+  },
+  {
     "term": "Latency",
     "definition": "Time delay between when a signal enters a system and when the corresponding output appears.",
     "anchor": "latency"
+  },
+  {
+    "term": "LCR meter",
+    "definition": "An instrument that measures inductance, capacitance, and resistance of components at a specified test frequency.",
+    "anchor": "lcr-meter"
   },
   {
     "term": "LDO",
@@ -1737,6 +2133,11 @@
     "term": "Leakage current",
     "definition": "Small, undesired current flowing through a nominally insulating path.",
     "anchor": "leakage-current"
+  },
+  {
+    "term": "Level diagram",
+    "definition": "A block diagram showing signal levels in dBu or dBV at each stage of an audio signal chain, used to verify proper gain structure.",
+    "anchor": "level-diagram"
   },
   {
     "term": "Level shifting",
@@ -1753,6 +2154,11 @@
     "aliases": [
       "Linear Feedback Shift Register"
     ]
+  },
+  {
+    "term": "Lifted pad",
+    "definition": "A PCB copper pad that has separated from the substrate due to excessive heat or mechanical force during soldering or rework.",
+    "anchor": "lifted-pad"
   },
   {
     "term": "Line regulation",
@@ -1796,6 +2202,11 @@
     "term": "Load regulation",
     "definition": "How much a voltage source's output changes per unit of load current change.",
     "anchor": "load-regulation"
+  },
+  {
+    "term": "Load transient response",
+    "definition": "How quickly and cleanly a power supply recovers its output voltage after a sudden change in load current.",
+    "anchor": "load-transient-response"
   },
   {
     "term": "Loading",
@@ -1852,6 +2263,22 @@
     "term": "Low-pass filter",
     "definition": "A filter that passes frequencies below a cutoff and attenuates frequencies above it.",
     "anchor": "low-pass-filter"
+  },
+  {
+    "term": "Low-pass filter mode",
+    "definition": "A DMM feature that filters out high-frequency content from AC voltage measurements, giving accurate fundamental-frequency readings on VFD or PWM-driven circuits.",
+    "anchor": "lpf-mode",
+    "aliases": [
+      "LPF"
+    ]
+  },
+  {
+    "term": "LoZ mode",
+    "definition": "Low-impedance DMM input mode that collapses ghost voltages by presenting a low resistance to the circuit under test.",
+    "anchor": "loz-mode",
+    "aliases": [
+      "Low-Z mode"
+    ]
   },
   {
     "term": "LUFS",
@@ -1913,6 +2340,11 @@
     "term": "Mealy machine",
     "definition": "A state machine where outputs depend on both current state and current inputs.",
     "anchor": "mealy-machine"
+  },
+  {
+    "term": "Measurement uncertainty",
+    "definition": "The range within which the true value of a measurement is expected to lie, combining accuracy, resolution, repeatability, and environmental effects.",
+    "anchor": "measurement-uncertainty"
   },
   {
     "term": "Memory map",
@@ -2023,12 +2455,25 @@
     ]
   },
   {
+    "term": "MSO",
+    "definition": "Mixed Signal Oscilloscope — an oscilloscope with both analog and digital (logic analyzer) input channels for correlating analog waveforms with digital bus activity.",
+    "anchor": "mso",
+    "aliases": [
+      "Mixed Signal Oscilloscope"
+    ]
+  },
+  {
     "term": "MTBF",
     "definition": "Mean Time Between Failures — average time between metastability-induced failures.",
     "anchor": "mtbf",
     "aliases": [
       "Mean Time Between Failures"
     ]
+  },
+  {
+    "term": "Mu-metal",
+    "definition": "A high-permeability nickel-iron alloy used for shielding against low-frequency magnetic fields.",
+    "anchor": "mu-metal"
   },
   {
     "term": "Multipath fading",
@@ -2042,6 +2487,11 @@
     "aliases": [
       "mux"
     ]
+  },
+  {
+    "term": "Mute relay",
+    "definition": "A relay in an audio amplifier that disconnects the speaker outputs during power-up and power-down to suppress audible transient thumps.",
+    "anchor": "mute-relay"
   },
   {
     "term": "Mutex",
@@ -2065,6 +2515,19 @@
     "term": "NanoVNA",
     "definition": "Affordable vector network analyzer covering typically 50 kHz to 1.5 GHz for antenna and circuit measurements.",
     "anchor": "nanoVNA"
+  },
+  {
+    "term": "NCV",
+    "definition": "Non-Contact Voltage detection — a DMM mode that senses AC voltage presence near a conductor without touching it.",
+    "anchor": "ncv",
+    "aliases": [
+      "Non-Contact Voltage"
+    ]
+  },
+  {
+    "term": "Near-field probe",
+    "definition": "A small loop or stub probe held close to a PCB to sniff magnetic (H-field) or electric (E-field) emissions for EMI troubleshooting.",
+    "anchor": "near-field-probe"
   },
   {
     "term": "Near-field region",
@@ -2101,6 +2564,11 @@
     "aliases": [
       "NC"
     ]
+  },
+  {
+    "term": "No-clean flux",
+    "definition": "Soldering flux formulated to leave benign residue that does not require post-solder cleaning, though cleaning is still recommended for precision or high-impedance circuits.",
+    "anchor": "no-clean-flux"
   },
   {
     "term": "Nodal analysis",
@@ -2307,6 +2775,11 @@
     "anchor": "output-ripple"
   },
   {
+    "term": "Overcurrent",
+    "definition": "Current flow exceeding a component's or circuit's rated maximum, typically caused by a short circuit, excessive load, or failed protection device.",
+    "anchor": "overcurrent"
+  },
+  {
     "term": "Oversampling",
     "definition": "Sampling at a rate much higher than Nyquist; spreads quantization noise across wider bandwidth and enables noise shaping.",
     "anchor": "oversampling"
@@ -2315,6 +2788,19 @@
     "term": "Parallel",
     "definition": "Components connected across the same two nodes so that they share the same voltage.",
     "anchor": "parallel"
+  },
+  {
+    "term": "Parallel termination",
+    "definition": "Transmission line termination with a resistor matching the line impedance at the receiver end, absorbing the signal to prevent reflections.",
+    "anchor": "parallel-termination"
+  },
+  {
+    "term": "Parametric failure",
+    "definition": "A component degradation where the part still functions but operates outside its specified parameters, often caused by ESD or thermal stress.",
+    "anchor": "parametric-failure",
+    "aliases": [
+      "Parametric ESD damage"
+    ]
   },
   {
     "term": "Parasitic capacitance",
@@ -2377,6 +2863,11 @@
     "term": "PendSV",
     "definition": "Cortex-M exception used for deferring processing to lower priority, commonly used by RTOS for context switching.",
     "anchor": "pendsv-exception"
+  },
+  {
+    "term": "Period jitter",
+    "definition": "The deviation of any single clock period from the ideal period, measured as a standard deviation or peak-to-peak value.",
+    "anchor": "period-jitter"
   },
   {
     "term": "Peripheral clock gating",
@@ -2463,6 +2954,15 @@
     "anchor": "pole"
   },
   {
+    "term": "Polyfuse",
+    "definition": "A resettable overcurrent protection device (PTC thermistor) that increases resistance when tripped and resets when power is removed.",
+    "anchor": "polyfuse",
+    "aliases": [
+      "Resettable fuse",
+      "PPTC"
+    ]
+  },
+  {
     "term": "Port",
     "definition": "A connection point in a hierarchical schematic that links a sub-sheet to the level above.",
     "anchor": "port"
@@ -2471,6 +2971,11 @@
     "term": "Positive feedback",
     "definition": "Feedback where the returned signal reinforces the input, causing output to diverge. Used in oscillators and latches.",
     "anchor": "positive-feedback"
+  },
+  {
+    "term": "Post-mortem",
+    "definition": "A structured write-up documenting a debugging session's symptom, root cause, misleading hypotheses, fix, and lessons learned for future pattern recognition.",
+    "anchor": "post-mortem"
   },
   {
     "term": "Post-mortem debugging",
@@ -2521,11 +3026,25 @@
     "anchor": "power-rating"
   },
   {
+    "term": "Power sequencing",
+    "definition": "The required order and timing of multiple supply rails powering up and down, critical for multi-rail systems to avoid latchup or damage.",
+    "anchor": "power-sequencing"
+  },
+  {
     "term": "Power spectral density",
     "definition": "Normalized spectral power per unit bandwidth (V²/Hz); independent of FFT length.",
     "anchor": "power-spectral-density",
     "aliases": [
       "PSD"
+    ]
+  },
+  {
+    "term": "Power-good signal",
+    "definition": "A digital output from a voltage regulator indicating that its output has reached and is within regulation limits.",
+    "anchor": "power-good-signal",
+    "aliases": [
+      "PG signal",
+      "PGOOD"
     ]
   },
   {
@@ -2586,9 +3105,29 @@
     "anchor": "priority-inversion"
   },
   {
+    "term": "Probe compensation",
+    "definition": "Adjusting a passive oscilloscope probe's trimmer capacitor so its RC time constant matches the scope input, producing a flat frequency response.",
+    "anchor": "probe-compensation"
+  },
+  {
     "term": "Probe loading",
     "definition": "The distortion introduced by a measurement probe's input impedance (resistive and capacitive) on the circuit being measured.",
     "anchor": "probe-loading"
+  },
+  {
+    "term": "Propagation delay",
+    "definition": "The time for a signal to travel from one point to another, approximately 6-7 ns per meter on FR4 PCB traces.",
+    "anchor": "propagation-delay"
+  },
+  {
+    "term": "Protect mode",
+    "definition": "A self-protection state in power amplifiers triggered by DC offset, overcurrent, short circuit, or overtemperature, shutting down outputs to prevent damage.",
+    "anchor": "protect-mode"
+  },
+  {
+    "term": "Protocol decode",
+    "definition": "Oscilloscope or logic analyzer feature that interprets captured waveforms as bus transactions (I2C addresses, SPI bytes, UART frames, etc.).",
+    "anchor": "protocol-decode"
   },
   {
     "term": "PTC",
@@ -2617,6 +3156,22 @@
     "anchor": "q-point",
     "aliases": [
       "quiescent point"
+    ]
+  },
+  {
+    "term": "QFN",
+    "definition": "Quad Flat No-lead — an IC package with exposed pads on the bottom instead of visible side leads, requiring hot air or reflow for rework.",
+    "anchor": "qfn",
+    "aliases": [
+      "Quad Flat No-lead"
+    ]
+  },
+  {
+    "term": "QFP",
+    "definition": "Quad Flat Package — an IC package with fine-pitch leads on all four sides, common for microcontrollers and interface chips.",
+    "anchor": "qfp",
+    "aliases": [
+      "Quad Flat Package"
     ]
   },
   {
@@ -2653,6 +3208,11 @@
     "anchor": "race-condition"
   },
   {
+    "term": "Radiated emission",
+    "definition": "Electromagnetic interference that propagates through the air as electromagnetic waves from a circuit or cable.",
+    "anchor": "radiated-emission"
+  },
+  {
     "term": "Radiation pattern",
     "definition": "Plot of relative field strength or power radiated by an antenna in all directions.",
     "anchor": "radiation-pattern"
@@ -2663,14 +3223,32 @@
     "anchor": "radiation-resistance"
   },
   {
+    "term": "Rail sag",
+    "definition": "Drop in a power supply rail voltage under heavy load, caused by the supply's limited current capacity or resistive losses in the distribution path.",
+    "anchor": "rail-sag"
+  },
+  {
     "term": "Rail-to-rail",
     "definition": "An op-amp whose output can swing close to both supply rails, typically within 50-200 mV.",
     "anchor": "rail-to-rail"
   },
   {
+    "term": "Random jitter",
+    "definition": "Jitter with a Gaussian distribution caused by thermal noise and shot noise, unbounded in theory and characterized by RMS value.",
+    "anchor": "random-jitter",
+    "aliases": [
+      "RJ"
+    ]
+  },
+  {
     "term": "Rayleigh fading",
     "definition": "Small-scale fading where multipath components cause rapid signal variation following a Rayleigh distribution.",
     "anchor": "rayleigh-fading"
+  },
+  {
+    "term": "Re-balling",
+    "definition": "Process of removing old solder balls from a BGA package and attaching new ones using solder paste or preforms before re-mounting the IC.",
+    "anchor": "re-balling"
   },
   {
     "term": "Reactive power",
@@ -2707,6 +3285,11 @@
     "anchor": "reconstruction-filter"
   },
   {
+    "term": "Rectangular window",
+    "definition": "The implicit window when no windowing function is applied, providing the best frequency resolution but the worst spectral leakage.",
+    "anchor": "rectangular-window"
+  },
+  {
     "term": "Reference designator",
     "definition": "The unique identifier for each component on a schematic and PCB: R1, C2, U3, Q4, etc.",
     "anchor": "reference-designator"
@@ -2738,9 +3321,23 @@
     "anchor": "register"
   },
   {
+    "term": "Regression testing",
+    "definition": "Verifying that a repair or change did not introduce new faults in previously working functions or adjacent circuits.",
+    "anchor": "regression-testing"
+  },
+  {
     "term": "Regulation",
     "definition": "How well a voltage source maintains its output under varying load conditions.",
     "anchor": "regulation"
+  },
+  {
+    "term": "Relative mode",
+    "definition": "A DMM mode that stores a reference reading and displays subsequent measurements as the difference from that reference, useful for zeroing out lead resistance.",
+    "anchor": "relative-mode",
+    "aliases": [
+      "REL mode",
+      "Delta mode"
+    ]
   },
   {
     "term": "Reset vector",
@@ -2894,6 +3491,19 @@
     "anchor": "schottky-diode"
   },
   {
+    "term": "Scope tap",
+    "definition": "A permanent test point (often a BNC jack) wired across a circuit node to allow easy, repeatable oscilloscope connection without clip leads.",
+    "anchor": "scope-tap"
+  },
+  {
+    "term": "SCPI",
+    "definition": "Standard Commands for Programmable Instruments — an ASCII command syntax for remote control of test equipment over GPIB, USB, or LAN.",
+    "anchor": "scpi",
+    "aliases": [
+      "Standard Commands for Programmable Instruments"
+    ]
+  },
+  {
     "term": "SDR",
     "definition": "Software-Defined Radio — radio system where filtering and demodulation traditionally done in hardware is performed in software.",
     "anchor": "sdr",
@@ -2910,6 +3520,14 @@
     "term": "Selectivity",
     "definition": "Receiver's ability to reject signals outside the desired frequency range.",
     "anchor": "selectivity"
+  },
+  {
+    "term": "Self-calibration",
+    "definition": "An automated internal calibration routine in an instrument that corrects for drift using built-in references, distinct from traceable external calibration.",
+    "anchor": "self-calibration",
+    "aliases": [
+      "Self-cal"
+    ]
   },
   {
     "term": "Self-heating",
@@ -2981,6 +3599,11 @@
     ]
   },
   {
+    "term": "Shield can",
+    "definition": "A metal enclosure soldered to a PCB ground plane that contains or excludes electromagnetic fields around sensitive circuitry.",
+    "anchor": "shield-can"
+  },
+  {
     "term": "Shielded inductor",
     "definition": "Inductor with a magnetic structure that contains the magnetic field, reducing radiated interference and susceptibility to external fields.",
     "anchor": "shielded-inductor"
@@ -3027,6 +3650,24 @@
     "term": "Signal ground",
     "definition": "The reference point for signal voltages in a circuit.",
     "anchor": "signal-ground"
+  },
+  {
+    "term": "Signal injection",
+    "definition": "Introducing a known test signal at a point in the circuit and checking whether it appears correctly at subsequent stages.",
+    "anchor": "signal-injection"
+  },
+  {
+    "term": "Signal integrity",
+    "definition": "The quality of an electrical signal on a transmission path, encompassing reflections, crosstalk, attenuation, and timing degradation.",
+    "anchor": "signal-integrity",
+    "aliases": [
+      "SI"
+    ]
+  },
+  {
+    "term": "Signal tracing",
+    "definition": "Following a signal through successive stages of a circuit with an oscilloscope or probe to locate where it is lost, distorted, or stuck.",
+    "anchor": "signal-tracing"
   },
   {
     "term": "SINAD",
@@ -3088,6 +3729,27 @@
     "term": "Soft-start",
     "definition": "A circuit feature that gradually ramps output voltage during startup to limit inrush current.",
     "anchor": "soft-start"
+  },
+  {
+    "term": "SOIC",
+    "definition": "Small Outline Integrated Circuit — a surface-mount IC package with gull-wing leads on two sides, common for 8- to 28-pin devices.",
+    "anchor": "soic",
+    "aliases": [
+      "Small Outline IC"
+    ]
+  },
+  {
+    "term": "Solder bridge",
+    "definition": "An unintended solder connection between two adjacent pads or traces, creating a short circuit.",
+    "anchor": "solder-bridge"
+  },
+  {
+    "term": "Solder wick",
+    "definition": "Braided copper strip that removes solder from pads and joints by capillary action when heated with a soldering iron.",
+    "anchor": "solder-wick",
+    "aliases": [
+      "Desoldering braid"
+    ]
   },
   {
     "term": "Source deactivation",
@@ -3173,6 +3835,14 @@
     "anchor": "stack-overflow"
   },
   {
+    "term": "Star grounding",
+    "definition": "A grounding topology where all ground connections meet at a single point to avoid ground loops and shared-impedance coupling.",
+    "anchor": "star-grounding",
+    "aliases": [
+      "Single-point grounding"
+    ]
+  },
+  {
     "term": "Startup code",
     "definition": "Assembly routine running before main() that loads the vector table, copies .data, zeros .bss, and initializes clocks.",
     "anchor": "startup-code"
@@ -3201,6 +3871,11 @@
     "term": "Sub-threshold conduction",
     "definition": "Exponential drain current below threshold voltage in a MOSFET, exploited in ultra-low-power design.",
     "anchor": "sub-threshold-conduction"
+  },
+  {
+    "term": "Substitution test",
+    "definition": "Replacing a suspect component with a known-good equivalent to determine if the original was faulty — a quick but destructive-to-undo test for soldered parts.",
+    "anchor": "substitution-test"
   },
   {
     "term": "Supercapacitor",
@@ -3264,6 +3939,11 @@
     "anchor": "synthesis"
   },
   {
+    "term": "Systematic error",
+    "definition": "A consistent, repeatable measurement error in the same direction that does not reduce with averaging, caused by calibration offset or method bias.",
+    "anchor": "systematic-error"
+  },
+  {
     "term": "SysTick",
     "definition": "Built-in 24-bit Cortex-M timer generating periodic interrupts, commonly used as RTOS tick source.",
     "anchor": "systick-timer"
@@ -3282,6 +3962,14 @@
     "term": "Tantalum capacitor",
     "definition": "Polarized capacitor with high volumetric efficiency.",
     "anchor": "tantalum-capacitor"
+  },
+  {
+    "term": "TCXO",
+    "definition": "Temperature-Compensated Crystal Oscillator — a crystal oscillator with active compensation circuitry achieving frequency stability around 1-2 ppm.",
+    "anchor": "tcxo",
+    "aliases": [
+      "Temperature-Compensated Crystal Oscillator"
+    ]
   },
   {
     "term": "TDM",
@@ -3369,12 +4057,30 @@
     "anchor": "thermal-shutdown"
   },
   {
+    "term": "Thermal soak",
+    "definition": "Extended-duration test running a circuit in a warm environment to reveal marginal solder joints, failing capacitors, or components that degrade when hot.",
+    "anchor": "thermal-soak"
+  },
+  {
     "term": "Thermal voltage",
     "definition": "kT/q, approximately 26 mV at room temperature, appearing throughout semiconductor equations.",
     "anchor": "thermal-voltage",
     "aliases": [
       "V_T"
     ]
+  },
+  {
+    "term": "Thermoelectric voltage",
+    "definition": "A small DC voltage generated at junctions of dissimilar metals (Seebeck effect), creating microvolt-level offsets in precision DC measurements.",
+    "anchor": "thermoelectric-voltage",
+    "aliases": [
+      "Seebeck effect"
+    ]
+  },
+  {
+    "term": "Thevenin termination",
+    "definition": "Transmission line termination using a voltage divider (pull-up and pull-down resistors) to bias the line to a mid-level voltage while providing the correct impedance.",
+    "anchor": "thevenin-termination"
   },
   {
     "term": "Thick-film resistor",
@@ -3410,6 +4116,11 @@
     "anchor": "timing-closure"
   },
   {
+    "term": "Tip-and-barrel technique",
+    "definition": "Oscilloscope probing method using the probe tip and barrel ground spring instead of the long ground clip, minimizing ground loop area for high-frequency measurements.",
+    "anchor": "tip-and-barrel"
+  },
+  {
     "term": "Tolerance",
     "definition": "The allowable deviation of a component's actual value from its nominal value, expressed as a percentage.",
     "anchor": "tolerance"
@@ -3418,6 +4129,11 @@
     "term": "Tolerance stacking",
     "definition": "The accumulated uncertainty when multiple components' tolerances combine in a circuit.",
     "anchor": "tolerance-stacking"
+  },
+  {
+    "term": "Tombstoning",
+    "definition": "SMD soldering defect where a two-terminal component stands up on one end due to uneven solder paste reflow, leaving one pad unconnected.",
+    "anchor": "tombstoning"
   },
   {
     "term": "TOSLINK",
@@ -3430,12 +4146,22 @@
     "anchor": "tpdf-dither"
   },
   {
+    "term": "Traceable calibration",
+    "definition": "Calibration performed against standards with documented accuracy linked back to a national metrology institute through an unbroken chain of comparisons.",
+    "anchor": "traceable-calibration"
+  },
+  {
     "term": "Transconductance",
     "definition": "The ratio of output current change to input voltage change, a key gain parameter for transistors.",
     "anchor": "transconductance",
     "aliases": [
       "g_m"
     ]
+  },
+  {
+    "term": "Transfer curve",
+    "definition": "A plot of output versus input (often displayed using XY mode on an oscilloscope) showing the gain and linearity of an amplifier or circuit.",
+    "anchor": "transfer-curve"
   },
   {
     "term": "Transfer function",
@@ -3463,9 +4189,22 @@
     "anchor": "triode-region"
   },
   {
+    "term": "True RMS",
+    "definition": "A measurement method that computes the actual root-mean-square value of an AC waveform, giving correct readings for non-sinusoidal signals unlike average-responding meters.",
+    "anchor": "true-rms"
+  },
+  {
     "term": "Truth table",
     "definition": "A table listing every input combination and corresponding output for a logic function.",
     "anchor": "truth-table"
+  },
+  {
+    "term": "TSSOP",
+    "definition": "Thin-Shrink Small Outline Package — a narrower, thinner variant of SOIC with finer lead pitch.",
+    "anchor": "tssop",
+    "aliases": [
+      "Thin-Shrink Small Outline Package"
+    ]
   },
   {
     "term": "TTL",
@@ -3487,6 +4226,11 @@
     "term": "Two-flip-flop synchronizer",
     "definition": "Two flip-flops in series for safely synchronizing signals between clock domains.",
     "anchor": "two-flip-flop-synchronizer"
+  },
+  {
+    "term": "Type K thermocouple",
+    "definition": "A chromel-alumel thermocouple covering -200 to +1260 degrees C, the most common general-purpose thermocouple type.",
+    "anchor": "type-k-thermocouple"
   },
   {
     "term": "UART",
@@ -3566,6 +4310,22 @@
     "anchor": "vhdl"
   },
   {
+    "term": "VIH",
+    "definition": "Voltage Input High — the minimum voltage a logic input recognizes as a valid HIGH.",
+    "anchor": "vih",
+    "aliases": [
+      "Voltage Input High"
+    ]
+  },
+  {
+    "term": "VIL",
+    "definition": "Voltage Input Low — the maximum voltage a logic input recognizes as a valid LOW.",
+    "anchor": "vil",
+    "aliases": [
+      "Voltage Input Low"
+    ]
+  },
+  {
     "term": "Virtual ground",
     "definition": "The condition in a negative-feedback op-amp circuit where both inputs are at effectively the same voltage.",
     "anchor": "virtual-ground"
@@ -3576,6 +4336,22 @@
     "anchor": "vna",
     "aliases": [
       "Vector Network Analyzer"
+    ]
+  },
+  {
+    "term": "VOH",
+    "definition": "Voltage Output High — the minimum voltage a logic output guarantees when driving a logic HIGH.",
+    "anchor": "voh",
+    "aliases": [
+      "Voltage Output High"
+    ]
+  },
+  {
+    "term": "VOL",
+    "definition": "Voltage Output Low — the maximum voltage a logic output guarantees when driving a logic LOW.",
+    "anchor": "vol",
+    "aliases": [
+      "Voltage Output Low"
     ]
   },
   {
@@ -3612,6 +4388,11 @@
     "anchor": "voltage-headroom"
   },
   {
+    "term": "Voltage injection method",
+    "definition": "Technique for locating shorts on a PCB by injecting current through the short and measuring the voltage gradient to find the fault location.",
+    "anchor": "voltage-injection-method"
+  },
+  {
     "term": "Voltage reference",
     "definition": "A circuit producing a precise, stable voltage used as a comparison standard in regulators, ADCs, and measurement.",
     "anchor": "voltage-reference"
@@ -3623,6 +4404,11 @@
     "aliases": [
       "Standing Wave Ratio"
     ]
+  },
+  {
+    "term": "Wander",
+    "definition": "Very low-frequency phase variation (below 10 Hz) in a clock or data signal, distinct from jitter.",
+    "anchor": "wander"
   },
   {
     "term": "Watchdog timer",
@@ -3662,6 +4448,16 @@
     "aliases": [
       "Worst-Case Execution Time"
     ]
+  },
+  {
+    "term": "Wheatstone bridge",
+    "definition": "A four-resistor bridge circuit used for precise measurement of resistance changes, commonly used with strain gauges and RTDs.",
+    "anchor": "wheatstone-bridge"
+  },
+  {
+    "term": "Wiggle test",
+    "definition": "Gently flexing cables, pressing connectors, or tapping components while monitoring for intermittent behavior to localize mechanical connection faults.",
+    "anchor": "wiggle-test"
   },
   {
     "term": "Wilkinson divider",

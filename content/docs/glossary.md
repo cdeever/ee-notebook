@@ -20,6 +20,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="10x-probe"></a>
 **10× probe** — Oscilloscope probe with 10:1 attenuation. Presents roughly 10 MΩ ∥ 10 pF at the tip, significantly reducing probe loading compared to a 1× probe. The standard choice for most measurements.
 
+<a id="4-20-ma-loop"></a>
+**4-20 mA loop** — An industrial signaling standard where sensor readings are encoded as current between 4 mA (zero) and 20 mA (full scale), immune to wire resistance errors.
+
 ---
 
 ## A
@@ -29,6 +32,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="ac-coupling"></a>
 **AC coupling** — Signal path that blocks DC and passes only the time-varying component. Implemented with a series capacitor. The low-frequency cutoff depends on the capacitor value and load impedance. See [Measurement Basics]({{< relref "/docs/fundamentals/units-notation-measurement/measurement-basics" >}}).
+
+<a id="ac-termination"></a>
+**AC termination** — Transmission line termination using a series capacitor and resistor, providing correct impedance at signal frequencies while blocking DC current draw.
+
+<a id="accumulated-jitter"></a>
+**Accumulated jitter** — The timing error that builds up over many clock cycles, measured as the deviation of the Nth edge from its ideal position.
 
 <a id="accuracy"></a>
 **Accuracy** — How close a measurement reading is to the true value. Distinct from precision, which describes repeatability. A meter can be precise (consistent readings) but inaccurate (consistently wrong).
@@ -84,6 +93,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="atomicity"></a>
 **Atomicity** — Property of an operation that completes in a single uninterruptible step at the hardware level. On 32-bit Cortex-M, aligned 32-bit loads and stores are atomic; 64-bit operations and read-modify-write sequences are not.
 
+<a id="audio-analyzer"></a>
+**Audio analyzer** — A dedicated test instrument for measuring audio performance metrics including THD, THD+N, SNR, frequency response, and crosstalk.
+
 <a id="auto-ranging"></a>
 **Auto-ranging** — Instrument feature that automatically selects the measurement range. Convenient but can be slow when the signal crosses range boundaries.
 
@@ -97,6 +109,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 ## B
 
+<a id="backed-out-terminal"></a>
+**Backed-out terminal** — A wire terminal that has slipped partially out of its connector housing, appearing connected but making intermittent or no electrical contact.
+
 <a id="balun"></a>
 **Balun** — Transformer converting between balanced and unbalanced impedances; used to interface balanced antennas to unbalanced transmission lines.
 
@@ -108,6 +123,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="bandgap-reference"></a>
 **Bandgap reference** — A reference circuit exploiting complementary temperature coefficients to produce a temperature-stable output near 1.25 V. See [Reference Voltages]({{< relref "/docs/analog/power-and-regulation/reference-voltages" >}}).
+
+<a id="bandwidth-limit"></a>
+**Bandwidth limit** — An oscilloscope setting that engages a low-pass filter (typically 20 MHz) to reduce high-frequency noise on the displayed waveform.
 
 <a id="bandwidth-shrinkage"></a>
 **Bandwidth shrinkage** — The reduction in overall bandwidth when identical amplifier stages are cascaded. See [Multistage Amplifiers]({{< relref "/docs/analog/amplifiers-gain-stages/multistage-amplifiers" >}}).
@@ -139,6 +157,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="bga"></a>
 **BGA (Ball Grid Array)** — IC package with solder balls on the bottom surface instead of pins on the perimeter. High pin density but impossible to hand-solder and susceptible to thermal cycling fatigue.
 
+<a id="bipolar-rails"></a>
+**Bipolar rails** — Symmetrical positive and negative supply voltages (e.g., +/-35 V) used to power audio amplifier output stages.
+
 <a id="biquad"></a>
 **Biquad** — Second-order IIR filter section with 5 coefficients, commonly cascaded to build complex digital filters.
 
@@ -151,14 +172,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="bjt"></a>
 **BJT (Bipolar Junction Transistor)** — A current-controlled semiconductor device with three terminals (base, collector, emitter) where small base current controls large collector current. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
 
+<a id="bleeder-resistor"></a>
+**Bleeder resistor** — A resistor placed across a capacitor to safely discharge stored energy when power is removed.
+
 <a id="block-ram"></a>
 **Block RAM (BRAM)** — Dedicated dual-port SRAM blocks in FPGAs, typically 18-36 kbit each.
 
 <a id="bode-plot"></a>
 **Bode plot** — A standard two-panel graph showing magnitude (dB) and phase (degrees) versus frequency on a logarithmic scale. See [Frequency Response]({{< relref "/docs/analog/filters-frequency-behavior/frequency-response" >}}).
 
+<a id="bodge-wire"></a>
+**Bodge wire** — A jumper wire added to a PCB after assembly to correct a design error, add a missing connection, or repair a broken trace.
+
 <a id="body-diode"></a>
 **Body diode** — The parasitic diode between source and drain in a MOSFET, conducting when drain voltage goes below source. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+
+<a id="bom"></a>
+**BOM** — Bill of Materials — the list of every component, quantity, and reference designator needed to build a PCB assembly.
 
 <a id="boost-converter"></a>
 **Boost converter** — Switching power supply topology that produces an output voltage higher than its input. Uses an inductor, switch, diode, and output capacitor.
@@ -172,6 +202,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="bridge-rectifier"></a>
 **Bridge rectifier** — A four-diode configuration that converts AC to DC by conducting both polarities through two diodes each. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
 
+<a id="bridged-mode"></a>
+**Bridged mode** — Amplifier configuration where two channels drive opposite ends of a load, doubling the voltage swing and quadrupling the power into the load.
+
 <a id="brownout-detection"></a>
 **Brownout detection** — Hardware circuit that monitors supply voltage during operation and asserts reset if it drops below a configured threshold, preventing the MCU from executing corrupted instructions.
 
@@ -183,6 +216,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="burden-voltage"></a>
 **Burden voltage** — Voltage drop across an ammeter's internal shunt resistor. Inserted into the circuit being measured, which means the measurement itself affects the circuit. Lower burden voltage means less measurement error.
+
+<a id="bus-contention"></a>
+**Bus contention** — A fault condition where two or more drivers simultaneously assert conflicting levels on a shared bus, causing excess current and indeterminate logic levels.
 
 <a id="butterworth-filter"></a>
 **Butterworth filter** — Analog filter with maximally flat passband response; the default choice when predictable amplitude behavior is desired.
@@ -206,6 +242,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="can-fd"></a>
 **CAN FD** — Extension of classic CAN allowing higher data-phase bit rates (up to 8 Mbps) and larger payloads (up to 64 bytes). Requires CAN FD-capable transceivers.
 
+<a id="capacitor-dry-out"></a>
+**Capacitor dry-out** — Gradual evaporation of the liquid electrolyte in an electrolytic capacitor, causing ESR to rise and capacitance to drop over time, especially at elevated temperatures.
+
+<a id="capacitor-reforming"></a>
+**Capacitor reforming** — Gradually applying voltage to an old or long-stored electrolytic capacitor to rebuild its oxide dielectric layer before full operation.
+
 <a id="carbon-composition"></a>
 **Carbon composition resistor** — Vintage resistor type made from a solid slug of carbon and binder. Loose tolerance, high noise, poor stability — but handles surges well. Rarely used in new designs.
 
@@ -217,6 +259,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="cascode"></a>
 **Cascode** — A two-transistor configuration combining common-emitter with common-base to improve bandwidth and output impedance. See [Single-Transistor Amplifiers]({{< relref "/docs/analog/amplifiers-gain-stages/single-transistor-amplifiers" >}}).
+
+<a id="cat-rating"></a>
+**CAT rating** — IEC 61010 measurement category indicating the transient voltage environment an instrument is rated for, from CAT I (low energy) to CAT IV (utility entrance).
 
 <a id="ccm-memory"></a>
 **CCM memory** — Core Coupled Memory on some STM32 MCUs connected directly to the CPU and not accessible by DMA. Used for placing time-critical code and data.
@@ -257,6 +302,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="clock-skew"></a>
 **Clock skew** — The difference in clock arrival time between two points in a system.
 
+<a id="clock-stretching"></a>
+**Clock stretching** — An I2C feature where a slave device holds the clock line (SCL) low to pause communication while it processes data.
+
 <a id="clock-tree"></a>
 **Clock tree** — A balanced distribution network of buffers ensuring equal clock delay to all flip-flops.
 
@@ -272,6 +320,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="cmos"></a>
 **CMOS (Complementary Metal-Oxide-Semiconductor)** — A logic family built from complementary NMOS and PMOS transistor pairs, now dominant in digital design.
 
+<a id="cold-junction-compensation"></a>
+**Cold junction compensation** — Correction applied to thermocouple measurements to account for the temperature of the measurement junction (cold junction) not being at 0 degrees C.
+
+<a id="cold-solder-joint"></a>
+**Cold solder joint** — A solder joint with poor wetting or incomplete reflow, often dull or grainy in appearance, causing intermittent or high-resistance connections.
+
 <a id="common-base"></a>
 **Common base** — A BJT amplifier with input at the emitter and output at the collector, providing current gain and high bandwidth. See [Single-Transistor Amplifiers]({{< relref "/docs/analog/amplifiers-gain-stages/single-transistor-amplifiers" >}}).
 
@@ -280,6 +334,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="common-gate"></a>
 **Common gate** — A MOSFET amplifier with input at the source and output at the drain, analogous to common base. See [Single-Transistor Amplifiers]({{< relref "/docs/analog/amplifiers-gain-stages/single-transistor-amplifiers" >}}).
+
+<a id="common-mode-noise"></a>
+**Common-mode noise** — Noise voltage that appears equally on both signal conductors relative to ground, often from ground loops or radiated pickup.
 
 <a id="common-mode-rejection"></a>
 **Common-mode rejection** — An instrument's or amplifier's ability to ignore voltage that appears equally on both inputs. Measured as CMRR in decibels.
@@ -295,6 +352,15 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="compression-point"></a>
 **Compression point** — Input power level at which device gain drops 1 dB from linear; indicates onset of nonlinear behavior. Also called P1dB.
+
+<a id="conducted-emission"></a>
+**Conducted emission** — Electromagnetic interference that travels along wires and cables rather than through the air.
+
+<a id="conformal-coating"></a>
+**Conformal coating** — Protective polymer layer applied over assembled PCBs to guard against moisture, dust, and contamination.
+
+<a id="contact-cleaner"></a>
+**Contact cleaner** — Solvent spray that removes oxidation and contamination from electrical contacts and connector pins to restore reliable connections.
 
 <a id="context-switching"></a>
 **Context switching** — Saving one task's CPU registers and stack pointer and loading another task's context. Essential for RTOS multitasking; costs 2–10 microseconds on Cortex-M.
@@ -332,8 +398,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="coupling-factor"></a>
 **Coupling factor** — In a directional coupler, the ratio of coupled port power to input power in dB.
 
+<a id="cpha"></a>
+**CPHA** — SPI Clock Phase — determines whether data is sampled on the leading (0) or trailing (1) clock edge.
+
 <a id="cpld"></a>
 **CPLD (Complex Programmable Logic Device)** — Multiple PLD blocks on a single chip connected by a programmable routing matrix.
+
+<a id="cpol"></a>
+**CPOL** — SPI Clock Polarity — determines the idle state of the SPI clock line (0 = idle low, 1 = idle high).
 
 <a id="crc-check"></a>
 **CRC** — Cyclic Redundancy Check — error detection code computed over data to verify integrity in communication, firmware images, and stored configuration.
@@ -356,11 +428,20 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="curie-temperature"></a>
 **Curie temperature** — Temperature above which a ferroelectric ceramic's dielectric properties degrade sharply. Relevant to Class II/III ceramic capacitors.
 
+<a id="current-clamp-probe"></a>
+**Current clamp probe** — A probe that measures current by sensing the magnetic field around a conductor without breaking the circuit.
+
+<a id="current-limited-power-up"></a>
+**Current-limited power-up** — First applying power through a current-limited bench supply after repair, so that a remaining short draws only the set limit instead of causing cascading damage.
+
 <a id="cut-trace"></a>
 **Cut trace** — A PCB trace intentionally severed, usually as a rework modification. Should be documented on the schematic and in revision notes.
 
 <a id="cutoff-frequency"></a>
 **Cutoff frequency (f_c)** — The frequency at which a filter's response is 3 dB below the passband level. See [RC & RL Filters]({{< relref "/docs/analog/filters-frequency-behavior/rc-and-rl-filters" >}}).
+
+<a id="cycle-to-cycle-jitter"></a>
+**Cycle-to-cycle jitter** — The difference in duration between two adjacent clock periods, capturing short-term timing variation.
 
 ---
 
@@ -386,6 +467,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="dc-restoration"></a>
 **DC restoration** — Another term for clamping, used especially in video circuits. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+
+<a id="dc-offset"></a>
+**DC offset** — Unwanted DC voltage present at an amplifier output that should be at zero volts with no signal applied; excessive DC offset can damage speakers or downstream loads.
 
 <a id="dcr"></a>
 **DCR (DC Resistance)** — The resistance of an inductor's winding measured at DC. Determines I²R power loss and heat generation.
@@ -432,6 +516,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="delay-spread"></a>
 **Delay spread** — Difference in propagation time between first-arriving and last significant signal component; causes frequency-selective fading.
 
+<a id="delamination"></a>
+**Delamination** — Separation of PCB laminate layers caused by excessive heat, moisture absorption, or mechanical stress, compromising board structural and electrical integrity.
+
 <a id="delta-wye"></a>
 **Delta-wye (Δ-Y) transformation** — Mathematical technique for converting between triangle (delta) and star (wye) resistor network topologies. Necessary for analyzing circuits that aren't purely series or parallel.
 
@@ -447,11 +534,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="derating"></a>
 **Derating** — Reducing a component's maximum allowable power, voltage, or current as operating conditions (typically temperature) move away from the rated conditions. Essential for reliable designs.
 
+<a id="desoldering-pump"></a>
+**Desoldering pump** — Spring-loaded vacuum tool that sucks molten solder from through-hole joints, used for component removal.
+
 <a id="determinism"></a>
 **Determinism** — Property that execution meets timing deadlines predictably. Hard real-time systems require deterministic behavior under worst-case conditions.
 
+<a id="deterministic-jitter"></a>
+**Deterministic jitter** — Jitter with identifiable causes and bounded amplitude, including data-dependent, periodic, and duty-cycle distortion components.
+
+<a id="di-box"></a>
+**DI box** — Direct Injection box — an audio device using a transformer or active circuit to convert unbalanced high-impedance signals to balanced low-impedance, breaking ground loops.
+
 <a id="dielectric"></a>
 **Dielectric** — Insulating material between capacitor plates that determines capacitance, voltage rating, stability, and loss characteristics.
+
+<a id="dielectric-absorption"></a>
+**Dielectric absorption** — The tendency of a capacitor to recover a portion of its charge after being briefly discharged, also called soakback.
 
 <a id="dielectric-constant"></a>
 **Dielectric constant** — Property of an insulating material affecting electromagnetic wave speed and impedance; also called relative permittivity.
@@ -459,8 +558,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="differential-pair"></a>
 **Differential pair** — Two matched transistors with tied emitters or sources driven by a common current source, the fundamental building block of analog ICs. See [Multistage Amplifiers]({{< relref "/docs/analog/amplifiers-gain-stages/multistage-amplifiers" >}}).
 
+<a id="differential-probe"></a>
+**Differential probe** — An oscilloscope probe that measures the voltage difference between two points, neither of which needs to be ground.
+
+<a id="differential-mode-noise"></a>
+**Differential-mode noise** — Noise voltage that appears between the two signal conductors, indistinguishable from the wanted signal and harder to filter without affecting the signal.
+
 <a id="diffraction"></a>
 **Diffraction** — Bending of electromagnetic waves around obstacles or edges; more pronounced at lower frequencies where wavelength is larger.
+
+<a id="dim-bulb-tester"></a>
+**Dim bulb tester** — A series incandescent light bulb wired inline with a power input that limits fault current and provides a visual indicator — glows brightly if the DUT is shorted.
+
+<a id="diode-check"></a>
+**Diode check** — DMM test mode that forward-biases a junction and displays the voltage drop, used to verify transistor junctions and identify shorted or open semiconductor devices.
+
+<a id="diode-test-mode"></a>
+**Diode test mode** — DMM mode that forces a small current through a semiconductor junction and displays the forward voltage drop, useful for checking diodes and BJT junctions.
 
 <a id="diplexer"></a>
 **Diplexer** — Device separating or combining signals of different frequency ranges into shared ports.
@@ -471,8 +585,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="directivity"></a>
 **Directivity** — Ratio of antenna radiation intensity in the maximum direction to that of an isotropic source.
 
+<a id="display-counts"></a>
+**Display counts** — The maximum number a DMM can show on its display (e.g., 6000 counts for a 3 3/4-digit meter), determining resolution on each range.
+
 <a id="dither"></a>
 **Dither** — Intentionally added noise before quantization that randomizes quantization error, converting distortion into perceptually preferable noise.
+
+<a id="divide-and-conquer"></a>
+**Divide and conquer** — Fault isolation strategy that splits the signal chain at a midpoint and tests each half, halving the search space with each measurement.
 
 <a id="dma"></a>
 **DMA** — Direct Memory Access — hardware engine that moves data between peripherals and memory without CPU intervention, essential for high-throughput and continuous data streams.
@@ -492,6 +612,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="dot-convention"></a>
 **Dot convention** — Dots placed on transformer winding symbols to indicate which terminals have the same instantaneous polarity. Essential for understanding phase relationships.
 
+<a id="drag-soldering"></a>
+**Drag soldering** — Technique for soldering fine-pitch IC pins by dragging a fluxed, lightly tinned iron tip across the row of pins, relying on surface tension to keep solder on the pads.
+
 <a id="drive-strength"></a>
 **Drive strength** — The amount of current a logic output can source or sink.
 
@@ -501,8 +624,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="dsp-block"></a>
 **DSP block** — Dedicated multiply-accumulate hardware units in FPGAs for signal processing operations.
 
+<a id="dummy-load"></a>
+**Dummy load** — A resistive load that substitutes for the real load (such as a speaker) during bench testing, providing a known, stable impedance for repeatable measurements.
+
 <a id="duplexer"></a>
 **Duplexer** — Device allowing simultaneous transmission and reception on the same antenna by separating transmit and receive frequency bands.
+
+<a id="dut"></a>
+**DUT** — Device Under Test — the circuit, board, or component being debugged, measured, or verified.
 
 <a id="duty-cycle"></a>
 **Duty cycle** — The fraction of time the main switch is on in a switching regulator, determining the input-to-output voltage ratio. See [Switching Regulators]({{< relref "/docs/analog/power-and-regulation/switching-regulators" >}}).
@@ -592,6 +721,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="esr"></a>
 **ESR (Equivalent Series Resistance)** — The effective series resistance inside a capacitor, representing all resistive losses. Causes real power dissipation and limits the capacitor's ability to supply fast transients.
 
+<a id="esr-meter"></a>
+**ESR meter** — Test instrument that measures equivalent series resistance of capacitors, essential for detecting dried-out electrolytics that a basic capacitance meter would miss.
+
 <a id="etm-trace"></a>
 **ETM** — Embedded Trace Macrocell — ARM CoreSight feature recording every instruction the CPU executes. Requires an expensive trace-capable debug probe and board design support.
 
@@ -604,6 +736,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ---
 
 ## F
+
+<a id="f-knee"></a>
+**f_knee** — The frequency below which a signal's spectral content is negligible, approximated as 0.5 / rise_time for digital signals.
 
 <a id="farad"></a>
 **Farad (F)** — SI unit of capacitance. One farad stores one coulomb at one volt. Practical capacitors range from picofarads to millifarads.
@@ -619,6 +754,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="feedback-fraction"></a>
 **Feedback fraction (β)** — The portion of the output signal returned to the input through the feedback network. See [Feedback & Loop Intuition]({{< relref "/docs/analog/noise-stability-reality/feedback-and-loop-intuition" >}}).
+
+<a id="feedthrough-capacitor"></a>
+**Feedthrough capacitor** — A capacitor designed to mount through a shielding wall, filtering signals as they pass between shielded compartments.
 
 <a id="ferrite-bead"></a>
 **Ferrite bead** — A frequency-dependent resistive component used in series with supply traces to attenuate high-frequency noise while passing DC. See [Decoupling & Bypassing]({{< relref "/docs/analog/power-and-regulation/decoupling-and-bypassing" >}}).
@@ -647,6 +785,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="firmware"></a>
 **Firmware** — Software program running on an embedded device, stored in flash memory and executed from power-on.
 
+<a id="five-senses-check"></a>
+**Five senses check** — Pre-measurement triage step using sight, smell, hearing, touch, and context to identify obvious faults before powering up or probing.
+
 <a id="flash-memory"></a>
 **Flash memory** — Non-volatile memory where firmware code and read-only data are stored. Requires erase-then-program cycles for modification; access time typically 20–30 ns.
 
@@ -656,6 +797,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="flat-schematic"></a>
 **Flat schematic** — Multi-sheet schematic where all sheets exist at the same hierarchy level, connected by net names. Simpler than hierarchical schematics but harder to navigate in large designs.
 
+<a id="flat-top-window"></a>
+**Flat-top window** — Windowing function optimized for accurate amplitude measurement in spectral analysis at the cost of poor frequency resolution.
+
 <a id="fletcher-munson-curves"></a>
 **Fletcher-Munson curves** — Equal-loudness contours showing that human hearing is most sensitive in the 2–5 kHz range and less sensitive at very low and high frequencies.
 
@@ -664,6 +808,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="floating"></a>
 **Floating** — A node or pin with no defined connection to a voltage source, ground, or driven signal. Floating inputs are susceptible to noise pickup and undefined logic states. Unused IC inputs should be tied to a defined level per the datasheet.
+
+<a id="flux-residue"></a>
+**Flux residue** — Corrosive or conductive residue left on a PCB after soldering that can cause leakage currents, corrosion, and unreliable measurements if not cleaned.
 
 <a id="flyback"></a>
 **Flyback** — The voltage spike produced when current through an inductor is suddenly interrupted. The inductor's stored energy must go somewhere — without a defined path (flyback diode, snubber), it creates destructive voltage spikes.
@@ -683,8 +830,17 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="fpu"></a>
 **FPU** — Floating-Point Unit — hardware accelerator for floating-point math on Cortex-M4F, M7, and others. Disabled by default after reset; requires CPACR configuration.
 
+<a id="framing-error"></a>
+**Framing error** — A UART error where the receiver does not find a valid stop bit at the expected position, typically caused by baud rate mismatch.
+
 <a id="freertos"></a>
 **FreeRTOS** — Most widely used open-source RTOS for embedded systems, running on virtually every MCU with 4 KB or more SRAM.
+
+<a id="freeze-spray"></a>
+**Freeze spray** — Aerosol coolant used to rapidly chill individual components during debugging to isolate temperature-dependent faults.
+
+<a id="frequency-counter"></a>
+**Frequency counter** — A test instrument that precisely measures signal frequency by counting cycles over a gated time interval.
 
 <a id="fresnel-zone"></a>
 **Fresnel zone** — Concentric circular regions between transmitter and receiver used to predict clearance requirements for unobstructed propagation.
@@ -714,6 +870,15 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="gain-staging"></a>
 **Gain staging** — Distributing amplification across a signal chain to maintain optimal signal levels above noise floor and below clipping.
 
+<a id="gate-oxide-breakdown"></a>
+**Gate oxide breakdown** — Irreversible damage to a MOSFET's thin gate insulator caused by excessive gate-to-source voltage or ESD, resulting in a shorted or leaky gate.
+
+<a id="gauge-factor"></a>
+**Gauge factor** — The sensitivity of a strain gauge, defined as the ratio of fractional resistance change to fractional length change (strain).
+
+<a id="ghost-voltage"></a>
+**Ghost voltage** — False voltage reading caused by capacitive coupling to nearby live conductors, eliminated by using LoZ mode on a DMM.
+
 <a id="gilbert-cell"></a>
 **Gilbert cell** — Transistor configuration that multiplies two signals; forms the basis of most integrated RF mixers.
 
@@ -734,6 +899,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="ground-bounce"></a>
 **Ground bounce** — Voltage spike on the ground network caused by fast-changing currents flowing through resistive and inductive ground paths. Can cause false logic transitions and measurement errors.
+
+<a id="ground-loop"></a>
+**Ground loop** — A condition where multiple ground paths create a closed loop that picks up interference, causing hum, noise, or measurement errors.
 
 <a id="ground-plane"></a>
 **Ground plane** — A continuous copper layer on a PCB dedicated to ground. Provides low-impedance return current paths, reduces EMI, and improves signal integrity.
@@ -796,6 +964,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="holdup-time"></a>
 **Holdup time** — Duration that a capacitor can sustain a load after the input power is removed. Determined by capacitance, load current, and allowable voltage droop.
 
+<a id="hrc-fuse"></a>
+**HRC fuse** — High Rupturing Capacity fuse rated to safely interrupt high fault currents, required in DMMs rated for high-energy circuits.
+
 <a id="hysteresis-loss"></a>
 **Hysteresis loss** — Energy dissipated in a magnetic core each AC cycle as magnetic domains reverse direction. Proportional to frequency and the area of the B-H loop.
 
@@ -857,6 +1028,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="insulation-breakdown"></a>
 **Insulation breakdown** — Degradation of a dielectric material leading to increased leakage current or catastrophic short circuit. Accelerated by temperature, voltage stress, and contamination.
 
+<a id="insulation-resistance"></a>
+**Insulation resistance** — The resistance of an insulating material or component's dielectric, typically measured with a megohmmeter at elevated voltage.
+
 <a id="intermodulation"></a>
 **Intermodulation** — New frequency components generated when multiple signals mix nonlinearly in a circuit; third-order products are typically strongest.
 
@@ -880,6 +1054,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="ism-band"></a>
 **ISM band** — Unlicensed frequency bands for Industrial, Scientific, and Medical use; includes 915 MHz and 2.4 GHz used for WiFi and Bluetooth.
+
+<a id="isolation-transformer"></a>
+**Isolation transformer** — A 1:1 transformer that breaks the galvanic path between mains and the device under test, allowing safe measurement of mains-referenced circuits.
 
 <a id="isolator"></a>
 **Isolator** — Passive device allowing signal flow in one direction while blocking the reverse; prevents reflections from affecting a source.
@@ -919,11 +1096,20 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="kaiser-window"></a>
 **Kaiser window** — Windowing function with adjustable parameter β to tune the tradeoff between main lobe width and sidelobe level.
 
+<a id="kapton-tape"></a>
+**Kapton tape** — Heat-resistant polyimide adhesive tape used to shield nearby components during hot-air rework and to secure jumper wires on reworked boards.
+
 <a id="karnaugh-map"></a>
 **Karnaugh map** — A graphical method for simplifying Boolean functions by grouping adjacent truth table entries.
 
 <a id="kcl"></a>
 **KCL (Kirchhoff's Current Law)** — The sum of currents entering a node equals the sum of currents leaving. A direct consequence of conservation of charge. See [Kirchhoff's Laws]({{< relref "/docs/fundamentals/laws-first-principles/kirchhoffs-laws" >}}).
+
+<a id="kelvin-measurement"></a>
+**Kelvin measurement** — A 4-wire measurement technique that eliminates lead resistance error by using separate force and sense connections.
+
+<a id="known-good-substitution"></a>
+**Known-good substitution** — Debugging technique of swapping a suspected component or module with a verified working one to determine if the original is faulty.
 
 <a id="kvl"></a>
 **KVL (Kirchhoff's Voltage Law)** — The sum of voltage drops around any closed loop equals zero. A direct consequence of conservation of energy. See [Kirchhoff's Laws]({{< relref "/docs/fundamentals/laws-first-principles/kirchhoffs-laws" >}}).
@@ -935,8 +1121,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="lambda"></a>
 **Lambda (λ)** — Wavelength — physical distance of one complete electromagnetic oscillation; λ = c / f.
 
+<a id="latch-up"></a>
+**Latch-up** — A parasitic thyristor condition in CMOS ICs where a trigger event locks the device into a low-impedance state, drawing excessive current until power is removed.
+
 <a id="latency"></a>
 **Latency** — Time delay between when a signal enters a system and when the corresponding output appears.
+
+<a id="lcr-meter"></a>
+**LCR meter** — An instrument that measures inductance, capacitance, and resistance of components at a specified test frequency.
 
 <a id="ldo"></a>
 **LDO (Low-Dropout Regulator)** — A linear regulator designed to operate with very small input-to-output voltage difference, typically 100-500 mV. See [Linear Regulators]({{< relref "/docs/analog/power-and-regulation/linear-regulators" >}}).
@@ -944,11 +1136,17 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="leakage-current"></a>
 **Leakage current** — Small, undesired current flowing through a nominally insulating path. Present in capacitor dielectrics, semiconductor junctions, and PCB surface contamination.
 
+<a id="level-diagram"></a>
+**Level diagram** — A block diagram showing signal levels in dBu or dBV at each stage of an audio signal chain, used to verify proper gain structure.
+
 <a id="level-shifting"></a>
 **Level shifting** — Converting a signal from one voltage level to another when interfacing between different logic families.
 
 <a id="lfsr"></a>
 **LFSR (Linear Feedback Shift Register)** — A shift register with XOR feedback generating pseudo-random sequences of maximum length 2^n - 1.
+
+<a id="lifted-pad"></a>
+**Lifted pad** — A PCB copper pad that has separated from the substrate due to excessive heat or mechanical force during soldering or rework.
 
 <a id="line-regulation"></a>
 **Line regulation** — How much a regulator's or reference's output changes per volt of input change, measured in mV/V or ppm/V. See [Reference Voltages]({{< relref "/docs/analog/power-and-regulation/reference-voltages" >}}).
@@ -970,6 +1168,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="load-regulation"></a>
 **Load regulation** — How much a voltage source's output changes per unit of load current change. See [Reference Voltages]({{< relref "/docs/analog/power-and-regulation/reference-voltages" >}}).
+
+<a id="load-transient-response"></a>
+**Load transient response** — How quickly and cleanly a power supply recovers its output voltage after a sudden change in load current.
 
 <a id="loading"></a>
 **Loading** — The effect of connecting a load to a circuit, which draws current and may change the operating voltage. Voltage dividers and high-impedance signal sources are particularly susceptible.
@@ -1007,6 +1208,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="low-pass-filter"></a>
 **Low-pass filter** — A filter that passes frequencies below a cutoff frequency and attenuates frequencies above it. See [RC & RL Filters]({{< relref "/docs/analog/filters-frequency-behavior/rc-and-rl-filters" >}}).
 
+<a id="low-pass-filter-mode"></a>
+**Low-pass filter mode** — A DMM feature that filters out high-frequency content from AC voltage measurements, giving accurate fundamental-frequency readings on VFD or PWM-driven circuits.
+
+<a id="loz-mode"></a>
+**LoZ mode** — Low-impedance DMM input mode that collapses ghost voltages by presenting a low resistance to the circuit under test.
+
 <a id="lufs"></a>
 **LUFS (Loudness Units Relative to Full Scale)** — Perceptual loudness measurement used in audio mastering and broadcast.
 
@@ -1022,6 +1229,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="magnetostriction"></a>
 **Magnetostriction** — Physical deformation of a magnetic core material caused by the changing magnetic field. Produces audible buzzing or humming in inductors and transformers, especially at power-line frequencies.
+
+<a id="measurement-uncertainty"></a>
+**Measurement uncertainty** — The range within which the true value of a measurement is expected to lie, combining accuracy, resolution, repeatability, and environmental effects.
 
 <a id="mah"></a>
 **Milliamp-hour (mAh)** — Unit of electric charge commonly used to rate battery capacity. To estimate energy in watt-hours: mAh × nominal voltage ÷ 1000.
@@ -1098,8 +1308,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="mosfet"></a>
 **MOSFET (Metal-Oxide-Semiconductor FET)** — A voltage-controlled transistor where gate voltage controls drain current through an insulated gate. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
 
+<a id="mso"></a>
+**MSO** — Mixed Signal Oscilloscope — an oscilloscope with both analog and digital (logic analyzer) input channels for correlating analog waveforms with digital bus activity.
+
 <a id="mtbf"></a>
 **MTBF (Mean Time Between Failures)** — The average time between metastability-induced failures in a synchronizer.
+
+<a id="mu-metal"></a>
+**Mu-metal** — A high-permeability nickel-iron alloy used for shielding against low-frequency magnetic fields.
 
 <a id="multipath-fading"></a>
 **Multipath fading** — Signal fading from multiple propagation paths arriving with different amplitudes and phases; common in indoor and urban environments.
@@ -1109,6 +1325,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="mutual-inductance"></a>
 **Mutual inductance** — Magnetic coupling between adjacent inductors or windings. The mechanism behind transformer operation and also a source of unwanted crosstalk.
+
+<a id="mute-relay"></a>
+**Mute relay** — A relay in an audio amplifier that disconnects the speaker outputs during power-up and power-down to suppress audible transient thumps.
 
 <a id="mutex"></a>
 **Mutex** — RTOS synchronization primitive allowing only one task to hold a resource at a time, supporting priority inheritance to prevent inversion.
@@ -1122,6 +1341,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="nanoVNA"></a>
 **NanoVNA** — Affordable vector network analyzer covering typically 50 kHz to 1.5 GHz; enables hobbyists and students to perform antenna and circuit measurements.
+
+<a id="ncv"></a>
+**NCV** — Non-Contact Voltage detection — a DMM mode that senses AC voltage presence near a conductor without touching it.
+
+<a id="near-field-probe"></a>
+**Near-field probe** — A small loop or stub probe held close to a PCB to sniff magnetic (H-field) or electric (E-field) emissions for EMI troubleshooting.
 
 <a id="near-field-region"></a>
 **Near-field region** — Region close to an antenna where electromagnetic fields are complex, reactive, and not yet separated into propagating E and H components.
@@ -1140,6 +1365,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="no-connect"></a>
 **No connect (NC)** — An explicit marker on a schematic indicating that an IC pin is intentionally left unconnected. Distinguishes deliberate non-connection from a wiring error.
+
+<a id="no-clean-flux"></a>
+**No-clean flux** — Soldering flux formulated to leave benign residue that does not require post-solder cleaning, though cleaning is still recommended for precision or high-impedance circuits.
 
 <a id="node"></a>
 **Node** — A junction where two or more branches meet in a circuit. All points connected by zero-resistance conductors form a single node.
@@ -1244,12 +1472,21 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="output-ripple"></a>
 **Output ripple** — The AC voltage variation superimposed on the DC output of a switching regulator, typically 10-50 mV. See [Switching Regulators]({{< relref "/docs/analog/power-and-regulation/switching-regulators" >}}).
 
+<a id="overcurrent"></a>
+**Overcurrent** — Current flow exceeding a component's or circuit's rated maximum, typically caused by a short circuit, excessive load, or failed protection device.
+
 <a id="oversampling"></a>
 **Oversampling** — Sampling at a rate much higher than Nyquist; spreads quantization noise across wider bandwidth and enables noise shaping.
 
 ---
 
 ## P
+
+<a id="parallel-termination"></a>
+**Parallel termination** — Transmission line termination with a resistor matching the line impedance at the receiver end, absorbing the signal to prevent reflections.
+
+<a id="parametric-failure"></a>
+**Parametric failure** — A component degradation where the part still functions but operates outside its specified parameters, often caused by ESD or thermal stress.
 
 <a id="parasitic-capacitance"></a>
 **Parasitic capacitance** — Unintended capacitance present between conductors, component leads, PCB traces, and other structures. Negligible at low frequencies but dominates behavior at high frequencies.
@@ -1277,6 +1514,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="pendsv-exception"></a>
 **PendSV** — Cortex-M exception used for deferring processing to lower priority, commonly used by RTOS for task context switching.
+
+<a id="period-jitter"></a>
+**Period jitter** — The deviation of any single clock period from the ideal period, measured as a standard deviation or peak-to-peak value.
 
 <a id="peripheral-clock-gating"></a>
 **Peripheral clock gating** — Mechanism enabling or disabling individual peripheral clocks to save power; peripheral registers are inaccessible while the clock is gated.
@@ -1320,11 +1560,17 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="pole"></a>
 **Pole** — A frequency in a transfer function that contributes -20 dB/decade roll-off and -90 degrees of phase shift. See [Frequency Response]({{< relref "/docs/analog/filters-frequency-behavior/frequency-response" >}}).
 
+<a id="polyfuse"></a>
+**Polyfuse** — A resettable overcurrent protection device (PTC thermistor) that increases resistance when tripped and resets when power is removed.
+
 <a id="port"></a>
 **Port** — A connection point in a hierarchical schematic that links a sub-sheet to the level above. Analogous to a function parameter in software.
 
 <a id="positive-feedback"></a>
 **Positive feedback** — Feedback where the returned signal reinforces the input, causing the output to diverge. Used deliberately in oscillators and latches. See [Feedback & Loop Intuition]({{< relref "/docs/analog/noise-stability-reality/feedback-and-loop-intuition" >}}).
+
+<a id="post-mortem"></a>
+**Post-mortem** — A structured write-up documenting a debugging session's symptom, root cause, misleading hypotheses, fix, and lessons learned for future pattern recognition.
 
 <a id="post-mortem-debugging"></a>
 **Post-mortem debugging** — Capturing crash data (faulting PC, fault status, stack contents) in non-volatile memory so fault information survives reset for later analysis.
@@ -1356,8 +1602,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="power-rating"></a>
 **Power rating** — The maximum continuous power a component can dissipate at a specified ambient temperature without exceeding its maximum operating temperature.
 
+<a id="power-sequencing"></a>
+**Power sequencing** — The required order and timing of multiple supply rails powering up and down, critical for multi-rail systems to avoid latchup or damage.
+
 <a id="power-spectral-density"></a>
 **Power spectral density** — Normalized spectral power per unit bandwidth (V²/Hz); independent of FFT length.
+
+<a id="power-good-signal"></a>
+**Power-good signal** — A digital output from a voltage regulator indicating that its output has reached and is within regulation limits.
 
 <a id="ppm"></a>
 **ppm (Parts Per Million)** — A measure of ratio. 1% = 10,000 ppm. Used for specifying temperature coefficients (e.g., 25 ppm/°C) and precision tolerances.
@@ -1386,8 +1638,20 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="priority-inversion"></a>
 **Priority inversion** — RTOS pathology where a low-priority task holding a resource blocks a high-priority task while medium-priority tasks run freely.
 
+<a id="probe-compensation"></a>
+**Probe compensation** — Adjusting a passive oscilloscope probe's trimmer capacitor so its RC time constant matches the scope input, producing a flat frequency response.
+
 <a id="probe-loading"></a>
 **Probe loading** — The distortion introduced by a measurement probe's input impedance (resistive and capacitive) on the circuit being measured. Most significant on high-impedance and high-frequency nodes.
+
+<a id="propagation-delay"></a>
+**Propagation delay** — The time for a signal to travel from one point to another, approximately 6-7 ns per meter on FR4 PCB traces.
+
+<a id="protect-mode"></a>
+**Protect mode** — A self-protection state in power amplifiers triggered by DC offset, overcurrent, short circuit, or overtemperature, shutting down outputs to prevent damage.
+
+<a id="protocol-decode"></a>
+**Protocol decode** — Oscilloscope or logic analyzer feature that interprets captured waveforms as bus transactions (I2C addresses, SPI bytes, UART frames, etc.).
 
 <a id="ptc"></a>
 **PTC (Positive Temperature Coefficient)** — A component whose resistance increases with temperature. Used as resettable fuses (polyfuses) and in self-regulating heater elements.
@@ -1407,6 +1671,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="q-point"></a>
 **Q-point (quiescent point)** — The DC operating point of a transistor determined by the bias circuit. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+
+<a id="qfn"></a>
+**QFN** — Quad Flat No-lead — an IC package with exposed pads on the bottom instead of visible side leads, requiring hot air or reflow for rework.
+
+<a id="qfp"></a>
+**QFP** — Quad Flat Package — an IC package with fine-pitch leads on all four sides, common for microcontrollers and interface chips.
 
 <a id="quality-factor"></a>
 **Quality factor (Q)** — A measure of how selective a resonant circuit or filter is, with higher Q meaning narrower bandwidth. See [RC & RL Filters]({{< relref "/docs/analog/filters-frequency-behavior/rc-and-rl-filters" >}}).
@@ -1430,14 +1700,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="race-condition"></a>
 **Race condition** — Concurrency bug where the outcome depends on the timing of access to shared data across different execution contexts.
 
+<a id="radiated-emission"></a>
+**Radiated emission** — Electromagnetic interference that propagates through the air as electromagnetic waves from a circuit or cable.
+
 <a id="radiation-pattern"></a>
 **Radiation pattern** — Plot of relative field strength or power radiated by an antenna as a function of direction; usually shown as 2D slices.
 
 <a id="radiation-resistance"></a>
 **Radiation resistance** — Equivalent resistance representing the power radiated by an antenna; antenna efficiency equals R_rad / (R_rad + R_loss).
 
+<a id="rail-sag"></a>
+**Rail sag** — Drop in a power supply rail voltage under heavy load, caused by the supply's limited current capacity or resistive losses in the distribution path.
+
 <a id="rail-to-rail"></a>
 **Rail-to-rail** — An op-amp whose output can swing close to both supply rails, typically within 50-200 mV. See [Op-Amps]({{< relref "/docs/analog/amplifiers-gain-stages/op-amps" >}}).
+
+<a id="random-jitter"></a>
+**Random jitter** — Jitter with a Gaussian distribution caused by thermal noise and shot noise, unbounded in theory and characterized by RMS value.
 
 <a id="reactive-power"></a>
 **Reactive power (Q)** — Power that cycles back and forth between source and reactive components (capacitors, inductors) without performing net work. Measured in VAR (volt-amperes reactive).
@@ -1454,8 +1733,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="real-time"></a>
 **Real-time** — Meeting timing deadlines predictably — not necessarily fast, but deterministic and bounded-latency.
 
+<a id="re-balling"></a>
+**Re-balling** — Process of removing old solder balls from a BGA package and attaching new ones using solder paste or preforms before re-mounting the IC.
+
 <a id="reconstruction-filter"></a>
 **Reconstruction filter** — Analog low-pass filter removing spectral images in DAC output, converting the staircase to smooth analog.
+
+<a id="rectangular-window"></a>
+**Rectangular window** — The implicit window when no windowing function is applied, providing the best frequency resolution but the worst spectral leakage.
 
 <a id="reference-designator"></a>
 **Reference designator** — The unique identifier for each component on a schematic and PCB: R1, C2, U3, Q4, etc. The letter indicates the component type; the number distinguishes instances.
@@ -1472,8 +1757,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="register"></a>
 **Register** — A group of flip-flops sharing a common clock, storing a multi-bit word.
 
+<a id="regression-testing"></a>
+**Regression testing** — Verifying that a repair or change did not introduce new faults in previously working functions or adjacent circuits.
+
 <a id="regulation"></a>
 **Regulation** — How well a voltage source maintains its output under varying load conditions. Expressed as a percentage change from no-load to full-load.
+
+<a id="relative-mode"></a>
+**Relative mode** — A DMM mode that stores a reference reading and displays subsequent measurements as the difference from that reference, useful for zeroing out lead resistance.
 
 <a id="reset-vector"></a>
 **Reset vector** — Address in the vector table where the CPU begins execution after reset.
@@ -1530,6 +1821,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 ## S
 
+<a id="scope-tap"></a>
+**Scope tap** — A permanent test point (often a BNC jack) wired across a circuit node to allow easy, repeatable oscilloscope connection without clip leads.
+
 <a id="s-parameters"></a>
 **S-parameters** — Scattering parameters measured by network analyzers describing how RF energy reflects and transmits at a device's ports.
 
@@ -1557,6 +1851,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="schottky-diode"></a>
 **Schottky diode** — A diode with a metal-semiconductor junction that exhibits lower forward voltage drop and faster switching compared to conventional junction diodes. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
 
+<a id="scpi"></a>
+**SCPI** — Standard Commands for Programmable Instruments — an ASCII command syntax for remote control of test equipment over GPIB, USB, or LAN.
+
 <a id="sdr"></a>
 **SDR (Software-Defined Radio)** — Radio system where filtering, demodulation, and signal processing traditionally done in hardware is performed in software.
 
@@ -1565,6 +1862,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="selectivity"></a>
 **Selectivity** — Receiver's ability to reject signals outside the desired frequency range; determined by filter sharpness.
+
+<a id="self-calibration"></a>
+**Self-calibration** — An automated internal calibration routine in an instrument that corrects for drift using built-in references, distinct from traceable external calibration.
 
 <a id="self-heating"></a>
 **Self-heating** — Power dissipation within a component raising its own temperature, changing its electrical parameters. See [Temperature & Drift]({{< relref "/docs/analog/biasing-operating-points/temperature-and-drift" >}}).
@@ -1605,6 +1905,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="sfdr"></a>
 **SFDR (Spurious-Free Dynamic Range)** — Ratio between the signal and the largest single spurious component.
 
+<a id="shield-can"></a>
+**Shield can** — A metal enclosure soldered to a PCB ground plane that contains or excludes electromagnetic fields around sensitive circuitry.
+
 <a id="shielded-inductor"></a>
 **Shielded inductor** — Inductor with a magnetic structure that contains the magnetic field, reducing radiated interference and susceptibility to external fields.
 
@@ -1631,6 +1934,15 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="signal-ground"></a>
 **Signal ground** — The reference point for signal voltages in a circuit. May or may not be connected to earth ground or chassis ground.
+
+<a id="signal-injection"></a>
+**Signal injection** — Introducing a known test signal at a point in the circuit and checking whether it appears correctly at subsequent stages.
+
+<a id="signal-integrity"></a>
+**Signal integrity** — The quality of an electrical signal on a transmission path, encompassing reflections, crosstalk, attenuation, and timing degradation.
+
+<a id="signal-tracing"></a>
+**Signal tracing** — Following a signal through successive stages of a circuit with an oscilloscope or probe to locate where it is lost, distorted, or stuck.
 
 <a id="sinad"></a>
 **SINAD (Signal-to-Noise-and-Distortion)** — The most comprehensive single metric for converter performance.
@@ -1661,6 +1973,15 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="soft-start"></a>
 **Soft-start** — A circuit feature that gradually ramps the output voltage during startup to limit inrush current. See [Switching Regulators]({{< relref "/docs/analog/power-and-regulation/switching-regulators" >}}).
+
+<a id="soic"></a>
+**SOIC** — Small Outline Integrated Circuit — a surface-mount IC package with gull-wing leads on two sides, common for 8- to 28-pin devices.
+
+<a id="solder-bridge"></a>
+**Solder bridge** — An unintended blob of solder shorting two adjacent pads or pins, commonly occurring during hand soldering of fine-pitch components.
+
+<a id="solder-wick"></a>
+**Solder wick** — Braided copper strip that removes solder from pads and joints by capillary action when heated with a soldering iron.
 
 <a id="source-deactivation"></a>
 **Source deactivation** — The process of "turning off" independent sources to find equivalent resistance: voltage sources become short circuits; current sources become open circuits.
@@ -1701,6 +2022,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="stack-overflow"></a>
 **Stack overflow** — Condition where the stack grows past its allocated region into adjacent memory, causing silent corruption. No default fault on Cortex-M without MPU.
 
+<a id="star-grounding"></a>
+**Star grounding** — A grounding topology where all ground connections meet at a single point to avoid ground loops and shared-impedance coupling.
+
 <a id="startup-code"></a>
 **Startup code** — Assembly routine running before main() that loads the vector table, copies initialized data, zeros BSS, enables FPU, and configures clocks.
 
@@ -1724,6 +2048,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="stripline"></a>
 **Stripline** — A PCB trace between two ground planes providing excellent field containment and controlled impedance.
+
+<a id="substitution-test"></a>
+**Substitution test** — Replacing a suspect component with a known-good equivalent to determine if the original was faulty — a quick but destructive-to-undo test for soldered parts.
 
 <a id="sub-threshold-conduction"></a>
 **Sub-threshold conduction** — Exponential drain current below threshold voltage, exploited in ultra-low-power design. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
@@ -1761,6 +2088,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="synthesis"></a>
 **Synthesis** — The process of converting an HDL description into a netlist of logic elements.
 
+<a id="systematic-error"></a>
+**Systematic error** — A consistent, repeatable measurement error in the same direction that does not reduce with averaging, caused by calibration offset or method bias.
+
 <a id="systick-timer"></a>
 **SysTick** — Built-in 24-bit Cortex-M down-counter generating periodic interrupts. Standard RTOS tick source requiring no peripheral clock configuration.
 
@@ -1776,6 +2106,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="tank-circuit"></a>
 **Tank circuit** — A resonant LC circuit that stores energy by oscillating between the electric field of the capacitor and the magnetic field of the inductor. Used in RF tuning and impedance matching.
+
+<a id="tcxo"></a>
+**TCXO** — Temperature-Compensated Crystal Oscillator — a crystal oscillator with active compensation circuitry achieving frequency stability around 1-2 ppm.
 
 <a id="tdm"></a>
 **TDM (Time Division Multiplexing)** — Extension of I2S for multiple audio channels sharing a single serial data line with assigned time slots.
@@ -1819,8 +2152,17 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="thermal-shutdown"></a>
 **Thermal shutdown** — A protection circuit that disables a regulator or power device if junction temperature exceeds a safe limit. See [Linear Regulators]({{< relref "/docs/analog/power-and-regulation/linear-regulators" >}}).
 
+<a id="thermal-soak"></a>
+**Thermal soak** — Extended-duration test running a circuit in a warm environment to reveal marginal solder joints, failing capacitors, or components that degrade when hot.
+
 <a id="thermal-voltage"></a>
 **Thermal voltage (V_T)** — kT/q, approximately 26 mV at room temperature. Appears throughout semiconductor device equations. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+
+<a id="thermoelectric-voltage"></a>
+**Thermoelectric voltage** — A small DC voltage generated at junctions of dissimilar metals (Seebeck effect), creating microvolt-level offsets in precision DC measurements.
+
+<a id="thevenin-termination"></a>
+**Thevenin termination** — Transmission line termination using a voltage divider (pull-up and pull-down resistors) to bias the line to a mid-level voltage while providing the correct impedance.
 
 <a id="thevenin-equivalent"></a>
 **Thévenin equivalent** — Any linear circuit reduced to a voltage source (V_th) in series with a resistance (R_th). Simplifies analysis of how the circuit interacts with different loads. See [Thévenin & Norton]({{< relref "/docs/fundamentals/circuit-analysis/thevenin-norton" >}}).
@@ -1840,11 +2182,17 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="timing-closure"></a>
 **Timing closure** — The iterative process of modifying a design until all timing constraints are met.
 
+<a id="tip-and-barrel-technique"></a>
+**Tip-and-barrel technique** — Oscilloscope probing method using the probe tip and barrel ground spring instead of the long ground clip, minimizing ground loop area for high-frequency measurements.
+
 <a id="tolerance"></a>
 **Tolerance** — The allowable deviation of a component's actual value from its nominal value, expressed as a percentage. A 10 kΩ ±1% resistor can range from 9,900 Ω to 10,100 Ω.
 
 <a id="tolerance-stacking"></a>
 **Tolerance stacking** — The accumulated uncertainty when multiple components' tolerances combine in a circuit. Worst-case analysis adds tolerances; statistical analysis uses root-sum-square.
+
+<a id="tombstoning"></a>
+**Tombstoning** — SMD soldering defect where a two-terminal component stands up on one end due to uneven solder paste reflow, leaving one pad unconnected.
 
 <a id="toslink"></a>
 **TOSLINK** — Optical digital audio interface using LED/photodiode coupling; immune to ground loops but with higher inherent jitter than coaxial.
@@ -1852,8 +2200,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="tpdf-dither"></a>
 **TPDF dither** — Triangular Probability Density Function dither with ±1 LSB peak amplitude; completely eliminates quantization distortion.
 
+<a id="traceable-calibration"></a>
+**Traceable calibration** — Calibration performed against standards with documented accuracy linked back to a national metrology institute through an unbroken chain of comparisons.
+
 <a id="transconductance"></a>
 **Transconductance (g_m)** — The ratio of output current change to input voltage change, equal to I_C / V_T for BJTs. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+
+<a id="transfer-curve"></a>
+**Transfer curve** — A plot of output versus input (often displayed using XY mode on an oscilloscope) showing the gain and linearity of an amplifier or circuit.
 
 <a id="transfer-function"></a>
 **Transfer function** — The mathematical ratio of output to input as a function of frequency, fully describing a linear circuit's frequency behavior. See [Active Filters]({{< relref "/docs/analog/filters-frequency-behavior/active-filters" >}}).
@@ -1870,8 +2224,14 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="triode-region"></a>
 **Triode region** — The MOSFET operating region where it behaves as a voltage-controlled resistor, analogous to BJT saturation. See [Operating Regions]({{< relref "/docs/analog/biasing-operating-points/operating-regions" >}}).
 
+<a id="true-rms"></a>
+**True RMS** — A measurement method that computes the actual root-mean-square value of an AC waveform, giving correct readings for non-sinusoidal signals unlike average-responding meters.
+
 <a id="truth-table"></a>
 **Truth table** — A table listing every input combination and corresponding output for a logic function.
+
+<a id="tssop"></a>
+**TSSOP** — Thin-Shrink Small Outline Package — a narrower, thinner variant of SOIC with finer lead pitch.
 
 <a id="ttl"></a>
 **TTL (Transistor-Transistor Logic)** — A logic family built from bipolar transistors, historically the dominant digital logic technology.
@@ -1881,6 +2241,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="two-flip-flop-synchronizer"></a>
 **Two-flip-flop synchronizer** — Two flip-flops in series used to safely synchronize signals between clock domains.
+
+<a id="type-k-thermocouple"></a>
+**Type K thermocouple** — A chromel-alumel thermocouple covering -200 to +1260 degrees C, the most common general-purpose thermocouple type.
 
 ---
 
@@ -1932,11 +2295,23 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="via-stitching"></a>
 **Via stitching** — Multiple vias connecting ground planes between PCB layers to maintain low-impedance ground connections. See [Decoupling & Bypassing]({{< relref "/docs/analog/power-and-regulation/decoupling-and-bypassing" >}}).
 
+<a id="vih"></a>
+**VIH** — Voltage Input High — the minimum voltage a logic input recognizes as a valid HIGH.
+
+<a id="vil"></a>
+**VIL** — Voltage Input Low — the maximum voltage a logic input recognizes as a valid LOW.
+
 <a id="virtual-ground"></a>
 **Virtual ground** — The condition in a negative-feedback op-amp circuit where both inputs are at effectively the same voltage. See [Op-Amps]({{< relref "/docs/analog/amplifiers-gain-stages/op-amps" >}}).
 
 <a id="vna"></a>
 **VNA (Vector Network Analyzer)** — Instrument measuring both magnitude and phase of S-parameters; essential for impedance and filter characterization.
+
+<a id="voh"></a>
+**VOH** — Voltage Output High — the minimum voltage a logic output guarantees when driving a logic HIGH.
+
+<a id="vol"></a>
+**VOL** — Voltage Output Low — the maximum voltage a logic output guarantees when driving a logic LOW.
 
 <a id="volt"></a>
 **Volt (V)** — SI unit of electric potential difference. One volt drives one ampere through one ohm of resistance.
@@ -1956,6 +2331,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="voltage-headroom"></a>
 **Voltage headroom** — The available voltage range for signal swing between the supply rails and the device's saturation or cutoff limits. See [DC Biasing]({{< relref "/docs/analog/biasing-operating-points/dc-biasing" >}}).
 
+<a id="voltage-injection-method"></a>
+**Voltage injection method** — Technique for locating shorts on a PCB by injecting current through the short and measuring the voltage gradient to find the fault location.
+
 <a id="voltage-reference"></a>
 **Voltage reference** — A circuit producing a precise, stable voltage used as a comparison standard in regulators, ADCs, and measurement circuits. See [Reference Voltages]({{< relref "/docs/analog/power-and-regulation/reference-voltages" >}}).
 
@@ -1965,6 +2343,9 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ---
 
 ## W
+
+<a id="wander"></a>
+**Wander** — Very low-frequency phase variation (below 10 Hz) in a clock or data signal, distinct from jitter.
 
 <a id="watt"></a>
 **Watt (W)** — SI unit of power. One watt equals one joule per second. One watt equals one volt times one ampere in a DC circuit.
@@ -1983,6 +2364,12 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 
 <a id="wcet"></a>
 **WCET** — Worst-Case Execution Time — the maximum time a code path can take including all delays. The only execution time that matters for real-time guarantees.
+
+<a id="wheatstone-bridge"></a>
+**Wheatstone bridge** — A four-resistor bridge circuit used for precise measurement of resistance changes, commonly used with strain gauges and RTDs.
+
+<a id="wiggle-test"></a>
+**Wiggle test** — Gently flexing cables, pressing connectors, or tapping components while monitoring for intermittent behavior to localize mechanical connection faults.
 
 <a id="wilkinson-divider"></a>
 **Wilkinson divider** — Broadband power divider using quarter-wave transmission lines and a termination resistor; provides good isolation between output ports.
