@@ -1,6 +1,6 @@
 ---
 title: "Balanced vs Unbalanced"
-weight: 10
+weight: 40
 ---
 
 # Balanced vs Unbalanced

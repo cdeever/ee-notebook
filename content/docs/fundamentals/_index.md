@@ -13,8 +13,8 @@ All of it seems simple until you actually need to apply it to a real circuit on 
 ## Sections
 
 - **[Laws & First Principles]({{< relref "laws-first-principles" >}})** — The non-negotiable rules: Ohm's law, Kirchhoff's laws, conservation of energy.
+- **[Signaling Models]({{< relref "signaling-models" >}})** — What is the signal and what is it measured against? Go & return paths, reference planes, single-ended vs differential, balanced vs unbalanced, and common-mode rejection.
 - **[Power, Energy & Heat]({{< relref "power-energy-heat" >}})** — Where theory gets physical: power calculations, energy storage, and thermal limits.
 - **[Passive Components]({{< relref "passive-components" >}})** — Resistors, capacitors, and inductors beyond the ideal models.
 - **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
 - **[Units, Notation & Measurement]({{< relref "units-notation-measurement" >}})** — SI prefixes, schematic conventions, and what instruments actually tell you.
-- **[Signaling Models]({{< relref "signaling-models" >}})** — How signals travel between source and receiver: balanced vs unbalanced, common-mode rejection, and the structural choices behind noise immunity.
