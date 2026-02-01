@@ -46,13 +46,13 @@ The boundary between MCU and MPU is not always clean. Several devices deliberate
 
 **Low-end MPUs running an RTOS.** A Cortex-A5 or A7 has an MMU and can run Linux, but it can also run FreeRTOS or Zephyr if you need the hardware capability without the OS overhead. This is unusual but not unheard of, particularly in cost-sensitive industrial applications.
 
-**Hybrid devices.** The STM32MP1 from ST includes both a Cortex-A7 (running Linux) and a Cortex-M4 (running bare-metal or RTOS firmware) on the same die. NXP's i.MX 8M family pairs Cortex-A53 cores with a Cortex-M4 or M7. These hybrids let you run Linux for networking and UI while offloading hard real-time tasks to the MCU core. I find this architecture compelling because it sidesteps the "MCU or MPU" choice entirely — you get both. The complexity cost is real, though: you need two toolchains, two debug setups, and an inter-processor communication mechanism.
+**Hybrid devices.** The STM32MP1 from ST includes both a Cortex-A7 (running Linux) and a Cortex-M4 (running bare-metal or RTOS firmware) on the same die. NXP's i.MX 8M family pairs Cortex-A53 cores with a Cortex-M4 or M7. These hybrids let you run Linux for networking and UI while offloading hard real-time tasks to the MCU core. This architecture is compelling because it sidesteps the "MCU or MPU" choice entirely — you get both. The complexity cost is real, though: you need two toolchains, two debug setups, and an inter-processor communication mechanism.
 
 **The i.MX RT crossover.** NXP's i.MX RT series (RT1010, RT1050, RT1060, RT1170) uses Cortex-M7 cores but adds features typically found in MPU-class devices: external SDRAM support, LCD controllers, camera interfaces. They run at 500+ MHz with no MMU — high-performance MCU work without Linux. This family is worth knowing about because it often appears in designs where an MPU was considered but the software requirements did not justify Linux.
 
 ## When to Choose Which
 
-Rather than a comparison table, I find it more useful to think about what drives the decision:
+Rather than a comparison table, it is more useful to think about what drives the decision:
 
 **Choose an MCU when:**
 - Hard real-time deadlines matter (motor control, safety systems, tight protocol timing)
@@ -74,7 +74,7 @@ Rather than a comparison table, I find it more useful to think about what drives
 - Real-time control and complex software coexist in the same product (e.g., an industrial controller with a web interface)
 - The MCU handles motor control or sensor acquisition while the MPU runs the network stack and UI
 
-The decision is not always obvious. I have seen designs start on a Raspberry Pi for convenience, then move to a custom MPU board for production, then discover that the real-time requirements should have been on an MCU all along. Understanding the architectural tradeoffs early saves expensive redesigns later.
+The decision is not always obvious. Designs sometimes start on a Raspberry Pi for convenience, then move to a custom MPU board for production, only to discover that the real-time requirements should have been on an MCU all along. Understanding the architectural tradeoffs early saves expensive redesigns later.
 
 ## Gotchas
 
