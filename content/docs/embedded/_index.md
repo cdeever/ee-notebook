@@ -1,10 +1,10 @@
 ---
-title: "🔌 Embedded Systems (MCUs & MPUs)"
+title: "🔌 Embedded Systems"
 weight: 4
 bookCollapseSection: true
 ---
 
-# Embedded Systems (MCUs & MPUs)
+# Embedded Systems
 
 Where hardware reality meets software intent.
 
