@@ -13,13 +13,11 @@ This page covers Bluetooth from the MCU/firmware perspective — what the hardwa
 
 These are essentially two different protocols that share a name and a radio band (2.4 GHz ISM). They are not interoperable — a BLE-only device cannot talk to a Classic-only device.
 
-**Classic Bluetooth (BR/EDR)** — Data rates up to 3 Mbps, connection-oriented, built around profiles like SPP (serial port), A2DP (audio streaming), HFP (hands-free). Higher power consumption, more complex stack. This is what Bluetooth speakers, headsets, and older keyboards/mice use. The stack is substantial — implementing Classic Bluetooth from scratch is not something you casually do on a small MCU.
+**Classic Bluetooth (BR/EDR)** — Data rates up to 3 Mbps, connection-oriented, built around profiles like SPP (serial port), A2DP (audio streaming), HFP (hands-free). Higher power consumption, more complex stack. This is what Bluetooth speakers, headsets, and older keyboards/mice use. The stack is substantial — implementing Classic Bluetooth from scratch is not something you casually do on a small MCU. For audio applications specifically, dedicated audio modules that handle the Classic Bluetooth stack internally are more practical than trying to run A2DP on a general-purpose MCU.
 
 **BLE (Bluetooth Low Energy, introduced in Bluetooth 4.0)** — Designed from the ground up for low duty cycle operation and small data packets. Connection intervals can be tens to hundreds of milliseconds. Typical data throughput is much lower than the headline rate would suggest — you might see 10-100 KB/s in practice depending on connection parameters and MTU. BLE dominates for sensors, beacons, wearables, and IoT devices. The stack is simpler than Classic, though "simpler" is relative — it is still a complex protocol.
 
 **Dual-mode** devices support both Classic and BLE. Most phone and laptop Bluetooth chips are dual-mode, which is why they can talk to both your BLE fitness tracker and your Classic Bluetooth headphones. Many MCU-targeted modules and SoCs are BLE-only, which is fine for most embedded applications and keeps the firmware simpler.
-
-I have only worked with BLE so far. Classic Bluetooth seems to mostly matter for audio applications, and for those, dedicated audio codec modules that handle the Bluetooth stack internally are more practical than trying to run A2DP on a general-purpose MCU.
 
 ## Integration Approaches
 

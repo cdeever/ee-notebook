@@ -1,6 +1,6 @@
 ---
 title: "CAN & LIN"
-weight: 40
+weight: 70
 ---
 
 # CAN & LIN

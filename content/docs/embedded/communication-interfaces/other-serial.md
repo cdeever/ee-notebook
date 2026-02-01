@@ -1,6 +1,6 @@
 ---
 title: "Other Serial Interfaces"
-weight: 15
+weight: 80
 ---
 
 # Other Serial Interfaces
