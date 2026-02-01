@@ -241,7 +241,7 @@ If the peripheral offers both I2C and SPI, and you have the pins, SPI is almost 
 
 **Interrupts** let the CPU do other work between bytes. The peripheral raises an interrupt when data is ready (RX) or when the transmit buffer is empty (TX). The ISR moves data between the peripheral and a software buffer. This is the standard approach for I2C.
 
-**DMA** moves data without CPU involvement at all. Essential for high-throughput SPI transfers — reading a flash chip, driving a display, or streaming ADC data. See [DMA]({{< relref "dma" >}}) for the details.
+**DMA** moves data without CPU involvement at all. Essential for high-throughput SPI transfers — reading a flash chip, driving a display, or streaming ADC data. More on how DMA works in [DMA Fundamentals]({{< relref "dma" >}}).
 
 ## Debugging SPI and I2C
 

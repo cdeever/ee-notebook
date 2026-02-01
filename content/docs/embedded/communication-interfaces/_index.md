@@ -14,7 +14,7 @@ The MCU-side view of communication is about registers, buffers, and timing: sett
 
 - **[UART]({{< relref "uart" >}})** — Asynchronous point-to-point serial: device communication, debug consoles, and module interfaces.
 - **[SPI & I²C]({{< relref "spi-and-i2c" >}})** — The two synchronous serial buses: SPI for fast chip-to-chip transfers, I²C for pin-efficient multi-device buses.
-- **[DMA]({{< relref "dma" >}})** — Moving data between peripherals and memory without CPU involvement: channels, triggers, and throughput tradeoffs.
+- **[DMA Fundamentals]({{< relref "dma" >}})** — Moving data between peripherals and memory without CPU involvement: channels, triggers, and throughput tradeoffs.
 - **[USB]({{< relref "usb" >}})** — Device classes, enumeration, descriptors, and USB stacks: where simple serial meets complex protocol machinery.
 - **[Bluetooth]({{< relref "bluetooth" >}})** — BLE vs Classic, integration approaches (external module vs integrated SoC), GATT services, and practical firmware considerations.
 - **[WiFi & Networking]({{< relref "wifi-and-networking" >}})** — Ethernet and WiFi: IP networking on MCUs, from PHY management through TCP/IP stacks and cloud connectivity.

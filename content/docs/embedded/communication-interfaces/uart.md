@@ -60,7 +60,7 @@ UART also serves as the control interface for many external modules. Bluetooth m
 
 **Interrupts** are the standard approach for UART. The peripheral raises an interrupt when data is ready (RX) or when the transmit buffer is empty (TX). The ISR moves data between the peripheral and a software ring buffer. This lets the main loop process complete messages rather than individual bytes.
 
-**DMA** is worth setting up for UART when data arrives in bursts or at high rates — for example, receiving NMEA sentences from a GPS module or streaming data from a cellular modem. DMA frees the CPU from byte-by-byte interrupt handling. See [DMA]({{< relref "dma" >}}) for the details.
+**DMA** is worth setting up for UART when data arrives in bursts or at high rates — for example, receiving NMEA sentences from a GPS module or streaming data from a cellular modem. DMA frees the CPU from byte-by-byte interrupt handling — more on how DMA works in [DMA Fundamentals]({{< relref "dma" >}}).
 
 ## Debugging UART
 

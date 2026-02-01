@@ -1,9 +1,9 @@
 ---
-title: "DMA"
+title: "DMA Fundamentals"
 weight: 20
 ---
 
-# DMA
+# DMA Fundamentals
 
 Direct Memory Access is a hardware engine that moves data between memory and peripherals — or between memory locations — without the CPU executing instructions for each byte. On paper, DMA is simple: configure a source, a destination, a count, and a trigger, and the hardware handles the rest. In practice, DMA configuration is one of the most error-prone parts of embedded development because there are many parameters, most failures are silent, and debugging requires understanding both the peripheral and the memory system.
 
