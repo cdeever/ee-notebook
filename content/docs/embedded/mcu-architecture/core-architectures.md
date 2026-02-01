@@ -66,6 +66,22 @@ Most of the time, the C compiler hides the ISA. But certain architectural detail
 - **Atomics** — Cortex-M3+ provide load/store exclusive instructions for lock-free atomic operations. M0 lacks these, so atomic access on M0 requires disabling interrupts. RISC-V has the A extension for atomics, but only if the chip implements it
 - **Endianness** — ARM Cortex-M is configurable but almost always little-endian. RISC-V specifies little-endian. AVR is little-endian. Reading data from a big-endian sensor or network protocol requires byte-swapping
 
+## Common MCU Families
+
+The ISA matters, but in practice a learner picks a chip family, not an instruction set. Each family combines a core architecture with a specific set of peripherals, a software ecosystem, and a community. Here are the families most likely to appear on a workbench.
+
+**STM32 (STMicroelectronics).** The largest ARM Cortex-M family, spanning M0 through M7 cores across hundreds of part numbers. STMicroelectronics provides CubeMX (a graphical pin and clock configuration tool that generates initialization code) and the HAL driver library. Documentation is extensive, community resources are deep, and the STM32 ecosystem is the default choice for learning production-grade ARM embedded development.
+
+**ESP32 (Espressif).** Xtensa-based (ESP32, ESP32-S3) or RISC-V (ESP32-C3, ESP32-C6) cores with integrated WiFi and Bluetooth. Supported by both the Arduino framework and Espressif's own ESP-IDF (FreeRTOS-based). Dominant in hobbyist IoT projects. The tradeoff: integrated wireless simplifies system design, but the SoC is significantly more complex than a bare MCU — the reference manual is large and the radio subsystem adds power and timing considerations that a simple Cortex-M part does not have.
+
+**RP2040 / RP2350 (Raspberry Pi).** Dual Cortex-M0+ (RP2040) or dual Cortex-M33 / RISC-V (RP2350), with PIO (Programmable I/O) state machines as a unique peripheral — small programmable engines that can bit-bang protocols at hardware speed. The full datasheet is readable cover-to-cover, which is rare for a modern MCU. The Pi Pico board is a low-cost entry point, with first-class support for both MicroPython and the C/C++ SDK.
+
+**Arduino AVR (Microchip ATmega / ATtiny).** 8-bit AVR core. The Arduino Uno (ATmega328P) and ATtiny series, backed by the Arduino IDE and library ecosystem, remain the most common first MCU for beginners. Limited resources (32 KB flash, 2 KB SRAM on the ATmega328P) constrain what is possible, but that constraint teaches discipline — every byte and cycle matters, and there is nowhere to hide sloppy code.
+
+**nRF52 / nRF53 (Nordic Semiconductor).** Cortex-M4F (nRF52840) or dual Cortex-M33 (nRF5340), focused on Bluetooth Low Energy. Nordic's nRF Connect SDK (built on top of Zephyr RTOS) provides a mature BLE software stack. This is the go-to platform for learning BLE development — well-documented, with strong community support and readily available development kits.
+
+The pattern across these families: the choice is about the combination of core architecture, peripherals, software ecosystem, and community — not just the ISA. For learning, start where the community and examples are strongest, then branch out as projects demand different capabilities.
+
 ## Gotchas
 
 - **Cortex-M0 faults on unaligned access** — Code that works on M3 or M4 may hard-fault on M0. Packed structs and careless pointer casts are the usual triggers
