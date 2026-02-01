@@ -156,93 +156,23 @@ There is no addressing, no ACK, and no flow control. The selected device respond
 Synchronous, half-duplex, two wires, addressing built in. I2C is the go-to bus for connecting a handful of slow peripherals — sensors, EEPROMs, RTCs, I/O expanders — with minimal pin count.
 
 {{< graphviz >}}
-digraph i2c {
-  rankdir=TB
-  bgcolor="transparent"
-
+digraph i2c_bus {
   graph [
-    outputorder="edgesfirst",
+    bgcolor="transparent",
+    rankdir=LR,
     splines=ortho,
-    nodesep=0.45,
-    ranksep=0.65
+    nodesep=0.25,
+    ranksep=0.65,
+    outputorder="edgesfirst"
   ];
 
   node [fontname="Helvetica" fontsize=11];
   edge [fontname="Helvetica" fontsize=10 arrowsize=0.7, arrowhead=none];
 
-  // ---------------- Pull-ups (as nodes so we can center them) ----------------
-  puL [shape=point label="" width=0.01 style=invis];
-  puR [shape=point label="" width=0.01 style=invis];
-
-  vdd_sda [label="VDD" shape=none fontcolor="#cccc88"];
-  vdd_scl [label="VDD" shape=none fontcolor="#cccc88"];
-
-  rp_sda [label="Rp 4.7k" shape=box style="filled"
-          fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66"
-          fixedsize=true width=1.3 height=0.35];
-
-  rp_scl [label="Rp 4.7k" shape=box style="filled"
-          fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66"
-          fixedsize=true width=1.3 height=0.35];
-
-  // Two-row pullup stack
-  { rank=same; puL; vdd_sda; vdd_scl; puR; }
-  { rank=same; puL2; rp_sda; rp_scl; puR2; }
-
-  puL2 [shape=point label="" width=0.01 style=invis];
-  puR2 [shape=point label="" width=0.01 style=invis];
-
-  // Centering + spacing
-  puL  -> vdd_sda [style=invis weight=50];
-  vdd_sda -> vdd_scl [style=invis weight=30];
-  vdd_scl -> puR [style=invis weight=50];
-
-  puL2 -> rp_sda [style=invis weight=50];
-  rp_sda -> rp_scl [style=invis weight=30];
-  rp_scl -> puR2 [style=invis weight=50];
-
-  vdd_sda -> rp_sda [color="#aaaa66"];
-  vdd_scl -> rp_scl [color="#aaaa66"];
-
-  // ---------------- Bus bar ----------------
-  bus [label=<
-    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">
-      <TR><TD>
-        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#3e3e5a" COLOR="#8888cc">
-          <TR>
-            <TD PORT="sda_rp" WIDTH="30"> </TD>
-            <TD PORT="sda_lbl" WIDTH="44"><FONT COLOR="#e8e8e8"><B>SDA</B></FONT></TD>
-            <TD PORT="sda0" WIDTH="78"> </TD>
-            <TD PORT="sda1" WIDTH="78"> </TD>
-            <TD PORT="sda2" WIDTH="78"> </TD>
-            <TD PORT="sda3" WIDTH="78"> </TD>
-          </TR>
-        </TABLE>
-      </TD></TR>
-      <TR><TD HEIGHT="6"> </TD></TR>
-      <TR><TD>
-        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#3e3e5a" COLOR="#88cc88">
-          <TR>
-            <TD PORT="scl_rp" WIDTH="30"> </TD>
-            <TD PORT="scl_lbl" WIDTH="44"><FONT COLOR="#e8e8e8"><B>SCL</B></FONT></TD>
-            <TD PORT="scl0" WIDTH="78"> </TD>
-            <TD PORT="scl1" WIDTH="78"> </TD>
-            <TD PORT="scl2" WIDTH="78"> </TD>
-            <TD PORT="scl3" WIDTH="78"> </TD>
-          </TR>
-        </TABLE>
-      </TD></TR>
-    </TABLE>
-  > shape=plain];
-
-  // Pull-up drops: draw them, but DO NOT let them affect layout
-  rp_sda -> bus:sda_rp [color="#aaaa66" constraint=false weight=0];
-  rp_scl -> bus:scl_rp [color="#aaaa66" constraint=false weight=0];
-
-  // ---------------- Devices ----------------
+  // ---------- Devices ----------
   mcu  [label="MCU\n(master)" shape=box style="rounded,filled"
         fillcolor="#2a2a3a" fontcolor="#e8e8e8" color="#6666aa"
-        fixedsize=true width=1.25 height=0.75];
+        fixedsize=true width=1.35 height=0.85];
 
   eep  [label="EEPROM\n0x50" shape=box style="rounded,filled"
         fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66"
@@ -256,21 +186,73 @@ digraph i2c {
         fillcolor="#2a3a2a" fontcolor="#e8e8e8" color="#66aa66"
         fixedsize=true width=1.25 height=0.75];
 
-  // Center the whole device block under the bus using invisible spacers
-  dL [shape=point label="" width=0.01 style=invis];
-  dR [shape=point label="" width=0.01 style=invis];
-  { rank=same; dL; mcu; eep; rtc; sens; dR; }
-  dL -> mcu -> eep -> rtc -> sens -> dR [style=invis weight=80];
+  // ---------- Rails: SDA + SCL made from point nodes ----------
+  sda0 [shape=point width=0.01 label=""];
+  sda1 [shape=point width=0.01 label=""];
+  sda2 [shape=point width=0.01 label=""];
+  sda3 [shape=point width=0.01 label=""];
+  sda4 [shape=point width=0.01 label=""];
 
-  // Drops
-  bus:sda0 -> mcu  [color="#8888cc"];
-  bus:scl0 -> mcu  [color="#88cc88"];
-  bus:sda1 -> eep  [color="#8888cc"];
-  bus:scl1 -> eep  [color="#88cc88"];
-  bus:sda2 -> rtc  [color="#8888cc"];
-  bus:scl2 -> rtc  [color="#88cc88"];
-  bus:sda3 -> sens [color="#8888cc"];
-  bus:scl3 -> sens [color="#88cc88"];
+  scl0 [shape=point width=0.01 label=""];
+  scl1 [shape=point width=0.01 label=""];
+  scl2 [shape=point width=0.01 label=""];
+  scl3 [shape=point width=0.01 label=""];
+  scl4 [shape=point width=0.01 label=""];
+
+  // Keep SDA and SCL rails as two horizontal lanes
+  { rank=same; sda0; sda1; sda2; sda3; sda4; }
+  { rank=same; scl0; scl1; scl2; scl3; scl4; }
+
+  // Make each tap column share the same X position
+  { rank=same; sda0; scl0; mcu; }
+  { rank=same; sda1; scl1; eep; }
+  { rank=same; sda2; scl2; rtc; }
+  { rank=same; sda3; scl3; sens; }
+  { rank=same; sda4; scl4; }
+
+  // Draw rails (thick lines)
+  sda0 -> sda1 -> sda2 -> sda3 -> sda4 [color="#8888cc" penwidth=6];
+  scl0 -> scl1 -> scl2 -> scl3 -> scl4 [color="#88cc88" penwidth=6];
+
+  // Labels near the left of rails
+  sda_lbl [label="SDA" shape=none fontcolor="#e8e8e8"];
+  scl_lbl [label="SCL" shape=none fontcolor="#e8e8e8"];
+
+  sda_lbl -> sda0 [style=invis weight=2];
+  scl_lbl -> scl0 [style=invis weight=2];
+
+  // ---------- Master connections ----------
+  mcu -> sda0 [color="#8888cc" penwidth=2];
+  mcu -> scl0 [color="#88cc88" penwidth=2];
+
+  // ---------- Device taps ----------
+  eep -> sda1 [color="#8888cc" penwidth=2];
+  eep -> scl1 [color="#88cc88" penwidth=2];
+
+  rtc -> sda2 [color="#8888cc" penwidth=2];
+  rtc -> scl2 [color="#88cc88" penwidth=2];
+
+  sda3 -> sens [color="#8888cc" penwidth=2];
+  scl3 -> sens [color="#88cc88" penwidth=2];
+
+  // ---------- Pull-ups on the right ----------
+  vdd [label="VDD" shape=none fontcolor="#cccc88"];
+  rp1 [label="Rp 4.7k" shape=box style="filled"
+       fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66"
+       fixedsize=true width=1.15 height=0.35];
+  rp2 [label="Rp 4.7k" shape=box style="filled"
+       fillcolor="#3a3a2a" fontcolor="#cccc88" color="#aaaa66"
+       fixedsize=true width=1.15 height=0.35];
+
+  { rank=same; vdd; rp1; rp2; }
+
+  vdd -> rp1 [color="#aaaa66"];
+  vdd -> rp2 [color="#aaaa66"];
+
+  rp1 -> sda4 [color="#aaaa66" constraint=false penwidth=2];
+  rp2 -> scl4 [color="#aaaa66" constraint=false penwidth=2];
+
+  sda4 -> vdd [style=invis weight=5];
 }
 {{< /graphviz >}}
 
