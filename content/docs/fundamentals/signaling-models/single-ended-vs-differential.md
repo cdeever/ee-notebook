@@ -17,6 +17,7 @@ When someone says "the signal is 1 V," what they mean is "the voltage difference
 digraph signal_def {
   rankdir=TB
   bgcolor="transparent"
+  splines=line
   node [fontname="Helvetica" fontsize=11]
   edge [fontname="Helvetica" fontsize=10]
   graph [fontname="Helvetica" fontsize=12]
