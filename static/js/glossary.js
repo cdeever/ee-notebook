@@ -1,8 +1,9 @@
 (function () {
   "use strict";
 
-  // Don't run on the glossary page itself
-  if (window.location.pathname.indexOf("/glossary") !== -1) return;
+  // Don't run on the glossary or preface pages
+  var path = window.location.pathname;
+  if (path.indexOf("/glossary") !== -1 || path.indexOf("/preface") !== -1) return;
 
   var data = window.__glossaryData;
   if (!data) return;
