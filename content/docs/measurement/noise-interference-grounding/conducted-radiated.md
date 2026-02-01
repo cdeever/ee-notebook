@@ -84,7 +84,7 @@ At bench distances and PCB scales, most noise below ~30 MHz is near-field (capac
 
 ### What You Learn
 
-- Whether noise on a cable is common-mode (fix: ferrites, common-mode chokes, balanced connections) or differential-mode (fix: differential filters, shielding, layout)
+- Whether noise on a cable is common-mode (fix: ferrites, common-mode chokes, [balanced connections]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}})) or differential-mode (fix: differential filters, shielding, layout)
 
 ### Gotchas
 

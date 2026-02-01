@@ -17,3 +17,4 @@ All of it seems simple until you actually need to apply it to a real circuit on 
 - **[Passive Components]({{< relref "passive-components" >}})** — Resistors, capacitors, and inductors beyond the ideal models.
 - **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
 - **[Units, Notation & Measurement]({{< relref "units-notation-measurement" >}})** — SI prefixes, schematic conventions, and what instruments actually tell you.
+- **[Signaling Models]({{< relref "signaling-models" >}})** — How signals travel between source and receiver: balanced vs unbalanced, common-mode rejection, and the structural choices behind noise immunity.

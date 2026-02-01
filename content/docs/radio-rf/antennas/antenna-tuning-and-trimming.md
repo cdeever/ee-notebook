@@ -56,7 +56,7 @@ Common antenna matching approaches:
 
 **Quarter-wave transformer**: a section of transmission line with impedance Z_t = sqrt(Z_ant * Z0). At the design frequency, it transforms the antenna impedance to Z0. Narrowband but simple — just a specific length of specific coax.
 
-**Balun**: not a matching network per se, but many antennas require a balun (balanced-to-unbalanced transformer) at the feedpoint. A dipole is balanced; coax is unbalanced. Without a balun, currents flow on the outside of the coax shield, distorting the pattern and changing the impedance. A 4:1 balun simultaneously provides balanced-to-unbalanced conversion and a 4:1 impedance transformation.
+**Balun**: not a matching network per se, but many antennas require a [balun]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}) (balanced-to-unbalanced transformer) at the feedpoint. A dipole is balanced; coax is unbalanced. Without a balun, currents flow on the outside of the coax shield, distorting the pattern and changing the impedance. A 4:1 balun simultaneously provides balanced-to-unbalanced conversion and a 4:1 impedance transformation.
 
 ## Using a VNA or Antenna Analyzer
 

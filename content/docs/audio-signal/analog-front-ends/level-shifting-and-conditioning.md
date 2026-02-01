@@ -29,7 +29,7 @@ When the signal is larger than the ADC's input range, it must be attenuated. Whe
 
 **Op-amp scaling:** An inverting amplifier with gain < 1 attenuates, while providing low output impedance to drive the ADC. A non-inverting configuration with gain > 1 amplifies. The op-amp can also add the DC offset in the same stage, combining scaling and biasing.
 
-**Differential to single-ended conversion:** Many sensors produce differential outputs (bridges, balanced audio). If the ADC is single-ended, a difference amplifier converts the signal. An instrumentation amplifier followed by a reference offset is the cleanest approach.
+**Differential to single-ended conversion:** Many sensors produce differential outputs (bridges, [balanced]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}) audio). If the ADC is single-ended, a difference amplifier converts the signal. An instrumentation amplifier followed by a reference offset is the cleanest approach.
 
 **Range considerations:** Use as much of the ADC's input range as possible without clipping. An ADC used at 25% of its range loses 2 bits of effective resolution — the signal occupies only 1/4 of the codes, wasting 3/4 of the converter's capability. See [Analog-to-Digital Converters]({{< relref "/docs/audio-signal/sampling-and-conversion/analog-to-digital-converters" >}}).
 

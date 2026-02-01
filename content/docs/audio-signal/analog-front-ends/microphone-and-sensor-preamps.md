@@ -39,7 +39,7 @@ How the source connects to the preamp determines both signal transfer and noise 
 
 ## Source-Specific Considerations
 
-**Dynamic microphones** — Low impedance (150-600 Ω), low output (~1-5 mV), balanced. Need 40-60 dB of clean gain. BJT-input preamps often have lower noise at these source impedances. Phantom power (48 V) is not needed and should be blocked.
+**Dynamic microphones** — Low impedance (150-600 Ω), low output (~1-5 mV), [balanced]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}). Need 40-60 dB of clean gain. BJT-input preamps often have lower noise at these source impedances. Phantom power (48 V) is not needed and should be blocked.
 
 **Condenser/electret microphones** — Higher output, require bias voltage or phantom power. Electret capsules with built-in JFET buffer present a moderate source impedance. MEMS microphones often have digital (PDM) or analog outputs with built-in amplification.
 

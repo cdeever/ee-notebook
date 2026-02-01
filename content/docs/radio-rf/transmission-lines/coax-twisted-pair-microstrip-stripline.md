@@ -36,7 +36,7 @@ Common coax types:
 
 A twisted pair is two insulated conductors wound around each other with a controlled twist rate (twists per meter). The twisting serves a specific purpose: each half-twist reverses the orientation of the pair relative to external fields, so the noise induced in one half-twist cancels the noise from the next. This gives common-mode rejection without requiring shielding.
 
-**Differential signaling.** Twisted pairs naturally support differential signals, where the information is in the voltage difference between the two wires. Common-mode noise (induced equally in both wires) is rejected by the differential receiver. This is the basis of Ethernet (Cat5/6/7), USB, RS-485, and many other standards.
+**Differential signaling.** Twisted pairs naturally support differential signals, where the information is in the voltage difference between the two wires. Common-mode noise (induced equally in both wires) is rejected by the differential receiver (see [Balanced vs Unbalanced]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}})). This is the basis of Ethernet (Cat5/6/7), USB, RS-485, and many other standards.
 
 **Impedance.** Unshielded twisted pair (UTP) typically has Z0 of 100-120 ohm depending on wire gauge, insulation thickness, and twist rate. Cat5e/Cat6 Ethernet cable is specified at 100 ohm. Shielded twisted pair (STP) adds a foil or braid shield and is used where external interference is severe.
 

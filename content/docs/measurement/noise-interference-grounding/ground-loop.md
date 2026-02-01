@@ -99,7 +99,7 @@ The two paths from Device A's ground to Device B's ground (signal cable and buil
 | Solution | How it works | Best for |
 |----------|-------------|----------|
 | Power everything from one outlet | Minimizes ground potential difference | Bench setups, audio systems |
-| Use balanced connections (XLR, differential) | Signal carried as a differential pair; ground noise is common-mode and rejected | Audio, instrumentation |
+| Use [balanced connections]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}) (XLR, differential) | Signal carried as a differential pair; ground noise is common-mode and rejected | Audio, instrumentation |
 | Ground loop isolator (transformer-based) | Breaks the galvanic ground connection in the signal path | Audio, video |
 | DI box (Direct Injection) | Transformer-isolated, balanced output from unbalanced source | Audio (guitar, keyboards into mixer) |
 | Isolation transformer on one device | Breaks the earth ground connection via transformer | Test setups (but be aware of safety implications) |

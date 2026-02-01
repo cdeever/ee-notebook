@@ -56,7 +56,7 @@ Several specific aspects of RF layout have no analog at low frequencies:
 
 **Component placement density.** RF matching networks and filters are often placed as close together as fabrication allows, with specific component orientations to minimize parasitic coupling. Rotating a component 90 degrees can change its coupling to adjacent structures.
 
-**Symmetry.** Differential RF circuits (baluns, balanced mixers, differential amplifiers) require symmetric layout to maintain amplitude and phase balance. Even small asymmetries create common-mode problems.
+**Symmetry.** Differential RF circuits (baluns, [balanced]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}) mixers, differential amplifiers) require symmetric layout to maintain amplitude and phase balance. Even small asymmetries create common-mode problems.
 
 **Isolation.** High-gain stages must be physically separated and often shielded from low-level stages. A transmit power amplifier and a receive LNA on the same board need careful partitioning to prevent the transmitter from desensitizing the receiver.
 

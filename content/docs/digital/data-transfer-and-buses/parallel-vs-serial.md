@@ -44,7 +44,7 @@ A serial interface transmits data one bit (or a small number of bits) at a time 
 - Better electromagnetic compatibility — fewer simultaneously switching signals
 
 **Key techniques enabling high-speed serial:**
-- **Differential signaling** — Transmitting data as the difference between two complementary signals rejects common-mode noise and allows smaller voltage swings
+- **Differential signaling** — Transmitting data as the difference between two complementary signals rejects common-mode noise and allows smaller voltage swings (see [Balanced vs Unbalanced]({{< relref "/docs/fundamentals/signaling-models/balanced-vs-unbalanced" >}}))
 - **Embedded clocking** — Encoding the clock within the data stream (using schemes like 8b/10b, 64b/66b, or scrambled NRZ) eliminates the need for a separate clock wire and the skew between clock and data
 - **Equalization** — Compensating for frequency-dependent attenuation in the channel (the PCB trace acts as a low-pass filter at high frequencies) at the transmitter, receiver, or both
 - **SerDes (Serializer/Deserializer)** — Dedicated hardware that converts between a parallel internal bus and a high-speed serial link. Handles clocking, encoding, and equalization
