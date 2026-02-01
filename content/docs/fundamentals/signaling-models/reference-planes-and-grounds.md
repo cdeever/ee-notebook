@@ -113,20 +113,21 @@ Schematics use several ground symbols, and the conventions are not always consis
   </g>
 </svg>
 
-| Symbol | Name | What it really means | Common pitfall |
-|--------|------|---------------------|----------------|
-| ⏚ | Earth Ground | Physical earth reference | Assuming it's safe to clip anywhere |
-| ⏚⏚⏚ | Chassis Ground | Enclosure reference | Assuming it's signal return |
-| ▽ | Signal / 0 V | Local reference node | Assuming it's earth |
-
 > [!IMPORTANT]
-> Ground symbols in schematics describe design intent, not guaranteed electrical behavior. Two nets with different ground symbols may or may not be connected, and two nets with the same symbol may only be connected at a specific point or frequency.
+> *__Please Note:__ Ground symbols in schematics describe design intent, not guaranteed electrical behavior. Two nets with different ground symbols may or may not be connected, and two nets with the same symbol may only be connected at a specific point or frequency.*
 
 When reading someone else's schematic, don't assume all ground symbols mean the same net. Check whether the design distinguishes between earth, chassis, and signal ground — especially in any design with a power supply, a metal enclosure, or connections to other equipment.
 
 ## Gotchas
 
-- **"Connect to ground" is ambiguous.** Always ask: which ground? Signal, chassis, or earth? The answer determines where the return current flows and what noise it picks up
+- **"Which ground?" is the first question.** The three ground symbols describe different things, and confusing them is the most common source of grounding mistakes:
+
+  | Name | What it really means | Common pitfall |
+  |------|---------------------|----------------|
+  | Earth Ground | Physical earth reference | Assuming it's safe to clip anywhere |
+  | Chassis Ground | Enclosure reference | Assuming it's signal return |
+  | Signal / 0 V | Local reference node | Assuming it's earth |
+
 - **Ground planes have impedance.** A ground plane is not 0 V everywhere — it has resistance and inductance that create voltage gradients when current flows through it. At DC, the voltage drop is often negligible. At high frequencies or with large transient currents, ground plane voltage variations matter
 - **Safety earth is non-negotiable.** Never disconnect the safety earth ground to fix a noise problem. Use proper solutions: balanced connections, isolation transformers, differential measurement. The safety earth exists to protect people, and compromising it for signal quality is never acceptable
 - **Isolated power supplies don't guarantee floating operation.** An isolated DC-DC converter provides galvanic isolation at the power supply — but if the output ground connects to earth through any other path (a USB cable, a signal cable, a chassis connection), the system is no longer floating
