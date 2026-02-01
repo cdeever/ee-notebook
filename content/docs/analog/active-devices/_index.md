@@ -16,3 +16,4 @@ Understanding active devices means understanding their real behavior, not just t
 - **[BJTs]({{< relref "bjts" >}})** — Current-controlled devices: operating regions, biasing fundamentals, and small-signal vs. large-signal behavior.
 - **[MOSFETs]({{< relref "mosfets" >}})** — Voltage-controlled devices: thresholds, regions, transconductance, and analog vs. logic-style usage.
 - **[Thyristors & Latching Devices]({{< relref "thyristors-and-latching-devices" >}})** — SCRs, triacs, and DIACs: latching behavior, AC phase control, commutation, and snubber networks.
+- **[Integrated Analog Devices]({{< relref "integrated-analog-devices" >}})** — What happens when analog circuits move into silicon: matching over absolute accuracy, thermal coupling, architectural patterns, and how to think about ICs as frozen schematics.
