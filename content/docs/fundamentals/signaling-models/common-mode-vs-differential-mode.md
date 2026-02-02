@@ -17,7 +17,7 @@ This is the difference. It's the intended signal in a differential system.
 **Common-mode voltage: V_cm = (V(A) + V(B)) / 2**
 This is the average. It's the voltage that both conductors share relative to some external reference (usually ground).
 
-Any combination of V(A) and V(B) can be fully described by V_dm and V_cm. You can go back the other way:
+Any combination of V(A) and V(B) can be fully described by V_dm and V_cm. The original voltages reconstruct from these components:
 
 - V(A) = V_cm + V_dm/2
 - V(B) = V_cm - V_dm/2
@@ -93,7 +93,7 @@ No real receiver has infinite Common-Mode Rejection Ratio. CMRR is limited by as
 | 10 kHz | 50-70 dB | 300-3,000× |
 | 100 kHz | 30-50 dB | 30-300× |
 
-**Practical consequence:** If you're counting on CMRR to reject 60 Hz ground loop hum, you're in luck — CMRR is excellent at that frequency. If you're counting on it to reject high-frequency switching noise at 1 MHz, check the datasheet carefully.
+**Practical consequence:** CMRR is excellent at 60 Hz, making it reliable for rejecting ground loop hum. At 1 MHz switching-noise frequencies, rejection may be 40–60 dB lower — the CMRR vs frequency curve in the datasheet is the relevant specification.
 
 ## How Imbalance Converts Common-Mode to Differential-Mode
 
@@ -178,21 +178,30 @@ A common-mode choke is an inductor wound on a single core with two windings carr
 
 A common pattern in noise debugging:
 
-1. You find common-mode noise on a cable
-2. You add a common-mode choke — the common-mode noise drops
-3. But the differential-mode noise at the receiver increases
+1. Common-mode noise appears on a cable
+2. A common-mode choke is added — the common-mode noise drops
+3. But differential-mode noise at the receiver increases
 
 What happened? The common-mode choke reduced the common-mode noise on the cable, but the asymmetry that was converting common-mode to differential-mode noise is still there. With less common-mode noise, less converts — but other noise sources (now unmasked) may become visible. Or the choke itself introduced a small asymmetry.
 
-The real fix for this situation is to address the root cause: improve the balance of the cable or connection (fix the asymmetry), or reduce the noise at its source. Filtering is a symptom-level treatment. It works — but understanding the conversion mechanism tells you where the deeper fix is.
+The real fix for this situation is to address the root cause: improve the balance of the cable or connection (fix the asymmetry), or reduce the noise at its source. Filtering is a symptom-level treatment. It works — but understanding the conversion mechanism reveals where the deeper fix is.
 
 Similarly: adding shielding to a cable might reduce noise pickup, but if the shield creates a ground loop (shield connected to ground at both ends with a potential difference), it can introduce new common-mode noise that converts to differential at the receiver. The fix introduces a new problem. Understanding the modes of noise and their conversion mechanisms prevents this whack-a-mole pattern.
 
-## Gotchas
+## Tips
+
+- **If adding a ferrite clamp to a cable has no effect, the noise is likely differential-mode.** Ferrites only attenuate common-mode current; differential currents cancel in the core and pass through unimpeded. A ferrite that does nothing is diagnostic information, not a failed fix
+- **Separating conducted emissions into common-mode and differential-mode components identifies which filter topology is needed.** A LISN measures total conducted emissions; separating them into CM and DM prevents wasting effort with the wrong filter type — CM chokes for common-mode, X-capacitors and series inductors for differential-mode
+- **A current probe clamped around both conductors of a pair reads only common-mode current.** Differential currents flow in opposite directions and cancel in the probe. Any current the probe registers is common-mode — a fast way to quantify CM noise without breaking into the circuit
+- **When selecting a common-mode choke, check its impedance at the noise frequency, not just its DC or low-frequency rating.** A choke rated at 1 kΩ at 100 MHz may present only 10 Ω at 1 MHz. The impedance-vs-frequency curve determines whether the choke actually attenuates the noise that matters
+
+## Caveats
 
 - **Common-mode noise is invisible to a standard oscilloscope measurement.** Connecting a scope probe between the two conductors of a differential pair measures differential-mode voltage only. To see common-mode voltage, measure each conductor individually against earth ground, or use a current probe clamped around both conductors (any current the probe reads is common-mode)
-- **A ferrite clamp on a cable only affects common-mode noise.** If the noise is differential-mode, the ferrite does nothing. If adding a ferrite doesn't help, the noise is likely differential-mode or is coupling in after the ferrite
-- **CMRR specifications at DC are misleading.** Many amplifiers and receivers are specified at DC or low frequency where CMRR is highest. Always check the CMRR vs frequency curve for the frequencies where your noise exists
+- **CMRR specifications at DC are misleading.** Many amplifiers and receivers are specified at DC or low frequency where CMRR is highest. Always check the CMRR vs frequency curve for the frequencies where the noise exists
 - **A "balanced" cable with poor balance is worse than advertised.** The cable's balance (symmetry) determines how much common-mode noise converts to differential-mode. A damaged cable, a cable with a broken twist lay, or a cable with mismatched connectors may have 20 dB worse balance than specification — converting 10× more common-mode noise into signal
-- **Common-mode range limits are hard limits.** A differential receiver with a ±10 V common-mode range will clip, distort, or be damaged if the common-mode voltage exceeds that range. CMRR only applies within the specified common-mode range. Check that ground offsets, noise peaks, and transients stay within bounds
-- **In EMC testing, conducted emissions are separated into common-mode and differential-mode components.** A Line Impedance Stabilization Network (LISN) measures total conducted emissions. Separating them into CM and DM components tells you which filter topology to use — and prevents wasting time with the wrong type of filter
+- **Common-mode range limits are hard limits.** A differential receiver with a ±10 V common-mode range will clip, distort, or be damaged if the common-mode voltage exceeds that range. CMRR only applies within the specified common-mode range. Ground offsets, noise peaks, and transients must all stay within bounds
+
+## Bench Relevance
+
+The CM/DM decomposition is the first analytical step when diagnosing noise on any differential signal path. The symptom often indicates the mode: noise that disappears when switching from single-ended to differential measurement is common-mode; noise that persists is differential-mode. A two-channel oscilloscope can approximate the decomposition using math mode — (Ch1 + Ch2)/2 for the common-mode component, Ch1 − Ch2 for the differential-mode component. Most "mysterious" noise on balanced cables traces to CM-to-DM conversion from asymmetry rather than from the noise amplitude itself; once the mode is identified, the correct filter topology and the location of the imbalance both become clear.
