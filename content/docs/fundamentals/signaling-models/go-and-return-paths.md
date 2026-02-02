@@ -158,20 +158,21 @@ digraph split_ground {
 
 The right approach for mixed analog/digital designs is usually a continuous ground plane with careful component placement — put the analog section on one side, the digital section on the other, and let the return currents sort themselves out on the unbroken plane. The return current for each signal naturally stays under its own trace and doesn't interfere with other signals, as long as the plane is continuous.
 
-## What This Connects To
+## Tips
 
-Understanding go and return paths is the conceptual root of:
+- **Keep the return path close to the signal path.** Minimizing the physical distance between go and return conductors minimizes loop area — the single most effective way to reduce radiation and noise pickup. Differential pairs (USB, Ethernet, LVDS) are the most explicit version of this: the return conductor runs right next to the signal conductor as a tightly coupled pair, keeping loop area minimal by design
+- **Use continuous ground planes for high-frequency designs.** An unbroken copper plane lets the return current find its own optimal path directly beneath the signal trace, with no design effort required
+- **Place stitching vias near signal vias at layer transitions.** When a signal changes layers on a multilayer PCB, the return current needs a nearby via to follow it to the new reference plane
+- **For mixed-signal layouts, use a continuous ground plane with careful component placement.** Analog components on one side, digital on the other, with an unbroken ground plane beneath both — the return currents stay local to their own traces without interference
+- **Star grounding works at low frequencies; solid ground plane at high frequencies.** Star grounding gives each circuit a dedicated return path back to the source, preventing shared-impedance coupling. Above a few MHz, a continuous ground plane outperforms any star topology
 
-- **Ground bounce and power integrity** — When many signals switch simultaneously, their return currents share the ground path, and the inductance of that path creates voltage fluctuations
-- **EMI emissions** — Every current loop is an antenna; loop area and current determine how much energy radiates
-- **Probe-induced errors** — A measurement probe's ground lead forms a loop with the signal; long ground leads make large loops that pick up noise and ring at high frequencies
-- **Crosstalk** — When two signal paths share a return path, the return current from one signal creates a voltage that the other signal sees as noise
-- **Ground loops** — When the return path forms a large loop through building wiring, mains-frequency magnetic fields induce current in the loop (see [Is There a Ground Loop?]({{< relref "/docs/measurement/noise-interference-grounding/ground-loop" >}}))
-
-## Gotchas
+## Caveats
 
 - **Schematics hide the return path.** The ground symbol in a schematic means "connect to the reference node" — it says nothing about the physical path. Two components both connected to the ground symbol might have their return currents taking completely different physical paths on the PCB
-- **"Star grounding" is a return-path strategy, not magic.** Star grounding works by ensuring each circuit's return current has a dedicated path back to the source, preventing shared-impedance coupling. It's the right approach at low frequencies. At high frequencies, a solid ground plane provides even better return paths
-- **Vias are part of the return path.** On a multilayer PCB, when a signal transitions between layers, the return current must also transition. This requires ground vias near the signal via to provide a low-impedance path for the return current to change planes. Missing stitching vias force the return current to find another route, increasing loop area
+- **Missing stitching vias create large loops.** On a multilayer PCB, when a signal transitions between layers, the return current must also transition. Without ground vias near the signal via, the return current is forced to find another route — dramatically increasing loop area and noise
 - **The return path changes with frequency.** A signal with both low-frequency and high-frequency content has return current that spreads at low frequencies and concentrates at high frequencies — simultaneously. This is why broadband signal integrity is harder than narrowband
 - **Cable shields are return paths.** In a coaxial cable, the shield carries the return current for the signal on the center conductor. It's not just a shield — it's a fundamental part of the circuit. Disconnecting one end of the shield breaks the return path
+
+## Bench Relevance
+
+Go and return paths show up in nearly every measurement situation. Unexpected noise or ringing on an otherwise clean signal is often a loop area problem — the return current is taking a longer path than expected, and the resulting antenna picks up interference. Probe ground leads are a common example: a long ground clip forms a large loop with the signal path, adding ringing and noise that aren't present in the actual circuit. Crosstalk between adjacent signals often traces back to shared return path impedance, where the return current from one signal develops a voltage that the other signal sees as interference. At system scale, [ground loops]({{< relref "/docs/measurement/noise-interference-grounding/ground-loop" >}}) are the same phenomenon — return current flowing through building wiring forms a large loop that picks up mains-frequency magnetic fields. In each case, the diagnostic question is the same: where is the return current actually flowing, and how big is the loop?
