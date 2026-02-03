@@ -90,10 +90,24 @@ Circuits that aren't designed as filters still have frequency-dependent behavior
 - Gives the full frequency response in one measurement
 - Requires an FFT or spectrum analyzer and more setup
 
-## Gotchas
+## Tips
 
-- **-3 dB is not "half"** — -3 dB is half power, but it's 70.7% of voltage amplitude. -6 dB is half voltage amplitude. The distinction matters when you're specifying requirements
+- Use the asymptotic Bode plot approximation for quick sanity checks before detailed simulation
+- Measure bandwidth with an oscilloscope or probe that has at least 3-5× the bandwidth being measured
+- For pulse circuits where waveform fidelity matters, choose Bessel response to minimize phase distortion
+- Estimate rise time from bandwidth using t_rise ≈ 0.35 / BW for first-order systems
+
+## Caveats
+
+- **-3 dB is not "half"** — -3 dB is half power, but it's 70.7% of voltage amplitude. -6 dB is half voltage amplitude. The distinction matters when specifying requirements
 - **Gain-bandwidth product assumes single-pole roll-off** — For amplifiers with more complex frequency responses (multiple poles, zeros), GBW is an approximation. Some amplifiers have gain-dependent bandwidth that doesn't follow a simple GBW rule
-- **Measuring bandwidth requires the right instrument bandwidth** — Your oscilloscope or probe must have significantly more bandwidth than what you're measuring (at least 3-5x). A 100 MHz scope measuring a 50 MHz signal shows a -3 dB error from the scope itself
-- **Phase margin is hard to measure directly** — In a closed-loop system, you can't easily inject a signal into the feedback loop without breaking it. Loop-breaking techniques (like Middlebrook's method) exist but require careful setup
-- **Frequency response changes with operating point** — A transistor amplifier's bandwidth depends on its bias current. An op-amp's bandwidth depends on its closed-loop gain. The frequency response you measure at one operating point may not apply at another
+- **Measuring bandwidth requires the right instrument bandwidth** — The oscilloscope or probe must have significantly more bandwidth than what's being measured (at least 3-5×). A 100 MHz scope measuring a 50 MHz signal shows a -3 dB error from the scope itself
+- **Phase margin is hard to measure directly** — In a closed-loop system, injecting a signal into the feedback loop without breaking it is difficult. Loop-breaking techniques (like Middlebrook's method) exist but require careful setup
+- **Frequency response changes with operating point** — A transistor amplifier's bandwidth depends on its bias current. An op-amp's bandwidth depends on its closed-loop gain. The frequency response measured at one operating point may not apply at another
+
+## Bench Relevance
+
+- Overshoot on a step response indicates gain peaking — measure the frequency response to locate the resonance
+- Slow rise time compared to calculations suggests bandwidth is limited by the measurement equipment, not the circuit
+- Ringing on pulse waveforms indicates underdamped poles — the ringing frequency matches the resonance frequency
+- Frequency response that varies with signal amplitude suggests nonlinearity or clipping at extremes

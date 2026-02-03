@@ -96,10 +96,24 @@ Active filters use positive feedback (indirectly, through the filter's frequency
 - **Op-amp GBW matters** — The op-amp must have enough bandwidth that its gain is still high at the filter's cutoff frequency. A rule of thumb: GBW should be at least 10x the filter's highest cutoff frequency for Sallen-Key, and more for high-Q designs
 - **Component matching** — For higher-order filters (cascaded second-order sections), the Q and frequency of each section must be accurate. Use 1% or better resistors and 5% or better capacitors. For critical applications, use 1% capacitors (C0G/NP0)
 
-## Gotchas
+## Tips
+
+- Select an op-amp with GBW at least 10× the filter's highest cutoff frequency for Sallen-Key, more for high-Q designs
+- Use C0G/NP0 capacitors for timing-critical filter sections to avoid voltage-dependent capacitance
+- Simulate the filter before building — component tolerances and op-amp limitations can shift the response significantly
+- For Q > 5, consider state-variable topology for lower component sensitivity
+
+## Caveats
 
 - **Op-amp bandwidth limits the filter** — Above the op-amp's useful bandwidth, the filter response deviates from the design. The filter may even have gain peaks at frequencies where the op-amp's phase shift interacts with the feedback network
 - **Noise floor** — Active filters add noise from the op-amp. The noise appears at the output, potentially limiting dynamic range. Low-noise op-amps help, but the fundamental thermal noise of the filter resistors sets a floor
 - **Power supply rejection** — Supply noise can couple into the filter output, especially at frequencies near the filter's passband. Good decoupling is essential
 - **DC offset** — Op-amp offset voltage appears at the output, potentially amplified by the filter's DC gain. For band-pass and high-pass filters, this is naturally blocked. For low-pass filters, it passes through
-- **Capacitor selection matters** — C0G/NP0 capacitors are preferred for active filters because their capacitance doesn't change with voltage, temperature, or time. X7R works for less critical applications but introduces nonlinearity (voltage-dependent capacitance means signal-dependent filter characteristics — a subtle form of distortion)
+- **Capacitor selection matters** — C0G/NP0 capacitors are preferred for active filters because their capacitance doesn't change with voltage, temperature, or time. X7R introduces nonlinearity (voltage-dependent capacitance means signal-dependent filter characteristics — a subtle form of distortion)
+
+## Bench Relevance
+
+- A filter that oscillates has Q that's too high for the component tolerances — reduce Q or use tighter-tolerance parts
+- Gain peaking near the cutoff frequency suggests underdamped poles (Q > 0.707) — check component values against design
+- Distortion that varies with signal level may indicate voltage-dependent capacitance — switch to C0G/NP0 capacitors
+- Response that deviates from simulation at high frequencies indicates the op-amp GBW is limiting — use a faster op-amp

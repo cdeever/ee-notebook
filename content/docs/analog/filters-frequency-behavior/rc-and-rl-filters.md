@@ -89,10 +89,24 @@ Solutions:
 - Make each successive stage's impedance level much higher (10x) than the previous
 - Use active filter designs that avoid this problem entirely
 
-## Gotchas
+## Tips
 
-- **Source impedance matters** — The filter's cutoff frequency depends on the total series resistance, including the source impedance. A 1 kohm filter driven by a 1 kohm source has an effective R of 2 kohm, halving the cutoff frequency
+- Size AC coupling capacitors for a cutoff frequency at least a decade below the lowest signal frequency to minimize phase shift and tilt
+- Use buffers between cascaded passive filter stages to prevent loading interactions
+- For precision filtering, use 1% tolerance components or switch to active filter designs
+- Consider the total series resistance (source + filter) when calculating the actual cutoff frequency
+
+## Caveats
+
+- **Source impedance matters** — The filter's cutoff frequency depends on the total series resistance, including the source impedance. A 1 kΩ filter driven by a 1 kΩ source has an effective R of 2 kΩ, halving the cutoff frequency
 - **Load impedance matters** — The load appears in parallel with the filter's output element (C or R), changing the response. High-impedance loads have minimal effect; low-impedance loads shift the cutoff
 - **Component tolerances** — A 10% capacitor tolerance means 10% cutoff frequency uncertainty. For precise filtering, use tight-tolerance components or active filters with gain-set feedback
-- **Parasitic behavior** — At high frequencies, resistors become inductive and capacitors become inductive above their self-resonant frequency. A "low-pass" filter with a 100 nF ceramic cap stops being a low-pass above maybe 10-50 MHz depending on the package
-- **Phase shift** — A first-order filter introduces up to 90 degrees of phase shift. At the cutoff frequency, the phase shift is 45 degrees. In feedback loops, this phase shift can affect stability
+- **Parasitic behavior** — At high frequencies, resistors become inductive and capacitors become inductive above their self-resonant frequency. A "low-pass" filter with a 100 nF ceramic cap stops being a low-pass above 10-50 MHz depending on the package
+- **Phase shift** — A first-order filter introduces up to 90° of phase shift. At the cutoff frequency, the phase shift is 45°. In feedback loops, this phase shift can affect stability
+
+## Bench Relevance
+
+- Cutoff frequency lower than calculated suggests source impedance is adding to the filter resistance
+- A low-pass filter that stops attenuating at very high frequencies has hit the capacitor's self-resonant frequency — use a smaller capacitor in parallel for high-frequency bypass
+- Droop on square wave output indicates the coupling capacitor is too small for the frequency content
+- Unexpected phase shift in a feedback loop causing oscillation may trace to a filter stage inside the loop
