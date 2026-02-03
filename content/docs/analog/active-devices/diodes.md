@@ -15,11 +15,11 @@ The ideal diode is a perfect one-way valve: zero resistance forward, infinite re
 
 - Silicon diodes drop about 0.6-0.7 V forward (not zero). Schottky diodes drop 0.2-0.4 V. LEDs drop 1.8-3.3 V depending on color
 - The forward voltage varies with current — higher current means higher V_f. The datasheet V_f is specified at a particular test current
-- Forward voltage has a negative temperature coefficient (about -2 mV/C for silicon). Hotter diodes drop less voltage. This matters in precision circuits and can cause thermal runaway in parallel diodes
+- Forward voltage has a negative temperature coefficient (about -2 mV/°C for silicon). Hotter diodes drop less voltage. This matters in precision circuits and can cause thermal runaway in parallel diodes
 
 **Reverse bias reality:**
 
-- Real diodes have reverse leakage current — nanoamps to microamps for silicon, more for Schottky. Leakage increases with temperature, roughly doubling every 10 C
+- Real diodes have reverse leakage current — nanoamps to microamps for silicon, more for Schottky. Leakage increases with temperature, roughly doubling every 10°C
 - At high enough reverse voltage, the diode breaks down. Avalanche breakdown is usually non-destructive (if current is limited); exceeding rated reverse voltage without current limiting is destructive
 
 ## Rectification
@@ -32,9 +32,9 @@ Converting AC to DC. The most basic diode application.
 
 Rectifier design considerations:
 
-- Forward voltage drop means lost power: P_loss = V_f x I_load. At 10 A with a silicon bridge, that's 14 W of heat in the diodes alone. Schottky bridges cut this significantly
+- Forward voltage drop means lost power: P_loss = V_f × I_load. At 10 A with a silicon bridge, that's 14 W of heat in the diodes alone. Schottky bridges cut this significantly
 - Reverse recovery time matters at higher frequencies. Standard rectifiers are fine at 50/60 Hz. Fast-recovery or Schottky diodes are needed in switching power supplies
-- Surge current rating — inrush into a discharged capacitor can momentarily exceed the steady-state current by 10x or more
+- Surge current rating — inrush into a discharged capacitor can momentarily exceed the steady-state current by 10× or more
 
 ## Clamping and Clipping
 
@@ -58,13 +58,26 @@ Diodes are the first line of defense for many protection schemes:
 Zener diodes are designed to operate in reverse breakdown at a specific voltage. This makes them useful as voltage references and simple regulators.
 
 - Below about 5 V, the mechanism is true Zener effect (quantum tunneling). Above about 7 V, it's avalanche breakdown. Between 5-7 V, both contribute — and this crossover region has the best temperature stability
-- A Zener "regulator" is just a resistor feeding a Zener. Load regulation is poor (output impedance is the Zener's dynamic impedance, typically 5-50 ohm). For anything beyond a rough reference, use a proper regulator
+- A Zener "regulator" is just a resistor feeding a Zener. Load regulation is poor (output impedance is the Zener's dynamic impedance, typically 5-50 Ω). For anything beyond a rough reference, use a proper regulator
 - Zener diodes are noisy. The breakdown process generates broadband noise. This is actually exploited in noise generators, but it's a problem in precision reference circuits
 
-## Gotchas
+## Tips
+
+- Use Schottky diodes in low-voltage, high-current applications to minimize forward voltage drop and power loss
+- For flyback protection, place the diode directly across the inductive load, not at the driver
+- Choose Zener diodes in the 5-7 V range for best temperature stability
+
+## Caveats
 
 - **Forward voltage is not constant** — It varies with current, temperature, and device type. Don't assume 0.7 V for everything
 - **Reverse recovery** — When a diode switches from forward to reverse, it conducts in reverse briefly while stored charge is swept out. This causes current spikes in switching circuits. Fast-recovery and Schottky diodes minimize this
 - **Schottky leakage** — Schottky diodes have much higher reverse leakage than silicon junction diodes. At elevated temperatures, leakage can become significant, especially in battery-powered circuits where quiescent current matters
 - **Capacitance** — Diodes have junction capacitance that varies with reverse voltage. This matters in high-frequency and tuning circuits (varactors exploit this deliberately)
 - **Thermal runaway in parallel diodes** — The hotter diode drops less voltage, draws more current, gets hotter. Parallel diodes need current-sharing resistors or matched thermal coupling
+
+## Bench Relevance
+
+- A diode that measures low resistance in both directions is shorted — replace it
+- A diode that measures high resistance in both directions is open — replace it
+- Forward voltage significantly higher than expected under load suggests the diode is undersized and overheating
+- Voltage spikes on the collector of a transistor driving an inductive load indicate missing or failed flyback diode

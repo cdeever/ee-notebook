@@ -5,13 +5,13 @@ weight: 50
 
 # Integrated Analog Devices
 
-An integrated analog device is a circuit frozen into silicon. Op-amps, voltage regulators, comparators, references, audio amplifiers — these are not atomic components like a resistor or a transistor. They are complete circuits: dozens to hundreds of transistors, resistors, capacitors, and bias networks, designed together, fabricated together, and trimmed together on a single die. The package hides the schematic, but the schematic is still in there, and it still obeys the same circuit laws as anything you'd build on a breadboard.
+An integrated analog device is a circuit frozen into silicon. Op-amps, voltage regulators, comparators, references, audio amplifiers — these are not atomic components like a resistor or a transistor. They are complete circuits: dozens to hundreds of transistors, resistors, capacitors, and bias networks, designed together, fabricated together, and trimmed together on a single die. The package hides the schematic, but the schematic is still in there, and it still obeys the same circuit laws as anything built on a breadboard.
 
 Understanding integrated analog devices at an architectural level — what's inside, what assumptions the designer made, what changes when a circuit moves into silicon — is essential for using them well and for diagnosing what's happening when they don't behave as expected.
 
 ## Why Analog Circuits Move Into Silicon
 
-Discrete analog circuits work. You can build a perfectly good differential amplifier from two matched BJTs, a handful of resistors, and a current source. But certain problems get dramatically easier when you integrate them onto a single die:
+Discrete analog circuits work. A perfectly good differential amplifier can be built from two matched BJTs, a handful of resistors, and a current source. But certain problems get dramatically easier when integrated onto a single die:
 
 ### Matching and Thermal Coupling
 
@@ -25,15 +25,15 @@ Discrete analog circuits work. You can build a perfectly good differential ampli
 ### Trimming and Parasitics
 
 - **Trimming** — Laser trimming or fuse-blowing during production can adjust resistor values, offset voltages, or reference levels on each individual die. This achieves precision that would require hand-selection of discrete components
-- **Parasitics under control** — The designer knows the parasitic capacitances, substrate coupling, and interconnect resistance at design time. In a discrete circuit, parasitics depend on your layout, your wiring, your PCB — and they change every time you rearrange something
+- **Parasitics under control** — The designer knows the parasitic capacitances, substrate coupling, and interconnect resistance at design time. In a discrete circuit, parasitics depend on layout, wiring, and the PCB — and they change every time something is rearranged
 
 ### The Tradeoff: Loss of Flexibility
 
-The tradeoff: you lose flexibility. A discrete circuit can be modified, probed at every node, and adapted. An integrated circuit does exactly what the designer intended, with the constraints the designer chose. If those constraints don't match your application, you work around them externally or pick a different part.
+The tradeoff: flexibility is lost. A discrete circuit can be modified, probed at every node, and adapted. An integrated circuit does exactly what the designer intended, with the constraints the designer chose. If those constraints don't match the application, workarounds must be implemented externally or a different part selected.
 
 ## What Changes When a Circuit Moves Into Silicon
 
-The building blocks inside an analog IC are the same devices covered in this section — [BJTs]({{< relref "bjts" >}}), [MOSFETs]({{< relref "mosfets" >}}), diodes, resistors, capacitors — but integration changes which parameters you can rely on and which you can't.
+The building blocks inside an analog IC are the same devices covered in this section — [BJTs]({{< relref "bjts" >}}), [MOSFETs]({{< relref "mosfets" >}}), diodes, resistors, capacitors — but integration changes which parameters can be relied on and which cannot.
 
 ### Matching Over Absolute Accuracy
 
@@ -41,11 +41,11 @@ IC resistors have poor absolute accuracy — process variations can shift values
 
 This is why integrated circuits are designed around **ratios and differences**, not absolute values. A bandgap reference doesn't depend on any single V_BE being exactly 0.6 V — it depends on the *difference* in V_BE between two transistors running at different current densities. A current mirror doesn't depend on beta being 200 — it depends on two transistors having the *same* beta.
 
-If you've wondered why analog IC schematics look different from textbook discrete circuits, this is the reason. The design style is fundamentally ratio-metric.
+If analog IC schematics look different from textbook discrete circuits, this is the reason. The design style is fundamentally ratio-metric.
 
 ### Layout Is Circuit
 
-In a discrete design, you draw the schematic first and lay out the PCB second. In an IC, layout and schematic are intertwined. The physical placement of devices determines:
+In a discrete design, the schematic is drawn first and the PCB laid out second. In an IC, layout and schematic are intertwined. The physical placement of devices determines:
 
 - Matching quality (closer = better matched)
 - Thermal coupling (affects bias stability)
@@ -67,16 +67,16 @@ But thermal coupling can also be a problem. A high-power output stage heats the 
 Not everything translates well to silicon:
 
 - **Transistors** — Abundant and cheap. BJTs and MOSFETs are the primary active devices. IC designers use them lavishly in ways that would be impractical discretely
-- **Resistors** — Available but imprecise (absolute tolerance of 20% or worse). Large values consume die area. High-precision ratios are achievable through careful layout. Values above ~100 kOhm are uncommon on-die
+- **Resistors** — Available but imprecise (absolute tolerance of 20% or worse). Large values consume die area. High-precision ratios are achievable through careful layout. Values above ~100 kΩ are uncommon on-die
 - **Capacitors** — Small values only, typically picofarads to tens of picofarads on-die. Anything larger is brought in externally (hence the external compensation capacitor on many op-amps and regulators)
 - **Inductors** — Essentially unavailable in standard analog processes. This is why integrated filters use active topologies (gyrators, switched-capacitor techniques) rather than LC networks
 - **Precision references** — Achieved through bandgap circuits exploiting transistor matching, not through precision resistors
 
-This palette shapes every integrated analog architecture. When you see an IC that requires external capacitors or resistors, that's the designer providing what the silicon can't.
+This palette shapes every integrated analog architecture. When an IC requires external capacitors or resistors, that's the designer providing what the silicon can't.
 
 ## Common Classes of Integrated Analog Devices
 
-Integrated analog devices cluster into recognizable architectural patterns. Each class solves a specific problem by combining the building blocks described above. The intent here is orientation, not theory — detailed treatment of each class belongs in its own section. The following classes are covered in detail elsewhere; this section exists to show how they relate architecturally.
+Integrated analog devices cluster into recognizable architectural patterns. Each class solves a specific problem by combining the building blocks described above. The following classes are covered in detail elsewhere; this section exists to show how they relate architecturally.
 
 - **Op-amps and instrumentation amplifiers** — Differential input, high gain, feedback-configured. The canonical integrated analog building block. Internal architecture: differential pair input stage, gain stage (often a current mirror load), output stage, bias network, and compensation. Instrumentation amplifiers add precision gain-setting and high common-mode rejection through matched internal resistor networks
 - **Comparators** — Structurally similar to op-amps (differential input, high gain) but designed without frequency compensation, optimized for speed to a defined output state rather than linear operation. Not interchangeable with op-amps despite superficial similarity
@@ -113,16 +113,29 @@ When evaluating an application-specific analog IC, the critical question is: **w
 
 ### Troubleshooting and Repair
 
-- **Internal nodes are inaccessible.** You cannot probe the bias network inside an IC. Troubleshooting is limited to what you can observe at the pins: supply current, input and output voltages, and the behavior of external components. Knowing the internal architecture helps you infer what's happening inside from what you can measure outside
-- **Failure modes reflect the architecture.** An op-amp with a damaged input stage may show large offset voltage but still respond to signals. A regulator with a failed reference will output the wrong voltage but may still regulate (just to the wrong level). Understanding the block diagram helps you localize the fault
+- **Internal nodes are inaccessible.** Probing the bias network inside an IC is not possible. Troubleshooting is limited to what can be observed at the pins: supply current, input and output voltages, and the behavior of external components. Knowing the internal architecture helps infer what's happening inside from what can be measured outside
+- **Failure modes reflect the architecture.** An op-amp with a damaged input stage may show large offset voltage but still respond to signals. A regulator with a failed reference will output the wrong voltage but may still regulate (just to the wrong level). Understanding the block diagram helps localize the fault
 - **Operating outside absolute maximum ratings causes unpredictable damage.** Overvoltage on one pin can damage a specific internal structure while leaving others intact, producing partial failures that are difficult to diagnose
 - **The package is a thermal system.** Excessive die temperature degrades specifications long before it causes outright failure. Intermittent problems that appear only under load or at elevated ambient temperature often trace to thermal design, not component defects
 
-## Gotchas
+## Tips
+
+- Follow the datasheet's recommended circuit unless there's a specific, understood reason to deviate
+- Pay attention to external capacitor type and ESR requirements — they're often critical for stability
+- When substituting parts, verify not just pinout but also input bias current direction, output topology, and compensation requirements
+
+## Caveats
 
 - **Analog ICs are not black boxes** — Treating them as ideal input-output transfer functions works until it doesn't. The internal architecture determines input impedance, output impedance, frequency response, noise, and failure modes. Ignoring the internals leads to designs that fail at the margins
 - **Matching degrades with distance and temperature gradients** — Even on-die, devices that are physically far apart or straddling a thermal gradient will show worse matching. Datasheet specs for matching assume the die is at a uniform temperature, which may not hold at high power dissipation
 - **External capacitor type matters** — Many IC specifications assume a particular capacitor type. A linear regulator designed for a tantalum output capacitor (with ESR providing phase margin) may oscillate with a low-ESR ceramic. The datasheet specifies this, but it's easy to miss
 - **Internal protection is not a design margin** — Thermal shutdown and current limiting exist to prevent destruction, not to define normal operating limits. Running an IC continuously at its current limit means it's cycling in and out of thermal shutdown, which is hard on the device and unreliable for the system
-- **Supply sensitivity is real** — Integrated bias networks derive their currents from the supply rails. Noise, ripple, and transients on the supply propagate into the analog signal path. The PSRR specification tells you how well the IC rejects supply variation, but it degrades with frequency — high-frequency supply noise gets through
+- **Supply sensitivity is real** — Integrated bias networks derive their currents from the supply rails. Noise, ripple, and transients on the supply propagate into the analog signal path. The PSRR specification tells how well the IC rejects supply variation, but it degrades with frequency — high-frequency supply noise gets through
 - **Latch-up is a physical hazard in CMOS analog ICs** — Parasitic thyristor structures in the substrate can be triggered by input or output voltages that exceed the supply rails. Once triggered, the IC draws excessive current and can be destroyed. This is why absolute maximum ratings for input voltage relative to supply matter
+
+## Bench Relevance
+
+- An analog IC that works on the bench but fails in the field may have thermal or supply noise issues not present in the lab environment
+- An op-amp or regulator that oscillates after a "drop-in" replacement likely has different compensation or ESR requirements than the original
+- An IC that runs hot even at light load suggests internal bias networks are damaged or the part is counterfeit
+- Partial failures (correct function in some modes but not others) indicate damage to specific internal blocks — correlate symptoms with the internal block diagram
