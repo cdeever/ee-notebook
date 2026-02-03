@@ -89,10 +89,24 @@ Feedback isn't always obvious. Some circuits that use feedback without looking l
 - **Crystal oscillators** — Positive feedback at the crystal's resonant frequency. The crystal provides the frequency-selective feedback path
 - **AGC (Automatic Gain Control)** — Feedback that adjusts gain to maintain constant output amplitude despite varying input levels
 
-## Gotchas
+## Tips
+
+- Use resistor ratios to set gain whenever possible — resistors are more stable than transistor parameters
+- Verify that loop gain is high enough at all frequencies where accuracy matters
+- Add compensation to ensure adequate phase margin at the crossover frequency
+- Consider that feedback network parasitics affect high-frequency behavior — simulate with realistic parasitic values
+
+## Caveats
 
 - **Feedback doesn't create gain — it trades it for other properties.** The closed-loop gain is always less than the open-loop gain. Feedback reduces gain to buy predictability, bandwidth, and lower distortion
 - **Negative feedback at DC can become positive feedback at high frequency.** Phase shifts accumulate with frequency. Every circuit with negative feedback has a frequency at which the feedback becomes positive. The question is whether there's still enough gain at that frequency to sustain oscillation
 - **More loop gain is not always better.** Higher loop gain improves accuracy and distortion, but it also means the crossover frequency is higher, which makes stability harder. The loop must be stable at the crossover frequency, and higher crossover means dealing with more phase shift from more poles
-- **Feedback around nonlinear elements doesn't linearize them perfectly.** Feedback reduces distortion by the loop gain factor, but it doesn't eliminate it. A transistor amplifier with 40 dB of loop gain reduces distortion by 100x — significant, but not zero
+- **Feedback around nonlinear elements doesn't linearize them perfectly.** Feedback reduces distortion by the loop gain factor, but it doesn't eliminate it. A transistor amplifier with 40 dB of loop gain reduces distortion by 100× — significant, but not zero
 - **The feedback network itself has parasitics.** Resistors have capacitance, traces have inductance. At high frequencies, the feedback fraction B is not what the schematic suggests. This is another reason circuits oscillate in practice but not in simulation
+
+## Bench Relevance
+
+- Closed-loop gain that deviates from the calculated value indicates insufficient loop gain at the operating frequency
+- Output that overshoots and rings on step inputs suggests inadequate phase margin — the ringing frequency indicates where phase margin is worst
+- Distortion that increases at higher frequencies may indicate loop gain dropping to where it no longer suppresses nonlinearity
+- Oscillation at a specific frequency suggests negative feedback has become positive feedback at that frequency

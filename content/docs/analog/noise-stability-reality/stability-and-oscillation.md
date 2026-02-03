@@ -96,10 +96,24 @@ A resistor in series with the output, outside the feedback loop, isolates capaci
 - Squeeze the feedback resistor with your fingers (adds parasitic capacitance). If the oscillation changes, stray feedback is involved
 - Add a small cap (10-100 pF) across the feedback resistor. If oscillation stops, you need lead compensation
 
-## Gotchas
+## Tips
 
-- **Stability is a closed-loop property** — You can't assess stability by looking at the open-loop behavior alone. You need the loop gain (open-loop gain x feedback fraction) plotted versus frequency
+- Add parasitic capacitances (a few pF at critical nodes) in simulation to verify stability under realistic conditions
+- Use a small series resistor (10-100 Ω) at the output to isolate capacitive loads from the feedback path
+- Add a small capacitor (10-100 pF) across the feedback resistor for lead compensation if oscillation persists
+- Test stability at unity gain — if stable there, higher gains will be stable too
+
+## Caveats
+
+- **Stability is a closed-loop property** — Stability cannot be assessed by looking at the open-loop behavior alone. The loop gain (open-loop gain × feedback fraction) must be analyzed versus frequency
 - **Simulation misses parasitics** — SPICE simulation with ideal models may show perfect stability. Add parasitic capacitances (a few pF at critical nodes) and re-simulate. If the circuit is marginal, the real board will oscillate
-- **Non-inverting is less stable than inverting** — At the same signal gain, a non-inverting amplifier has higher noise gain (and thus the same loop bandwidth as a lower-gain inverting configuration). The practical effect: non-inverting configurations are more prone to instability with capacitive loads
+- **Non-inverting is less stable than inverting** — At the same signal gain, a non-inverting amplifier has higher noise gain (and thus the same loop bandwidth as a lower-gain inverting configuration). Non-inverting configurations are more prone to instability with capacitive loads
 - **Unity-gain is the worst case** — For a feedback amplifier, unity gain (voltage follower) has the highest noise gain and the widest bandwidth. If the amplifier is stable at unity gain, it's stable at any higher gain. This is why op-amps are typically characterized for stability at unity gain
 - **Intermittent oscillation** — A circuit that oscillates only sometimes (on power-up, at certain temperatures, with certain loads) has marginal stability. This is worse than continuous oscillation because it's harder to detect and debug
+
+## Bench Relevance
+
+- Continuous sine-wave oscillation at a specific frequency indicates the circuit is meeting the Barkhausen criteria at that frequency
+- Damped ringing on step responses indicates insufficient phase margin but not full oscillation — the ringing frequency shows where phase margin is worst
+- Oscillation that changes frequency when the output is probed suggests load capacitance sensitivity — add output series resistance
+- Oscillation that disappears when adding a small cap across the feedback resistor indicates lead compensation is needed

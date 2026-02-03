@@ -106,10 +106,24 @@ NF (dB) = 10 x log10(SNR_in / SNR_out)
 
 A noiseless amplifier has NF = 0 dB. Real amplifiers add noise: NF = 1-5 dB for low-noise designs, 10+ dB for general-purpose.
 
-## Gotchas
+## Tips
 
-- **Noise adds in quadrature** — Uncorrelated noise sources add as root-sum-of-squares, not linearly. Two equal noise sources together produce sqrt(2) x the individual noise, not 2x. The largest source dominates
+- Limit bandwidth to only what's needed — narrower bandwidth directly reduces total integrated noise
+- Optimize the first stage for low noise since its noise dominates the overall system noise figure (Friis formula)
+- Use low-value resistors at high-impedance nodes where thermal noise is critical
+- For low-frequency precision circuits, consider chopper-stabilized amplifiers to overcome 1/f noise
+
+## Caveats
+
+- **Noise adds in quadrature** — Uncorrelated noise sources add as root-sum-of-squares, not linearly. Two equal noise sources together produce √2 × the individual noise, not 2×. The largest source dominates
 - **Bandwidth determines total noise** — A noisy circuit with a narrow bandwidth may have less total integrated noise than a quiet circuit with a wide bandwidth. Limiting bandwidth is the single most effective noise reduction technique
 - **The first stage dominates** — In a multistage amplifier, the first stage's noise gets amplified by all subsequent stages. Making the first stage low-noise is far more effective than making later stages low-noise (Friis formula)
-- **Noise measurements require averaging** — Noise is random. A single oscilloscope capture gives one realization. You need averaging (or spectrum analysis) to characterize noise accurately
+- **Noise measurements require averaging** — Noise is random. A single oscilloscope capture gives one realization. Averaging (or spectrum analysis) is needed to characterize noise accurately
 - **EMI is not noise** — Interference from external sources (switching supply harmonics, radio signals, digital crosstalk) is deterministic, not random. It can be eliminated by shielding, filtering, or fixing the source. True noise cannot be eliminated — only minimized
+
+## Bench Relevance
+
+- Random fuzz on a signal that doesn't correlate with anything specific is likely fundamental noise (thermal or shot)
+- Noise with discrete frequency components visible on an FFT indicates EMI or pickup — trace the source
+- A circuit with noise that increases when bandwidth is widened confirms bandwidth-limited noise behavior
+- Noise floor that doesn't improve when bypassing later stages confirms the first stage is the dominant noise source

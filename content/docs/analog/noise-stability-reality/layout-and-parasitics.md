@@ -90,10 +90,24 @@ A solid ground plane under signal traces:
 - Copper pours connected to ground around sensitive circuits provide local shielding
 - Physical shields (metal cans) are the ultimate defense for extremely sensitive circuits
 
-## Gotchas
+## Tips
+
+- Route analog sections by hand — autorouters optimize for connectivity, not for parasitic minimization
+- Keep high-impedance traces short and away from noisy digital signals
+- Use a solid, unbroken ground plane rather than split planes that force return currents to detour
+- Place decoupling caps as close to IC power pins as physically possible — every millimeter of trace adds inductance
+
+## Caveats
 
 - **The schematic doesn't show parasitics** — This is the fundamental problem. The layout designer must understand the circuit's sensitivities and route accordingly. Schematic review and layout review are equally important
 - **Autorouters don't understand analog** — Automatic PCB routers optimize for connectivity and density, not for parasitic minimization or noise isolation. Analog sections should always be routed by hand or at minimum reviewed and corrected manually
 - **Component packages have parasitics** — A 0603 resistor has less parasitic inductance than a 0805. A through-hole component has more lead inductance than SMD. Package selection affects high-frequency behavior
 - **Solder joints are connections** — Cold solder joints, cracked joints, and corroded joints add resistance and create intermittent connections. A circuit that works with new solder may fail after thermal cycling
-- **"It worked on the breadboard" means nothing** — Breadboards have terrible parasitic capacitance (often 5-10 pF between adjacent rows), high trace inductance, and long ground paths. A circuit that works on a breadboard despite these parasitics is robust. A circuit that only works on a breadboard is relying on parasitics that won't exist on the PCB (and vice versa)
+- **"It worked on the breadboard" means nothing** — Breadboards have high parasitic capacitance (often 5-10 pF between adjacent rows), high trace inductance, and long ground paths. A circuit that works on a breadboard despite these parasitics is robust. A circuit that only works on a breadboard is relying on parasitics that won't exist on the PCB (and vice versa)
+
+## Bench Relevance
+
+- A circuit that works in simulation but not on the PCB is likely affected by parasitics the model doesn't include
+- Oscillation that appears only on certain PCB layouts points to layout-dependent parasitic feedback
+- A high-impedance node that responds slowly to fast inputs has stray capacitance forming an RC time constant
+- A circuit that works when cold but fails when warm may have temperature-sensitive parasitic effects or marginal solder joints
