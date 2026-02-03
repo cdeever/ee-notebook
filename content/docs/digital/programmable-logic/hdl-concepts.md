@@ -131,11 +131,25 @@ A testbench is HDL code that drives the design under test (DUT) with stimulus an
 - Coverage-driven — the testbench exercises all states, transitions, and corner cases
 - Randomized stimulus with constraints — for complex designs, random testing finds bugs that directed testing misses
 
-## Gotchas
+## Tips
+
+- Always include `else` and `default` clauses in combinational logic to avoid unintended latch inference
+- Use non-blocking assignments (`<=`) in sequential blocks and blocking assignments (`=`) in combinational blocks — never mix them
+- Review every synthesis warning — inferred latches and multi-driven nets are almost always bugs
+- Design with explicit resets for all flip-flops — simulation defaults don't exist in hardware
+
+## Caveats
 
 - **Synthesis warnings are not optional reading** — Inferred latches, unused signals, constant outputs, and multi-driven nets are all reported as warnings. Each one is a potential bug. Review every synthesis warning
 - **The HDL is not the hardware** — The HDL describes intent. The synthesis tool, optimizer, and place-and-route produce the actual hardware. The final circuit may be structurally very different from the HDL description while being functionally equivalent
 - **Simulation passes do not guarantee correct hardware** — Simulation verifies the RTL description. It does not verify timing, power-up behavior, metastability, or physical effects. Hardware testing is always necessary
-- **Don't write HDL like software** — Sequential thinking (do A, then B, then C) creates pipeline stages or state machines in hardware. Parallel thinking (A, B, and C all happen simultaneously) creates parallel hardware. The right approach depends on the problem, but hardware always executes in parallel — sequential behavior must be explicitly designed with state machines or pipelines
-- **Reset strategy must be deliberate** — Synchronous reset (reset sampled on clock edge) is cleanest for timing but requires the clock to be running. Asynchronous reset (immediate) works without a clock but needs careful deassertion synchronization. Mixing strategies within a design creates confusion and potential bugs. Pick one and be consistent
+- **Don't write HDL like software** — Sequential thinking (do A, then B, then C) creates pipeline stages or state machines in hardware. Parallel thinking (A, B, and C all happen simultaneously) creates parallel hardware. Hardware always executes in parallel — sequential behavior must be explicitly designed with state machines or pipelines
+- **Reset strategy must be deliberate** — Synchronous reset is cleanest for timing but requires the clock to be running. Asynchronous reset works without a clock but needs careful deassertion synchronization. Mixing strategies within a design creates confusion and potential bugs
 - **Uninitialized flip-flops are genuinely random in hardware** — Simulation tools assign a default (usually 0 or X). Real flip-flops power up to whatever state the silicon decides. Any design that depends on an initial value without an explicit reset will work in simulation and fail in hardware
+
+## Bench Relevance
+
+- Hardware that behaves differently from simulation may have latch inference or incomplete sensitivity lists — check synthesis warnings
+- A design that works in simulation but fails at power-up likely has uninitialized state machines or missing resets
+- Timing failures in hardware that don't appear in RTL simulation require gate-level timing simulation or static timing analysis
+- Erratic behavior in state machines often traces to uninitialized flip-flops — verify reset reaches all registers

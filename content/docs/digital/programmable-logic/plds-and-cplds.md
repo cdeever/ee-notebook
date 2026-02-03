@@ -98,10 +98,24 @@ A CPLD is multiple PLD blocks on a single chip, connected by a programmable inte
 
 For simple PLDs (22V10), the tool chain is minimal: the ABEL or CUPL languages were historically used, and some modern tools still support them. For CPLDs, standard FPGA vendor tools (Vivado, Quartus, Lattice Diamond) handle the full flow.
 
-## Gotchas
+## Tips
+
+- Use CPLDs for glue logic that must be active at power-up before the main FPGA or processor configures
+- Design with the datasheet's worst-case timing numbers, not typical or best-case
+- Plan I/O bank assignments early to avoid voltage standard conflicts
+- For new designs requiring simple PLD functionality, consider small CPLDs or low-cost FPGAs as PAL/GAL replacements
+
+## Caveats
 
 - **Product term limits are hard constraints** — If a Boolean function needs 12 product terms and the macrocell only has 8, the function either can't fit or must be split across multiple macrocells (consuming extra resources and adding delay). The fitter will report this as a fitting error
-- **CPLD timing is predictable but not zero** — "Predictable" means the datasheet specifies the worst-case delay (e.g., 5 ns pin-to-pin). This is the actual delay, not an optimistic estimate. Design with the datasheet number, not the typical or best-case
+- **CPLD timing is predictable but not zero** — "Predictable" means the datasheet specifies the worst-case delay (e.g., 5 ns pin-to-pin). This is the actual delay, not an optimistic estimate. Design with the datasheet number, not typical or best-case
 - **Power-up configuration is not instant** — Even though CPLDs are non-volatile, the internal power-on reset takes some time (microseconds to milliseconds). Outputs may be in an undefined state during this period. If the CPLD controls power sequencing or reset for other devices, ensure the power-on sequence is safe
 - **I/O standards must match** — Modern CPLDs support multiple I/O voltage standards (3.3 V, 2.5 V, 1.8 V) configured per bank. Mixing standards incorrectly can damage the CPLD or the connected devices. Check the bank assignments before programming
-- **PLDs are disappearing from the market** — Simple PLDs (22V10, PAL-type devices) are aging out of production. For new designs, small CPLDs or low-cost FPGAs (Lattice iCE40, Gowin GW1N) are replacing them. But understanding the PLD architecture is still valuable — it's the mental model behind combinational logic implementation in all programmable devices
+- **PLDs are disappearing from the market** — Simple PLDs (22V10, PAL-type devices) are aging out of production. Small CPLDs or low-cost FPGAs (Lattice iCE40, Gowin GW1N) are replacing them
+
+## Bench Relevance
+
+- Fitting errors that report "product term exceeded" require simplifying the logic or splitting across multiple macrocells
+- Glitchy power-up behavior from a CPLD-controlled reset suggests the CPLD's power-on reset period needs external management
+- I/O pins that don't swing to expected levels may have mismatched I/O bank voltage configuration
+- Timing violations that appear despite meeting datasheet specs suggest using typical rather than worst-case numbers — always use worst-case

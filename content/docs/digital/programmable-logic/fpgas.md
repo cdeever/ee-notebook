@@ -94,11 +94,25 @@ Most FPGAs use SRAM-based configuration — the logic and routing are defined by
 
 Steps 3-5 often iterate: if timing fails, the designer modifies the HDL, constrains the placement, or adjusts the clock frequency, then re-runs synthesis and P&R.
 
-## Gotchas
+## Tips
+
+- Target 70-80% LUT utilization maximum to leave headroom for routing and timing closure
+- Use hard IP blocks (BRAM, DSP) wherever possible — they're faster and more power-efficient than LUT equivalents
+- Simulate thoroughly before hardware, but always validate on real hardware — simulation can't catch everything
+- Enable bitstream encryption for production designs to protect intellectual property
+
+## Caveats
 
 - **Routing congestion can prevent a design from fitting** — Even if there are enough LUTs, the routing resources may be exhausted. High fan-out signals, heavily interconnected logic, or designs that use >80% of the LUTs often hit routing congestion
 - **Timing closure gets harder with utilization** — A design that uses 50% of the FPGA fabric is easy to place and route with good timing. At 80%, the tools struggle to find good placements. At 90%+, timing closure may be impossible. Leave margin
-- **FPGA power is dominated by the interconnect** — The programmable routing switches have parasitic capacitance that is charged and discharged on every signal transition. This makes FPGAs inherently higher power than ASICs for the same function. Clock frequency and toggle rate are the primary power knobs
+- **FPGA power is dominated by the interconnect** — The programmable routing switches have parasitic capacitance that is charged and discharged on every signal transition. This makes FPGAs inherently higher power than ASICs for the same function
 - **Configuration at power-up is not instant** — Systems that depend on FPGA logic being active at power-up (reset sequencing, power supply control) need external logic or a CPLD to manage the startup window. The FPGA is not functional during configuration loading
 - **The bitstream is the design** — Protecting the bitstream is protecting the intellectual property. Most FPGAs support bitstream encryption (AES-256) to prevent reverse engineering from the configuration file. Without encryption, the design is readable by anyone with JTAG access
-- **Simulation is essential but not sufficient** — RTL simulation verifies functional correctness but not timing. Gate-level simulation with back-annotated timing verifies timing but is very slow. Formal verification can prove properties exhaustively but requires expertise to set up. Real hardware testing catches issues that no simulation anticipated
+- **Simulation is essential but not sufficient** — RTL simulation verifies functional correctness but not timing. Gate-level simulation with back-annotated timing is very slow. Real hardware testing catches issues that no simulation anticipated
+
+## Bench Relevance
+
+- Designs that fail to route despite available LUTs have routing congestion — reduce utilization or restructure high-fan-out logic
+- Timing failures that appear only at high utilization suggest the design is too crowded for the tools to find good placements
+- An FPGA that draws excessive power likely has high toggle rates or unnecessary clock domains — profile switching activity
+- Startup glitches in FPGA-controlled systems indicate the configuration time window needs external management
