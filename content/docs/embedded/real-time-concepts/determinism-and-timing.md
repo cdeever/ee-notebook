@@ -90,11 +90,25 @@ Code review and simulation help, but the oscilloscope is the ground truth for ti
 
 The test setup matters. Run the system under realistic load with all features active. The timing measured with interrupts disabled and no communication traffic is not the timing the system will have in production.
 
-## Gotchas
+## Tips
 
-- **Average execution time hides worst-case failures** -- A function that averages 20 us but occasionally takes 200 us will appear fine in casual testing and fail in the field. Always measure under worst-case conditions, not typical ones.
-- **Jitter is cumulative across interrupt priorities** -- Every higher-priority interrupt that can fire during a time-critical section adds to the jitter budget. The total worst-case jitter is the sum of all higher-priority ISR execution times, not just one.
-- **Flash erase stalls the entire CPU** -- On many MCUs, erasing a flash sector blocks all code execution from that flash bank for milliseconds. If time-critical code runs from the same bank, it stops. Dual-bank flash or execution from RAM is the workaround.
-- **Cold cache changes timing dramatically** -- The first execution of a function after reset or context switch may take 2-5x longer than subsequent executions due to instruction cache misses. If the deadline must be met on the first invocation, test the cold-cache case specifically.
-- **SysTick is not free** -- The RTOS tick interrupt fires at 1 kHz (typically) and takes time to execute. On a busy system, this 1 kHz overhead is small; on a system with tight microsecond-level deadlines, the SysTick ISR is another jitter source.
-- **Toggling a GPIO for measurement adds its own latency** -- The GPIO set/clear instructions take a few nanoseconds on most Cortex-M cores, which is negligible. But if the GPIO is on a slow peripheral bus (APB at a divided clock), the write may take longer. Use a fast-bus GPIO for timing instrumentation.
+- Measure WCET under worst-case conditions (maximum interrupt load, cache-cold, worst-case data paths) — average measurements hide failures
+- Use hardware timer interrupts for periodic tasks rather than delay loops to decouple period from execution time
+- Toggle a GPIO pin at the start and end of critical sections and measure with an oscilloscope for ground-truth timing verification
+- Run time-critical code from RAM or TCM to eliminate flash wait state variation
+
+## Caveats
+
+- **Average execution time hides worst-case failures** — A function that averages 20 µs but occasionally takes 200 µs will appear fine in casual testing and fail in the field. Always measure under worst-case conditions
+- **Jitter is cumulative across interrupt priorities** — Every higher-priority interrupt that can fire during a time-critical section adds to the jitter budget. The total worst-case jitter is the sum of all higher-priority ISR execution times
+- **Flash erase stalls the entire CPU** — On many MCUs, erasing a flash sector blocks all code execution from that flash bank for milliseconds. Dual-bank flash or execution from RAM is the workaround
+- **Cold cache changes timing dramatically** — The first execution of a function after reset or context switch may take 2-5× longer due to instruction cache misses. Test the cold-cache case specifically
+- **SysTick is not free** — The RTOS tick interrupt fires at 1 kHz (typically) and takes time to execute. On systems with tight microsecond-level deadlines, the SysTick ISR is another jitter source
+- **Toggling a GPIO for measurement adds its own latency** — GPIO set/clear instructions take a few nanoseconds on most Cortex-M cores, but if the GPIO is on a slow peripheral bus, the write may take longer. Use a fast-bus GPIO for timing instrumentation
+
+## Bench Relevance
+
+- A control loop that occasionally misses deadlines despite adequate average margin has WCET exceeding the budget — measure under stress conditions
+- Periodic tasks with timing drift likely use delay loops instead of timer interrupts — switch to hardware timer-driven execution
+- Jitter that increases under interrupt load confirms higher-priority ISRs are consuming the jitter budget
+- Timing that degrades after flash writes suggests code is running from the same flash bank being erased

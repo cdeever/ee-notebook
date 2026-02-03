@@ -107,11 +107,25 @@ The most common migration path is starting with a superloop and moving to an RTO
 
 I have seen teams attempt this transition mid-project under schedule pressure. It usually goes badly. The better approach is to decide early whether the system's complexity warrants an RTOS and start with one if so. Retrofitting is possible but painful. For more on bare-metal patterns that delay or avoid the need for an RTOS, see {{< relref "/docs/embedded/firmware-structure" >}}.
 
-## Gotchas
+## Tips
 
-- **Stack overflow is silent on most MCUs** -- a task that overflows its stack writes into whatever memory is adjacent, often another task's stack or global data. The symptoms are bizarre and intermittent. Enable FreeRTOS stack overflow checking during development and size stacks generously.
-- **Equal-priority tasks behave differently across RTOSes** -- some use round-robin time-slicing, some use FIFO (first ready, runs until it blocks). If you assume one behavior and get the other, tasks may starve. Assign distinct priorities when possible.
-- **Calling blocking RTOS functions from an ISR crashes or hangs** -- ISRs cannot block (they are not tasks and have no context to suspend). Most RTOSes provide separate ISR-safe API variants (e.g., `xSemaphoreGiveFromISR` in FreeRTOS). Using the wrong variant is a common early mistake.
-- **The idle task must run** -- the RTOS idle task handles memory cleanup and watchdog feeding in many configurations. If higher-priority tasks never block and consume 100% of the CPU, the idle task starves. Design tasks to block when they have no work, not to spin-wait.
-- **Context switch time includes FPU context** -- on Cortex-M4F and M7, saving and restoring the 32 floating-point registers roughly doubles the context switch time. FreeRTOS uses lazy stacking (deferred FPU save) to avoid this when tasks do not use the FPU, but if most tasks use floating point, the cost is real.
-- **An RTOS does not make timing deterministic by itself** -- it provides the mechanism (preemptive scheduling), but the timing guarantees depend on correct priority assignment, bounded ISR execution times, and proper use of synchronization primitives. A badly structured RTOS application can have worse timing than a well-written superloop.
+- Enable RTOS stack overflow checking during development — stack overflows cause bizarre, hard-to-diagnose failures
+- Size task stacks generously during development, then trim after profiling with stack high-water-mark analysis
+- Use distinct priorities for tasks rather than equal priorities to avoid scheduler behavior variations
+- Design tasks to block when idle, never spin-wait — the idle task must run for system health
+
+## Caveats
+
+- **Stack overflow is silent on most MCUs** — a task that overflows its stack writes into whatever memory is adjacent, often another task's stack or global data. The symptoms are bizarre and intermittent
+- **Equal-priority tasks behave differently across RTOSes** — some use round-robin time-slicing, some use FIFO (first ready, runs until it blocks). Assign distinct priorities when possible
+- **Calling blocking RTOS functions from an ISR crashes or hangs** — ISRs cannot block (they are not tasks and have no context to suspend). Most RTOSes provide separate ISR-safe API variants (e.g., `xSemaphoreGiveFromISR` in FreeRTOS)
+- **The idle task must run** — the RTOS idle task handles memory cleanup and watchdog feeding in many configurations. If higher-priority tasks never block and consume 100% of the CPU, the idle task starves
+- **Context switch time includes FPU context** — on Cortex-M4F and M7, saving and restoring the 32 floating-point registers roughly doubles the context switch time
+- **An RTOS does not make timing deterministic by itself** — it provides the mechanism (preemptive scheduling), but the timing guarantees depend on correct priority assignment, bounded ISR execution times, and proper use of synchronization primitives
+
+## Bench Relevance
+
+- Bizarre, intermittent crashes that change when code is modified suggest stack overflow — enable overflow checking and increase stack sizes
+- A task that never runs despite being ready may have the wrong priority or be blocked on a resource held by a lower-priority task
+- System hangs where the watchdog fires suggest the idle task is being starved — verify high-priority tasks block appropriately
+- An RTOS application with worse timing than its superloop predecessor likely has priority assignment or synchronization problems

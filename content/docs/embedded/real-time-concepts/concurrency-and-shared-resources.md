@@ -124,11 +124,25 @@ Neither task can proceed. The system appears to hang. Deadlock prevention strate
 
 In practice, the best defense is simplicity. Systems with one or two mutexes rarely deadlock. Systems with five or more mutexes held in varying orders are deadlock factories. If I find myself needing that many mutexes, the design probably needs restructuring. See {{< relref "/docs/embedded/firmware-structure" >}} for patterns that reduce shared-state coupling.
 
-## Gotchas
+## Tips
 
-- **Volatile does not mean atomic** -- a `volatile uint64_t` on a 32-bit MCU is still read as two 32-bit loads. An ISR can fire between them, giving the main loop a half-old, half-new value. Use a critical section or copy under interrupt disable.
-- **Binary semaphores lack priority inheritance** -- using a binary semaphore as a mutex works functionally, but without priority inheritance, the system is vulnerable to unbounded priority inversion under load. Always use the RTOS mutex primitive for mutual exclusion.
-- **Read-modify-write on a peripheral register is not atomic** -- code like `GPIOA->ODR |= (1 << 5)` is a read, OR, write sequence. If an ISR modifies another bit in the same register between the read and write, the ISR's change is lost. Use the BSRR register (set/reset) on STM32 for atomic single-bit GPIO operations.
-- **Queue overflow silently drops data** -- if the queue is full when `xQueueSendFromISR` is called, the data is discarded (the function returns failure, but ISR code often ignores it). Size queues for the worst-case burst rate, not the average rate.
-- **Deadlock symptoms look like a hang, not a crash** -- the system is alive (other tasks may still run, watchdog may still be fed), but the deadlocked tasks produce no output. A task state dump (FreeRTOS `vTaskList()` or a debugger) shows the blocked tasks and the mutexes they hold.
-- **Compiler reordering defeats hand-rolled synchronization** -- the C compiler and the CPU can reorder memory accesses for performance. `volatile` prevents compiler reordering but not CPU reordering (though on Cortex-M, the single-core in-order pipeline makes CPU reordering largely a non-issue). Using RTOS primitives avoids this class of problem entirely.
+- Use RTOS mutexes (not binary semaphores) for mutual exclusion to get priority inheritance
+- Use queues instead of shared variables whenever possible — the RTOS handles all synchronization internally
+- Keep critical sections as short as possible — copy shared data to local variables, then process outside the critical section
+- Always acquire multiple mutexes in the same order across all tasks to prevent deadlock
+
+## Caveats
+
+- **Volatile does not mean atomic** — a `volatile uint64_t` on a 32-bit MCU is still read as two 32-bit loads. An ISR can fire between them, giving the main loop a half-old, half-new value. Use a critical section or copy under interrupt disable
+- **Binary semaphores lack priority inheritance** — using a binary semaphore as a mutex works functionally, but without priority inheritance, the system is vulnerable to unbounded priority inversion under load
+- **Read-modify-write on a peripheral register is not atomic** — code like `GPIOA->ODR |= (1 << 5)` is a read, OR, write sequence. If an ISR modifies another bit in the same register between the read and write, the ISR's change is lost. Use BSRR for atomic single-bit GPIO operations
+- **Queue overflow silently drops data** — if the queue is full when `xQueueSendFromISR` is called, the data is discarded. Size queues for worst-case burst rate, not average rate
+- **Deadlock symptoms look like a hang, not a crash** — the system is alive (other tasks may still run, watchdog may still be fed), but the deadlocked tasks produce no output
+- **Compiler reordering defeats hand-rolled synchronization** — the C compiler can reorder memory accesses for performance. `volatile` prevents compiler reordering but not CPU reordering. Using RTOS primitives avoids this class of problem
+
+## Bench Relevance
+
+- Data corruption that appears intermittently under load suggests a race condition — review all shared data access for proper protection
+- A system that hangs with some tasks still running (watchdog fed) suggests deadlock — dump task state to find blocked tasks
+- GPIO bits that occasionally fail to set suggest read-modify-write races — use atomic bit-set registers (BSRR)
+- Priority inversion symptoms include high-priority tasks blocked for unexpectedly long times — verify mutex usage has priority inheritance
