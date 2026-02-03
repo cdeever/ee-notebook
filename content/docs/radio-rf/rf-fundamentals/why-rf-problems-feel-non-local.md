@@ -5,7 +5,7 @@ weight: 60
 
 # Why RF Problems Feel Non-Local
 
-At low frequencies, debugging follows a comforting logic: the problem is at the node where the voltage is wrong. You probe a point, find the signal is incorrect, and trace backward through the schematic to find the source. The cause and effect are connected by wires and components that behave predictably. At RF, this breaks down. Moving a cable changes the behavior of a distant amplifier. Touching the board with a probe shifts the oscillation frequency. Adding a ground wire makes things worse. Problems feel non-local because energy is coupling through fields, not just flowing through wires — and fields do not respect the neat boundaries drawn on schematics.
+At low frequencies, debugging follows a comforting logic: the problem is at the node where the voltage is wrong. Probing a point, finding the signal incorrect, and tracing backward through the schematic locates the source. The cause and effect are connected by wires and components that behave predictably. At RF, this breaks down. Moving a cable changes the behavior of a distant amplifier. Touching the board with a probe shifts the oscillation frequency. Adding a ground wire makes things worse. Problems feel non-local because energy is coupling through fields, not just flowing through wires — and fields do not respect the neat boundaries drawn on schematics.
 
 ## Fields, Not Just Currents
 
@@ -29,7 +29,7 @@ The practical impact is that signals appear where they should not be. An aggress
 
 Any conductor carrying alternating current is an antenna. The question is only how efficient an antenna it is. Radiation efficiency depends on the conductor's length relative to the wavelength — as the length approaches lambda/4 or lambda/2, radiation increases dramatically.
 
-At 100 MHz, a 75 cm wire is a half-wavelength antenna. That might be an Ethernet cable, a power cord, or a long PCB trace. At 2.4 GHz, a 3 cm trace segment is a quarter-wavelength antenna. At these frequencies, unintentional radiation is a real concern — both for EMC compliance (you are transmitting interference) and for circuit performance (you are losing energy that should stay in the circuit).
+At 100 MHz, a 75 cm wire is a half-wavelength antenna. That might be an Ethernet cable, a power cord, or a long PCB trace. At 2.4 GHz, a 3 cm trace segment is a quarter-wavelength antenna. At these frequencies, unintentional radiation is a real concern — both for EMC compliance (the circuit is transmitting interference) and for circuit performance (energy is leaving the circuit that should stay in it).
 
 Common unintended antennas:
 - Cables connected to a PCB (USB, power, serial) act as antennas driven by common-mode currents
@@ -51,7 +51,7 @@ To suppress cavity resonances, RF enclosures use absorbing materials (ferrite-lo
 
 ## Why Moving a Wire Changes Everything
 
-This is perhaps the most disorienting experience for someone new to RF: you move a cable, shift a component, or touch the board — and the behavior changes. In a lumped circuit, physical position is irrelevant (within reason). In an RF circuit, position is an electrical parameter.
+This is perhaps the most disorienting experience for someone new to RF: moving a cable, shifting a component, or touching the board changes the behavior. In a lumped circuit, physical position is irrelevant (within reason). In an RF circuit, position is an electrical parameter.
 
 The reasons are cumulative:
 
@@ -59,7 +59,7 @@ The reasons are cumulative:
 
 **Antenna pattern changes.** A cable or wire that is acting as an unintended antenna has a radiation pattern that depends on its orientation and position relative to other conductors. Moving it changes the pattern, which changes how much energy it radiates and absorbs.
 
-**Loading effects.** Your hand near a circuit introduces capacitance (a human body has roughly 100 pF to ground). At 100 MHz, 100 pF has an impedance of 16 ohm. If your hand is near a high-impedance node, you are adding a significant load. This is why RF circuits on the bench sometimes behave differently depending on where you stand.
+**Loading effects.** A hand near a circuit introduces capacitance (a human body has roughly 100 pF to ground). At 100 MHz, 100 pF has an impedance of 16 ohm. A hand near a high-impedance node adds a significant load. This is why RF circuits on the bench sometimes behave differently depending on operator proximity.
 
 **Resonance detuning.** If the wire or cable is part of a resonant structure (even unintentionally), moving it changes the resonant frequency. An oscillator whose frequency shifts when you move a nearby cable has parasitic coupling to that cable — the cable is part of the resonant circuit.
 
@@ -77,10 +77,24 @@ Working effectively at RF requires a fundamental change in how you think about c
 
 **From measurement to interaction.** At RF, connecting a measurement instrument changes the circuit. A probe adds capacitance and a ground path. A cable adds an antenna. A spectrum analyzer input adds a load. The measurement is never passive — you must account for the instrument's effect on the circuit.
 
-## Gotchas
+## Tips
 
-- **Adding ground wires can make things worse** — A long ground wire at RF is an inductor, an antenna, or both. If it resonates near the operating frequency, it may amplify the problem instead of fixing it. Grounding at RF must be done through short, wide connections or solid planes.
-- **Shielding a circuit is not just putting it in a box** — The box must be properly sealed (gaps smaller than lambda/20 at the highest frequency of concern), and all cables entering the box must be filtered or bonded to the enclosure. A box with a cable-sized gap is a resonant cavity with an antenna attached.
-- **Hand capacitance is a debugging clue, not just a nuisance** — If the circuit's behavior changes when you bring your hand near it, you have identified a high-impedance node that is coupling to the environment. This often points to the source of instability or unwanted feedback.
-- **Resonances hide until you sweep frequency** — A cavity resonance at 2.1 GHz will not show up if you are only testing at 915 MHz. Broadband sweeps and EMC pre-scans are the only way to find unexpected resonances before they cause problems in the field.
-- **The "same" circuit works differently on different boards** — Layout differences, ground plane integrity, stackup changes, and even solder mask thickness can shift RF behavior. If a proven design stops working on a new board revision, the layout and fabrication are the first places to look, not the components.
+- Sweep frequency broadly when debugging RF issues — cavity resonances and parasitic coupling often appear at frequencies far from the intended operating band
+- Treat cables, enclosures, and heat sinks as electrical elements in RF design — they participate in the circuit through field coupling
+- Use compartmentalization and absorbing material inside enclosures to suppress cavity resonances above the lowest resonant mode
+- Ground connections at RF must be short and wide, or use solid planes — a long ground wire is an inductor or antenna
+
+## Caveats
+
+- **Adding ground wires can make things worse** — A long ground wire at RF is an inductor, an antenna, or both. If it resonates near the operating frequency, it may amplify the problem instead of fixing it. Grounding at RF must be done through short, wide connections or solid planes
+- **Shielding a circuit is not just putting it in a box** — The box must be properly sealed (gaps smaller than lambda/20 at the highest frequency of concern), and all cables entering the box must be filtered or bonded to the enclosure. A box with a cable-sized gap is a resonant cavity with an antenna attached
+- **Hand capacitance is a debugging clue, not just a nuisance** — If the circuit's behavior changes when a hand is brought near it, that identifies a high-impedance node coupling to the environment. This often points to the source of instability or unwanted feedback
+- **Resonances hide until frequency is swept** — A cavity resonance at 2.1 GHz will not show up when testing only at 915 MHz. Broadband sweeps and EMC pre-scans are the only way to find unexpected resonances before they cause problems in the field
+- **The "same" circuit works differently on different boards** — Layout differences, ground plane integrity, stackup changes, and even solder mask thickness can shift RF behavior. If a proven design stops working on a new board revision, the layout and fabrication are the first places to look, not the components
+
+## Bench Relevance
+
+- A circuit whose behavior changes when touched or when a hand is brought near it has a high-impedance node coupling to the environment — this identifies the source of instability
+- An oscillator whose frequency shifts when a nearby cable is moved has parasitic coupling to that cable — the cable is part of the resonant circuit
+- A circuit that works with the enclosure lid off but fails with it on is experiencing cavity resonance — the closed enclosure creates standing waves that couple between circuits
+- Interference that correlates with cable routing rather than circuit topology indicates field-based coupling, not conducted current paths

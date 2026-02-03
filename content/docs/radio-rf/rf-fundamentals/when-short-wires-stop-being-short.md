@@ -78,10 +78,24 @@ It is worth enumerating the specific reasons, because "breadboards don't work at
 
 For most RF work, anything above about 30-50 MHz requires abandoning the breadboard entirely and moving to a ground-plane-based construction method.
 
-## Gotchas
+## Tips
 
-- **Surface mount does not automatically solve the problem** — SMD components are better, but at 5+ GHz even 0402 packages have significant parasitics. The pad geometry, via connections, and trace routing to the component all matter as much as the component itself.
-- **Wire gauge does not predict RF behavior** — A thicker wire has more surface area (lower skin-effect loss) but also more inductance per unit length. The relevant parameters at RF are inductance, characteristic impedance, and electrical length — not DC resistance.
-- **Unused component pads are stubs** — A dual-footprint pad on a PCB (to accommodate either 0402 or 0603) leaves an unconnected stub when one size is populated. At GHz frequencies, that stub is a resonant element that can degrade signal integrity.
-- **Ground lead resonance is real and common** — The most frequent measurement artifact in RF work is the probe ground lead resonating and adding a false peak. If you see a large spike at a particular frequency during oscilloscope measurements, try shortening the ground lead before concluding the spike is real.
-- **Even short wires inside connectors matter** — The center pin of a BNC connector is about 1 cm long. At 4 GHz, that pin is lambda/7 and its inductance creates measurable impedance discontinuity. This is why precision RF uses SMA or smaller connectors — shorter center pins mean less parasitic inductance.
+- Use the shortest practical ground connection for oscilloscope probes at RF — replace the alligator clip lead with a spring-tip ground for measurements above 100 MHz
+- Transition from breadboard to ground-plane-based construction (dead-bug or copper-clad) when working above 30-50 MHz
+- Remove unused dual-footprint pads from PCB designs at GHz frequencies — the unconnected pad acts as a resonant stub
+- Use SMA or smaller connectors instead of BNC for measurements above 1-2 GHz — shorter center pins mean less parasitic inductance
+
+## Caveats
+
+- **Surface mount does not automatically solve the problem** — SMD components are better, but at 5+ GHz even 0402 packages have significant parasitics. The pad geometry, via connections, and trace routing to the component all matter as much as the component itself
+- **Wire gauge does not predict RF behavior** — A thicker wire has more surface area (lower skin-effect loss) but also more inductance per unit length. The relevant parameters at RF are inductance, characteristic impedance, and electrical length — not DC resistance
+- **Unused component pads are stubs** — A dual-footprint pad on a PCB (to accommodate either 0402 or 0603) leaves an unconnected stub when one size is populated. At GHz frequencies, that stub is a resonant element that can degrade signal integrity
+- **Ground lead resonance is real and common** — The most frequent measurement artifact in RF work is the probe ground lead resonating and adding a false peak. A large spike at a particular frequency during oscilloscope measurements warrants shortening the ground lead before concluding the spike is real
+- **Even short wires inside connectors matter** — The center pin of a BNC connector is about 1 cm long. At 4 GHz, that pin is lambda/7 and its inductance creates measurable impedance discontinuity. Precision RF uses SMA or smaller connectors for this reason
+
+## Bench Relevance
+
+- A large spike at a specific frequency during oscilloscope measurements that disappears when the probe ground lead is shortened is a ground lead resonance artifact, not a circuit problem
+- A circuit that works on the bench but fails EMC testing may have cables or traces acting as unintended antennas at frequencies where their length approaches lambda/4
+- A breadboard prototype that shows unexplained oscillations or noise above 30 MHz is exhibiting parasitic resonances from jumper wire inductance and stray capacitance — move to a ground-plane construction method
+- Signal integrity that degrades when moving from an evaluation board to a custom PCB points to uncontrolled trace impedance or missing return path continuity

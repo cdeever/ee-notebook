@@ -83,10 +83,24 @@ The result is that the current distribution is even more non-uniform than skin e
 | 100 MHz - 10 GHz | Extreme | Surface finish critical, hollow conductors, plating thickness matters |
 | Above 10 GHz | Sub-micron skin depth | Waveguides preferred, surface roughness is a primary loss mechanism |
 
-## Gotchas
+## Tips
 
-- **Thicker copper does not always mean lower RF loss** — Doubling copper thickness from 1 oz to 2 oz on a PCB halves DC resistance but barely changes loss at 1 GHz, where the skin depth (2.1 um) is far thinner than either copper weight (35 um vs 70 um). You are paying for copper the current never reaches.
-- **Surface roughness can increase loss by 30-50% at millimeter-wave** — The current follows the microscopic contours of the surface. Standard electrodeposited copper (Rz around 5-10 um) is much rougher than the skin depth at 10 GHz. Smooth or very-low-profile copper (Rz < 2 um) is specified for mmWave designs.
-- **Gold plating can increase loss if too thick** — Gold has about 50% higher resistivity than copper. A thick gold layer (several skin depths) forces current to flow in gold rather than copper. For RF, gold plating should be thin (flash gold) or avoided where loss matters.
-- **Proximity effect is often larger than skin effect in wound components** — Two tightly-wound layers of an inductor may have 5x the AC resistance predicted by skin effect alone. Electromagnetic simulation or measurements are needed for accurate loss prediction.
-- **Skin effect changes inductance too, not just resistance** — The internal inductance of a conductor (due to flux linkage inside the conductor) decreases as skin effect forces current to the surface. Total inductance drops slightly at high frequencies, which can shift resonant frequencies in precision circuits.
+- Specify low-roughness copper (Rz < 2 um) for PCBs operating above 5 GHz — surface roughness dominates loss at millimeter-wave frequencies
+- Use single-layer, spaced windings for RF inductors to minimize proximity effect losses — tightly wound multi-layer coils can have 5-10x higher AC resistance than skin effect alone predicts
+- Keep gold plating thin (flash gold) on RF conductors — thick gold forces current through a higher-resistivity metal
+- Consider Litz wire for inductors operating below 1-2 MHz where skin depth is comparable to individual strand diameter
+
+## Caveats
+
+- **Thicker copper does not always mean lower RF loss** — Doubling copper thickness from 1 oz to 2 oz on a PCB halves DC resistance but barely changes loss at 1 GHz, where the skin depth (2.1 um) is far thinner than either copper weight (35 um vs 70 um). The extra copper adds cost without benefit
+- **Surface roughness can increase loss by 30-50% at millimeter-wave** — The current follows the microscopic contours of the surface. Standard electrodeposited copper (Rz around 5-10 um) is much rougher than the skin depth at 10 GHz. Smooth or very-low-profile copper (Rz < 2 um) is specified for mmWave designs
+- **Gold plating can increase loss if too thick** — Gold has about 50% higher resistivity than copper. A thick gold layer (several skin depths) forces current to flow in gold rather than copper. RF gold plating should be thin (flash gold) or avoided where loss matters
+- **Proximity effect is often larger than skin effect in wound components** — Two tightly-wound layers of an inductor may have 5x the AC resistance predicted by skin effect alone. Electromagnetic simulation or measurements are needed for accurate loss prediction
+- **Skin effect changes inductance too, not just resistance** — The internal inductance of a conductor (due to flux linkage inside the conductor) decreases as skin effect forces current to the surface. Total inductance drops slightly at high frequencies, which can shift resonant frequencies in precision circuits
+
+## Bench Relevance
+
+- An inductor whose measured Q factor is much lower than predicted from skin effect alone is likely suffering from proximity effect between windings
+- PCB trace loss that exceeds simulation predictions at GHz frequencies may indicate rough copper — compare measured insertion loss against smooth-copper models
+- Increasing copper thickness on an RF board that shows no measurable loss improvement confirms that skin depth, not bulk cross-section, determines RF resistance
+- A winding that runs hotter than expected under AC current despite adequate DC resistance is experiencing skin and proximity effect losses

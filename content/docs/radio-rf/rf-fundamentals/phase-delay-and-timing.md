@@ -33,7 +33,7 @@ The velocity factor depends on the dielectric constant of the material surroundi
 
 A wave is a spatial pattern. At any instant in time, a sine wave has peaks, zeros, and troughs laid out in space along its direction of travel. Phase describes where you are in that pattern.
 
-One complete cycle is 360 degrees. If you are standing at a voltage peak and walk one-quarter wavelength along the transmission line, you reach a zero crossing — that is a 90-degree phase shift. Walk another quarter wavelength, and you reach the negative peak: 180 degrees, fully inverted.
+One complete cycle is 360 degrees. Starting at a voltage peak and moving one-quarter wavelength along the transmission line reaches a zero crossing — a 90-degree phase shift. Another quarter wavelength reaches the negative peak: 180 degrees, fully inverted.
 
 This means two points separated by a physical distance have a fixed phase difference:
 
@@ -89,11 +89,25 @@ Some concrete numbers for perspective:
 
 These delays are built into RF design work. Phase-matched cable assemblies for antenna arrays must be cut to precise lengths. Clock distribution networks on fast digital boards require length matching to within millimeters. Phased array antennas depend on controlling the delay to each element with sub-degree accuracy.
 
-## Gotchas
+## Tips
 
-- **Phase matching means length matching in the same medium** — Two cables cut to the same physical length only have the same delay if they have the same velocity factor. Mixing cable types (or even different batches of the same type) can introduce phase errors.
-- **Electrical length changes with frequency** — A trace that is electrically short at 100 MHz may be electrically long at 1 GHz. Every frequency component in a signal sees a different electrical length, which is why broadband RF design is harder than narrowband.
-- **Bends and vias add delay** — A right-angle bend or a via through the board adds a small but measurable phase shift. At microwave frequencies, these are included in simulation models. Mitered bends and controlled-impedance vias are standard practice.
-- **Temperature changes propagation velocity** — Dielectric constants are temperature-dependent. A cable or board that is phase-matched at room temperature may drift at operating temperature. Critical applications (radar, phased arrays) compensate for this.
-- **Do not confuse group delay and phase delay** — Phase delay is how long a single frequency takes to traverse a structure. Group delay is how long a modulated signal's envelope takes. In dispersive media, they differ, and the group delay is usually what matters for signal integrity.
-- **Scope probe ground leads add delay and phase shift** — A 15 cm ground clip on an oscilloscope probe at 500 MHz represents about 45 degrees of electrical length. The measurement itself introduces phase error and resonance, which is why spring-ground tips exist.
+- Always calculate electrical length using the propagation velocity in the actual medium, not free space — FR4 microstrip is typically 55-60% of c
+- Verify phase matching by measuring with the same cable type and batch — velocity factor varies between manufacturers and even production runs
+- Account for the delay contribution of every connector, adapter, and transition in a measurement setup — each adds a fraction of a nanosecond
+- Use spring-tip ground connections instead of alligator clip leads for oscilloscope measurements above 100 MHz to minimize probe-introduced phase error
+
+## Caveats
+
+- **Phase matching means length matching in the same medium** — Two cables cut to the same physical length only have the same delay if they have the same velocity factor. Mixing cable types (or even different batches of the same type) can introduce phase errors
+- **Electrical length changes with frequency** — A trace that is electrically short at 100 MHz may be electrically long at 1 GHz. Every frequency component in a signal sees a different electrical length, which is why broadband RF design is harder than narrowband
+- **Bends and vias add delay** — A right-angle bend or a via through the board adds a small but measurable phase shift. At microwave frequencies, these are included in simulation models. Mitered bends and controlled-impedance vias are standard practice
+- **Temperature changes propagation velocity** — Dielectric constants are temperature-dependent. A cable or board that is phase-matched at room temperature may drift at operating temperature. Critical applications (radar, phased arrays) compensate for this
+- **Do not confuse group delay and phase delay** — Phase delay is how long a single frequency takes to traverse a structure. Group delay is how long a modulated signal's envelope takes. In dispersive media, they differ, and the group delay is usually what matters for signal integrity
+- **Scope probe ground leads add delay and phase shift** — A 15 cm ground clip on an oscilloscope probe at 500 MHz represents about 45 degrees of electrical length. The measurement itself introduces phase error and resonance
+
+## Bench Relevance
+
+- A 1-meter BNC cable introduces roughly 5 ns of delay, enough to fully invert a 100 MHz signal — test setups with long cables can reverse apparent signal phase
+- A signal that appears inverted at one end of a PCB trace at GHz frequencies is not a fault — it is the expected result of propagation delay exceeding half a cycle
+- Timing skew between parallel digital signals that worsens at higher data rates points to trace length mismatch — measure physical trace lengths and apply the velocity factor
+- Phase measurements that shift when cables are moved or reconnected indicate inconsistent velocity factor or connector repeatability

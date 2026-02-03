@@ -81,10 +81,23 @@ Beyond about lambda/5, however, a single lumped parasitic is no longer enough. T
 
 **Design rules tighten.** In the lumped regime, component placement and routing are flexible. In the distributed regime, trace length, width, spacing, layer stackup, and via placement are all constrained by electrical requirements. RF PCB layout is slow and deliberate compared to low-frequency work.
 
-## Gotchas
+## Tips
 
-- **A bypass capacitor above self-resonance is an inductor** — Plot the impedance curve, not just the capacitance value. At 1 GHz, the "100 nF bypass cap" may present 5 ohm of inductive reactance instead of milliohms of capacitive reactance.
-- **Through-hole components fail silently at RF** — The circuit "works" but with degraded performance. A through-hole resistor termination at 500 MHz might produce 15 dB return loss instead of 30 dB, and you will not notice without a VNA.
-- **SPICE does not know about physical layout** — A SPICE simulation of an RF filter will match the bench result only if the parasitic elements from the physical layout are included in the model. Without them, the simulation is optimistic.
-- **The transition frequency is lower on PCBs than in free space** — Because the dielectric shortens wavelengths, effects appear at lower frequencies than free-space calculations suggest. A 5 cm trace on FR4 reaches lambda/10 around 350 MHz, not 600 MHz.
-- **Every discontinuity is a distributed problem** — Solder joints, pad transitions, bends, vias, and connector interfaces all create local impedance changes. At microwave frequencies, each one must be modeled individually.
+- Plot capacitor impedance vs. frequency (from datasheet curves or VNA measurement) to find the self-resonant frequency before selecting bypass or filter components
+- Use electromagnetic simulation or at minimum a microstrip calculator for any trace carrying signals above a few hundred MHz — SPICE alone misses distributed effects
+- Prefer smaller SMD packages (0402 or 0201) at RF to minimize parasitic inductance from leads and pads
+- Include parasitic elements from layout (pad capacitance, via inductance, trace transmission line effects) in SPICE models when simulating above 100 MHz
+
+## Caveats
+
+- **A bypass capacitor above self-resonance is an inductor** — Plot the impedance curve, not just the capacitance value. At 1 GHz, a "100 nF bypass cap" may present 5 ohm of inductive reactance instead of milliohms of capacitive reactance
+- **Through-hole components fail silently at RF** — The circuit "works" but with degraded performance. A through-hole resistor termination at 500 MHz might produce 15 dB return loss instead of 30 dB, which is not apparent without a VNA
+- **SPICE does not know about physical layout** — A SPICE simulation of an RF filter matches the bench result only if parasitic elements from the physical layout are included in the model. Without them, the simulation is optimistic
+- **The transition frequency is lower on PCBs than in free space** — Because the dielectric shortens wavelengths, effects appear at lower frequencies than free-space calculations suggest. A 5 cm trace on FR4 reaches lambda/10 around 350 MHz, not 600 MHz
+- **Every discontinuity is a distributed problem** — Solder joints, pad transitions, bends, vias, and connector interfaces all create local impedance changes. At microwave frequencies, each one must be modeled individually
+
+## Bench Relevance
+
+- A filter whose measured passband is shifted from simulation suggests parasitic inductance and capacitance from the physical layout — check component SRF and trace electrical length
+- A circuit that works in SPICE but oscillates on the bench has unmodeled feedback through layout parasitics — look for unintended coupling paths
+- Insertion loss that increases with frequency faster than expected points to distributed effects (skin effect, dielectric loss) that lumped SPICE models ignore

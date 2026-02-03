@@ -39,7 +39,7 @@ The inverse relationship means every decade increase in frequency shrinks the wa
 
 ## The Lambda/10 Rule of Thumb
 
-The most important rule of thumb in RF: when a physical dimension exceeds about one-tenth of the wavelength (lambda/10), you can no longer ignore its electrical behavior. Below lambda/10, lumped element assumptions hold reasonably well — a wire is just a wire, a trace is just a connection, a component is a point device. Above lambda/10, the structure has enough electrical length that phase shifts, standing waves, and distributed effects begin to appear.
+The most important rule of thumb in RF: when a physical dimension exceeds about one-tenth of the wavelength (lambda/10), its electrical behavior can no longer be ignored. Below lambda/10, lumped element assumptions hold reasonably well — a wire is just a wire, a trace is just a connection, a component is a point device. Above lambda/10, the structure has enough electrical length that phase shifts, standing waves, and distributed effects begin to appear.
 
 At 100 MHz (lambda = 3 m), the lambda/10 boundary is 30 cm. Most PCB traces are shorter than this, so basic circuits still behave roughly as drawn. At 1 GHz (lambda = 30 cm), the boundary drops to 3 cm — and that is shorter than many PCB traces, component leads, and certainly any cable. By 10 GHz (lambda = 3 cm), the boundary is 3 mm. Even a via through a circuit board is electrically significant.
 
@@ -69,12 +69,25 @@ For FR4 PCB material (epsilon_r approximately 4.4), the wavelength is roughly ha
 
 For coaxial cable, the dielectric (often PTFE or polyethylene) similarly shortens the wavelength. A cable with a velocity factor of 0.66 has a wavelength that is 66% of the free-space value.
 
-This is an important detail that is easy to forget: the lambda/10 rule applies to the wavelength in the medium you are working in, not the free-space wavelength. A PCB trace needs to be treated as a transmission line at a lower frequency than you might expect from just looking at the free-space numbers.
+This is an important detail that is easy to forget: the lambda/10 rule applies to the wavelength in the medium the signal travels through, not the free-space wavelength. A PCB trace needs to be treated as a transmission line at a lower frequency than you might expect from just looking at the free-space numbers.
 
-## Gotchas
+## Tips
 
-- **Free-space wavelength is not the wavelength on your board** — FR4 has an effective dielectric constant around 4.4, which shortens wavelengths by about half. Always calculate with the medium's velocity factor when estimating electrical length on a PCB.
-- **Lambda/10 is approximate, not a hard boundary** — Some situations require stricter thresholds (lambda/20 for precision phase-sensitive work), and some tolerate lambda/8. Treat it as a guideline for when to start analyzing, not a pass/fail criterion.
-- **Parasitic effects scale with frequency, not just size** — A 1 nH inductance is negligible at 1 MHz (6 milliohm) but significant at 1 GHz (6.3 ohm). The same physical structure becomes a different electrical element at different frequencies.
-- **Component self-resonant frequencies hide in datasheets** — A 100 nF ceramic capacitor might self-resonate at 20 MHz. Above that frequency, it behaves as an inductor. Always check the impedance vs. frequency curve, not just the capacitance value.
-- **Wavelength thinking applies to digital signals too** — A 1 ns rise time has frequency content above 300 MHz, regardless of the clock rate. Even a 10 MHz clock with fast edges needs RF-aware layout for the edge transitions.
+- Use the wavelength in the medium (not free space) when calculating electrical length on PCBs — FR4 shortens wavelengths by roughly half
+- Calculate lambda/10 at the highest frequency of interest, including harmonics and edge rates — a 100 MHz square wave has significant content above 1 GHz
+- Check component self-resonant frequencies against the operating frequency — a capacitor above SRF behaves as an inductor
+- Apply wavelength thinking to digital signals — a 1 ns rise time has frequency content above 300 MHz regardless of clock rate
+
+## Caveats
+
+- **Free-space wavelength is not the wavelength on a PCB** — FR4 has an effective dielectric constant around 4.4, which shortens wavelengths by about half. Electrical length calculations must use the medium's velocity factor
+- **Lambda/10 is approximate, not a hard boundary** — Some situations require stricter thresholds (lambda/20 for precision phase-sensitive work), and some tolerate lambda/8. It is a guideline for when to start analyzing, not a pass/fail criterion
+- **Parasitic effects scale with frequency, not just size** — A 1 nH inductance is negligible at 1 MHz (6 milliohm) but significant at 1 GHz (6.3 ohm). The same physical structure becomes a different electrical element at different frequencies
+- **Component self-resonant frequencies hide in datasheets** — A 100 nF ceramic capacitor might self-resonate at 20 MHz. Above that frequency, it behaves as an inductor. The impedance vs. frequency curve matters, not just the capacitance value
+- **Wavelength thinking applies to digital signals too** — A 1 ns rise time has frequency content above 300 MHz, regardless of the clock rate. Even a 10 MHz clock with fast edges needs RF-aware layout for the edge transitions
+
+## Bench Relevance
+
+- A filter that performs worse on the bench than in SPICE simulation likely has parasitic effects from leads, traces, or pads not captured in the lumped model
+- Unexpected resonances appearing above a few hundred MHz on an FR4 board suggest trace lengths have crossed the lambda/10 boundary for the in-medium wavelength
+- A bypass capacitor that fails to suppress noise at the target frequency may be operating above its self-resonant frequency — verify with an impedance analyzer or VNA
