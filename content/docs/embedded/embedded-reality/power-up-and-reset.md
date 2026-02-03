@@ -91,11 +91,27 @@ This means that any time-sensitive operation in early startup (like configuring 
 
 The internal RC oscillator is also only roughly calibrated from the factory -- typically within 1-2% at room temperature, but accuracy degrades at temperature extremes. For protocols with tight timing requirements (like UART, where baud rate error above 3% causes framing errors), the internal oscillator may not be reliable enough even temporarily. This is another reason to bring up the external crystal and PLL early in the initialization sequence.
 
-## Gotchas
+## Tips
 
-- **Slow VCC ramp defeats the internal POR** -- If the supply ramp rate is below the datasheet minimum, the POR may release before VCC is stable, causing the MCU to start executing in an undefined state. An external supervisor IC fixes this reliably.
-- **Missing brownout detection lets the MCU execute corrupt instructions** -- Without BOD enabled, a VCC sag causes the MCU to misread flash and execute garbage rather than resetting cleanly. Always enable BOD and set the threshold appropriately for your supply voltage.
-- **Talking to a peripheral before it is ready produces garbage or bus errors** -- External devices have their own startup times that are independent of the MCU's reset. Firmware must wait for peripherals to report ready or insert a sufficient delay before communicating.
-- **Power sequencing violations can cause latch-up** -- Applying voltage to I/O pins before the MCU's core supply is stable can trigger latch-up through ESD protection diodes. This can draw destructive current and is not always recoverable without a full power cycle.
-- **The reset cause register must be read before clearing** -- Some startup code or HAL libraries clear the reset status register during initialization. If your application code checks it after that point, the information is already gone. Read and save the reset cause as early as possible in startup.
-- **First-line-of-main is not first-line-of-execution** -- The startup code and SystemInit() run before main(). Bugs in these routines -- wrong flash wait states, invalid clock configuration -- cause failures that appear to happen before your code, because they do.
+- Measure the actual VCC ramp with an oscilloscope to verify it meets the datasheet minimum rise rate
+- Enable brownout detection and set the threshold appropriately for the supply voltage — a higher threshold is better if the supply is clean
+- Read and save the reset cause register in the first lines of main() before any library code can clear it
+- Add startup delays or poll status registers before communicating with external peripherals that have their own initialization times
+- Use an external supervisor IC when the power supply ramp is marginal or when external peripherals need long reset delays
+
+## Caveats
+
+- **Slow VCC ramp defeats the internal POR** — If the supply ramp rate is below the datasheet minimum, the POR may release before VCC is stable, causing the MCU to start executing in an undefined state
+- **Missing brownout detection lets the MCU execute corrupt instructions** — Without BOD enabled, a VCC sag causes the MCU to misread flash and execute garbage rather than resetting cleanly
+- **Talking to a peripheral before it is ready produces garbage or bus errors** — External devices have their own startup times independent of the MCU's reset. Firmware must wait for peripherals to report ready or insert sufficient delay
+- **Power sequencing violations can cause latch-up** — Applying voltage to I/O pins before the MCU's core supply is stable can trigger latch-up through ESD protection diodes, drawing destructive current
+- **The reset cause register must be read before clearing** — Some HAL libraries clear the reset status register during initialization. Application code that checks it later sees nothing
+- **First-line-of-main is not first-line-of-execution** — The startup code and SystemInit() run before main(). Bugs in these routines cause failures that appear to happen before application code
+
+## Bench Relevance
+
+- A system that behaves erratically at power-up but works after a reset button press may have marginal VCC ramp — measure with a scope
+- Corrupted configuration data or EEPROM after power loss suggests brownout detection is not enabled — check option bytes
+- Communication failures with external peripherals immediately after reset indicate startup timing races — add delays or poll ready status
+- An MCU drawing excessive current at startup may have latch-up from power sequencing violations — verify rail sequencing and I/O pin states during power-up
+- Failures that only occur on certain boards may be due to component tolerances affecting the VCC ramp rate — compare ramp profiles across units

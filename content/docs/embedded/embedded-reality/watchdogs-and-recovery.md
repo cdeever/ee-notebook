@@ -94,10 +94,26 @@ The critical requirement is that a failed update must not brick the device. Stra
 
 A botched firmware update that bricks a device in the field is worse than the bug the update was supposed to fix. The bootloader must be the most reliable piece of code in the system, and it should be as small and simple as possible to minimize the chance of bugs in the bootloader itself. I have seen projects where the bootloader was more complex than the application -- and sure enough, a bootloader bug eventually bricked devices in the field.
 
-## Gotchas
+## Tips
 
-- **Kicking the watchdog from a timer ISR defeats its purpose** -- The ISR runs independently of the main loop. If the main loop hangs but interrupts are still serviced, the watchdog never fires. Always kick from the main loop, conditional on actual work being completed.
-- **The IWDG cannot be disabled once enabled on most parts** -- This is by design, but it means you must kick the watchdog throughout all code paths, including bootloader mode, firmware update, and long flash erase operations. Missing a kick during a 2-second flash sector erase is a common trap.
-- **A watchdog reset without logging hides recurring failures** -- If firmware does not check the reset cause register and count watchdog resets, a system that crashes and restarts once a day appears to work. Persistent logging turns invisible failures into diagnosable events.
-- **Safe state requires hardware design, not firmware** -- Relying on firmware to drive outputs to safe values during a crash is unreliable. Pull resistors, normally-open relays, and hardware enable interlocks provide safety that does not depend on CPU execution.
-- **Dual-bank bootloaders need a rollback trigger** -- Writing a new image to the inactive bank is not enough. The bootloader must detect that the new image failed (e.g., watchdog reset on first boot) and revert automatically. Without automatic rollback, a broken update bricks the device just as effectively as a single-bank approach.
+- Kick the watchdog from the main loop after verifying all critical tasks have completed — not from a timer ISR
+- Log watchdog resets to non-volatile storage to track recurring failures that would otherwise be invisible
+- Add timeout to all blocking waits — never wait forever for a peripheral, flag, or bus transaction
+- Design hardware so outputs go to safe states when the MCU is in reset, using pull resistors and normally-open relays
+- For dual-bank bootloaders, implement automatic rollback when the new image triggers a watchdog reset on first boot
+
+## Caveats
+
+- **Kicking the watchdog from a timer ISR defeats its purpose** — The ISR runs independently of the main loop. If the main loop hangs but interrupts are still serviced, the watchdog never fires
+- **The IWDG cannot be disabled once enabled on most parts** — This is by design, but the watchdog must be kicked throughout all code paths including bootloader mode, firmware update, and long flash erase operations
+- **A watchdog reset without logging hides recurring failures** — If firmware does not check the reset cause register and count watchdog resets, a system that crashes daily appears to work
+- **Safe state requires hardware design, not firmware** — Relying on firmware to drive outputs to safe values during a crash is unreliable. Pull resistors, normally-open relays, and hardware enable interlocks provide safety independent of CPU execution
+- **Dual-bank bootloaders need a rollback trigger** — Writing a new image to the inactive bank is not enough. The bootloader must detect that the new image failed and revert automatically
+
+## Bench Relevance
+
+- A system that resets periodically but "works" likely has watchdog resets that are not being logged — check the reset cause register and add persistent counters
+- Watchdog resets that occur only during flash operations suggest the timeout is too short for the erase time — extend the timeout or kick during erase wait loops
+- A system that crashes under load but works on the bench may have marginal power supply causing brownout resets — check the reset cause register for BOR flags
+- Intermittent failures that correlate with environment changes (temperature, EMI) suggest hardware-induced faults — add diagnostic logging to capture the conditions
+- A crashed system where a motor or heater stays on indicates safe state was not designed into the hardware — outputs should default to off without firmware intervention

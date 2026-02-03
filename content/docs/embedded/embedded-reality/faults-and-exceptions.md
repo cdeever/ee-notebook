@@ -106,10 +106,26 @@ The MPU is underused in bare-metal embedded projects. Configuring it takes a few
 
 The MPU has a limited number of regions (typically 8 on Cortex-M3/M4, 16 on M7), and region alignment requirements can be restrictive (power-of-two sizes, aligned to their own size on M3/M4). Despite these limitations, even three or four MPU regions covering the stack guard, NULL page, and flash (no-write) catch a meaningful fraction of common bugs.
 
-## Gotchas
+## Tips
 
-- **The default fault handler tells you nothing** -- Most startup files define the fault handler as an infinite loop. You will not know why the system faulted until you replace it with a handler that reads the stacked PC and fault status registers.
-- **Imprecise bus faults point to the wrong instruction** -- Write buffer delays mean the stacked PC for an imprecise bus fault is some instruction after the one that caused the write. Disabling the write buffer (DISDEFWRT in the ACTLR) makes all bus faults precise, at a performance cost, but is invaluable during debugging.
-- **Stack overflow does not fault by default** -- The stack writes into valid SRAM, corrupting other variables. The resulting symptoms appear unrelated to the stack. Without an MPU guard region or stack painting, stack overflow can take days to diagnose.
-- **NULL pointer dereference may not fault on Cortex-M** -- Address 0x00000000 is the start of the vector table and is valid readable memory. Dereferencing NULL reads the initial stack pointer value. Only writes to flash addresses fault at the bus level. An MPU region marking address 0 as no-access is the fix.
-- **Floating-point instructions fault if the FPU is not enabled** -- On Cortex-M4F and M7, the FPU is disabled at reset. Any floating-point instruction triggers a UsageFault until the CPACR register is configured. This is typically done in SystemInit() or the startup code, but a custom startup file may miss it.
+- Replace the default fault handler with one that reads the stacked PC and fault status registers — this transforms debugging from "something crashed" to knowing exactly which instruction faulted
+- Enable DIV_0_TRP in the CCR to make division by zero fault instead of silently returning zero
+- Configure an MPU guard region below the stack to catch stack overflow immediately instead of silent corruption
+- Paint the stack with a known pattern (0xDEADBEEF) at startup and periodically check whether it has been overwritten
+- Use the BFAR and MMFAR registers to identify the exact address involved in bus and memory management faults
+
+## Caveats
+
+- **The default fault handler tells you nothing** — Most startup files define the fault handler as an infinite loop. The system faults, but there is no indication why without a custom handler that reads the stacked PC and fault status registers
+- **Imprecise bus faults point to the wrong instruction** — Write buffer delays mean the stacked PC for an imprecise bus fault is some instruction after the one that caused the write. Disabling the write buffer (DISDEFWRT in the ACTLR) makes all bus faults precise
+- **Stack overflow does not fault by default** — The stack writes into valid SRAM, corrupting other variables. The resulting symptoms appear unrelated to the stack
+- **NULL pointer dereference may not fault on Cortex-M** — Address 0x00000000 is the start of the vector table and is valid readable memory. Dereferencing NULL reads the initial stack pointer value. Only writes to flash addresses fault at the bus level
+- **Floating-point instructions fault if the FPU is not enabled** — On Cortex-M4F and M7, the FPU is disabled at reset. Any floating-point instruction triggers a UsageFault until the CPACR register is configured
+
+## Bench Relevance
+
+- A system that crashes but halts in an infinite loop with no diagnostic output has the default fault handler — add PC and fault register reporting
+- Corrupted global variables or state machine jumps to impossible states suggest stack overflow — enable MPU guard regions or check stack painting
+- A UsageFault immediately after reset on Cortex-M4F/M7 often indicates the FPU was not enabled before floating-point code executed
+- A BusFault when accessing a peripheral typically means the peripheral clock is not enabled — check the clock configuration
+- Faults that only occur intermittently may have imprecise PC values — disable the write buffer temporarily to get precise fault locations
