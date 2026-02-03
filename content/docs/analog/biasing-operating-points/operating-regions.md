@@ -84,9 +84,23 @@ At the bench:
 - **Check the output waveform** — Clipping on an oscilloscope immediately tells you the device is leaving the active region during part of the signal cycle
 - **Measure collector/drain current** — Compare to the expected bias current. Significantly higher or lower suggests the wrong operating region
 
-## Gotchas
+## Tips
+
+- Measure V_CE (BJT) or V_DS (MOSFET) under operating conditions to verify the device is in the intended region
+- Design with margin from region boundaries — avoid operating near saturation or cutoff limits
+- Always verify bias with an oscilloscope under signal conditions, not just with DC measurements
+- For push-pull stages, set quiescent current high enough to minimize crossover distortion
+
+## Caveats
 
 - **Region boundaries are not sharp** — The transition from active to saturation is gradual. Gain starts to drop and distortion increases before the transistor is fully saturated
-- **Temperature shifts region boundaries** — V_BE decreases about 2 mV/C, V_th decreases about 2-5 mV/C. A circuit at the edge of a region at room temperature may cross into the wrong region at elevated temperature
+- **Temperature shifts region boundaries** — V_BE decreases about 2 mV/°C, V_th decreases about 2-5 mV/°C. A circuit at the edge of a region at room temperature may cross into the wrong region at elevated temperature
 - **Load changes move the operating point** — A heavier load draws more current, which can push a transistor into saturation. A circuit that works with one load may clip with a heavier one
-- **Transient excursions** — The bias point might be correct on average, but signal peaks can momentarily push the device out of the active region. The DC multimeter says everything is fine, but the oscilloscope shows clipping
+- **Transient excursions** — The bias point might be correct on average, but signal peaks can momentarily push the device out of the active region. The DC multimeter shows everything is fine, but the oscilloscope reveals clipping
+
+## Bench Relevance
+
+- Flat-topped output waveforms indicate the device is entering saturation — increase V_CE headroom or reduce gain
+- Flat-bottomed output waveforms indicate the device is entering cutoff — adjust bias toward higher current
+- Asymmetric clipping means the Q-point isn't centered — measure DC voltages and adjust the bias network
+- A notch in the output waveform near zero crossing suggests crossover distortion in a push-pull stage — increase quiescent current

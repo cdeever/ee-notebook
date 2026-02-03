@@ -74,9 +74,23 @@ The Q-point determines:
 - **Power dissipation** — P_Q = V_CE x I_C. Higher bias current means better noise performance and larger g_m, but more heat
 - **Noise** — BJT noise is lowest at moderate collector currents (typically hundreds of microamps to a few milliamps). Too low or too high increases noise
 
-## Gotchas
+## Tips
 
-- **V_BE is temperature-dependent** — About -2 mV/C. A 50 C temperature rise shifts V_BE by 100 mV. Without feedback (emitter degeneration), this causes significant bias drift
+- Use voltage divider bias with a stiff divider (divider current at least 10× base current) for predictable, beta-independent operation
+- Include emitter degeneration to provide negative feedback and stabilize the Q-point against temperature and component variations
+- For critical stability, consider current source biasing — it sets the operating current independent of transistor parameters
+- Center the Q-point in the output swing range for maximum symmetric signal handling
+
+## Caveats
+
+- **V_BE is temperature-dependent** — About -2 mV/°C. A 50°C temperature rise shifts V_BE by 100 mV. Without feedback (emitter degeneration), this causes significant bias drift
 - **Bias and signal interact** — Large signals can push the transistor out of the active region momentarily (clipping). The bias point must have enough headroom for the expected signal amplitude
 - **Decoupling the bias network** — If the bias resistors are not properly bypassed, power supply noise modulates the bias point, adding noise to the signal
 - **Start-up conditions** — Some bias circuits have multiple stable states. At power-on, the circuit might settle at the wrong operating point. This is especially a problem in differential pairs and current mirrors with feedback
+
+## Bench Relevance
+
+- A transistor that clips asymmetrically has a bias point that isn't centered — measure V_CE and adjust the bias network
+- Inconsistent gain between supposedly identical circuits indicates beta-dependent biasing — switch to voltage divider or current source bias
+- Drift during warm-up suggests bias is sensitive to V_BE temperature variation — add or increase emitter degeneration
+- A circuit that oscillates or has excessive noise may have an inadequately bypassed bias network — check for proper decoupling

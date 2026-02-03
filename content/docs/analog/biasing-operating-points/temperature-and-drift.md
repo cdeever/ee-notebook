@@ -87,9 +87,23 @@ If two components need to track each other, put them physically close together o
 
 For ultra-low-drift applications, chopper-stabilized amplifiers modulate the signal to high frequency, amplify it (where drift is irrelevant), and demodulate. This eliminates DC offset drift at the cost of complexity and bandwidth.
 
-## Gotchas
+## Tips
+
+- Use matched-tempco components in critical ratios (voltage dividers, gain-setting resistors) to minimize drift
+- Place components that need to track each other physically close together for thermal coupling
+- Choose C0G/NP0 capacitors for timing and filtering circuits where stability matters
+- Allow adequate warm-up time before taking precision measurements
+
+## Caveats
 
 - **Self-heating** — A component dissipating power heats itself. This changes its own parameters, which changes the power dissipation, which changes the temperature. This feedback loop can stabilize (negative thermal feedback) or run away (positive thermal feedback). BJTs are particularly susceptible to thermal runaway because higher temperature means more current at the same V_BE
 - **Thermal gradients** — A single warm component creates a temperature gradient across the PCB. Nearby components see different temperatures depending on their position. A precision circuit with one side closer to a hot regulator drifts asymmetrically
-- **The warm-up problem** — You can't avoid the fact that components change from cold to warm. The question is whether your design tolerates the change or relies on exact values. Feedback-based designs tolerate it; open-loop designs don't
+- **The warm-up problem** — Components change from cold to warm, and designs must either tolerate this change through feedback or specify a warm-up period. Open-loop designs relying on exact values drift with temperature
 - **Temperature cycling fatigue** — Repeated heating and cooling mechanically stresses solder joints and component bodies. This is a reliability issue separate from electrical drift, but it's caused by the same thermal variations
+
+## Bench Relevance
+
+- Output that drifts during warm-up and stabilizes after 10-30 minutes indicates temperature-sensitive components reaching equilibrium
+- Gain that changes with ambient temperature suggests mismatched tempco resistors in the gain-setting network
+- A circuit that fails at elevated temperature but works at room temperature has marginal bias near a region boundary
+- Intermittent failures that correlate with thermal cycling suggest a drift-sensitive threshold or mechanically stressed connection
