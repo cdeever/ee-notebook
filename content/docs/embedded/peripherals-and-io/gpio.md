@@ -188,11 +188,28 @@ GPIO pins operate in a physical world of voltage levels, capacitance, and protec
 
 **GPIO after reset:** On most MCUs, all GPIO pins default to input mode with no pull resistors after reset. This means every pin is floating until firmware configures it. During the brief window between reset and initialization, external circuits must tolerate floating MCU pins. If a pin drives a power FET gate, for example, a floating input could turn the FET on uncontrollably during startup. External pull resistors on critical pins solve this — do not rely on firmware reaching the GPIO init code quickly enough.
 
-## Gotchas
+## Tips
 
-- **Floating inputs cause real problems** — An unconfigured or disconnected CMOS input does not just read an undefined value. It can oscillate, draw excess current, trigger spurious interrupts, and inject noise into adjacent pins. Always configure unused pins as outputs driven LOW, or as inputs with a pull resistor enabled
-- **Read-modify-write races are silent** — The RMW hazard on port registers produces intermittent glitches that are nearly impossible to catch in testing. The bug manifests as a pin briefly flickering to the wrong state under heavy interrupt load. Use set/clear registers from the start, not after debugging for three days
-- **Alternate function conflicts are a design-time problem** — Two peripherals that need the same pin cannot coexist. This is not a firmware bug — it is a pinout planning failure. Check the pin mux table before committing to a schematic, not after the board is fabricated
-- **Drive strength affects signal integrity** — Setting all pins to maximum drive strength creates fast edges that ring on long traces and couple into adjacent signals. Use the minimum drive strength that meets your timing requirements, especially on dense boards with mixed analog and digital signals
-- **Internal pull resistors have wide tolerances** — The datasheet may specify a pull-up of "20-50 kohm." If your circuit depends on a precise pull value (for instance, forming a voltage divider with a sensor output), use an external resistor with a known value instead
-- **ESD protection diodes are not voltage clamps** — The internal diodes protect against brief transients, not sustained overvoltage. Connecting a 5 V signal to a non-tolerant 3.3 V pin will forward-bias the ESD diode continuously, injecting current into VDD and potentially damaging the MCU or corrupting other peripherals sharing that supply rail
+- Configure unused GPIO pins as outputs driven LOW or as inputs with pull resistors — floating pins waste power and can cause erratic behavior
+- Use set/clear registers (BSRR on STM32) instead of read-modify-write on port registers to avoid race conditions with ISRs
+- Start with the slowest slew rate setting and only increase drive strength when signal integrity requires it
+- For I2C buses, always use external pull-up resistors (2.2-4.7 kohm) — internal pulls are far too weak
+- Add external pull resistors on pins that control power FETs, relays, or motors to define safe states during startup before firmware runs
+- Check the pin mux table early in board design — alternate function conflicts cannot be fixed in firmware
+
+## Caveats
+
+- **Floating inputs cause real problems** — An unconfigured or disconnected CMOS input does not just read an undefined value. It can oscillate, draw excess current, trigger spurious interrupts, and inject noise into adjacent pins
+- **Read-modify-write races are silent** — The RMW hazard on port registers produces intermittent glitches that are nearly impossible to catch in testing. The bug manifests as a pin briefly flickering to the wrong state under heavy interrupt load
+- **Alternate function conflicts are a design-time problem** — Two peripherals that need the same pin cannot coexist. This is not a firmware bug — it is a pinout planning failure
+- **Drive strength affects signal integrity** — Setting all pins to maximum drive strength creates fast edges that ring on long traces and couple into adjacent signals
+- **Internal pull resistors have wide tolerances** — The datasheet may specify a pull-up of "20-50 kohm." If a circuit depends on a precise pull value (for instance, forming a voltage divider with a sensor output), use an external resistor with a known value instead
+- **ESD protection diodes are not voltage clamps** — The internal diodes protect against brief transients, not sustained overvoltage. Connecting a 5 V signal to a non-tolerant 3.3 V pin forward-biases the ESD diode continuously, injecting current into VDD and potentially damaging the MCU
+
+## Bench Relevance
+
+- A pin that reads the wrong value despite correct configuration may be in the wrong alternate function mode — verify the mux register setting
+- Intermittent glitches on GPIO outputs under interrupt load suggest read-modify-write races — switch to set/clear registers
+- An I2C bus with slow, rounded edges or communication failures likely has insufficient pull-up strength — check pull resistor values against bus capacitance
+- A pin that floats during power-up and causes external circuits to misbehave needs an external pull resistor, not just firmware configuration
+- Excessive EMI or signal ringing on GPIO outputs indicates drive strength is set higher than necessary

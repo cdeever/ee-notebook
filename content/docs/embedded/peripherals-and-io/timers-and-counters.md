@@ -92,11 +92,28 @@ Watchdog timers come in two flavors on most MCUs: **independent watchdog** (IWDG
 
 Watchdog configuration and recovery strategies are covered in detail in the Embedded Reality section under Watchdogs & Recovery.
 
-## Gotchas
+## Tips
 
-- **Prescaler off-by-one errors are universal** — Some MCUs divide by (prescaler register value + 1), others divide by the register value directly. A prescaler register value of 0 might mean "divide by 1" or "timer stopped." Always verify against the reference manual, not the HAL documentation, because the HAL may or may not add 1 for you
-- **PWM frequency and resolution are coupled** — You cannot independently choose both. Higher PWM frequency means fewer counter ticks per period and coarser duty cycle steps. A 16-bit timer at 72 MHz can produce 1 kHz PWM with 16-bit resolution, but only about 10-bit resolution at 70 kHz. Calculate both before committing to a design
-- **Input capture overflows silently** — If two consecutive edges are more than one timer period apart, the counter wraps and the measurement is wrong. Firmware must track overflow events (using the update interrupt) and account for them. Missing an overflow interrupt means the timing measurement is off by one full timer period
-- **Timer clock sources vary by timer** — Not all timers on the same MCU are clocked at the same frequency. On STM32, timers on APB1 and APB2 may run at different clock rates, and the timer clock may be double the APB bus clock (depending on the prescaler configuration). Check the clock tree diagram, not just the system clock frequency
-- **Dead-time values need bench verification** — Calculated dead time based on datasheet switching times is a starting point, not a finished value. Board parasitics, gate drive strength, and temperature all affect actual switching speed. Verify with an oscilloscope across the full operating range before declaring the design done. See [Signals & Waveforms]({{< relref "/docs/measurement/signals-waveforms" >}}) for scope measurement techniques
-- **Changing timer registers mid-count can glitch** — Writing to the auto-reload or compare registers while the timer is running can produce unexpected output pulses if the new value is below the current counter value. Many timers have shadow registers (preload / buffered update) that apply changes only at the next update event — enable preload to avoid mid-cycle glitches
+- Verify prescaler behavior against the reference manual — HAL libraries may or may not add 1, leading to timing errors
+- Calculate both PWM frequency and duty cycle resolution before committing to a design — these are coupled constraints
+- Enable the update interrupt when using input capture to track timer overflows for long pulse measurements
+- Check the clock tree diagram to find the actual timer clock frequency — APB1 and APB2 timers often run at different rates
+- Enable preload/shadow registers when changing auto-reload or compare values on a running timer to prevent mid-cycle glitches
+- Verify dead-time settings on the bench across the full operating range — calculated values are starting points only
+
+## Caveats
+
+- **Prescaler off-by-one errors are universal** — Some MCUs divide by (prescaler register value + 1), others divide by the register value directly. A prescaler register value of 0 might mean "divide by 1" or "timer stopped"
+- **PWM frequency and resolution are coupled** — Higher PWM frequency means fewer counter ticks per period and coarser duty cycle steps. A 16-bit timer at 72 MHz produces 1 kHz PWM with 16-bit resolution, but only about 10-bit resolution at 70 kHz
+- **Input capture overflows silently** — If two consecutive edges are more than one timer period apart, the counter wraps and the measurement is wrong. Firmware must track overflow events and account for them
+- **Timer clock sources vary by timer** — Not all timers on the same MCU are clocked at the same frequency. On STM32, timers on APB1 and APB2 may run at different clock rates, and the timer clock may be double the APB bus clock
+- **Dead-time values need bench verification** — Calculated dead time based on datasheet switching times is a starting point, not a finished value. Board parasitics, gate drive strength, and temperature all affect actual switching speed
+- **Changing timer registers mid-count can glitch** — Writing to the auto-reload or compare registers while the timer is running can produce unexpected output pulses if the new value is below the current counter value
+
+## Bench Relevance
+
+- PWM output at the wrong frequency often traces to prescaler off-by-one errors or incorrect timer clock assumptions — verify with a scope
+- Input capture measurements that are occasionally wildly wrong (by exactly one timer period) indicate missed overflow tracking
+- Dead-time that works at low duty cycles but causes shoot-through at high duty cycles suggests the calculated value is too short for actual switching times
+- Glitchy PWM output when changing duty cycle dynamically indicates preload registers are not enabled
+- Timer interrupts at unexpected rates suggest the wrong clock source or prescaler configuration — check the actual timer clock

@@ -93,11 +93,28 @@ Direct Memory Access (DMA) allows the ADC to stream conversion results directly 
 
 The same DMA pattern works for DAC output — filling a buffer with waveform samples and letting DMA feed them to the DAC at a timer-triggered rate produces clean, jitter-free analog output. This is how most MCU-based audio output and signal generation works.
 
-## Gotchas
+## Tips
 
-- **Source impedance kills ADC accuracy silently** — A 100 kohm source impedance with a 1 us sample time and a 5 pF S&H capacitor gives a time constant of 0.5 us — the capacitor only charges to 86% of the true voltage in one time constant. The reading is consistently low, and nothing in the digital domain explains why. Always check source impedance against the datasheet's maximum specification for your chosen sample time
-- **VDDA noise is ADC noise** — If the analog supply is shared with digital circuitry (or worse, connected directly to VDD without filtering), every digital switching event appears in the ADC result. On boards where ADC accuracy matters, VDDA needs its own LC or ferrite-bead filter, even if the MCU datasheet shows VDDA connected directly to VDD in the reference schematic
-- **Averaging does not fix systematic errors** — Averaging reduces random noise but does nothing for offset errors, gain errors, or errors caused by insufficient sample time. If the ADC consistently reads 5 LSBs low because the S&H capacitor is not fully charged, averaging 1000 samples still reads 5 LSBs low
-- **Comparator hysteresis must be configured explicitly** — The default hysteresis on many MCUs is zero or very small. A comparator watching a slowly changing signal with no hysteresis will chatter at the threshold, firing dozens of interrupts per crossing. Always enable hysteresis, and verify the threshold behavior with a slow ramp on the bench
-- **DAC output buffers add offset** — Enabling the on-chip DAC output buffer adds a few millivolts of offset and limits the output swing to slightly less than rail-to-rail. For precision applications, measure the actual output against the intended code and apply a correction — or use an external buffer with known specifications
-- **DMA buffer alignment and volatility matter** — DMA writes to memory bypassing the CPU cache (on MCUs with cache). The buffer must be in a non-cacheable region or the cache must be invalidated before reading. Also, the buffer variable must be declared `volatile` or accessed with appropriate barriers, or the compiler may optimize away reads of "unchanged" memory that DMA has actually updated
+- Check ADC source impedance against the datasheet's maximum specification for the chosen sample time — high impedance sources need longer sample times or an external buffer
+- Filter VDDA with an LC or ferrite-bead filter when ADC accuracy matters, even if the reference schematic shows direct connection to VDD
+- Discard the first ADC sample after switching channels to avoid charge injection errors from the previous channel
+- Enable comparator hysteresis to prevent chatter when monitoring slowly changing signals — test with a slow ramp on the bench
+- Use DMA for continuous ADC sampling to eliminate interrupt overhead and timing jitter
+- Declare DMA buffers as `volatile` or invalidate cache before reading on MCUs with data cache
+
+## Caveats
+
+- **Source impedance kills ADC accuracy silently** — A 100 kohm source impedance with a 1 us sample time and a 5 pF S&H capacitor gives a time constant of 0.5 us — the capacitor only charges to 86% of the true voltage in one time constant. The reading is consistently low, and nothing in the digital domain explains it
+- **VDDA noise is ADC noise** — If the analog supply is shared with digital circuitry (or worse, connected directly to VDD without filtering), every digital switching event appears in the ADC result
+- **Averaging does not fix systematic errors** — Averaging reduces random noise but does nothing for offset errors, gain errors, or errors caused by insufficient sample time
+- **Comparator hysteresis must be configured explicitly** — The default hysteresis on many MCUs is zero or very small. A comparator watching a slowly changing signal with no hysteresis will chatter at the threshold, firing dozens of interrupts per crossing
+- **DAC output buffers add offset** — Enabling the on-chip DAC output buffer adds a few millivolts of offset and limits the output swing to slightly less than rail-to-rail
+- **DMA buffer alignment and volatility matter** — DMA writes to memory bypassing the CPU cache (on MCUs with cache). The buffer must be in a non-cacheable region or the cache must be invalidated before reading
+
+## Bench Relevance
+
+- ADC readings that are consistently low (not just noisy) suggest insufficient sample time for the source impedance — try increasing sample time or adding a buffer amplifier
+- ADC noise that correlates with digital activity indicates poor VDDA filtering or layout — add filtering and verify supply cleanliness with a scope
+- A comparator that fires multiple interrupts per signal crossing has insufficient hysteresis — increase hysteresis setting or add external positive feedback
+- DAC output that does not reach expected voltages may be limited by the output buffer's offset or swing — measure actual output vs code and apply correction
+- ADC data that appears stale or unchanging despite real signal changes suggests DMA cache coherency issues — verify buffer placement and cache invalidation
