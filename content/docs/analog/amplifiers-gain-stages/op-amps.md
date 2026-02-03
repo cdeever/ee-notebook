@@ -101,11 +101,25 @@ When selecting an op-amp for a real application, these are the parameters that a
 | Supply voltage range | Available power rails | Single-supply: rail-to-rail I/O |
 | CMRR / PSRR | Rejection of interference | Industrial environments |
 
-## Gotchas
+## Tips
 
-- **Phase margin and capacitive loads** — Most op-amps are not stable with capacitive loads. A cable or long trace adds capacitance that can cause oscillation. A small series output resistor (10-100 ohm) often fixes this
+- Add a small series resistor (10-100 Ω) at the op-amp output when driving capacitive loads or cables to prevent oscillation
+- For single-supply AC circuits, set the DC bias point at mid-supply using a resistive divider with a bypass capacitor
+- Always install 100 nF ceramic bypass capacitors on both power pins, as close to the IC as possible
+- Use FET-input op-amps when driving from high-impedance sources to minimize bias current errors
+
+## Caveats
+
+- **Phase margin and capacitive loads** — Most op-amps are not stable with capacitive loads. Cables or long traces add capacitance that can cause oscillation. A small series output resistor (10-100 Ω) often provides a fix
 - **Rail-to-rail doesn't mean rail-to-rail** — "Rail-to-rail output" means the output can get close to the rails under light loads — typically within 50-200 mV. Under heavier loads, the headroom requirement increases
 - **Single-supply biasing** — On a single supply, the inputs need to be biased above ground. AC-coupled circuits need a DC bias point at mid-supply. This is straightforward but easy to forget
 - **Noise gain vs. signal gain** — The noise gain (which determines stability and bandwidth) is not always the same as the signal gain. For inverting amplifiers, noise gain is 1 + R_f/R_in, which is higher than the signal gain magnitude |R_f/R_in|
-- **Decoupling is not optional** — Op-amp power pins need local bypass caps (100 nF ceramic minimum). Without them, the op-amp's power supply rejection degrades and it can oscillate
-- **Comparator use** — An op-amp without negative feedback acts as a comparator, but it's usually a bad one — slow, no hysteresis, and the output doesn't swing cleanly to the rails. Use a real comparator for comparison tasks
+- **Decoupling is not optional** — Op-amp power pins need local bypass caps (100 nF ceramic minimum). Without them, the power supply rejection degrades and oscillation can occur
+- **Comparator use** — An op-amp without negative feedback acts as a comparator, but usually a poor one — slow, no hysteresis, and the output doesn't swing cleanly to the rails. Use a dedicated comparator for comparison tasks
+
+## Bench Relevance
+
+- An op-amp circuit that oscillates or rings often has a capacitive load or missing bypass capacitors — check output wiring and add series resistance or decoupling
+- Output clipping well before the supply rails indicates the op-amp lacks rail-to-rail capability or the load is too heavy
+- Unexpected DC offset at the output suggests input offset voltage being amplified by the noise gain — verify offset specs match the application
+- An op-amp used as a comparator that responds slowly or chatters has no hysteresis — switch to a dedicated comparator IC with built-in hysteresis

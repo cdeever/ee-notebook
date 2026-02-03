@@ -89,10 +89,24 @@ This is the fundamental stability problem, and it's why:
 - Externally compensated op-amps require a compensation capacitor chosen for the specific gain configuration
 - High-gain discrete multistage amplifiers need careful analysis of the loop gain and phase (see [Stability & Oscillation]({{< relref "/docs/analog/noise-stability-reality/stability-and-oscillation" >}}))
 
-## Gotchas
+## Tips
 
-- **Gain accuracy** — Cascaded gains multiply, but so do gain errors. If each stage has 10% gain error, three stages have 33% total error (1.1^3 = 1.33). For precise overall gain, use feedback around the whole chain, not just within each stage
-- **Noise figure degrades with each stage** — The first stage's noise figure dominates the overall noise figure (Friis formula). Make the first stage as low-noise as possible, even if later stages are noisier
+- Optimize the first stage for low noise — its noise figure dominates the overall system noise (Friis formula)
+- Use overall feedback around the entire chain for precise gain, rather than relying on individual stage accuracy
+- Size coupling capacitors between AC-coupled stages generously to avoid low-frequency gain loss
+- Consider cascode configurations for wide bandwidth without sacrificing gain
+
+## Caveats
+
+- **Gain accuracy** — Cascaded gains multiply, but so do gain errors. If each stage has 10% gain error, three stages have 33% total error (1.1³ = 1.33). For precise overall gain, use feedback around the whole chain, not just within each stage
+- **Noise figure degrades with each stage** — The first stage's noise figure dominates the overall noise figure (Friis formula). The first stage should be as low-noise as possible, even if later stages are noisier
 - **DC offset accumulates** — In DC-coupled chains, each stage's offset gets amplified by all subsequent stages. A 1 mV offset in the first stage of a 60 dB chain produces 1 V of output offset
-- **Bandwidth shrinks** — Cascading identical stages reduces bandwidth. Two identical stages with bandwidth B each give a combined bandwidth of about B x 0.64. Three stages: B x 0.51. This is called bandwidth shrinkage
+- **Bandwidth shrinks** — Cascading identical stages reduces bandwidth. Two identical stages with bandwidth B each give a combined bandwidth of about B × 0.64. Three stages: B × 0.51. This is called bandwidth shrinkage
 - **Ground loops between stages** — If stages are on different boards or sections of a board, ground impedance between them can couple signals. This is especially problematic in high-gain chains where millivolts of ground noise become volts at the output
+
+## Bench Relevance
+
+- Large DC offset at the output of a DC-coupled chain indicates offset accumulation — check the first stage bias and consider AC coupling or DC servo
+- A multistage amplifier that oscillates likely has insufficient phase margin — verify compensation and check for parasitic feedback paths
+- Noise floor that doesn't improve when later stages are bypassed confirms the first stage is the dominant noise source
+- Reduced bandwidth compared to single-stage calculations suggests bandwidth shrinkage — account for the cascading factor in design
