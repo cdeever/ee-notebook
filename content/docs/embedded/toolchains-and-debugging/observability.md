@@ -120,11 +120,27 @@ When a system crashes in the field, there is no debugger to inspect the state. T
 
 This is the embedded equivalent of a crash dump, and it transforms field debugging from "it randomly reboots sometimes" to "it faulted at address 0x08003A7C due to a bus error accessing 0x40021800, which is the RCC register — probably a clock that was not enabled." That level of information is the difference between a wild goose chase and a targeted fix.
 
-## Gotchas
+## Tips
 
-- **UART logging changes timing enough to mask bugs** — A 50-character message at 115200 baud takes over 4 ms without DMA buffering. This is long enough to change interrupt timing, hide race conditions, and alter the behavior you are trying to observe. Always account for the timing impact of your logging.
-- **ITM requires correct SWO clock configuration** — If the SWO prescaler does not match the CPU clock frequency, ITM output is garbled or absent. After changing the system clock, the SWO configuration must be updated too. This is the most common "ITM stopped working" problem.
-- **GPIO toggle pins must be configured before use** — It sounds obvious, but a debug GPIO toggle in an early fault handler or startup code will do nothing if the GPIO port clock has not been enabled yet. For very early debugging, use a pin that defaults to a usable state, or enable the GPIO clock as the very first operation.
-- **Post-mortem data survives only if SRAM is preserved** — A power loss clears SRAM. A watchdog reset may or may not clear SRAM depending on the MCU. Battery-backed SRAM (e.g., STM32 backup SRAM) or writing to flash/EEPROM is more reliable, but flash writes take time and may not complete if the supply is collapsing.
-- **Logic analyzer sample rate must exceed signal frequency** — A 24 MHz logic analyzer sampling a 12 MHz SPI clock will alias or miss edges. The general rule is at least 4x the signal frequency for reliable capture, and 10x or more for timing measurements. Nyquist applies here just as it does to analog sampling.
-- **Binary logging is unreadable without the matching decoder** — If you switch to binary log encoding for performance, you need a host-side tool that knows the message format. If the firmware version and the decoder version diverge, the output is garbage. Version the log format and keep the decoder in sync with the firmware.
+- Use DMA-buffered UART output to reduce logging overhead from milliseconds to microseconds per message
+- Toggle GPIO pins at function entry/exit and measure with a scope for timing analysis that does not affect system behavior
+- Save fault handler data (PC, LR, fault status registers) to battery-backed SRAM or flash for post-mortem debugging of field failures
+- Include timestamps and source identifiers in log messages to reconstruct event sequences
+- Keep a dedicated "timing debug" header broken out on prototype boards for scope and logic analyzer connections
+
+## Caveats
+
+- **UART logging changes timing enough to mask bugs** — A 50-character message at 115200 baud takes over 4 ms without DMA buffering. This is long enough to change interrupt timing, hide race conditions, and alter the behavior being observed
+- **ITM requires correct SWO clock configuration** — If the SWO prescaler does not match the CPU clock frequency, ITM output is garbled or absent. After changing the system clock, the SWO configuration must be updated
+- **GPIO toggle pins must be configured before use** — A debug GPIO toggle in an early fault handler or startup code will do nothing if the GPIO port clock has not been enabled yet
+- **Post-mortem data survives only if SRAM is preserved** — A power loss clears SRAM. A watchdog reset may or may not clear SRAM depending on the MCU. Battery-backed SRAM or flash/EEPROM is more reliable
+- **Logic analyzer sample rate must exceed signal frequency** — A 24 MHz logic analyzer sampling a 12 MHz SPI clock will alias or miss edges. At least 4x the signal frequency is needed for reliable capture
+- **Binary logging is unreadable without the matching decoder** — If binary log encoding is used, a host-side tool that knows the message format is required. Version the log format and keep the decoder in sync with firmware
+
+## Bench Relevance
+
+- A bug that disappears when logging is added suggests timing-sensitive behavior — reduce logging overhead or use GPIO toggling instead
+- ITM output that becomes garbled after a clock configuration change indicates an SWO prescaler mismatch
+- A system that crashes in the field but works on the bench benefits from post-mortem data capture — add fault handler logging to preserved memory
+- Protocol problems (SPI, I2C, UART) that are hard to diagnose in software become clear with a logic analyzer showing actual bus transactions
+- Intermittent resets that do not appear in logs may be power supply related — use a scope to check for voltage droops during high-current transitions

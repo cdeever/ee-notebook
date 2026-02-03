@@ -115,11 +115,27 @@ More critically, most MCUs allow permanently locking the debug interface via opt
 
 This is intentional — it prevents competitors from reading your firmware. But if you lock a chip during development by accident, it is bricked for debugging purposes. Some MCUs allow a "mass erase unlock" that erases all flash and then re-enables debug access, but this destroys the firmware.
 
-## Gotchas
+## Tips
 
-- **Hardware breakpoints are limited in number** — Cortex-M typically provides 4-8 hardware breakpoints. If you set more than the hardware supports, the debugger may silently fail to set the extra ones, or it may try software breakpoints that do not work in flash. Check your debugger's output for warnings.
-- **Semihosting crashes without a debugger attached** — The `BKPT` instruction used by semihosting causes a hard fault if no debug probe is connected. Production firmware must never include semihosting calls, or must guard them behind a check for debugger presence (the CoreDebug->DHCSR register, C_DEBUGEN bit).
-- **Debugging optimized code is confusing by design** — At `-O2`, variables are "optimized out," lines execute out of order, and functions are inlined or eliminated. This is correct compiler behavior, not a bug. Build a separate debug configuration at `-O0` for interactive debugging.
-- **SWO requires a matching clock configuration** — The SWO output baud rate depends on the CPU clock. If the debugger's SWO configuration does not match the target's actual clock speed, SWO output is garbled or silent. Some probes auto-detect the clock, but many require manual configuration.
-- **Locking debug access is permanent on some MCUs** — Write-protecting the debug interface (read-out protection level 2 on STM32, for example) is irreversible. The chip cannot be debugged, reprogrammed, or unlocked. This is a manufacturing step, not a development step. Triple-check before setting it.
-- **Watchpoints on peripheral registers may not work as expected** — The DWT watchpoint comparators monitor the CPU's data bus. DMA transfers that bypass the CPU will not trigger a watchpoint, even if they write to the watched address. If DMA is corrupting a buffer, watchpoints will not catch it.
+- Maintain a debug build configuration at `-O0` alongside the optimized release build for interactive debugging sessions
+- Set breakpoints deliberately and remove them when done — hardware breakpoint slots are limited (typically 4-8)
+- Use watchpoints to find memory corruption bugs quickly — set a watchpoint on the corrupted variable's address and the CPU halts at the offending instruction
+- Check the CoreDebug->DHCSR C_DEBUGEN bit before semihosting calls to prevent hard faults when no debugger is attached
+- Keep a couple of header pins broken out on every prototype board for GPIO-based timing measurements
+
+## Caveats
+
+- **Hardware breakpoints are limited in number** — Cortex-M typically provides 4-8 hardware breakpoints. If more are set than the hardware supports, the debugger may silently fail to set extras or try software breakpoints that do not work in flash
+- **Semihosting crashes without a debugger attached** — The `BKPT` instruction used by semihosting causes a hard fault if no debug probe is connected. Production firmware must never include semihosting calls without guarding for debugger presence
+- **Debugging optimized code is confusing by design** — At `-O2`, variables are "optimized out," lines execute out of order, and functions are inlined or eliminated. This is correct compiler behavior, not a bug
+- **SWO requires a matching clock configuration** — The SWO output baud rate depends on the CPU clock. If the debugger's SWO configuration does not match the target's actual clock speed, SWO output is garbled or silent
+- **Locking debug access is permanent on some MCUs** — Write-protecting the debug interface (read-out protection level 2 on STM32, for example) is irreversible. The chip cannot be debugged, reprogrammed, or unlocked
+- **Watchpoints on peripheral registers may not work as expected** — The DWT watchpoint comparators monitor the CPU's data bus. DMA transfers that bypass the CPU will not trigger a watchpoint, even if they write to the watched address
+
+## Bench Relevance
+
+- A debugger that cannot connect to a previously working board may indicate debug lock was accidentally enabled — check option bytes
+- Variables showing as "optimized out" in the debugger indicate the code was built with optimization — use the `-O0` debug build
+- SWO output that is garbled or absent after a clock change means the SWO prescaler needs reconfiguration to match the new CPU clock
+- A hard fault during semihosting calls indicates the firmware is running without a debugger attached
+- Firmware that builds but fails to run from flash may have exceeded the hardware breakpoint limit during a previous debug session — power cycle the target

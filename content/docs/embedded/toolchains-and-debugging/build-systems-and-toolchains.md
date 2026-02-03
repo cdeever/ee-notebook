@@ -90,11 +90,28 @@ When the build fails with "region FLASH overflowed" or "region SRAM overflowed,"
 
 Reading a map file for the first time is overwhelming — they are long and dense. Start by looking at the memory usage summary at the bottom (total flash used, total SRAM used) and the list of symbols sorted by size. The largest functions and data objects are usually the first candidates for optimization when space runs tight. Tools like `puncover` or `bloaty` can parse map files and present the data more readably, but the raw map file is always available and requires no extra tooling.
 
-## Gotchas
+## Tips
 
-- **Missing `-mthumb` produces ARM-mode code that faults on Cortex-M** — The Cortex-M only executes Thumb instructions. If the compiler emits ARM-mode code (32-bit ARM encoding), the CPU faults immediately. This usually only happens with hand-assembled build commands or custom Makefiles that forgot the flag.
-- **Optimization makes bugs appear and disappear** — A bug that manifests at `-O2` but not `-O0` is almost always undefined behavior or a missing `volatile`. The optimizer is not wrong; it is exploiting freedom the C standard gives it. Blaming the compiler is tempting but rarely correct.
-- **Linker script memory sizes are not validated against hardware** — The linker has no way to know how much flash or SRAM your chip actually has. If you copy a linker script from a different board with more memory, the build succeeds and the firmware crashes. Always verify the MEMORY section against the datasheet.
-- **Dead code elimination requires both compile and link flags** — Using `-ffunction-sections` without `--gc-sections` (or vice versa) does nothing useful. Both flags must be present, and they must be passed to the right stage: `-f` flags to the compiler, `--gc-sections` to the linker.
-- **`objcopy` binary output does not encode the base address** — If your flash is at 0x08000000 and you flash the `.bin` at 0x00000000, the firmware will not run and there will be no error message from the programmer. Intel HEX avoids this problem because it includes address records.
-- **Newlib pulls in more than you expect** — The default C library for `arm-none-eabi-gcc` is newlib, which includes a full `printf` implementation with floating-point support. A single `printf` call can add 20-50 KB of flash usage. Use newlib-nano (`--specs=nano.specs`) for a smaller implementation, or avoid `printf` entirely in flash-constrained projects.
+- Pin the toolchain version per project to avoid ABI mismatches when the toolchain is updated
+- Always include `-mthumb` in Cortex-M builds — forgetting it produces ARM-mode code that faults immediately
+- Enable `-Wall -Wextra -Werror` in CI builds to catch real bugs at compile time
+- Use `-ffunction-sections -fdata-sections` with `-Wl,--gc-sections` together to enable dead code elimination
+- Check the map file periodically even when builds succeed to catch memory usage trends before they become emergencies
+- Use newlib-nano (`--specs=nano.specs`) on flash-constrained projects to avoid the 20-50 KB overhead of full printf support
+
+## Caveats
+
+- **Missing `-mthumb` produces ARM-mode code that faults on Cortex-M** — The Cortex-M only executes Thumb instructions. If the compiler emits ARM-mode code, the CPU faults immediately
+- **Optimization makes bugs appear and disappear** — A bug that manifests at `-O2` but not `-O0` is almost always undefined behavior or a missing `volatile`. The optimizer is not wrong; it is exploiting freedom the C standard gives it
+- **Linker script memory sizes are not validated against hardware** — The linker has no way to know how much flash or SRAM the chip actually has. If a linker script from a different board with more memory is copied, the build succeeds and the firmware crashes
+- **Dead code elimination requires both compile and link flags** — Using `-ffunction-sections` without `--gc-sections` (or vice versa) does nothing useful. Both must be present
+- **`objcopy` binary output does not encode the base address** — If flash is at 0x08000000 and the `.bin` is flashed at 0x00000000, the firmware will not run and the programmer gives no error. Intel HEX avoids this problem
+- **Newlib pulls in more than expected** — The default C library for `arm-none-eabi-gcc` is newlib, which includes full `printf` with floating-point support. A single `printf` call can add 20-50 KB of flash usage
+
+## Bench Relevance
+
+- Firmware that faults immediately after flashing with a custom Makefile may be missing the `-mthumb` flag
+- A bug that disappears at `-O0` and reappears at `-O2` indicates undefined behavior or missing `volatile` — not a compiler bug
+- Firmware that crashes at runtime but builds without warnings may have a linker script with incorrect memory sizes — verify against the datasheet
+- Flash usage that jumps dramatically after adding a single `printf` call indicates newlib-nano is not being used
+- A `.bin` file that "works" on one programmer but not another may be flashed at different addresses — use Intel HEX to include address records
