@@ -5,7 +5,7 @@ weight: 10
 
 # Gain Staging
 
-Gain staging is the art of distributing amplification across a signal chain so that every stage operates within its optimal range — above its noise floor but below its clipping point. Get it wrong and you'll either clip the signal (irrecoverable distortion) or bury it in noise (irrecoverable degradation). The signal must navigate a corridor between these two boundaries at every point in the chain.
+Gain staging is the art of distributing amplification across a signal chain so that every stage operates within its optimal range — above its noise floor but below its clipping point. Get it wrong and the signal will either clip (irrecoverable distortion) or be buried in noise (irrecoverable degradation). The signal must navigate a corridor between these two boundaries at every point in the chain.
 
 ## Headroom and Clipping
 
@@ -34,7 +34,7 @@ The **operating level** sits within this dynamic range, chosen to balance:
 - Enough headroom below the clipping point for transients and peaks
 - Compatibility with the next stage's input range
 
-**The dynamic range corridor:** Imagine each stage as a window. The signal must pass through every window. If any window is too low (high noise floor), the signal picks up noise that can't be removed later. If any window is too high (early clipping), the signal is permanently distorted.
+**The dynamic range corridor:** Each stage acts as a window. The signal must pass through every window. If any window is too low (high noise floor), the signal picks up noise that can't be removed later. If any window is too high (early clipping), the signal is permanently distorted.
 
 ## The Gain Distribution Problem
 
@@ -76,10 +76,23 @@ A level diagram plots signal level, noise floor, and maximum level through each 
 
 Drawing a level diagram before building the system reveals gain staging problems at the design stage rather than at the bench. It's the signal chain equivalent of a voltage divider diagram.
 
-## Gotchas
+## Tips
+
+- Put most of the gain in the first stage for best noise performance
+- Leave 18-20 dB of headroom in digital systems to accommodate transient peaks
+- Draw a level diagram before building — it reveals gain staging problems early
+
+## Caveats
 
 - **Gain before EQ can clip** — A 12 dB boost in an equalizer stage with only 6 dB of headroom clips before the signal reaches the output. Either reduce the input level or place gain after the EQ
 - **Digital gain does not improve SNR** — Amplifying a digital signal (multiplying samples by a constant) raises the signal and the noise equally. It's rearranging numbers, not recovering information. All meaningful gain must be applied in the analog domain before or at the ADC
 - **Impedance mismatches cause level changes** — Connecting a +4 dBu pro output to a -10 dBV consumer input without attenuation overdrives the consumer input by ~12 dB. Connecting the other way leaves the signal 12 dB below nominal, wasting SNR
 - **Automatic gain control (AGC) masks problems** — AGC adjusts gain to maintain a constant output level. This is useful for recording, but it makes it impossible to judge the raw signal quality. AGC can boost noise during quiet passages and compress dynamic range in ways that aren't always desirable
 - **Clipping in one channel affects all channels in shared stages** — A summing bus, shared power supply, or multiplexed ADC can clip from one channel's signal and affect others. System headroom must account for worst-case combined signals
+
+## Bench Relevance
+
+- Distortion that increases with signal level but not frequency suggests clipping in the signal chain — find the stage where headroom is exhausted
+- A signal chain that measures well with test tones but sounds bad with music may have insufficient headroom for peaks (music has higher crest factor than test tones)
+- Noise that increases when gain is reduced (counter-intuitive) suggests a later stage is now dominating the noise
+- Unexpectedly low signal levels when connecting pro and consumer equipment indicate level standard mismatch

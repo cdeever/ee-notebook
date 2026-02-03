@@ -53,10 +53,23 @@ The ADC input is typically the most vulnerable node in the signal chain. Overvol
 
 **Current sensing:** A shunt resistor converts current to voltage. For low-side sensing (shunt in the ground return), a standard op-amp works. For high-side sensing (shunt in the supply rail), a dedicated current-sense amplifier or instrumentation amplifier handles the common-mode voltage.
 
-## Gotchas
+## Tips
+
+- Use as much of the ADC's input range as practical — underutilizing the range wastes resolution
+- Always include series resistance and clamp diodes for any ADC input exposed to the outside world
+- Buffer high-impedance sources before driving ADC inputs, especially SAR ADCs with their switched-capacitor inputs
+
+## Caveats
 
 - **ADC input impedance is not constant** — SAR ADCs present a switched-capacitor load that varies with sampling phase. The source must be able to charge the sample capacitor fully during the acquisition window. Buffer the signal or use a low source impedance
 - **Bias resistors affect noise** — Higher-value bias resistors generate more thermal noise. A 100 kΩ bias network at room temperature produces ~4 µV/√Hz of noise. For low-noise applications, use lower resistor values and buffer
 - **Clamp diode current limits** — Internal ADC clamp diodes typically handle only 1-5 mA. A 10 V overvoltage through a 1 kΩ series resistor drives 10 mA — exceeding the rating. Size the series resistor to limit current within the clamp diode spec
 - **AC coupling creates low-frequency rolloff** — The coupling capacitor and bias resistors form a high-pass filter. For 20 Hz audio with 100 kΩ bias: C ≥ 1/(2π × 20 × 50k) ≈ 160 nF (using parallel R of 50 kΩ). Use the next standard value up
 - **Protection adds parasitic capacitance** — Clamp diodes and TVS devices add capacitance to the ADC input, potentially limiting bandwidth or affecting the anti-alias filter response. Account for this in the filter design
+
+## Bench Relevance
+
+- An ADC that shows noisy or inconsistent readings from a high-impedance source likely has settling time issues — add a buffer or reduce source impedance
+- Clipping on only one polarity of a signal indicates incorrect DC biasing or an asymmetric input range
+- An input that works correctly at low frequencies but not high frequencies may have excessive series resistance or protection capacitance
+- Damaged ADC inputs often show unusual offset, reduced range, or increased leakage current — compare to a known-good channel

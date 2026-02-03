@@ -5,7 +5,7 @@ weight: 30
 
 # Noise & Signal Quality
 
-Every real signal coexists with noise — unwanted energy that limits how much useful information can be extracted. Signal quality is ultimately about the ratio between what you want and what you don't: the signal-to-noise ratio. Understanding noise sources, how they combine, and how measurement bandwidth affects what you see is fundamental to designing systems that work well rather than just work.
+Every real signal coexists with noise — unwanted energy that limits how much useful information can be extracted. Signal quality is ultimately about the ratio between what's wanted and what isn't: the signal-to-noise ratio. Understanding noise sources, how they combine, and how measurement bandwidth affects what's observed is fundamental to designing systems that work well rather than just work.
 
 ## Signal-to-Noise Ratio
 
@@ -75,10 +75,23 @@ The **noise floor** is the minimum detectable signal level — anything below it
 
 The first stage in a signal chain dominates the system noise figure (Friis formula). This is why preamplifier design is critical — see [Microphone & Sensor Preamps]({{< relref "/docs/audio-signal/analog-front-ends/microphone-and-sensor-preamps" >}}).
 
-## Gotchas
+## Tips
+
+- Reduce measurement bandwidth to improve SNR when the full bandwidth isn't needed
+- Use a low-noise preamplifier as the first stage — the first stage dominates total system noise
+- For precision low-frequency measurements, beware of 1/f noise in active devices
+
+## Caveats
 
 - **SNR specs without bandwidth are meaningless** — A "90 dB SNR" spec means nothing without knowing the measurement bandwidth. An audio DAC measured over 20 Hz-20 kHz and a wideband amplifier measured over 20 Hz-1 MHz are not comparable
 - **A-weighting inflates audio SNR numbers** — A-weighted measurements apply a filter that emphasizes frequencies where human hearing is most sensitive (~2-4 kHz) and attenuates low and very high frequencies. A-weighted SNR is always higher than unweighted. Some datasheets only give the A-weighted number
 - **Averaging reduces noise, but slowly** — Averaging N measurements improves SNR by √N (10 × log₁₀(N) dB). Getting 20 dB improvement requires 100 averages. Getting 40 dB requires 10,000 averages. This gets impractical fast
 - **Noise adds as power, not voltage** — Two uncorrelated noise sources of 1 mV RMS each produce √(1² + 1²) = 1.41 mV total, not 2 mV. Correlated signals (interference) can add as voltage in the worst case
 - **The quietest stage is not the most important** — The stage with the worst noise contribution referred to the input is what matters. A noisy gain stage followed by a quiet one is fine; a quiet first stage followed by a noisy second stage might not be — it depends on the gain distribution (see [Gain Staging]({{< relref "/docs/audio-signal/audio-systems-and-signal-chains/gain-staging" >}}))
+
+## Bench Relevance
+
+- A noise floor that changes with bandwidth setting confirms the noise is broadband (thermal or quantization), not discrete interference
+- Noise that appears at specific frequencies (60 Hz, switching frequencies) is interference, not fundamental noise — look for coupling paths
+- SNR that degrades at low signal levels faster than expected suggests 1/f noise or ADC quantization noise dominating
+- A system that meets SNR specs on the bench but fails in the field often has interference problems that weren't present in the lab environment

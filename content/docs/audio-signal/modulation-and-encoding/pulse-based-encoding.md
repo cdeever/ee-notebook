@@ -59,7 +59,13 @@ Pulse-based encoding also applies to transmitting signals over digital links:
 - **Sigma-delta data links** — Some sensor interfaces transmit a PDM bitstream over a single wire, requiring only a digital input and a decimation filter at the receiver
 - **Pulse-position modulation (PPM)** — Information is in the timing of pulse edges. Used in some optical and UWB communications. More power-efficient than PWM
 
-## Gotchas
+## Tips
+
+- Use PWM when a fixed switching frequency simplifies EMI filtering
+- Use PDM when higher linearity is needed or when interfacing with delta-sigma sources (MEMS mics)
+- Always include adequate reconstruction filtering — the speaker alone may not provide sufficient attenuation
+
+## Caveats
 
 - **PWM switching noise is real** — The fast edges of PWM signals generate significant EMI. Layout, shielding, and edge rate control matter. A 500 kHz PWM signal has harmonics extending into the tens of MHz
 - **Filter design is critical for audio PWM** — An inadequate reconstruction filter lets PWM carrier energy reach the speaker, causing heating (ultrasonic currents in the voice coil) and potentially audible intermodulation distortion with the audio signal
@@ -67,3 +73,10 @@ Pulse-based encoding also applies to transmitting signals over digital links:
 - **Clock jitter limits PWM resolution** — Jitter on the PWM timer clock modulates the pulse edges, adding noise. At 10-bit PWM resolution, clock jitter of ~1 ns is acceptable. At 12+ bits, jitter requirements become stringent — see [Clocking & Jitter]({{< relref "/docs/audio-signal/practical-signal-reality/clocking-and-jitter" >}})
 - **Class-D dead time adds distortion** — To prevent shoot-through (both output transistors on simultaneously), a dead time is inserted during switching transitions. This creates crossover distortion similar to Class-B amplifiers. Compensation techniques exist but add complexity
 - **PWM duty cycle extremes are problematic** — Very narrow or very wide pulses (near 0% or 100% duty cycle) may be shorter than the minimum switching time of the output stage, causing nonlinearity or missing pulses at signal extremes
+
+## Bench Relevance
+
+- A PWM output that shows jitter on the edges (visible on oscilloscope) indicates clock noise limiting resolution
+- Audio from a Class-D amplifier that sounds harsh at low levels may have dead-time distortion — check for crossover artifacts
+- A PDM microphone that produces noise or distortion likely has inadequate decimation filtering in the receiver
+- EMI problems that correlate with audio or motor activity often trace to PWM switching harmonics

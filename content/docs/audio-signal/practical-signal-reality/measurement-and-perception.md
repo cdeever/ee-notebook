@@ -111,10 +111,23 @@ Not all distortion sounds equally bad:
 
 **0.1% THD from even harmonics is far less objectionable than 0.1% THD from odd or high-order harmonics.** THD alone doesn't capture this — the spectrum of the distortion matters as much as its level.
 
-## Gotchas
+## Tips
+
+- Use THD+N or SINAD rather than THD alone for overall quality assessment
+- When comparing specs, ensure both measurements use the same bandwidth and weighting
+- Listen as well as measure — specs don't capture distortion character or temporal artifacts
+
+## Caveats
 
 - **A-weighting flatters noisy circuits** — A circuit with a -90 dB noise floor unweighted might show -95 dB A-weighted. When comparing specs, make sure both are using the same weighting (or no weighting)
 - **THD measured at 1 kHz hides crossover distortion** — Crossover distortion produces high-order harmonics at high frequencies that are attenuated by the measurement filter. Measuring THD at 10 kHz or using intermodulation distortion (IMD) tests reveals crossover distortion more effectively
 - **Perception depends on listening level** — At low volumes, the ear is less sensitive to bass and treble, and more tolerant of noise. At high volumes, distortion is more easily heard against the louder signal. Specs measured at one level may not predict perception at another
 - **"Sounds good" does not mean "measures well"** — Some distortion is euphonic (pleasant tube warmth). Some specs are excellent but the system sounds sterile. Engineering requires both measurement and listening, with the understanding that objective metrics are necessary for reproducibility
 - **Dynamic range is not just peak-to-noise** — The usable dynamic range depends on the signal content. Music with a high crest factor (20 dB) uses the top 20 dB for peaks and has only 76 dB of quiet-signal SNR from a 96 dB system. Design for the music, not the sine wave
+
+## Bench Relevance
+
+- A circuit that measures well on sine waves but sounds harsh on music may have intermodulation distortion or crossover artifacts — test with multitone signals
+- Noise that's inaudible in A-weighted measurements but audible in practice suggests low-frequency content (rumble, hum) that A-weighting de-emphasizes
+- Distortion that's more audible at some signal levels than others indicates level-dependent nonlinearity (crossover, limiting, or compression)
+- A system that sounds better than its specs suggest may have benign (even-harmonic) distortion character

@@ -25,7 +25,7 @@ Reed switches are everywhere in sensing because they're cheap, passive, and reli
 - **Door and window sensors** — Security systems, alarm contacts. Magnet on the door, reed switch on the frame. When the door opens, the magnet moves away and the switch opens
 - **Liquid level sensing** — A float with an embedded magnet rides up and down a tube containing reed switches at specific levels. Simple, no electronics in contact with the fluid
 - **Speed and position sensing** — A magnet on a rotating shaft triggers a reed switch once per revolution. Bicycle speedometers, flow meters, RPM counters
-- **Proximity detection** — Any application where you need to detect that something is in a particular position without physical contact or electrical connection to the moving part
+- **Proximity detection** — Any application where detection of something in a particular position is needed without physical contact or electrical connection to the moving part
 
 ## Reed Relays
 
@@ -35,7 +35,7 @@ A reed switch inside a coil, packaged as a small relay. Reed relays switch faste
 - **Telecommunications** — Signal routing in switching equipment
 - **ATE (Automatic Test Equipment)** — High channel-count switching matrices where thousands of reed relays route signals to different test points
 
-Reed relays are available with coil voltages from 3 V to 24 V and contact ratings up to about 1 A. Beyond that, you need a conventional relay.
+Reed relays are available with coil voltages from 3 V to 24 V and contact ratings up to about 1 A. Beyond that, a conventional relay is needed.
 
 ## Contact Characteristics
 
@@ -61,10 +61,23 @@ Reed switches are not power-handling devices. Their limitations are important to
 - **Magnetic interference** — External magnetic fields (nearby magnets, solenoids, motors, or even magnetized tools) can inadvertently actuate or hold the reed switch. In magnetically noisy environments, shielding may be needed
 - **Contact resistance drift** — Over millions of cycles, the contact plating wears and resistance increases. For precision measurement applications, this drift needs to be monitored and the relays replaced on a maintenance schedule
 
-## Gotchas
+## Tips
 
-- **Magnet orientation and field shape matter** — The reed switch responds to the axial component of the magnetic field (along the length of the reeds). A magnet approaching from the side actuates differently than one approaching end-on. Prototype and test the geometry before committing to a PCB layout
-- **Sticking with high-current loads** — Exceeding the rated switching current causes arcing that can weld the reed contacts. Unlike a conventional relay where you can sometimes physically free welded contacts, a welded reed switch is permanently failed
-- **Demagnetization** — The ferromagnetic reeds can become permanently magnetized over time, especially with high-current switching. This residual magnetization can cause the switch to stick closed or change the actuation threshold. Degaussing can sometimes restore normal operation
-- **No flyback diode needed for the switch itself** — Reed switches are just contacts. But if the reed switch is switching an inductive load, the inductive kickback still needs suppression — just as with any switch
-- **Mounting stress** — Soldering too close to the glass envelope or applying mechanical stress to the leads can crack the seal. Follow the datasheet's recommended lead bending and soldering distances
+- Prototype the magnet geometry before committing to a PCB layout — actuation distance and orientation matter
+- Use mercury-wetted reeds for low-level DC switching where bounce cannot be tolerated
+- Shield reed switches from external magnetic fields in noisy environments
+
+## Caveats
+
+- Magnet orientation and field shape matter — The reed switch responds to the axial component of the magnetic field (along the length of the reeds). A magnet approaching from the side actuates differently than one approaching end-on. Prototype and test the geometry before committing to a PCB layout
+- Sticking with high-current loads — Exceeding the rated switching current causes arcing that can weld the reed contacts. Unlike a conventional relay where welded contacts can sometimes be physically freed, a welded reed switch is permanently failed
+- Demagnetization — The ferromagnetic reeds can become permanently magnetized over time, especially with high-current switching. This residual magnetization can cause the switch to stick closed or change the actuation threshold. Degaussing can sometimes restore normal operation
+- No flyback diode needed for the switch itself — Reed switches are just contacts. But if the reed switch is switching an inductive load, the inductive kickback still needs suppression — just as with any switch
+- Mounting stress — Soldering too close to the glass envelope or applying mechanical stress to the leads can crack the seal. Follow the datasheet's recommended lead bending and soldering distances
+
+## Bench Relevance
+
+- A reed switch that doesn't actuate when a magnet approaches may have the wrong field orientation — try rotating the magnet
+- A reed switch that stays closed with no magnet nearby may have become permanently magnetized — try degaussing
+- Erratic switching in an otherwise working reed switch suggests contact contamination from a cracked seal
+- Contact resistance that increases over time indicates contact wear — plan for replacement in precision applications

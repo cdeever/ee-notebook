@@ -68,7 +68,13 @@ When a DAC changes output code, the transition is not instantaneous:
 - **Output impedance** — Voltage-output DACs have low impedance; current-output DACs have high impedance and need an external transimpedance amplifier or load resistor
 - **SFDR** — Spurious-free dynamic range: the ratio of the signal to the largest spurious component. Often the limiting spec for communications DACs
 
-## Gotchas
+## Tips
+
+- Use oversampling DACs (delta-sigma) for audio and precision applications — they simplify reconstruction filtering
+- For control applications requiring monotonicity, verify the DAC architecture guarantees it
+- Match the output amplifier bandwidth and slew rate to the DAC's update rate and signal requirements
+
+## Caveats
 
 - **PWM DAC resolution is limited by jitter** — Clock jitter modulates the pulse edges, adding noise. At high resolution, jitter noise can exceed quantization noise, making additional timer bits useless. A 1 ns jitter on a 62.5 kHz PWM limits effective resolution to roughly 10 bits
 - **Reconstruction filter must match the application** — An audio DAC needs a flat passband to 20 kHz with steep rolloff above. A control DAC needs fast settling with no overshoot. Different applications demand different filter designs
@@ -76,3 +82,10 @@ When a DAC changes output code, the transition is not instantaneous:
 - **Reference quality matters as much as DAC quality** — A noisy or drifting voltage reference directly modulates the output. A 24-bit DAC with a noisy reference performs like a 16-bit DAC
 - **Differential outputs need proper termination** — High-speed current-steering DACs have differential outputs that must be terminated correctly. Impedance mismatches create reflections and even-order distortion
 - **Don't ignore the update rate** — A DAC that can output 16-bit values but only updates at 1 kHz produces a staircase with 1 ms steps. For smooth analog output, the update rate must be much higher than the signal frequency
+
+## Bench Relevance
+
+- Visible glitches on major code transitions indicate a binary-weighted DAC without deglitching — consider adding a sample-and-hold or switching to a segmented architecture
+- A DAC output that doesn't reach the expected voltage suggests reference or output amplifier issues
+- Non-monotonic behavior (output decreases when code increases) indicates DNL problems — verify with a ramp test
+- PWM DAC noise that doesn't improve with more bits indicates jitter-limited performance

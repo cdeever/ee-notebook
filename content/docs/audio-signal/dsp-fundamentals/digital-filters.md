@@ -17,7 +17,7 @@ The coefficients {b₀, b₁, …, b_M} define the filter. The filter length is 
 
 **Key properties:**
 
-- **Always stable** — No feedback, so the output is always bounded if the input is bounded. You cannot design an unstable FIR filter
+- **Always stable** — No feedback, so the output is always bounded if the input is bounded. It's not possible to design an unstable FIR filter
 - **Linear phase** — If the coefficients are symmetric (b_k = b_{M-k}), the filter has exactly linear phase, meaning all frequencies are delayed by the same amount. This preserves waveform shape and is critical for applications where timing relationships matter (audio crossovers, measurement systems)
 - **Computationally expensive** — A steep low-pass filter at low frequencies relative to the sample rate might need hundreds or thousands of taps. Each tap requires one multiply and one add per output sample
 
@@ -61,7 +61,7 @@ The feedback makes IIR filters much more efficient than FIR for the same frequen
 
 **Choose FIR when:** Phase linearity is required, the filter will run on an FPGA or DSP with hardware multipliers, or fixed-point robustness matters more than efficiency.
 
-**Choose IIR when:** Computational budget is tight (MCU), the filter doesn't need linear phase, or you're implementing a well-known analog filter type (parametric EQ, crossover).
+**Choose IIR when:** Computational budget is tight (MCU), the filter doesn't need linear phase, or implementing a well-known analog filter type (parametric EQ, crossover).
 
 ## Practical Implementation Concerns
 
@@ -73,10 +73,23 @@ The feedback makes IIR filters much more efficient than FIR for the same frequen
 
 **Double-precision cascades** — When cascading many biquad sections, use double-precision (or extended) accumulators for intermediate results. Single-precision accumulation in a 10-section cascade can introduce measurable noise.
 
-## Gotchas
+## Tips
+
+- Use IIR biquads for real-time audio EQ and crossovers where computational efficiency matters
+- Use FIR filters when phase linearity is required (measurement, time-aligned crossovers)
+- Always verify IIR filter stability with the actual quantized coefficients, not just the design values
+
+## Caveats
 
 - **Coefficient quantization can cause instability** — An IIR filter that's stable in floating-point may become unstable when coefficients are quantized to fixed-point. Always verify stability with the actual quantized coefficients, not just the design values
 - **Linear phase FIR has inherent latency** — A symmetric FIR filter of length M introduces a delay of M/2 samples. A 1000-tap filter at 48 kHz adds 10.4 ms of latency. This is unavoidable with linear phase
 - **Narrow filters at low frequencies need many taps** — The number of FIR taps needed is roughly f_s / Δf, where Δf is the transition bandwidth. A 100 Hz filter with 10 Hz transition band at 48 kHz needs ~4800 taps
 - **IIR filters ring** — Filters with sharp resonances (high Q) ring when excited by transients. This is audible as ringing on percussive sounds and visible as overshoot on step responses. It's the same physics as analog filter ringing, just implemented digitally
-- **Don't design filters in the frequency domain and implement in the time domain without checking** — The FFT-based frequency response of your designed filter and the actual response of the implemented filter (with quantized coefficients, specific arithmetic precision) can differ significantly. Always measure the implemented filter's response
+- **Don't design filters in the frequency domain and implement in the time domain without checking** — The FFT-based frequency response of the designed filter and the actual response of the implemented filter (with quantized coefficients, specific arithmetic precision) can differ significantly. Always measure the implemented filter's response
+
+## Bench Relevance
+
+- A filter that oscillates or produces unbounded output has become unstable — check pole locations and coefficient quantization
+- Ringing on transients indicates high-Q resonances in the filter design
+- A filter whose measured response doesn't match the design likely has coefficient quantization errors or implementation bugs
+- Audible artifacts at block boundaries in FIR processing suggest improper overlap-add implementation

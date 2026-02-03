@@ -5,11 +5,11 @@ weight: 30
 
 # Node & Loop Analysis
 
-When series/parallel simplification can't reduce a circuit to something obvious, you need systematic methods. Node analysis (nodal analysis) and loop analysis (mesh analysis) are the two workhorses. Both are mechanical — follow the procedure, get the answer. The skill is choosing the right one and interpreting the results.
+When series/parallel simplification can't reduce a circuit to something obvious, systematic methods are needed. Node analysis (nodal analysis) and loop analysis (mesh analysis) are the two workhorses. Both are mechanical — follow the procedure, get the answer. The skill is choosing the right one and interpreting the results.
 
 ## Node Analysis (Nodal Analysis)
 
-Write KCL at each unknown node. Express all currents in terms of node voltages using Ohm's law (I = V/R or I = V x Y where Y = 1/R). Solve the resulting system of equations.
+Write KCL at each unknown node. Express all currents in terms of node voltages using Ohm's law (I = V/R or I = V × Y where Y = 1/R). Solve the resulting system of equations.
 
 ### Procedure
 
@@ -23,12 +23,12 @@ Write KCL at each unknown node. Express all currents in terms of node voltages u
 ### When to Use Node Analysis
 
 - Circuits with many parallel branches
-- When you need node voltages (which is most of the time)
-- Circuits with current sources (they directly give you a current entering a node)
+- When node voltages are needed (which is most of the time)
+- Circuits with current sources (they directly give a current entering a node)
 
 ### Dealing with Voltage Sources
 
-A voltage source between two nodes constrains their voltages but doesn't directly tell you the current through it. Use the **supernode** technique: draw a boundary around the voltage source and its two nodes, write KCL for the boundary, and add the constraint equation V_A - V_B = V_source.
+A voltage source between two nodes constrains their voltages but doesn't directly indicate the current through it. The **supernode** technique handles this: draw a boundary around the voltage source and its two nodes, write KCL for the boundary, and add the constraint equation V_A - V_B = V_source.
 
 ## Loop Analysis (Mesh Analysis)
 
@@ -46,12 +46,12 @@ Write KVL around each independent loop. Express all voltages in terms of loop (m
 ### When to Use Loop Analysis
 
 - Circuits with many series elements
-- When you need branch currents
-- Circuits with voltage sources (they directly give you a voltage in a loop equation)
+- When branch currents are needed
+- Circuits with voltage sources (they directly give a voltage in a loop equation)
 
 ### Dealing with Current Sources
 
-A current source in a mesh fixes that mesh current (if it's in only one mesh) or constrains the difference between two mesh currents. Use the **supermesh** technique: combine the two meshes sharing the current source into one KVL equation, and add the constraint that the current source current equals the difference of the two mesh currents.
+A current source in a mesh fixes that mesh current (if it's in only one mesh) or constrains the difference between two mesh currents. The **supermesh** technique handles this: combine the two meshes sharing the current source into one KVL equation, and add the constraint that the current source current equals the difference of the two mesh currents.
 
 ## Choosing Between Them
 
@@ -66,21 +66,24 @@ A current source in a mesh fixes that mesh current (if it's in only one mesh) or
 | Fewer unknown nodes than loops | Node analysis |
 | Fewer loops than unknown nodes | Loop analysis |
 
-In practice, node analysis is more commonly used because voltages are what we usually need and what we can directly measure with probes.
+In practice, node analysis is more commonly used because voltages are what's usually needed and what can be directly measured with probes.
 
-## Sanity-Checking Results
+## Tips
 
-After solving:
+- Count unknowns before starting — node analysis needs (N-1) equations for N nodes; mesh analysis needs M equations for M independent meshes
+- Use supernode/supermesh techniques to handle sources cleanly
+- Matrix methods (Cramer's rule, Gaussian elimination) systematize the solution process for complex circuits
 
-- **Check units** — Voltages in volts, currents in amps. If a node voltage comes out in milliamps, you've made an error
-- **Check sign** — A negative voltage just means your assumed polarity was opposite. But check that it makes physical sense
-- **Check power balance** — Total power delivered by sources should equal total power absorbed by resistances. P_delivered = V_source x I_source (watch the sign convention). P_absorbed = sum of I^2 R for all resistors
-- **Check limiting cases** — What happens if a resistance goes to zero or infinity? Does your answer reduce to something obvious?
-- **Verify with a simple measurement** — On the bench, measure one or two node voltages and compare to your calculated values
+## Caveats
 
-## Gotchas
+- Reference direction consistency — The most common source of errors. Pick a convention and stick with it through the entire analysis. If I is defined as flowing left to right, the voltage drop across R is IR with the + on the left
+- Dependent sources — Transistor models and op-amp models include dependent sources (voltage or current controlled by another voltage or current). These add equations but don't add unknowns. Include their controlling variable in the equations
+- Non-planar circuits — Mesh analysis only works directly for planar circuits (circuits that can be drawn without crossing wires). Non-planar circuits need node analysis or generalized loop analysis
+- Overcounting or undercounting equations — For node analysis: (N-1) equations are needed for N nodes. For mesh analysis: M equations are needed for M independent meshes. Getting the count wrong means an unsolvable or redundant system
 
-- **Reference direction consistency** — The most common source of errors. Pick a convention and stick with it through the entire analysis. If you write I flowing left to right, the voltage drop across R is IR with the + on the left
-- **Dependent sources** — Transistor models and op-amp models include dependent sources (voltage or current controlled by another voltage or current). These add equations but don't add unknowns. Include their controlling variable in your equations
-- **Non-planar circuits** — Mesh analysis only works directly for planar circuits (circuits you can draw without crossing wires). Non-planar circuits need node analysis or generalized loop analysis
-- **Overcounting or undercounting equations** — For node analysis: you need (N-1) equations for N nodes. For mesh analysis: you need M equations for M independent meshes. Getting the count wrong means an unsolvable or redundant system
+## Bench Relevance
+
+- Calculated node voltages that don't match measured values indicate a modeling error, component fault, or measurement issue
+- A node voltage of exactly 0 V where a non-zero value is expected suggests a short to ground
+- A node voltage equal to the supply where it shouldn't be suggests an open circuit in the path to ground
+- Sanity-checking results against bench measurements validates the analysis and catches errors in both

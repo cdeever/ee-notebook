@@ -80,10 +80,23 @@ Measuring actual end-to-end latency:
 
 **Oscilloscope:** Probe the analog input and analog output simultaneously. Trigger on the input and measure the delay to the output response. This captures the true analog-to-analog latency including all conversion and processing delays.
 
-## Gotchas
+## Tips
+
+- Use the smallest block size that the system can reliably handle
+- For live monitoring, target < 5 ms total latency
+- Measure latency end-to-end, not just the reported buffer size
+
+## Caveats
 
 - **Reported latency is often optimistic** — Driver-reported buffer sizes don't include conversion latency, processing pipeline delay, or output buffer delay. Actual end-to-end latency is always higher than the buffer size alone suggests
 - **Operating system scheduling adds jitter** — Even with low-latency audio drivers (ASIO, CoreAudio, ALSA), OS interrupts and task scheduling introduce timing variation. This doesn't add to average latency but causes occasional late processing deadlines (glitches)
 - **Latency accumulates through effects chains** — Each plugin or processing stage in series adds its latency. A chain of 5 plugins, each adding 3 ms, produces 15 ms total. DAWs use latency compensation (delay other tracks to match) for mixing, but this doesn't help for real-time monitoring
 - **Low latency costs CPU** — Smaller block sizes mean more frequent processing calls, more overhead, and less opportunity for the CPU to batch operations efficiently. There's a minimum block size below which the system can't keep up, and it depends on CPU speed and algorithm complexity
 - **Delta-sigma converter settling adds hidden latency** — After a gain change or input switch, delta-sigma converters need multiple output samples for their internal digital filters to settle. During this time, the output is invalid. This matters for multiplexed measurement systems
+
+## Bench Relevance
+
+- Clicks or pops during audio playback indicate buffer underruns — increase block size or reduce CPU load
+- Latency that varies over time suggests OS scheduling jitter — check for competing processes or interrupt contention
+- Measured latency significantly higher than expected indicates hidden processing stages or double-buffering
+- Audio monitoring that feels "disconnected" from performance indicates latency above the perception threshold

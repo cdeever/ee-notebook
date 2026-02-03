@@ -11,17 +11,17 @@ Two or more inductors sharing a magnetic core. Energy goes in on one winding and
 
 The turns ratio N = N_primary / N_secondary determines the voltage scaling:
 
-V_secondary = V_primary x (N_secondary / N_primary)
+V_secondary = V_primary × (N_secondary / N_primary)
 
 Current scales inversely (conservation of energy):
 
-I_secondary = I_primary x (N_primary / N_secondary)
+I_secondary = I_primary × (N_primary / N_secondary)
 
-A 10:1 step-down transformer converts 120 V to 12 V, but the available current goes up by 10x. Power in equals power out (minus losses). There's no free energy.
+A 10:1 step-down transformer converts 120 V to 12 V, but the available current goes up by 10×. Power in equals power out (minus losses). There's no free energy.
 
 ## Isolation
 
-This is the transformer's most important property that often gets overlooked in favor of voltage conversion. The primary and secondary windings are electrically separate — galvanically isolated. No DC path exists between them.
+This is the transformer's most important property, often overlooked in favor of voltage conversion. The primary and secondary windings are electrically separate — galvanically isolated. No DC path exists between them.
 
 This means:
 
@@ -52,7 +52,7 @@ Leakage inductance is why switching power supply transformers need careful windi
 
 ### Winding Resistance
 
-Copper losses. I^2 R in each winding. Causes heating and voltage drop under load. At high frequencies, skin effect and proximity effect increase the effective resistance beyond the DC value.
+Copper losses. I²R in each winding. Causes heating and voltage drop under load. At high frequencies, skin effect and proximity effect increase the effective resistance beyond the DC value.
 
 ### Core Losses
 
@@ -97,9 +97,9 @@ A transformer used to measure AC current. The conductor carrying the current to 
 
 Transformers transform impedance by the square of the turns ratio:
 
-Z_reflected = Z_load x (N_primary / N_secondary)^2
+Z_reflected = Z_load × (N_primary / N_secondary)²
 
-A 4:1 turns ratio transforms a 50 ohm load to 800 ohm as seen from the primary. This is how impedance matching networks work in audio (matching a low-impedance speaker to a tube amplifier output) and RF (matching antenna impedance to transmitter output).
+A 4:1 turns ratio transforms a 50 Ω load to 800 Ω as seen from the primary. This is how impedance matching networks work in audio (matching a low-impedance speaker to a tube amplifier output) and RF (matching antenna impedance to transmitter output).
 
 ## Dot Convention and Polarity
 
@@ -111,11 +111,24 @@ Transformer schematics use dots to indicate winding polarity — which terminals
 
 When winding or specifying a custom transformer, polarity must be defined explicitly. When troubleshooting, a scope on both windings confirms the phase relationship.
 
-## Gotchas
+## Tips
 
-- **Saturation at low frequency** — A transformer designed for 60 Hz will saturate if you try to run it at 20 Hz at the same voltage. The flux swing is inversely proportional to frequency. This is why audio output transformers have large cores — they need to handle low frequencies without saturating
-- **DC current saturates the core** — Any DC bias in the primary current pushes the core toward saturation, reducing the available flux swing for the AC signal. This is why coupling capacitors are used before transformer-coupled stages, and why push-pull converters are preferred for high-power designs (the DC components cancel in the core)
-- **Inrush current** — Energizing a power transformer can draw 10-20x rated current for the first few cycles, depending on the instantaneous voltage at switch-on and the residual core magnetization. Soft-start circuits or NTC thermistors limit this
-- **Leakage inductance spikes** — When current through a transformer winding is interrupted quickly (as in switching converters), leakage inductance produces a voltage spike. Snubbers or clamp circuits are almost always needed
-- **CT secondary must never be open-circuited** — The voltage will rise until insulation breaks down or the core saturates violently. Always short the secondary before disconnecting the burden resistor
-- **Capacitive coupling between windings** — High-frequency noise can couple through the inter-winding capacitance, bypassing the galvanic isolation. Faraday shields (grounded copper foil between windings) reduce this but add cost and complexity
+- Check isolation voltage rating for safety-critical applications — it's not the same as operating voltage
+- For switching converters, minimize leakage inductance through tight winding coupling
+- CT secondaries must never be open-circuited — always install a burden resistor before removing the load
+
+## Caveats
+
+- Saturation at low frequency — A transformer designed for 60 Hz will saturate at 20 Hz at the same voltage. The flux swing is inversely proportional to frequency. Audio output transformers have large cores to handle low frequencies without saturating
+- DC current saturates the core — Any DC bias in the primary current pushes the core toward saturation, reducing the available flux swing for the AC signal. This is why coupling capacitors are used before transformer-coupled stages, and why push-pull converters are preferred for high-power designs (the DC components cancel in the core)
+- Inrush current — Energizing a power transformer can draw 10-20× rated current for the first few cycles, depending on the instantaneous voltage at switch-on and the residual core magnetization. Soft-start circuits or NTC thermistors limit this
+- Leakage inductance spikes — When current through a transformer winding is interrupted quickly (as in switching converters), leakage inductance produces a voltage spike. Snubbers or clamp circuits are almost always needed
+- CT secondary must never be open-circuited — The voltage will rise until insulation breaks down or the core saturates violently. Always short the secondary before disconnecting the burden resistor
+- Capacitive coupling between windings — High-frequency noise can couple through the inter-winding capacitance, bypassing the galvanic isolation. Faraday shields (grounded copper foil between windings) reduce this but add cost and complexity
+
+## Bench Relevance
+
+- A transformer that hums louder than normal may have DC on the mains, loose laminations, or be approaching saturation
+- Voltage droop under load indicates winding resistance and leakage inductance losses — measure no-load vs. loaded voltage to assess regulation
+- Ringing on the secondary after switching transitions points to leakage inductance resonating with stray capacitance
+- A CT with abnormally high output indicates an open or high-resistance burden — check the burden resistor immediately

@@ -68,10 +68,23 @@ Getting a clean clock from the oscillator to the converter is a distribution pro
 
 See [Clocks]({{< relref "/docs/digital/timing-and-synchronization" >}}) in the Digital Electronics section for clock generation and distribution in digital systems.
 
-## Gotchas
+## Tips
+
+- Use a dedicated crystal oscillator for audio-quality conversion — don't rely on MCU internal RC oscillators
+- Isolate the clock power supply from noisy digital circuits
+- For external digital audio sources (S/PDIF), consider reclocking with a local low-jitter clock
+
+## Caveats
 
 - **Jitter specs are measured over a bandwidth — check which one** — Audio jitter matters from 20 Hz to 20 kHz. Wideband jitter (10 Hz to 10 MHz) is a different, usually larger number. A clock with "100 fs" jitter measured over 12 kHz to 20 MHz might have 1 ps jitter in the audio band. Compare like with like
 - **USB audio has inherent jitter challenges** — USB isochronous transfers deliver audio in packets at 1 ms intervals. The host clock and device clock are asynchronous. Adaptive mode (device follows host clock) adds jitter; asynchronous mode (device has its own clock, host adapts) is preferred for quality
 - **Jitter multiplies through PLLs** — If a PLL has a multiplication ratio of N, and its input has jitter Δt, the output jitter is at least Δt (and usually worse due to VCO noise). High-multiplication PLLs need careful design to maintain low output jitter
 - **Ground and power noise modulate the sampling instant** — Even with a perfect clock oscillator, noise on the ADC's supply or ground shifts the internal comparator thresholds, effectively adding jitter. Converter analog supply filtering is critical
-- **Measuring sub-nanosecond jitter requires specialized equipment** — A standard oscilloscope with 1 GS/s sampling can measure jitter down to about 1 ns. Sub-nanosecond and picosecond jitter requires a dedicated phase noise analyzer or a high-speed oscilloscope with statistics capability. Don't assume your measurement reflects the true clock quality unless you've verified the instrument's noise floor
+- **Measuring sub-nanosecond jitter requires specialized equipment** — A standard oscilloscope with 1 GS/s sampling can measure jitter down to about 1 ns. Sub-nanosecond and picosecond jitter requires a dedicated phase noise analyzer or a high-speed oscilloscope with statistics capability. Don't assume the measurement reflects the true clock quality unless the instrument's noise floor has been verified
+
+## Bench Relevance
+
+- SNR that degrades with signal frequency but not signal level indicates jitter-limited performance
+- A spectrum showing sidebands around the signal at specific frequencies (power supply harmonics, switching frequencies) indicates deterministic jitter
+- Audio that sounds worse from an external S/PDIF source than from internal playback suggests recovered clock jitter
+- A converter that performs well with a crystal oscillator but poorly with a PLL-derived clock has a PLL jitter problem

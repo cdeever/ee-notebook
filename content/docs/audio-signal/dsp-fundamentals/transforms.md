@@ -34,7 +34,7 @@ An N-point FFT at sample rate f_s produces N/2 + 1 unique frequency bins (for re
 | 1024 | 46.88 Hz | 43.1 Hz |
 | 4096 | 11.72 Hz | 10.8 Hz |
 
-**What resolution means practically:** Two frequency components closer than Δf apart cannot be distinguished — they'll merge into one bin. To resolve a 1000 Hz tone from a 1010 Hz tone (10 Hz apart), you need Δf ≤ 10 Hz, which means N ≥ f_s / 10 = 4800 samples at 48 kHz.
+**What resolution means practically:** Two frequency components closer than Δf apart cannot be distinguished — they'll merge into one bin. To resolve a 1000 Hz tone from a 1010 Hz tone (10 Hz apart), Δf ≤ 10 Hz is needed, which means N ≥ f_s / 10 = 4800 samples at 48 kHz.
 
 ## Spectral Leakage
 
@@ -44,7 +44,7 @@ If a signal's frequency doesn't fall exactly on a bin center, its energy spreads
 
 **Window functions** reduce leakage by tapering the block edges (see [Discrete-Time Signals]({{< relref "discrete-time-signals" >}})). The tradeoff: windows reduce leakage but widen the main lobe, reducing frequency resolution. A rectangular window (no tapering) has the best resolution but the worst leakage.
 
-**Coherent sampling** — If you control the signal generator (test and measurement), you can set the signal frequency to fall exactly on a bin center. This eliminates leakage without windowing. The requirement: f_signal = M × f_s / N for some integer M.
+**Coherent sampling** — When controlling the signal generator (test and measurement), the signal frequency can be set to fall exactly on a bin center. This eliminates leakage without windowing. The requirement: f_signal = M × f_s / N for some integer M.
 
 ## Practical FFT Usage
 
@@ -83,12 +83,25 @@ The FFT dominates, but other transforms serve specific purposes:
 
 - **DCT (Discrete Cosine Transform)** — Real-valued transform used in audio compression (MP3, AAC) and image compression (JPEG). More energy-compacting than the DFT for typical signals
 - **Wavelet transforms** — Variable time-frequency resolution: good time resolution at high frequencies, good frequency resolution at low frequencies. Useful for analyzing transients with mixed frequency content
-- **Goertzel algorithm** — Efficiently computes a single DFT bin. Useful when you only need one frequency (e.g., DTMF detection) — O(N) instead of O(N log N)
+- **Goertzel algorithm** — Efficiently computes a single DFT bin. Useful when only one frequency is needed (e.g., DTMF detection) — O(N) instead of O(N log N)
 
-## Gotchas
+## Tips
+
+- Use window functions (Hann, Blackman) for spectral analysis to reduce leakage
+- Average multiple FFTs to reduce noise floor variance in measurements
+- Use coherent sampling when possible (test equipment) to eliminate leakage without windowing
+
+## Caveats
 
 - **Leakage looks like noise but isn't** — A strong sine wave analyzed with a rectangular window produces sidelobes that can be 13 dB below the peak and extend far from the true frequency. This can mask weak signals nearby. Use an appropriate window to push sidelobes down
 - **Zero-padding interpolates, it does not resolve** — Padding a 1024-point block to 4096 points makes the spectrum look smoother (4× more bins) but the frequency resolution is still f_s/1024. The additional bins are interpolated, not independent measurements
 - **Magnitude spectra discard phase** — The FFT output is complex (magnitude and phase). Most spectral displays show only magnitude. Phase information is critical for reconstruction, time-delay measurement, and transfer function analysis — don't discard it unnecessarily
 - **The DC and Nyquist bins are special** — Bin 0 (DC) and bin N/2 (Nyquist) are purely real in a DFT of a real signal. They represent zero frequency and the Nyquist frequency respectively. Their amplitude scaling differs from other bins by a factor of 2 in some normalization conventions
-- **FFT of clipped signals shows spurious harmonics** — A clipped sine wave generates odd harmonics that are real distortion, not FFT artifacts. But a sine wave that clips due to quantization (exceeding dBFS) also wraps around, creating even-harmonic artifacts that depend on the clipping mechanism. Know whether the harmonics you see are from the signal or the measurement
+- **FFT of clipped signals shows spurious harmonics** — A clipped sine wave generates odd harmonics that are real distortion, not FFT artifacts. But a sine wave that clips due to quantization (exceeding dBFS) also wraps around, creating even-harmonic artifacts that depend on the clipping mechanism. Know whether the harmonics are from the signal or the measurement
+
+## Bench Relevance
+
+- Spectral peaks that spread across many bins indicate leakage — use a window function or verify that the signal frequency falls on a bin center
+- A noise floor that varies wildly between measurements needs more averaging
+- Unexpected harmonics in the spectrum may be real distortion or may be FFT artifacts from windowing/leakage — verify by changing FFT parameters
+- Amplitude readings that don't match expected values suggest normalization differences in the FFT implementation

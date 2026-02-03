@@ -15,23 +15,23 @@ A coil of wire (the voice coil) attached to a cone, suspended in the field of a 
 
 ### Electrical Characteristics
 
-**Impedance:** A speaker's rated impedance (4, 8, 16 ohm typical) is the nominal impedance — roughly the DC resistance of the voice coil plus a small amount. But impedance varies dramatically with frequency:
+**Impedance:** A speaker's rated impedance (4, 8, 16 Ω typical) is the nominal impedance — roughly the DC resistance of the voice coil plus a small amount. But impedance varies dramatically with frequency:
 
-- At the resonant frequency (f_s), impedance peaks — often 5-10x the nominal value
+- At the resonant frequency (f_s), impedance peaks — often 5-10× the nominal value
 - Above resonance, impedance rises gradually due to the voice coil's inductance
 - The nominal impedance is roughly the minimum impedance in the usable frequency range
 
-This matters for amplifier design. An amplifier driving an 8 ohm speaker doesn't see a constant 8 ohm load — it sees a complex, frequency-dependent impedance.
+This matters for amplifier design. An amplifier driving an 8 Ω speaker doesn't see a constant 8 Ω load — it sees a complex, frequency-dependent impedance.
 
 **Power handling:** Rated in watts — the continuous electrical power the speaker can handle without damage. This is a thermal limit (the voice coil overheats) and a mechanical limit (the cone exceeds its excursion range). Peak or music power ratings are marketing numbers — use the continuous/RMS rating.
 
-**Sensitivity:** Measured in dB SPL at 1 W at 1 meter. Tells you how loud the speaker is for a given input power. Typical values range from 82-95 dB for home speakers. A 3 dB increase in sensitivity is equivalent to doubling the amplifier power for the same loudness.
+**Sensitivity:** Measured in dB SPL at 1 W at 1 meter. Indicates how loud the speaker is for a given input power. Typical values range from 82-95 dB for home speakers. A 3 dB increase in sensitivity is equivalent to doubling the amplifier power for the same loudness.
 
 ### Driving Speakers
 
 **Audio amplifiers** drive speakers with a voltage signal. The amplifier must be able to source and sink the current demanded by the speaker impedance at the signal voltage. Key considerations:
 
-- Match the amplifier's rated load impedance to the speaker. Driving a 4 ohm speaker with an amplifier rated for 8 ohm minimum draws twice the current and can overheat the output stage
+- Match the amplifier's rated load impedance to the speaker. Driving a 4 Ω speaker with an amplifier rated for 8 Ω minimum draws twice the current and can overheat the output stage
 - Speaker wires have resistance. At high currents (low impedance speakers, long runs), the wire resistance becomes a significant fraction of the load, reducing power delivered and degrading damping
 - DC on a speaker is destructive — it displaces the cone to one extreme and heats the voice coil without producing useful sound. Amplifier output coupling capacitors or DC servo circuits prevent this
 
@@ -51,13 +51,13 @@ A piezoelectric ceramic disc bonded to a metal diaphragm. Applying voltage defor
 
 ### Types
 
-**Passive piezo elements (transducers):** Just the piezo disc and diaphragm. You supply the AC drive signal at the desired frequency. They need an external oscillator or microcontroller to produce a tone.
+**Passive piezo elements (transducers):** Just the piezo disc and diaphragm. An AC drive signal at the desired frequency must be supplied. They need an external oscillator or microcontroller to produce a tone.
 
 - Impedance is primarily capacitive (typically 10-100 nF at 1 kHz). This means current leads voltage, and the impedance drops with increasing frequency
 - Maximum sound output occurs at the mechanical resonant frequency of the disc/diaphragm assembly — typically a narrow peak somewhere between 2-5 kHz. Away from resonance, output drops significantly
 - Drive voltage can be high. Piezo elements respond to voltage, not current. 5 V works but is quiet; 12-30 V is common for alarm-level output. Some drive circuits use an inductor in parallel to create an LC resonance with the piezo's capacitance, boosting the voltage at the drive frequency
 
-**Active buzzers (with internal oscillator):** The drive circuit is built in. Apply DC power and they beep. Simpler to use — one GPIO pin and a transistor is all you need. But you can't control the frequency or produce different tones; you only control on/off.
+**Active buzzers (with internal oscillator):** The drive circuit is built in. Apply DC power and they beep. Simpler to use — one GPIO pin and a transistor is all that's needed. But the frequency can't be controlled or different tones produced; only on/off is available.
 
 ### Driving Piezo Elements
 
@@ -98,11 +98,24 @@ Buzzers are less sensitive to mounting — their output is primarily at the reso
 
 A buzzer mounted in an enclosure with a small port (Helmholtz resonator) can be significantly louder than the same buzzer in open air. Many commercial alarm devices use this principle — the buzzer itself produces modest output, but the enclosure geometry amplifies it at the target frequency.
 
-## Gotchas
+## Tips
 
-- **Speaker impedance is not resistance** — Don't measure a speaker with a DC ohmmeter and expect the result to match the rated impedance. The DC resistance (DCR) is typically 70-80% of the nominal impedance. The rated impedance is the minimum AC impedance in the operating range
-- **Piezo elements are capacitors** — They can hold charge after the drive signal is removed. High-voltage drive circuits can leave a painful or damaging charge on the element. Discharge through a resistor if you're handling them
-- **Acoustic feedback** — A speaker near a microphone in the same system creates a feedback loop. If the loop gain exceeds unity at any frequency, the system oscillates (the familiar squeal of PA feedback). Physical separation, directional microphones, or electronic feedback suppression are the fixes
-- **Thermal limits on speakers** — Continuous sine wave testing at rated power can overheat a speaker that handles the same power level fine with music (which has a much lower average-to-peak ratio). Continuous power ratings assume a specific test signal — real-world durability depends on the signal's crest factor
-- **Back-EMF from speakers** — A speaker is also a microphone and a generator. Sound hitting the cone generates a voltage. Moving the cone by hand generates a voltage. In some circuits, this back-EMF can feed back into the amplifier and cause unexpected behavior
-- **Piezo elements are microphonic** — Mechanical vibration produces voltage on the piezo element's terminals, which can couple back into the circuit as noise. This is a feature in sensors but a bug in buzzer applications where the mounting is subject to vibration
+- Match speaker impedance to amplifier load capability
+- Use push-pull drive for piezo elements to maximize output
+- Mount speakers in enclosures or baffles for proper bass response
+
+## Caveats
+
+- Speaker impedance is not resistance — Measuring a speaker with a DC ohmmeter gives the DC resistance (DCR), typically 70-80% of the nominal impedance. The rated impedance is the minimum AC impedance in the operating range
+- Piezo elements are capacitors — They can hold charge after the drive signal is removed. High-voltage drive circuits can leave a painful or damaging charge on the element. Discharge through a resistor before handling
+- Acoustic feedback — A speaker near a microphone in the same system creates a feedback loop. If the loop gain exceeds unity at any frequency, the system oscillates (the familiar squeal of PA feedback). Physical separation, directional microphones, or electronic feedback suppression are the fixes
+- Thermal limits on speakers — Continuous sine wave testing at rated power can overheat a speaker that handles the same power level fine with music (which has a much lower average-to-peak ratio). Continuous power ratings assume a specific test signal — real-world durability depends on the signal's crest factor
+- Back-EMF from speakers — A speaker is also a microphone and a generator. Sound hitting the cone generates a voltage. Moving the cone by hand generates a voltage. In some circuits, this back-EMF can feed back into the amplifier and cause unexpected behavior
+- Piezo elements are microphonic — Mechanical vibration produces voltage on the piezo element's terminals, which can couple back into the circuit as noise. This is a feature in sensors but a bug in buzzer applications where the mounting is subject to vibration
+
+## Bench Relevance
+
+- A speaker that draws excessive current when driven suggests a shorted voice coil
+- A piezo buzzer that's quiet may be driven at the wrong frequency — sweep frequency to find the resonance
+- A speaker that distorts at low power may have a damaged voice coil or cone
+- An active buzzer that doesn't beep despite DC power likely has a failed internal oscillator

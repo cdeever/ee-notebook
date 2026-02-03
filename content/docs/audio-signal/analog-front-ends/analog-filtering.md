@@ -33,11 +33,11 @@ A filter's order determines how steeply it attenuates past its cutoff frequency:
 | 3rd | -60 dB/decade | Active stage + RC |
 | 4th | -80 dB/decade | 2 cascaded 2nd-order stages |
 
-To achieve 80 dB of attenuation one octave above cutoff, you'd need a 13th-order filter at -20 dB/decade per order — impractical. Real anti-alias filters are typically 2nd to 4th order, and the transition band between passband and stopband is managed by choosing the sampling rate appropriately.
+To achieve 80 dB of attenuation one octave above cutoff, a 13th-order filter at -20 dB/decade per order would be required — impractical. Real anti-alias filters are typically 2nd to 4th order, and the transition band between passband and stopband is managed by choosing the sampling rate appropriately.
 
 **Filter types** trade off passband flatness, transition steepness, and phase behavior:
 
-- **Butterworth** — Maximally flat passband, moderate rolloff. The default choice when you want predictable amplitude behavior
+- **Butterworth** — Maximally flat passband, moderate rolloff. The default choice when predictable amplitude behavior is needed
 - **Chebyshev** — Steeper rolloff than Butterworth for the same order, but with passband ripple. Useful when transition band is tight
 - **Bessel** — Maximally flat group delay (best transient response), but the gentlest rolloff. Choose when waveform shape matters more than frequency selectivity
 - **Elliptic (Cauer)** — Steepest rolloff for a given order, but with ripple in both passband and stopband. Maximum efficiency when sharp cutoff is the priority
@@ -63,11 +63,24 @@ At 4× oversampling, the analog filter only needs to provide adequate rejection 
 
 **Tradeoff:** Oversampling requires a faster ADC, more digital processing, and more power. But it dramatically simplifies the analog filter and improves overall system performance by pushing the transition band far from the signal.
 
-## Gotchas
+## Tips
+
+- Use oversampling when practical — it relaxes analog filter requirements significantly
+- Place a simple RC filter at the sensor to reject RF interference before it reaches the preamp
+- For waveform fidelity (pulse measurements, step response), prefer Bessel filters despite their gentler rolloff
+
+## Caveats
 
 - **Component tolerances shift the cutoff** — A filter designed for 20 kHz cutoff with 5% resistors and 10% capacitors might actually cut off anywhere from 16 kHz to 25 kHz. Use 1% components for precision filter work
 - **Op-amp bandwidth limits filter performance** — The op-amp's open-loop gain must be much higher than the filter's Q at the cutoff frequency. A Sallen-Key filter with Q = 5 using an op-amp with only 20 dB of open-loop gain at cutoff will not behave as designed
 - **Aliased noise can look like signal** — If broadband noise extends above Nyquist, it aliases back into the signal band and raises the noise floor. The anti-alias filter must attenuate noise, not just the desired signal's harmonics
-- **Group delay causes waveform distortion** — Steep filters (Chebyshev, elliptic) have non-constant group delay near cutoff, which distorts transients. If you're analyzing pulse shapes or timing, Bessel filters preserve waveform fidelity
+- **Group delay causes waveform distortion** — Steep filters (Chebyshev, elliptic) have non-constant group delay near cutoff, which distorts transients. For analyzing pulse shapes or timing, Bessel filters preserve waveform fidelity
 - **Passive filters have impedance interactions** — An RC filter followed by a low-impedance load changes its cutoff frequency. Buffer the filter output or account for the load in the design
 - **Don't forget the input** — An anti-alias filter at the ADC input doesn't help if the ADC's sample-and-hold is exposed to high-frequency signals through other paths (e.g., digital feedthrough on the PCB)
+
+## Bench Relevance
+
+- A signal that shows unexpected low-frequency content after sampling likely has aliased high-frequency components — verify the anti-alias filter is working
+- A filter that doesn't achieve the expected rolloff may have component tolerance issues or op-amp bandwidth limitations
+- Ringing on step response indicates a high-Q filter (Chebyshev, elliptic) — switch to Butterworth or Bessel if this is problematic
+- A passive RC filter that appears to have the wrong cutoff frequency may be loaded by the next stage's input impedance

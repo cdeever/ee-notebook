@@ -23,9 +23,9 @@ The workhorse of switching power conversion. The inductor stores energy during o
 
 ### What Matters Most
 
-- **Saturation current** — Must exceed the peak inductor current (DC load current + half the ripple current) under worst-case conditions (maximum load, maximum input voltage for boost, minimum input voltage for buck). Temperature derating required — check the saturation current at your operating temperature, not at 25°C
-- **DCR** — Directly subtracts from efficiency. At 5A load, every 10 milliohms of DCR costs 0.25W. For battery-powered designs, this is critical. For wall-powered designs with generous thermal budget, less so
-- **Inductance at operating DC bias** — The inductance you get at your operating current, not the zero-current value on the datasheet front page. A "10 uH" inductor might deliver 7 uH at rated current. Use the inductance vs. DC bias curve
+- **Saturation current** — Must exceed the peak inductor current (DC load current + half the ripple current) under worst-case conditions (maximum load, maximum input voltage for boost, minimum input voltage for buck). Temperature derating required — check the saturation current at operating temperature, not at 25°C
+- **DCR** — Directly subtracts from efficiency. At 5 A load, every 10 mΩ of DCR costs 0.25 W. For battery-powered designs, this is critical. For wall-powered designs with generous thermal budget, less so
+- **Inductance at operating DC bias** — The inductance at operating current, not the zero-current value on the datasheet front page. A "10 µH" inductor might deliver 7 µH at rated current. Use the inductance vs. DC bias curve
 - **Core material** — Soft saturation (powdered iron, composite) is more forgiving of transient overloads. Hard saturation (ferrite) is more efficient at high frequency but less tolerant of current spikes
 - **Size and height** — Physical constraints often drive the selection more than electrical specs. Taller inductors have more room for turns and air gap, providing better performance per footprint
 
@@ -41,8 +41,8 @@ Used on power inputs and signal lines to attenuate high-frequency noise.
 
 ### What Matters Most
 
-- **Impedance at the noise frequency** — Not the inductance value itself, but the impedance (resistive + reactive) at the frequency you're trying to block. A 10 uH inductor has an impedance of about 6 ohms at 100 kHz. If you need 50 ohms of impedance at that frequency, you need a larger inductance or a ferrite bead
-- **Self-resonant frequency** — Above the SRF, the inductor becomes capacitive and its impedance drops. The useful filtering range is below the SRF. For broadband EMI filtering, you may need multiple stages with different SRFs
+- **Impedance at the noise frequency** — Not the inductance value itself, but the impedance (resistive + reactive) at the frequency to be blocked. A 10 µH inductor has an impedance of about 6 Ω at 100 kHz. If 50 Ω of impedance is needed at that frequency, a larger inductance or a ferrite bead is required
+- **Self-resonant frequency** — Above the SRF, the inductor becomes capacitive and its impedance drops. The useful filtering range is below the SRF. For broadband EMI filtering, multiple stages with different SRFs may be needed
 - **DC bias handling** — Common-mode chokes carry the full load current as DC. If the core saturates from DC bias, the common-mode impedance drops and filtering is lost. Differential-mode filter inductors also carry DC and must avoid saturation
 - **Rated current** — Thermal, not just saturation. EMI components are often in the power path and must handle full load current continuously without overheating
 
@@ -78,7 +78,7 @@ Matches the high-impedance output of a tube amplifier to a low-impedance speaker
 ### What Matters Most
 
 - **Frequency response** — The transformer must pass the audio band (20 Hz to 20 kHz minimum) with minimal rolloff. Low-frequency response is limited by magnetizing inductance (too low = bass rolloff). High-frequency response is limited by leakage inductance and stray capacitance (too high = treble rolloff)
-- **Magnetizing inductance** — Must be high enough that the inductive reactance at the lowest frequency of interest is much greater than the reflected load impedance. For 20 Hz into 8 ohms reflected, the magnetizing inductance needs to be at least several henries
+- **Magnetizing inductance** — Must be high enough that the inductive reactance at the lowest frequency of interest is much greater than the reflected load impedance. For 20 Hz into 8 Ω reflected, the magnetizing inductance needs to be at least several henries
 - **Leakage inductance** — Must be low enough that the series impedance at 20 kHz doesn't attenuate the signal. Tight winding coupling (interleaved primaries and secondaries) is essential
 - **Core saturation at low frequency** — Large flux swing at low frequency requires a large core with high B_sat material. This is why audio output transformers are physically large and heavy — the core size is set by the lowest frequency and the maximum power level
 - **DC balance** — Push-pull output stages cancel DC in the core. Single-ended designs pass DC through the primary, biasing the core and reducing available flux swing. Single-ended transformers need gapped cores or cores with high B_sat to accommodate the DC bias
@@ -96,7 +96,7 @@ Provides galvanic isolation between circuits — either for safety (mains isolat
 
 ### What Matters Most
 
-- **Isolation voltage rating** — The dielectric strength between primary and secondary windings. Safety transformers must be rated and tested to withstand specific voltages (1500V, 4000V, etc.) per the applicable safety standard
+- **Isolation voltage rating** — The dielectric strength between primary and secondary windings. Safety transformers must be rated and tested to withstand specific voltages (1500 V, 4000 V, etc.) per the applicable safety standard
 - **Creepage and clearance** — Physical distances between primary and secondary conductors on the bobbin, pins, and PCB. These are safety-critical dimensions, not electrical performance specs
 - **Inter-winding capacitance** — Lower is better for isolation integrity. High inter-winding capacitance couples common-mode noise across the isolation barrier, defeating part of the isolation's purpose
 - **Leakage current** — Related to inter-winding capacitance. At mains frequency, the current that flows through the capacitance between windings. Medical and sensitive applications have strict leakage current limits
@@ -108,25 +108,23 @@ Provides galvanic isolation between circuits — either for safety (mains isolat
 - DCR (unless the transformer carries high current)
 - Magnetizing inductance (as long as it's sufficient for the operating frequency — undersized mains transformers draw excessive magnetizing current)
 
-## Reading a Magnetics Datasheet
+## Tips
 
-Key specs and where to find the catch:
+- Always check the inductance vs. DC bias curve — the front-page inductance number is the zero-bias value
+- Match core material to operating frequency for best efficiency
+- For switching converters, calculate peak current including ripple and transients, not just average load current
 
-| Spec | What It Tells You | What It Doesn't Tell You |
-|---|---|---|
-| Inductance | Nominal value at zero DC bias, room temperature | Value at your operating current and temperature |
-| Saturation current | Current where inductance drops 20–30% (check the percentage) | What happens just above that — cliff or slope |
-| Rated current | Thermal limit for continuous operation | Whether you also saturate before reaching this current |
-| DCR | DC winding resistance at 25°C | Resistance at operating temperature (add ~30% for 100°C) |
-| SRF | Self-resonant frequency | Useful impedance bandwidth (SRF is the upper limit) |
-| Core material | Loss and saturation characteristics | Whether the material is right for your frequency and application |
+## Caveats
 
-**Always check the inductance vs. DC bias curve.** If the datasheet doesn't include one, request it from the manufacturer or measure it yourself. The front-page inductance number is the zero-bias value and may be significantly higher than what you get at operating current.
+- The "same" inductance value from different manufacturers can behave completely differently under DC bias — A 10 µH inductor from one vendor may hold 8 µH at 3 A; from another, it may drop to 5 µH at 3 A. Core material and construction matter more than the headline spec
+- "Shielded" does not mean zero external field — Shielded inductors contain most of the field, but some leakage is inevitable. If a shielded inductor is placed next to a sensitive analog circuit, check the manufacturer's field plot or measure the coupling
+- Audio transformer specs rarely include distortion data — THD may need to be measured, especially at low frequencies and high signal levels where core nonlinearity is worst
+- Flyback transformers from different winding houses for the "same" schematic can have dramatically different leakage inductance — Winding technique and consistency are critical. If suppliers change, re-measure leakage and re-validate the snubber
+- Selecting by inductance alone is the most common magnetics mistake in switching converter design — Current rating, saturation current, DCR, and core material all matter as much or more than the inductance value. Two "10 µH, 5 A" inductors from the same distributor search can behave completely differently in the same circuit
 
-## Gotchas
+## Bench Relevance
 
-- **The "same" inductance value from different manufacturers can behave completely differently under DC bias.** A 10 uH inductor from one vendor may hold 8 uH at 3A; from another, it may drop to 5 uH at 3A. Core material and construction matter more than the headline spec
-- **"Shielded" does not mean zero external field.** Shielded inductors contain most of the field, but some leakage is inevitable. If you're placing a shielded inductor next to a sensitive analog circuit, check the manufacturer's field plot or measure the coupling yourself
-- **Audio transformer specs rarely include distortion data.** You may need to measure THD yourself, especially at low frequencies and high signal levels where core nonlinearity is worst
-- **Flyback transformers from different winding houses for the "same" schematic can have dramatically different leakage inductance.** Winding technique and consistency are critical. If you change suppliers, re-measure leakage and re-validate the snubber
-- **Selecting by inductance alone is the most common magnetics mistake in switching converter design.** Current rating, saturation current, DCR, and core material all matter as much or more than the inductance value. Two "10 uH, 5A" inductors from the same distributor search can behave completely differently in the same circuit
+- An inductor that saturates in one design but not another with the "same" requirements likely has different DC bias characteristics
+- Converter efficiency that doesn't match calculations often traces to higher-than-expected DCR or core losses
+- EMI that passes with one inductor but fails with an "equivalent" replacement indicates the SRF or impedance vs. frequency differs
+- A flyback that rings excessively after switching has too much leakage inductance — compare different transformer samples

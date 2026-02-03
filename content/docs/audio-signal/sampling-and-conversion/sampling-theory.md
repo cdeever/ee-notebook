@@ -5,7 +5,7 @@ weight: 10
 
 # Sampling Theory
 
-Sampling converts a continuous signal into a sequence of discrete values taken at regular intervals. The fundamental question is: how fast must you sample to preserve the original signal? The Nyquist-Shannon sampling theorem provides the answer — and its consequences are absolute. Violate the theorem and information is irreversibly destroyed. Respect it and perfect reconstruction is theoretically possible.
+Sampling converts a continuous signal into a sequence of discrete values taken at regular intervals. The fundamental question is: how fast must sampling occur to preserve the original signal? The Nyquist-Shannon sampling theorem provides the answer — and its consequences are absolute. Violate the theorem and information is irreversibly destroyed. Respect it and perfect reconstruction is theoretically possible.
 
 ## The Nyquist Criterion
 
@@ -22,7 +22,7 @@ The minimum sampling rate (2 × f_max) is called the Nyquist rate. The frequency
 | Professional audio | 20 kHz | 40 kHz | 48 kHz, 96 kHz |
 | Ultrasonic | 100 kHz | 200 kHz | 250-500 kHz |
 
-The theorem says "greater than," not "greater than or equal to." Sampling at exactly 2× works only under mathematically ideal conditions — infinite-length signals, zero-width samples, perfect reconstruction. In practice, you always sample faster than the theoretical minimum.
+The theorem says "greater than," not "greater than or equal to." Sampling at exactly 2× works only under mathematically ideal conditions — infinite-length signals, zero-width samples, perfect reconstruction. In practice, sampling always occurs faster than the theoretical minimum.
 
 ## Aliasing: The Irreversible Error
 
@@ -62,10 +62,23 @@ The sampling theorem assumes ideal conditions that real systems don't provide:
 
 **Oversampling in practice** — Sampling at exactly 2× f_max requires a theoretically perfect (infinite-order) anti-alias filter with a brick-wall cutoff. Practical sampling rates are higher — 2.2× to 2.5× for most applications, or much higher (64× to 256×) in oversampling converters — to allow realizable analog filters to provide adequate alias rejection.
 
-## Gotchas
+## Tips
 
-- **Aliasing is not always obvious** — An aliased signal looks perfectly legitimate in the sampled data. Without knowing the original signal content, you can't tell that a frequency component is aliased. This is why anti-alias filters are designed for worst-case, not typical conditions
+- Sample at a rate that leaves room for a practical anti-alias filter transition band — typically 2.2× to 2.5× the signal bandwidth
+- Use oversampling converters (delta-sigma) when possible — they simplify analog filter requirements significantly
+- For bandpass signals, consider bandpass sampling (undersampling) to reduce the sample rate requirement
+
+## Caveats
+
+- **Aliasing is not always obvious** — An aliased signal looks perfectly legitimate in the sampled data. Without knowing the original signal content, there's no way to tell that a frequency component is aliased. This is why anti-alias filters are designed for worst-case, not typical conditions
 - **Nyquist applies to signal bandwidth, not to the center frequency** — Bandpass sampling (undersampling) deliberately aliases a high-frequency signal to a lower frequency. A 10 MHz signal with 1 MHz bandwidth can be sampled at 2+ MHz, not 20+ MHz — but the anti-alias filter must be a bandpass filter that rejects all unwanted alias bands
 - **"44.1 kHz can capture 22.05 kHz" is misleading** — Technically true, but the anti-alias filter must achieve full rejection between 20 kHz and 22.05 kHz — a transition band of only 2.05 kHz. This requires a very steep filter, which is why 44.1 kHz was a challenging design target for early CD players
 - **Higher sample rates don't always help** — Sampling at 192 kHz for content that only contains energy below 20 kHz wastes storage and processing with no audible benefit. The advantage of higher rates is relaxed anti-alias filter requirements and lower latency, not extended frequency response
 - **Aliasing affects noise too** — Broadband noise above Nyquist aliases back into the signal band. An anti-alias filter that only filters the signal and ignores wideband noise will have a higher-than-expected noise floor after sampling
+
+## Bench Relevance
+
+- A spectrum showing unexpected low-frequency components that don't correspond to the input signal suggests aliasing — verify the anti-alias filter is properly attenuating above Nyquist
+- Changing the sample rate and seeing frequency components shift position (rather than remaining fixed) indicates aliased content
+- A stepped or staircase appearance on the reconstructed output indicates insufficient reconstruction filtering or ZOH droop
+- Noise floor higher than expected after sampling often indicates wideband noise aliasing into the signal band

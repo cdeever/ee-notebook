@@ -72,10 +72,23 @@ Each doubling of the sample rate improves SNR by 3 dB (= ½ bit). Getting one ex
 
 **This is how delta-sigma converters work:** A 1-bit quantizer running at 64× oversampling with 4th-order noise shaping achieves 16+ effective bits. The low-resolution quantizer combined with aggressive noise shaping and decimation filtering produces high-resolution output. See [Analog-to-Digital Converters]({{< relref "/docs/audio-signal/sampling-and-conversion/analog-to-digital-converters" >}}).
 
-## Gotchas
+## Tips
+
+- Always dither when reducing bit depth in digital audio
+- Use more bits than theoretically necessary — real-world ENOB is always lower than stated resolution
+- Understand that oversampling alone provides only modest improvement; noise shaping is what makes delta-sigma converters effective
+
+## Caveats
 
 - **Truncation is not the same as rounding** — Truncation always rounds toward zero (or toward negative infinity), creating a DC offset in the quantization error. Rounding to the nearest code keeps the error centered at zero. Always round, never truncate, when reducing bit depth
 - **Dither must be applied before quantization** — Adding noise after quantization doesn't help. The dither must be present when the rounding decision is made
 - **Noise shaping pushes noise to high frequencies — it doesn't remove it** — If the decimation filter doesn't adequately reject the out-of-band shaped noise, it aliases back into the signal band during downsampling. The decimation filter is critical
 - **Re-dithering at every bit-depth reduction** — If a signal is reduced from 24 to 20 bits, then later from 20 to 16 bits, dither should be applied at each reduction. But the accumulated dither noise is higher than a single 24-to-16-bit dithered conversion. Minimize the number of bit-depth reductions
 - **Fixed-point DSP accumulates quantization error** — Every multiply-and-round operation in fixed-point arithmetic introduces quantization error. Long filter chains or recursive (IIR) structures accumulate this error. Use wider accumulators (40-bit or 64-bit) for intermediate calculations, and only truncate/round at the final output
+
+## Bench Relevance
+
+- Audio that sounds harsh or metallic at low levels but clean at high levels indicates quantization distortion — add dither or use more bits
+- A spectrum showing harmonics of a low-level sine wave that disappear when dither is added confirms quantization distortion
+- Noise floor that appears lower than the theoretical limit for the bit depth suggests the measurement isn't capturing the full noise (check bandwidth)
+- A delta-sigma converter that shows excessive noise likely has inadequate decimation filtering, allowing shaped noise to alias back in

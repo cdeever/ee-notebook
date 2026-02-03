@@ -87,10 +87,23 @@ For MCU ADC peripherals, the sampling rate is often limited by the conversion ti
 - **Input bandwidth** — The -3 dB frequency of the input stage, often much higher than the Nyquist frequency. Useful for bandpass sampling
 - **Reference quality** — The ADC is only as accurate as its reference. Reference noise and drift directly appear in the output
 
-## Gotchas
+## Tips
+
+- Choose ADC architecture based on the primary requirement: SAR for general-purpose, delta-sigma for precision, pipeline/flash for speed
+- Pay attention to ENOB at the actual signal frequency, not just the DC or low-frequency spec
+- Use an external precision reference for applications requiring better than 0.1% accuracy
+
+## Caveats
 
 - **ENOB drops with input frequency** — ADC specs are usually given at low input frequencies. At higher input frequencies, ENOB degrades due to aperture jitter, comparator settling, and other dynamic effects. Check the datasheet's ENOB vs frequency plot
 - **Missing codes** — If DNL exceeds 1 LSB, some output codes never appear. A "12-bit" ADC with missing codes effectively has lower resolution. Check DNL specs
 - **SAR ADCs have a kickback transient** — The sampling capacitor switching creates a current pulse on the input. The source must settle from this disturbance within the acquisition window. Use a low-impedance buffer or an RC filter designed for the ADC's sampling behavior
 - **Delta-sigma settling time** — After changing channels or input conditions, a delta-sigma ADC needs multiple output samples to settle its internal filters. Don't trust the first several readings after a change
 - **Don't confuse throughput with bandwidth** — A 1 Msps SAR ADC doesn't necessarily have 500 kHz analog bandwidth. The actual usable bandwidth depends on ENOB at the frequency of interest
+
+## Bench Relevance
+
+- An ADC showing fewer distinct output levels than expected (staircase with missing steps) indicates DNL problems or missing codes
+- Noise floor higher than the theoretical quantization noise suggests clock jitter, reference noise, or analog front-end issues
+- An ADC that performs well at DC but poorly at higher frequencies is likely jitter-limited
+- Delta-sigma ADCs that give inconsistent readings when multiplexing are showing settling time issues — increase the delay between channel switches

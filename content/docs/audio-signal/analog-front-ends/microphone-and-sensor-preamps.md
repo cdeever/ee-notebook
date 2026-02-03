@@ -5,7 +5,7 @@ weight: 10
 
 # Microphone & Sensor Preamps
 
-The first active stage in a signal chain has an outsized influence on the entire system's noise performance. A preamplifier takes a weak signal — microvolts from a thermocouple, millivolts from a microphone, or nanoamps from a photodiode — and amplifies it to a level where subsequent stages can process it without degrading the SNR. Get the preamp wrong and no amount of downstream processing can recover the lost signal quality.
+The first active stage in a signal chain has an outsized influence on the entire system's noise performance. A preamplifier takes a weak signal — microvolts from a thermocouple, millivolts from a microphone, or nanoamps from a photodiode — and amplifies it to a level where subsequent stages can process it without degrading the SNR. Getting the preamp wrong means no amount of downstream processing can recover the lost signal quality.
 
 ## Why the First Stage Dominates: Friis Intuition
 
@@ -47,10 +47,23 @@ How the source connects to the preamp determines both signal transfer and noise 
 
 **Resistive bridges (strain gauges, load cells)** — Differential millivolt output on a common-mode voltage. Instrumentation amplifier is the standard approach. Bridge excitation voltage, lead resistance, and CMRR all affect accuracy.
 
-## Gotchas
+## Tips
+
+- Put as much gain as possible in the first stage, consistent with not clipping expected signals
+- Match the op-amp input type to the source impedance — BJT inputs for low-Z sources, JFET/CMOS for high-Z sources
+- Use an instrumentation amplifier for any differential or bridge-type sensor
+
+## Caveats
 
 - **Gain bandwidth product limits high-gain stages** — An op-amp with 10 MHz GBW at a gain of 1000 (60 dB) only has 10 kHz bandwidth. High-gain preamps may need faster op-amps or cascaded lower-gain stages
 - **Input bias current creates offset with high-impedance sources** — A JFET-input op-amp has pA bias current; a BJT-input op-amp has nA to µA. With a 1 MΩ source, 100 nA of bias current creates 100 mV of offset — which may rail the output or reduce headroom
 - **Phantom power can damage equipment** — 48 V phantom power applied to an unbalanced input or a ribbon microphone can cause damage. Preamp design must account for phantom power routing
 - **Cable capacitance acts as a low-pass filter** — Long cables from high-impedance sources (guitar pickups, piezo sensors) roll off high frequencies. Moving the preamp close to the source (or using a buffer) solves this
 - **EMI pickup scales with impedance** — Higher-impedance nodes pick up more electromagnetic interference. High-impedance preamp inputs need careful shielding, short traces, and guard rings on PCBs
+
+## Bench Relevance
+
+- A preamp that produces excessive noise with a high-impedance source but not with a low-impedance source suggests input bias current or EMI pickup issues
+- An instrumentation amplifier that shows poor CMRR in practice may have mismatched gain resistors or layout-induced imbalance
+- A charge amplifier whose sensitivity changes with cable length is operating in voltage mode rather than true charge mode
+- High-frequency rolloff on a piezo or high-impedance source indicates cable capacitance loading the source

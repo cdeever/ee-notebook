@@ -11,7 +11,7 @@ Magnetic components can draw enormous currents at the moment power is applied �
 
 ### Transformer Core Saturation on First Half-Cycle
 
-When you apply AC to a transformer, the core flux must start from wherever it was when power was last removed. In the worst case:
+When AC is applied to a transformer, the core flux must start from wherever it was when power was last removed. In the worst case:
 
 1. The core has residual magnetization from the previous power-down (remanence). In silicon steel, remanence can be 60–80% of B_sat
 2. Power is reapplied at a voltage zero-crossing — this means the voltage integral (which determines flux) drives the core through a full half-cycle swing from the residual point
@@ -25,7 +25,7 @@ This is not a fault. It's normal physics. It happens every time the voltage phas
 
 ### Duration
 
-The inrush is self-correcting. Each subsequent half-cycle, the core's flux walk back toward the steady-state operating point. Winding resistance damps the transient. Typical inrush duration is 5–30 cycles (80–500 ms at 60 Hz), but large transformers with low winding resistance can ring for longer.
+The inrush is self-correcting. Each subsequent half-cycle, the core's flux walks back toward the steady-state operating point. Winding resistance damps the transient. Typical inrush duration is 5–30 cycles (80–500 ms at 60 Hz), but large transformers with low winding resistance can ring for longer.
 
 ### Capacitor Charging Through Rectifiers
 
@@ -41,7 +41,7 @@ Well-designed converter ICs manage this with internal soft-start. Discrete conve
 
 ### Inductor with DC Bias Applied Suddenly
 
-Any inductor connected to a voltage source through a switch sees V/L as its initial dI/dt. A 10 uH inductor with 12V applied sees an initial current rise of 1.2 A/µs. If the steady-state current is limited by circuit resistance (say 12V / 4 ohms = 3A), the current reaches steady state in a few L/R time constants. But during that ramp, the inductor's peak current may briefly exceed its saturation rating, momentarily collapsing the inductance and causing a further current spike.
+Any inductor connected to a voltage source through a switch sees V/L as its initial dI/dt. A 10 µH inductor with 12 V applied sees an initial current rise of 1.2 A/µs. If the steady-state current is limited by circuit resistance (say 12 V / 4 Ω = 3 A), the current reaches steady state in a few L/R time constants. But during that ramp, the inductor's peak current may briefly exceed its saturation rating, momentarily collapsing the inductance and causing a further current spike.
 
 ## What Inrush Damages
 
@@ -49,7 +49,7 @@ Any inductor connected to a voltage source through a switch sees V/L as its init
 
 Fuses have an I²t rating — the energy they can absorb before opening. If the inrush I²t exceeds the fuse's pre-arcing I²t, the fuse blows. Since inrush current can be 10–20× normal, the I²t during inrush can be 100–400× the steady-state value — but only for a few cycles.
 
-**Slow-blow (time-delay) fuses** are the standard solution. They tolerate brief high-current events while still protecting against sustained overcurrent. An equipment designed for a 2A steady-state draw might need a 3A or 5A slow-blow fuse to survive inrush.
+**Slow-blow (time-delay) fuses** are the standard solution. They tolerate brief high-current events while still protecting against sustained overcurrent. Equipment designed for a 2 A steady-state draw might need a 3 A or 5 A slow-blow fuse to survive inrush.
 
 ### Rectifier Diodes
 
@@ -67,7 +67,7 @@ On a shared power bus (like a branch circuit in a building), the inrush from a l
 
 ### NTC Thermistors
 
-A negative temperature coefficient resistor in series with the primary. At cold power-on, the NTC has high resistance (typically 5–50 ohms) and limits inrush current. As operating current heats the NTC, its resistance drops to a fraction of an ohm, and it has negligible effect on steady-state operation.
+A negative temperature coefficient resistor in series with the primary. At cold power-on, the NTC has high resistance (typically 5–50 Ω) and limits inrush current. As operating current heats the NTC, its resistance drops to a fraction of an ohm, and it has negligible effect on steady-state operation.
 
 Limitations:
 - After a brief power interruption, the NTC is still hot and has low resistance — it won't limit inrush on a quick restart. This is the "warm restart" problem
@@ -87,7 +87,7 @@ Advantages over NTC:
 
 Most switching converter ICs include a soft-start function: the duty cycle or current limit ramps up gradually over 1–50 ms after the enable signal goes high. This limits the peak inductor current during startup and prevents capacitor-charging inrush from overloading the inductor or input supply.
 
-Check that the soft-start time is long enough for your output capacitance. A fast soft-start into a large output capacitor still produces significant inrush.
+Check that the soft-start time is long enough for the output capacitance. A fast soft-start into a large output capacitor still produces significant inrush.
 
 ### Phase-Controlled Switching
 
@@ -95,11 +95,24 @@ For large transformers (industrial equipment, audio amplifiers with large toroid
 
 Requires a solid-state switch (TRIAC or back-to-back SCRs) with zero-crossing detection and control logic. Overkill for small equipment, standard practice for large transformers.
 
-## Gotchas
+## Tips
 
-- **Toroidal transformers have worse inrush than E-I laminated transformers.** Toroidal cores have low reluctance (no air gap in the magnetic path) and high remanence. A toroidal power transformer can draw 30–60× rated current on a worst-case power-on. E-I transformers have small gaps at the lamination boundaries that reduce remanence
-- **NTC thermistors are the most common inrush limiter and the most commonly misunderstood.** They work great for a single cold start. They don't help on a warm restart after a brief power interruption — which is exactly the scenario that happens during power glitches and brownouts
-- **Inrush is non-deterministic.** The same equipment on the same outlet blows the fuse one time in twenty. The other nineteen times, the voltage phase at switch-on doesn't cause worst-case flux doubling. This makes the problem hard to reproduce and easy to dismiss as "random"
-- **Putting a bigger fuse in to "solve" inrush just moves the failure.** The fuse was protecting the wiring and downstream components. A larger fuse means the wiring or the rectifier takes the abuse instead. Use a slow-blow fuse rated correctly, or add real inrush limiting
-- **Inrush current creates an inrush voltage dip.** If your circuit monitors input voltage to decide when it's safe to start (common in microcontroller supervisory circuits), the voltage dip from inrush on a shared bus can cause repeated reset cycling — the micro starts, draws current, sags the bus, resets, bus recovers, micro starts again
-- **Multiple converters on the same input should not all start simultaneously.** Stagger the enable signals by a few milliseconds each. The combined inrush of all converters starting at once can exceed the input fuse or upstream regulator capacity, even if each individual converter's inrush is acceptable
+- Use slow-blow fuses rated for the inrush I²t, not just the steady-state current
+- Allow adequate soft-start time for the output capacitance being charged
+- Stagger power-on of multiple converters on the same input supply
+
+## Caveats
+
+- Toroidal transformers have worse inrush than E-I laminated transformers — Toroidal cores have low reluctance (no air gap in the magnetic path) and high remanence. A toroidal power transformer can draw 30–60× rated current on a worst-case power-on. E-I transformers have small gaps at the lamination boundaries that reduce remanence
+- NTC thermistors are the most common inrush limiter and the most commonly misunderstood — They work great for a single cold start. They don't help on a warm restart after a brief power interruption — which is exactly the scenario that happens during power glitches and brownouts
+- Inrush is non-deterministic — The same equipment on the same outlet blows the fuse one time in twenty. The other nineteen times, the voltage phase at switch-on doesn't cause worst-case flux doubling. This makes the problem hard to reproduce and easy to dismiss as "random"
+- Putting a bigger fuse in to "solve" inrush just moves the failure — The fuse was protecting the wiring and downstream components. A larger fuse means the wiring or the rectifier takes the abuse instead. Use a slow-blow fuse rated correctly, or add real inrush limiting
+- Inrush current creates an inrush voltage dip — If the circuit monitors input voltage to decide when it's safe to start (common in microcontroller supervisory circuits), the voltage dip from inrush on a shared bus can cause repeated reset cycling — the micro starts, draws current, sags the bus, resets, bus recovers, micro starts again
+- Multiple converters on the same input should not all start simultaneously — Stagger the enable signals by a few milliseconds each. The combined inrush of all converters starting at once can exceed the input fuse or upstream regulator capacity, even if each individual converter's inrush is acceptable
+
+## Bench Relevance
+
+- A fuse that blows randomly on power-up (but not every time) indicates inrush hitting the fuse's I²t limit at worst-case phase angles
+- Equipment that works fine when power is applied gradually (variac) but trips breakers on direct mains connection has an inrush problem
+- Voltage sag visible on a scope at power-on indicates significant inrush current
+- An NTC thermistor that fails to limit inrush after a brief power cycle confirms the warm-restart limitation

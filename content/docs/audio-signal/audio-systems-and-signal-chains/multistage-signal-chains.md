@@ -17,7 +17,7 @@ A signal flow diagram maps the path from source to destination, showing each pro
 2. Note each stage's gain (or loss), input range, output range, and noise floor
 3. Calculate the signal level at each point: L_out = L_in + Gain (in dB)
 4. Check that the signal stays above the noise floor and below the clipping point at every stage
-5. Identify the stage with the tightest margins — that's your limiting stage
+5. Identify the stage with the tightest margins — that's the limiting stage
 
 **Example: microphone to digital recording**
 
@@ -83,10 +83,23 @@ Every chain has a limiting stage. Designing a signal chain means identifying whi
 
 **Bandwidth limited:** Find the stage with the narrowest bandwidth. If it's an op-amp running out of gain-bandwidth product, use a faster op-amp or reduce the gain per stage. If it's a cable, shorten it or buffer more often.
 
-## Gotchas
+## Tips
+
+- Draw a signal flow diagram before building — it reveals problems before components are soldered
+- Apply the Friis formula to understand where noise enters the chain
+- Test each stage independently before connecting them
+
+## Caveats
 
 - **Specifications don't compose simply** — A chain of stages each with 0.01% THD doesn't produce 0.01% THD overall. Distortion products from one stage can be amplified, filtered, or intermodulate with distortion from other stages. Total distortion must be measured end-to-end
 - **The best stage is irrelevant** — A signal chain with one excellent stage and one mediocre stage performs like the mediocre stage. Upgrading the already-excellent stage produces no improvement. Identify and fix the bottleneck
 - **AC coupling creates cumulative low-frequency rolloff** — Each AC coupling stage (series capacitor) adds a high-pass pole. Three stages each with -3 dB at 10 Hz produce a combined -3 dB at about 17 Hz and steeper rolloff below. Account for all coupling stages in the frequency response
 - **Thermal gradients cause drift** — In precision signal chains, temperature differences between stages cause offset drift. Matched component temperatures and thermal isolation from heat sources (regulators, power stages) matter for DC and low-frequency accuracy
-- **Test equipment can be the weakest link** — If your oscilloscope or analyzer has worse noise, bandwidth, or distortion than the circuit under test, you're measuring the instrument, not the circuit. Always verify that the test equipment exceeds the DUT's specifications
+- **Test equipment can be the weakest link** — If the oscilloscope or analyzer has worse noise, bandwidth, or distortion than the circuit under test, the measurement reflects the instrument, not the circuit. Always verify that the test equipment exceeds the DUT's specifications
+
+## Bench Relevance
+
+- Hum at 50/60 Hz (and harmonics) indicates a ground loop — find where the loop closes
+- Distortion that varies with signal level suggests a stage running out of headroom
+- Bandwidth that's narrower than any single stage's spec indicates cumulative rolloff or loading effects
+- Noise that increases when a stage is bypassed indicates the bypassed stage was providing gain that masked downstream noise

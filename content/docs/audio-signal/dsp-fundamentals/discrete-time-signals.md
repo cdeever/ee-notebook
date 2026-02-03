@@ -41,7 +41,7 @@ For real-time audio, block sizes above ~512 samples at 48 kHz (>10 ms) start to 
 
 ## Windowing
 
-When you analyze a finite block of samples, you're implicitly multiplying the infinite signal by a rectangular window — ones inside the block, zeros outside. This abrupt truncation creates artifacts in the frequency domain (spectral leakage): energy from a single frequency smears across many frequency bins.
+When analyzing a finite block of samples, the block is implicitly multiplied by a rectangular window — ones inside the block, zeros outside. This abrupt truncation creates artifacts in the frequency domain (spectral leakage): energy from a single frequency smears across many frequency bins.
 
 **Window functions** taper the edges of the block to reduce leakage, trading off frequency resolution for reduced sidelobes:
 
@@ -52,7 +52,7 @@ When you analyze a finite block of samples, you're implicitly multiplying the in
 | Hamming | Moderate | -43 dB | Similar to Hann, slightly better sidelobes |
 | Blackman | Wide | -58 dB | When dynamic range matters more than resolution |
 | Flat-top | Widest | -44 dB | Amplitude-accurate measurements (calibration) |
-| Kaiser | Adjustable (β) | Adjustable | When you need to tune the tradeoff |
+| Kaiser | Adjustable (β) | Adjustable | When the tradeoff needs tuning |
 
 **The tradeoff:** Wider main lobe means worse ability to distinguish nearby frequencies. Lower sidelobes mean less leakage from strong signals into weak-signal bins. There's no window that wins on both — this is another manifestation of the time-frequency uncertainty principle.
 
@@ -64,10 +64,23 @@ A subtlety that causes real bugs: the FFT inherently computes circular (periodic
 
 **Practical solution:** Zero-pad both the signal block and the filter to length N + M - 1 before computing the FFT. The overlap-add and overlap-save methods systematize this for continuous processing of sequential blocks.
 
-## Gotchas
+## Tips
+
+- Choose block size based on latency requirements first, then optimize for efficiency
+- Use Hann or Blackman windows for general spectral analysis — rectangular windows cause excessive leakage
+- When using FFT-based convolution, always zero-pad to avoid circular convolution artifacts
+
+## Caveats
 
 - **Off-by-one errors are everywhere** — A block of N samples spans indices 0 to N-1. An N-point FFT produces N/2 + 1 unique frequency bins (the rest are conjugate mirrors for real signals). The highest frequency bin represents f_s/2, not f_s. These fencepost errors compound in multi-stage processing
-- **Sample rate must be tracked explicitly** — The sequence x[n] has no inherent notion of time or frequency. If you process a sequence without knowing its sample rate, you can't interpret the results in physical units. Every processing chain should carry the sample rate as metadata
+- **Sample rate must be tracked explicitly** — The sequence x[n] has no inherent notion of time or frequency. If a sequence is processed without knowing its sample rate, the results can't be interpreted in physical units. Every processing chain should carry the sample rate as metadata
 - **Block boundaries create discontinuities** — If a signal is processed in blocks without proper overlap and windowing, the block boundaries can introduce clicks, pops, or spectral artifacts. This is especially problematic for time-varying operations (filters with changing coefficients)
 - **Zero-padding does not create resolution** — Padding a block with zeros and taking a larger FFT interpolates the spectrum (smoother appearance) but does not increase the fundamental frequency resolution. True resolution depends on the signal duration, not the FFT size
 - **Integer indexing hides timing precision** — A sample at index n represents a moment in time, but the actual sampling instant has jitter. For high-resolution systems, the assumption of perfectly uniform spacing breaks down — see [Clocking & Jitter]({{< relref "/docs/audio-signal/practical-signal-reality/clocking-and-jitter" >}})
+
+## Bench Relevance
+
+- Clicks or pops at regular intervals in processed audio indicate block boundary discontinuities — verify overlap and windowing
+- Spectral analysis showing smeared peaks rather than clean lines indicates spectral leakage — use an appropriate window function
+- Unexpected frequency components in FFT output may be wrap-around artifacts from insufficient zero-padding
+- A processing chain that works at one sample rate but fails at another often has hardcoded values that should be sample-rate-dependent

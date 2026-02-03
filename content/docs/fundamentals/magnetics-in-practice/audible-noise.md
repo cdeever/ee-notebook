@@ -57,7 +57,7 @@ Stiffening the board, adding mechanical support, or changing the inductor's moun
 
 This isn't a magnetics issue, but it's commonly misattributed to the inductor. Class II ceramic capacitors (X5R, X7R, Y5V) exhibit piezoelectric behavior — they mechanically flex when voltage is applied. In a switching converter, the voltage ripple on ceramic caps causes audible vibration that sounds exactly like inductor whine.
 
-The giveaway: if you've replaced the inductor and the noise persists, suspect the ceramics. The fix is to use a different capacitor type (polymer or film) or to change the ceramic's mounting to reduce PCB excitation.
+The giveaway: if the inductor has been replaced and the noise persists, suspect the ceramics. The fix is to use a different capacitor type (polymer or film) or to change the ceramic's mounting to reduce PCB excitation.
 
 ## Transformer Hum in Mains Equipment
 
@@ -79,33 +79,26 @@ A sudden increase in transformer hum indicates a problem:
 - **Shorted turns:** A winding short increases the current in the remaining turns and changes the flux distribution, often increasing core vibration
 - **Loose hardware:** Lamination clamps, mounting bolts, or core screws working loose
 - **Core damage:** Cracked ferrite, burned laminations, or saturated core from a DC bias fault
-- **Overload:** The transformer is being asked to deliver more current than it's designed for, pushing the core harder
+- **Overload:** The transformer is being asked to deliver more current than designed for, pushing the core harder
 
-## Reducing Audible Noise
+## Tips
 
-### Design-Stage Choices
+- Choose core materials with low magnetostriction for noise-sensitive applications
+- Don't skimp on core size — running at lower flux density reduces magnetostrictive vibration
+- Use switching frequencies well above 20 kHz, and keep burst-mode or pulse-skipping frequencies above 20 kHz too
+- Varnish or pot windings to eliminate loose-winding vibration
 
-- **Choose core materials with low magnetostriction** for noise-sensitive applications
-- **Don't skimp on core size.** Running at lower flux density reduces magnetostrictive vibration. An oversized core is quieter
-- **Use switching frequencies well above 20 kHz,** and keep burst-mode or pulse-skipping frequencies above 20 kHz too
-- **Avoid light-load operating modes that create audible modulation patterns.** Some converter ICs offer "forced continuous conduction mode" options that eliminate pulse-skipping at the cost of light-load efficiency
+## Caveats
 
-### Manufacturing and Assembly
+- "Coil whine" is not always the coil — Ceramic capacitors, ferrite beads, and even some MOSFET packages can produce audible noise in switching circuits. Isolate the source by touching components with a non-conductive probe (wooden stick, plastic pen) while listening — damping the vibration of the actual source reduces the noise
+- Hum at 60 Hz (not 120 Hz) from a transformer suggests DC magnetization — Normal magnetostrictive hum is at twice the line frequency. If the fundamental frequency is heard, the core is being magnetized asymmetrically, often by DC on the mains or by a rectifier fault that's half-wave loading the transformer
+- Switching frequency is not the only frequency that matters — Intermodulation between the switching frequency and its subharmonics, PWM dimming frequencies (in LED drivers), and control loop bandwidth can all create audio-frequency beat tones
+- Enclosures can amplify or attenuate noise — A plastic enclosure with flat panels can resonate like a drum. A metal enclosure with damping material inside can attenuate. The same circuit may be silent in one enclosure and noisy in another
+- Audible noise can change with temperature — Magnetostriction coefficient varies with temperature for some materials, and mechanical resonance frequencies shift as the PCB and enclosure expand. A product that's quiet at room temperature may whine when warm
 
-- **Varnish or pot the windings** to eliminate loose-winding vibration. Vacuum impregnation with varnish is the standard industrial approach
-- **Glue the core halves together** on ferrite E-cores and pot cores. The mating surfaces of ungapped ferrite cores can vibrate against each other
-- **Tighten lamination clamping** on steel-core transformers
+## Bench Relevance
 
-### Board-Level Fixes
-
-- **Stiffen the PCB** near noisy components — thicker board, internal copper reinforcement, or mechanical standoffs
-- **Decouple the inductor from the board** with a compliant pad (silicone, adhesive foam) to reduce vibration transmission
-- **Replace ceramic capacitors** with polymer or film types if capacitor piezoelectric noise is the actual source
-
-## Gotchas
-
-- **"Coil whine" is not always the coil.** Ceramic capacitors, ferrite beads, and even some MOSFET packages can produce audible noise in switching circuits. Isolate the source by touching components with a non-conductive probe (wooden stick, plastic pen) while listening — damping the vibration of the actual source reduces the noise
-- **Hum at 60 Hz (not 120 Hz) from a transformer suggests DC magnetization.** Normal magnetostrictive hum is at twice the line frequency. If you hear the fundamental frequency, the core is being magnetized asymmetrically, often by DC on the mains or by a rectifier fault that's half-wave loading the transformer
-- **Switching frequency is not the only frequency that matters.** Intermodulation between the switching frequency and its subharmonics, PWM dimming frequencies (in LED drivers), and control loop bandwidth can all create audio-frequency beat tones
-- **Enclosures can amplify or attenuate noise.** A plastic enclosure with flat panels can resonate like a drum. A metal enclosure with damping material inside can attenuate. The same circuit may be silent in one enclosure and noisy in another
-- **Audible noise can change with temperature.** Magnetostriction coefficient varies with temperature for some materials, and mechanical resonance frequencies shift as the PCB and enclosure expand. A product that's quiet at room temperature may whine when warm
+- Touching an inductor with a non-conductive probe that reduces the noise confirms it as the source
+- Noise that correlates with load changes suggests burst-mode or variable-frequency operation
+- Replacing ceramic capacitors with film or polymer types that eliminate noise confirms piezoelectric capacitor vibration
+- A transformer that suddenly becomes louder indicates a developing fault — investigate before it fails completely

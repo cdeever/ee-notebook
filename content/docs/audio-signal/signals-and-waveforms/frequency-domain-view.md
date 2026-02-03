@@ -5,7 +5,7 @@ weight: 20
 
 # Frequency-Domain View
 
-Every signal can be decomposed into a sum of sinusoids at different frequencies, amplitudes, and phases. This is the Fourier insight, and it transforms how we think about signals: instead of asking "what is the voltage at each moment?" we ask "how much energy is at each frequency?" The frequency-domain view reveals structure that's invisible on an oscilloscope — harmonic distortion, interference, noise floors, and bandwidth limitations all become obvious on a spectrum display.
+Every signal can be decomposed into a sum of sinusoids at different frequencies, amplitudes, and phases. This is the Fourier insight, and it transforms how signals are analyzed: instead of asking "what is the voltage at each moment?" the question becomes "how much energy is at each frequency?" The frequency-domain view reveals structure that's invisible on an oscilloscope — harmonic distortion, interference, noise floors, and bandwidth limitations all become obvious on a spectrum display.
 
 ## Spectra
 
@@ -15,7 +15,7 @@ A **spectrum** plots amplitude (or power) against frequency. For periodic signal
 - **Continuous spectrum** — Aperiodic signal. Energy is spread across a continuous range of frequencies. Noise, transients, and most real-world signals have continuous spectra
 - **Power Spectral Density (PSD)** — For continuous spectra, amplitude at a single frequency is zero (energy is spread). PSD gives power per unit bandwidth (e.g., V²/Hz or dBm/Hz), which is the meaningful quantity
 
-In practice, we estimate spectra from finite-length signals using the FFT (see [Transforms]({{< relref "/docs/audio-signal/dsp-fundamentals/transforms" >}})). This introduces artifacts — spectral leakage and finite resolution — that must be understood to interpret the results correctly.
+In practice, spectra are estimated from finite-length signals using the FFT (see [Transforms]({{< relref "/docs/audio-signal/dsp-fundamentals/transforms" >}})). This introduces artifacts — spectral leakage and finite resolution — that must be understood to interpret the results correctly.
 
 ## Bandwidth
 
@@ -30,12 +30,12 @@ Bandwidth describes how wide a range of frequencies a signal occupies or a syste
 
 ## Frequency and Time: The Fundamental Tradeoff
 
-You cannot simultaneously have perfect resolution in both time and frequency. This is not a measurement limitation — it's a mathematical fact (the uncertainty principle, applied to signals).
+Perfect resolution in both time and frequency simultaneously is not possible. This is not a measurement limitation — it's a mathematical fact (the uncertainty principle, applied to signals).
 
 - A short time window gives good time resolution but poor frequency resolution (wide spectral bins)
 - A long time window gives good frequency resolution but poor time resolution (events are averaged together)
 
-Practical consequence: to distinguish two frequencies separated by Δf, you need at least T = 1/Δf seconds of signal. A 1-second measurement can resolve frequencies 1 Hz apart. A 10 ms measurement can only resolve frequencies 100 Hz apart.
+Practical consequence: to distinguish two frequencies separated by Δf, at least T = 1/Δf seconds of signal is needed. A 1-second measurement can resolve frequencies 1 Hz apart. A 10 ms measurement can only resolve frequencies 100 Hz apart.
 
 This tradeoff drives design decisions in spectrum analyzers, audio equalizers, and any system that needs to track frequency content that changes over time. Short-time Fourier transforms (STFTs) and spectrograms are practical compromises that chop the signal into overlapping windows and analyze each one.
 
@@ -73,10 +73,23 @@ Key relationships:
 
 **dB is a ratio, not an absolute level.** Absolute levels use a reference: dBV (ref 1 V RMS), dBu (ref 0.775 V RMS), dBm (ref 1 mW), dBFS (ref full-scale digital).
 
-## Gotchas
+## Tips
+
+- When troubleshooting noise or interference, switch to frequency domain view to identify the source by its spectral signature
+- Use logarithmic frequency scales to see both low and high frequency behavior in one view
+- Remember that 3 dB represents a factor of 2 in power (or √2 in voltage) — useful for quick mental calculations
+
+## Caveats
 
 - **Log frequency axis hides bandwidth** — An octave is a factor of 2 in frequency. On a log plot, every octave looks the same width. But the octave from 10 kHz to 20 kHz contains 10,000 Hz of bandwidth, while the octave from 100 Hz to 200 Hz contains only 100 Hz. Noise and distortion products at high frequencies can dominate total energy even though they look small on a log plot
 - **dBFS headroom disappears fast** — In a digital system, 0 dBFS is the absolute maximum. There is no headroom above it. Analog systems can clip gracefully (soft clipping); digital systems hit a hard wall at full scale
 - **Phase information is usually hidden** — Magnitude spectra discard phase. Two signals with identical magnitude spectra can sound completely different or have different time-domain shapes. Phase matters for transient response, stereo imaging, and waveform reconstruction
 - **Spectral leakage is not noise** — When using the FFT, frequency components that don't fall exactly on bin centers smear across multiple bins. This leakage can look like a raised noise floor but is an artifact of the analysis window (see [Transforms]({{< relref "/docs/audio-signal/dsp-fundamentals/transforms" >}}))
 - **Bandwidth ≠ highest frequency** — A bandpass system centered at 100 MHz with 1 MHz bandwidth handles frequencies from 99.5 to 100.5 MHz. Bandwidth is width, not position
+
+## Bench Relevance
+
+- Spectral spikes at 50/60 Hz and harmonics indicate power supply noise or ground loop coupling
+- A raised broadband noise floor in the spectrum suggests thermal noise, quantization noise, or jitter
+- Discrete spurs at unexpected frequencies often trace back to switching regulators, digital clocks, or oscillator harmonics
+- A spectrum that shows harmonics of the fundamental signal indicates nonlinear distortion in the signal chain

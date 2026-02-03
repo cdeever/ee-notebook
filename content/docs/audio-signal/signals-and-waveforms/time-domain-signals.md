@@ -5,7 +5,7 @@ weight: 10
 
 # Time-Domain Signals
 
-A signal is a quantity that varies over time. In electronics, that usually means a voltage or current waveform — and the time-domain view is the most intuitive way to see it: amplitude on the vertical axis, time on the horizontal. This is what an oscilloscope shows you, and it's the starting point for characterizing any signal.
+A signal is a quantity that varies over time. In electronics, that usually means a voltage or current waveform — and the time-domain view is the most intuitive way to see it: amplitude on the vertical axis, time on the horizontal. This is what an oscilloscope shows, and it's the starting point for characterizing any signal.
 
 ## Amplitude, Frequency, and Phase
 
@@ -42,7 +42,7 @@ The harmonic content of a waveform determines how much bandwidth a system needs 
 Different measurements of signal amplitude serve different purposes:
 
 - **Peak** — Maximum instantaneous value. Determines headroom requirements and clipping thresholds
-- **Peak-to-peak** — Total excursion. What you read directly off an oscilloscope display
+- **Peak-to-peak** — Total excursion. What appears directly on an oscilloscope display
 - **RMS (Root Mean Square)** — The equivalent DC value that delivers the same power to a resistive load. For power calculations, RMS is what matters
 
 For a sine wave, V_RMS = V_peak / √2 ≈ 0.707 × V_peak. This relationship only holds for sine waves. Other waveforms have different crest factors (the ratio of peak to RMS):
@@ -62,10 +62,23 @@ Many signals ride on a DC level. A microphone output might swing ±50 mV around 
 
 AC coupling (a series capacitor) removes the DC component. This is useful for measurement and for connecting stages with different DC operating points, but it also introduces a low-frequency rolloff — the coupling capacitor and the load form a high-pass filter. The time constant must be long enough that the lowest signal frequency of interest passes without significant attenuation.
 
-## Gotchas
+## Tips
+
+- Use true RMS meters for measuring non-sinusoidal signals — average-responding meters give incorrect readings
+- When calculating power, always use RMS values, not peak values
+- For signals with high crest factors, allow 10-20 dB of headroom above the RMS level to avoid clipping peaks
+
+## Caveats
 
 - **Crest factor surprises** — Audio and speech signals have crest factors of 10-20 dB (peak is 10-20 dB above RMS). Designing headroom based on RMS levels leads to frequent clipping. Always check peak levels
 - **Bandwidth limits shape** — A square wave only looks square if the system bandwidth is much higher than the fundamental. A 1 kHz square wave through a 5 kHz bandwidth channel looks almost sinusoidal — the harmonics that make it square have been removed
-- **AC coupling hides low-frequency content** — If you're troubleshooting a signal that seems to have a wandering baseline, check if AC coupling is removing a low-frequency component you need to see. Switch to DC coupling on the oscilloscope
+- **AC coupling hides low-frequency content** — When troubleshooting a signal that seems to have a wandering baseline, check if AC coupling is removing a low-frequency component that needs to be visible. Switch to DC coupling on the oscilloscope
 - **RMS of noise is not the peak** — Gaussian noise has occasional peaks 3-4× the RMS value. Designing signal swing based on noise RMS will clip the peaks. Use 3σ or 4σ for headroom calculations
 - **Phase matters for interference** — Two signals of the same frequency add constructively when in phase and cancel when 180° out. This is the basis of noise cancellation, balanced signaling, and many interference problems
+
+## Bench Relevance
+
+- A signal that appears clipped only on peaks suggests insufficient headroom for the crest factor — reduce gain or increase the supply rails
+- An oscilloscope showing a "rounded" square wave indicates bandwidth limiting — either in the circuit or the scope/probe
+- A wandering baseline on a supposedly DC-stable signal often indicates AC coupling somewhere in the signal path
+- An average-responding meter reading significantly lower than expected on audio signals is likely showing the crest factor error, not a circuit problem

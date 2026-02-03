@@ -64,7 +64,13 @@ Digital audio links carry multi-megahertz signals with timing precision requirem
 
 **Clock integrity** is the most critical aspect of digital audio interconnects. Jitter on the recovered clock translates directly into noise and distortion in the analog output — see [Clocking & Jitter]({{< relref "/docs/audio-signal/practical-signal-reality/clocking-and-jitter" >}}).
 
-## Gotchas
+## Tips
+
+- Use I2S for board-level digital audio — it's simple, synchronous, and well-supported
+- For external connections, prefer S/PDIF coaxial over TOSLINK for lower jitter at high sample rates
+- When debugging I2S issues, verify the format settings (I2S vs left/right justified) on both ends
+
+## Caveats
 
 - **I2S format mismatches produce recognizable artifacts** — Left/right swapped, bit-shifted data (sounds like loud distortion at the correct pitch), or garbled noise all indicate format configuration errors, not hardware failures. Check I2S mode, word length, and alignment first
 - **Clock master confusion** — In I2S systems, exactly one device must be the clock master (generating SCK and WS). If both transmitter and receiver try to generate clocks, the link won't work. If neither generates clocks, there's no data. Always explicitly configure master/slave roles
@@ -72,3 +78,10 @@ Digital audio links carry multi-megahertz signals with timing precision requirem
 - **TOSLINK adds jitter** — The optical transmitter and receiver introduce ~2-5 ns of jitter. For 16-bit audio at 44.1 kHz, this is acceptable. For high-resolution playback (24-bit, 96+ kHz), coaxial or I2S connections are preferred
 - **TDM slot alignment is unforgiving** — A one-clock-cycle offset in TDM alignment shifts all channels by one slot. The audio sounds correct on each channel but is assigned to the wrong output. This is a common integration bug with multi-channel codecs
 - **8b/10b and biphase encoding double the bandwidth** — A 192 kHz, 24-bit stereo S/PDIF link requires about 12 MHz of signal bandwidth due to the encoding overhead. The cable, connectors, and optical link must support this
+
+## Bench Relevance
+
+- Garbled audio at the correct sample rate on I2S usually indicates format mismatch — check alignment and word length settings
+- An S/PDIF link that works at 48 kHz but fails at 192 kHz is likely bandwidth-limited (especially TOSLINK)
+- Multi-channel TDM audio with channels assigned to wrong outputs indicates frame sync or slot alignment issues
+- A digital audio link that produces clicking or dropouts intermittently may have clock recovery or signal integrity problems

@@ -85,14 +85,27 @@ Large designs use multiple schematic sheets. Understanding the hierarchy:
 
 Things that vary between schematics and can cause confusion:
 
-- **Component values** — Some schematics put "10K" on the schematic, some put "10kohm," some put "10,000." All mean 10 kohm
-- **Capacitor units** — "104" on a ceramic cap = 10 x 10^4 pF = 100 nF = 0.1 uF. This three-digit code is common on physical parts and sometimes appears on schematics
-- **Pin numbers vs. pin names** — ICs might show pin numbers (physical pins), pin names (functional names), or both. Know which you're looking at when probing
+- **Component values** — Some schematics put "10K" on the schematic, some put "10kΩ," some put "10,000." All mean 10 kΩ
+- **Capacitor units** — "104" on a ceramic cap = 10 × 10⁴ pF = 100 nF = 0.1 µF. This three-digit code is common on physical parts and sometimes appears on schematics
+- **Pin numbers vs. pin names** — ICs might show pin numbers (physical pins), pin names (functional names), or both. Know which is being examined when probing
 - **Dot convention on transformers** — Dots indicate winding polarity (same instantaneous polarity). Getting this wrong flips the phase of the output
 
-## Gotchas
+## Tips
 
-- **Not all connections are explicit** — Power pins on ICs are sometimes hidden in the schematic symbol. Check the datasheet to find which pins need power connections and bypass caps
-- **"No connect" pins** — A pin with an X or "NC" marking should genuinely be left unconnected. But some ICs reuse "NC" pins in later revisions. Check the specific part revision
-- **Schematic ≠ layout** — Component placement on the schematic has no relationship to physical placement on the PCB. Two adjacent components on the schematic might be on opposite sides of the board
-- **Outdated schematics** — Schematics don't always match the built hardware. Rework, component substitutions, and cut traces create discrepancies. When debugging a physical board, verify critical connections, don't just trust the drawing
+- Learn to recognize common circuit patterns — they're the vocabulary of schematic reading
+- When tracing a signal, follow net names across sheets rather than looking for physical wire connections
+- Check the power schematic sheet for missing decoupling capacitors
+
+## Caveats
+
+- Not all connections are explicit — Power pins on ICs are sometimes hidden in the schematic symbol. Check the datasheet to find which pins need power connections and bypass caps
+- "No connect" pins — A pin with an X or "NC" marking should genuinely be left unconnected. But some ICs reuse "NC" pins in later revisions. Check the specific part revision
+- Schematic ≠ layout — Component placement on the schematic has no relationship to physical placement on the PCB. Two adjacent components on the schematic might be on opposite sides of the board
+- Outdated schematics — Schematics don't always match the built hardware. Rework, component substitutions, and cut traces create discrepancies. When debugging a physical board, verify critical connections rather than just trusting the drawing
+
+## Bench Relevance
+
+- A signal that doesn't appear where the schematic says it should may indicate a schematic/board mismatch
+- Missing bypass capacitors (not on schematic but needed) often cause noise or oscillation issues
+- Incorrect polarity on the schematic vs. board causes diodes, electrolytics, and ICs to fail on first power-up
+- A component marked as "NC" that's actually connected indicates a schematic revision mismatch

@@ -68,10 +68,23 @@ Modulation techniques appear in signal processing and measurement contexts far f
 
 **Phase-locked loops (PLLs)** — Use FM principles to track and synthesize frequencies. The PLL locks a VCO to a reference, enabling frequency multiplication, clock recovery, and demodulation. PLLs bridge [RF]({{< relref "/docs/radio-rf" >}}) and [digital clocking]({{< relref "/docs/digital/timing-and-synchronization" >}}).
 
-## Gotchas
+## Tips
+
+- Use FM rather than AM when noise immunity is important — FM's capture effect rejects interference
+- For precision DC measurement, consider chopper-stabilized amplifiers to avoid 1/f noise and offset drift
+- When analyzing modulated signals, look at the spectrum to understand sideband structure
+
+## Caveats
 
 - **AM is not just for radio** — Any nonlinear operation (mixing, multiplication, switching) creates amplitude modulation. Intermodulation distortion in amplifiers is AM between interfering signals. Understanding AM sidebands helps diagnose distortion products
 - **FM deviation must match the receiver bandwidth** — Too little deviation wastes SNR advantage. Too much deviation exceeds the receiver filter bandwidth and causes distortion. The modulation index must be designed for the channel
 - **Carson's rule is approximate** — It captures about 98% of FM signal power. The actual FM spectrum has infinite extent (Bessel function sidebands). For strict out-of-band emission limits, the true spectrum must be calculated
 - **Chopper artifacts** — Residual carrier feedthrough in chopper amplifiers appears as small spikes at the chopping frequency. These are usually filtered by an output low-pass filter, but they limit the useful output bandwidth
 - **AM envelope detectors distort on fast signals** — The diode-capacitor detector tracks the envelope, but the discharge time constant must be slow enough to follow the carrier and fast enough to follow the modulation. Wrong time constant = diagonal clipping distortion
+
+## Bench Relevance
+
+- Spectral sidebands appearing symmetrically around a carrier indicate AM — the spacing equals the modulating frequency
+- FM signals show constant amplitude on an oscilloscope but spreading sidebands on a spectrum analyzer
+- Unexpected sidebands at harmonics of the power line frequency suggest amplitude modulation from power supply ripple
+- A chopper amplifier showing spikes at its operating frequency has inadequate output filtering

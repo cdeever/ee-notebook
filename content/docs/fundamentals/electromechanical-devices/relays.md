@@ -23,7 +23,7 @@ The coil is an inductor. Driving it requires understanding inductive loads.
 ### Coil Specifications
 
 - **Coil voltage** — The nominal voltage to activate the relay. Common values: 3.3 V, 5 V, 12 V, 24 V, 48 V
-- **Coil resistance** — Determines coil current: I = V / R. A 12 V relay with a 400 ohm coil draws 30 mA
+- **Coil resistance** — Determines coil current: I = V / R. A 12 V relay with a 400 Ω coil draws 30 mA
 - **Pick-up voltage** — The minimum voltage to reliably pull in the relay (typically 75% of nominal)
 - **Drop-out voltage** — The voltage at which the relay releases (typically 25-50% of nominal). The gap between pick-up and drop-out provides hysteresis
 
@@ -38,7 +38,7 @@ A microcontroller GPIO pin typically can't drive a relay coil directly — the c
 
 ### The Flyback Diode
 
-When the transistor turns off, the coil's magnetic field collapses. The inductance tries to maintain current flow (V = L x dI/dt), generating a voltage spike that can reach hundreds of volts from a 12 V coil. This spike destroys transistors.
+When the transistor turns off, the coil's magnetic field collapses. The inductance tries to maintain current flow (V = L × dI/dt), generating a voltage spike that can reach hundreds of volts from a 12 V coil. This spike destroys transistors.
 
 A diode across the coil (cathode to the positive supply side, anode to the transistor side) clamps this spike to one diode drop. Problem solved — but at a cost: the diode slows the relay's release time because the coil current now decays through the diode instead of stopping instantly.
 
@@ -77,7 +77,7 @@ The most common type. Small, cheap, available in every coil voltage and contact 
 
 ### Power Relays
 
-Larger, higher current ratings (10-30 A). Used for appliance control, automotive loads, and industrial switching. Often have clear plastic covers so you can see the contact state.
+Larger, higher current ratings (10-30 A). Used for appliance control, automotive loads, and industrial switching. Often have clear plastic covers so the contact state is visible.
 
 ### Latching Relays
 
@@ -94,11 +94,24 @@ Not actually relays — no mechanical contacts. An optocoupler drives a MOSFET (
 - No multi-pole capability (one SSR per circuit)
 - Vulnerable to voltage spikes and overcurrent in ways that mechanical contacts aren't (contacts can survive brief overloads; semiconductors die instantly)
 
-## Gotchas
+## Tips
 
-- **Flyback diode is mandatory** — Driving a relay coil without one is a time bomb. It might work for a while. Then the transistor fails, usually at the worst possible time
-- **Contact welding** — Exceeding the contact rating (especially with inductive or capacitive loads) can weld the contacts shut permanently. The relay appears stuck on and cannot be released by de-energizing the coil. The only fix is replacement
-- **Coil power consumption** — A relay that's energized continuously draws continuous power. A 12 V, 30 mA relay consumes 360 mW. In battery-powered applications, this adds up. Latching relays solve this
-- **Mechanical life vs. electrical life** — Datasheets list both. Mechanical life (no load) might be 10 million cycles. Electrical life (at rated load) might be 100,000 cycles. The difference is entirely due to contact erosion from arcing
-- **Contact material matters** — Silver contacts have low resistance but are susceptible to sulfide tarnishing in contaminated environments. Gold-plated contacts resist tarnishing and work better for low-level signals (microvolts, microamps) where oxide films would cause intermittent connections
-- **Coil suppression slows release** — The flyback diode that protects the transistor also extends the relay's release time from ~1 ms to ~5-20 ms. If switching speed matters, use a Zener-clamped suppression circuit
+- Always use a flyback diode on the coil — omitting it is a time bomb
+- Match contact ratings to the actual load type (resistive, inductive, capacitive)
+- Use slow-blow fuses or add snubbers when switching inductive loads
+
+## Caveats
+
+- Flyback diode is mandatory — Driving a relay coil without one is a time bomb. It might work for a while. Then the transistor fails, usually at the worst possible time
+- Contact welding — Exceeding the contact rating (especially with inductive or capacitive loads) can weld the contacts shut permanently. The relay appears stuck on and cannot be released by de-energizing the coil. The only fix is replacement
+- Coil power consumption — A relay that's energized continuously draws continuous power. A 12 V, 30 mA relay consumes 360 mW. In battery-powered applications, this adds up. Latching relays solve this
+- Mechanical life vs. electrical life — Datasheets list both. Mechanical life (no load) might be 10 million cycles. Electrical life (at rated load) might be 100,000 cycles. The difference is entirely due to contact erosion from arcing
+- Contact material matters — Silver contacts have low resistance but are susceptible to sulfide tarnishing in contaminated environments. Gold-plated contacts resist tarnishing and work better for low-level signals (microvolts, microamps) where oxide films would cause intermittent connections
+- Coil suppression slows release — The flyback diode that protects the transistor also extends the relay's release time from ~1 ms to ~5-20 ms. If switching speed matters, use a Zener-clamped suppression circuit
+
+## Bench Relevance
+
+- A relay that won't release when the coil is de-energized likely has welded contacts
+- A transistor that fails when switching a relay likely lacks a flyback diode
+- Erratic behavior when a relay switches indicates contact bounce affecting downstream logic — add debouncing
+- A relay coil that draws more current than expected may have a shorted turn or be the wrong voltage rating
