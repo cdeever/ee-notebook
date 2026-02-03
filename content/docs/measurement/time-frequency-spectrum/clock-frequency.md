@@ -7,19 +7,9 @@ weight: 10
 
 Frequency measurement is one of the most fundamental checks on any periodic signal. Clocks, oscillators, PWM outputs, data rates — when any of these are off, everything downstream misbehaves. The good news is that frequency is one of the easiest parameters to measure accurately.
 
-## Oscilloscope: Frequency from Period Measurement
+## Oscilloscope Frequency Measurement
 
-**Tool:** Oscilloscope, 10x probe, auto-measurement
-**When:** Quick frequency check on any periodic signal you can see
-
-### Procedure
-
-1. Probe the signal and get a stable, triggered display
-2. Use the scope's auto-measurement for frequency or period
-3. For better accuracy, measure period (scope counts time between edges) and calculate frequency: **f = 1 / T**
-4. Measure over multiple cycles if the scope allows — averaging reduces noise in the measurement
-
-### Accuracy
+Probe the signal and get a stable, triggered display. Use the scope's auto-measurement for frequency or period. For better accuracy, measure period (scope counts time between edges) and calculate frequency: **f = 1 / T**. Measure over multiple cycles if the scope allows — averaging reduces noise in the measurement.
 
 | Scope timebase accuracy | Typical frequency accuracy |
 |------------------------|---------------------------|
@@ -27,85 +17,42 @@ Frequency measurement is one of the most fundamental checks on any periodic sign
 | TCXO-equipped scope | ±1–2 ppm — suitable for audio and moderate precision |
 | GPS-disciplined or rubidium reference | Sub-ppm — for characterizing oscillators |
 
-### What You Learn
+## Hardware Frequency Counter
 
-- Whether the clock is at the expected frequency (within the scope's accuracy)
-- Whether it's stable or drifting (watch the measurement over time)
-- Gross errors: wrong crystal, wrong PLL multiplier, oscillator not running
+Some scopes include a dedicated hardware frequency counter that uses the scope's timebase directly rather than deriving frequency from the sampled waveform. This gives higher accuracy (often 6+ digits) and updates continuously. Enable it in the Measure menu, separate from auto-measurements.
 
-### Gotchas
+## DMM Frequency Measurement
 
-- Auto-frequency measurement can be wrong on signals with multiple zero crossings (ringing, noise, distorted waveforms). The scope triggers on extra edges and gives a too-high frequency reading. Clean up the trigger or use manual cursors
-- Scope frequency accuracy is limited by the timebase. A 50 ppm timebase error means a 10 MHz reading could be off by 500 Hz — fine for a digital logic check, but not for characterizing a precision oscillator
-- Low-frequency signals require long acquisition times for accurate period measurement. A 1 Hz signal needs at least 1 second of capture
+For quick frequency checks without a scope, set the DMM to frequency mode (Hz) and probe the signal. This shows the signal frequency as a single number.
 
-## Oscilloscope: Frequency Counter Function
-
-**Tool:** Oscilloscope with built-in hardware counter (many modern scopes have this)
-**When:** You need higher accuracy than the standard auto-measurement
-
-### How It Works
-
-Some scopes include a dedicated hardware frequency counter that uses the scope's timebase directly rather than deriving frequency from the sampled waveform. This gives higher accuracy (often 6+ digits) and updates continuously.
-
-### Procedure
-
-1. Enable the frequency counter function (often in the Measure menu, separate from auto-measurements)
-2. Set the input channel and trigger level
-3. Read the frequency — it typically displays with more digits than the standard auto-measurement
-
-### What You Learn
-
-- Frequency to the accuracy of the scope's timebase
-- Real-time frequency tracking as the oscillator warms up or drifts
-
-### Gotchas
-
-- Not all scopes have a hardware counter. Check your scope's specs
-- The counter still needs a clean trigger — noisy or low-amplitude signals give erratic counts
-
-## DMM: Frequency Measurement
-
-**Tool:** DMM with frequency function (Hz)
-**When:** Quick frequency check without setting up a scope
-
-### Procedure
-
-1. Set DMM to frequency mode (Hz)
-2. Probe the signal
-3. Read the frequency
-
-### What You Learn
-
-- Signal frequency as a single number — fast and simple
-
-### Gotchas
-
-- DMM frequency bandwidth is limited — typically a few hundred kHz to maybe 10 MHz depending on the meter. Above that, the reading is inaccurate or the meter won't register
-- The DMM needs enough signal amplitude to trigger its comparator. Very low-level signals (millivolts) may not register. Check the meter's sensitivity spec for frequency mode
-- DMM frequency measurement tells you nothing about waveshape, duty cycle, or jitter — just the fundamental repetition rate
+DMM frequency bandwidth is limited — typically a few hundred kHz to 10 MHz depending on the meter. Above that, the reading is inaccurate or the meter won't register. The DMM also needs enough signal amplitude to trigger its comparator.
 
 ## Checking Specific Oscillator Types
 
-### Crystal Oscillators
+**Crystal oscillators** should be within ±50 ppm of marked frequency at room temperature. If way off (> 1000 ppm), the crystal may have been damaged or load capacitors are wrong values. Probing the crystal pins with a scope can stop oscillation due to capacitive loading — probe the oscillator's output buffer instead.
 
-- Should be within ±50 ppm of marked frequency at room temperature (typical for standard crystals)
-- If way off (> 1000 ppm), the crystal may have been damaged, or the load capacitors are wrong
-- If not oscillating at all, check power, enable pin, and load capacitor values. Probing the crystal pins with a scope can stop oscillation due to capacitive loading — use a high-impedance active probe or probe the oscillator's output buffer instead
+**RC oscillators** have frequency determined by R and C values with tolerances of ±1–20%. A 555 or RC relaxation oscillator at ±10% of expected frequency is probably fine — the components are within tolerance.
 
-### RC Oscillators
+**PLLs** have output frequency dependent on reference frequency, divider ratios, and VCO tuning range. Check the reference clock first if the output is wrong. A PLL that can't lock shows an unstable or wildly fluctuating frequency.
 
-- Frequency depends on R and C values, which have tolerances of ±1–20%
-- A 555 or RC relaxation oscillator at ±10% of expected frequency is probably fine — the components are within tolerance
-- If way off, check the R and C values individually
+## Tips
 
-### PLLs (Phase-Locked Loops)
+- For better accuracy, measure period and calculate frequency — scope counts time between edges directly
+- Watch the measurement over time to detect drift as oscillators warm up
+- Use hardware frequency counter function if available for highest accuracy
 
-- Output frequency depends on reference frequency, divider ratios, and VCO tuning range
-- If the PLL output is wrong, check the reference clock first
-- A PLL that can't lock shows an unstable or wildly fluctuating frequency. Check the lock-detect output, loop filter components, and VCO supply
+## Caveats
 
-### Gotchas
+- Auto-frequency measurement can be wrong on signals with multiple zero crossings (ringing, noise, distorted waveforms) — the scope triggers on extra edges and gives a too-high frequency reading
+- Scope frequency accuracy is limited by the timebase — a 50 ppm timebase error means a 10 MHz reading could be off by 500 Hz
+- Low-frequency signals require long acquisition times for accurate period measurement — a 1 Hz signal needs at least 1 second of capture
+- Temperature affects all oscillators — crystal oscillators drift tens of ppm across the operating range; RC oscillators drift hundreds or thousands of ppm
+- Startup time matters — some oscillators take milliseconds to seconds to stabilize; don't judge frequency during the startup transient
 
-- Temperature affects all oscillators. Crystal oscillators drift tens of ppm across the operating range; RC oscillators drift hundreds or thousands of ppm. Measure at a stable, known temperature for meaningful comparison to specs
-- Startup time matters — some oscillators take milliseconds to seconds to stabilize. Don't judge frequency during the startup transient
+## Bench Relevance
+
+- Frequency off by a large amount (>1%) on a crystal oscillator indicates wrong crystal, wrong load capacitors, or crystal damage
+- Frequency drifting continuously indicates oscillator hasn't stabilized or has a temperature problem
+- Wildly fluctuating frequency on a PLL indicates it can't achieve lock — check reference clock, loop filter, and VCO supply
+- Frequency exactly half or double expected may indicate trigger on wrong edge or divided/doubled clock
+- DMM frequency reading of zero on a signal visible on the scope indicates the signal frequency exceeds the DMM's bandwidth

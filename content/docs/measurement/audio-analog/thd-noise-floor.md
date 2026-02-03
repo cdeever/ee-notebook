@@ -5,113 +5,76 @@ weight: 10
 
 # What's the THD / Noise Floor?
 
-Distortion and noise measurements. In audio and precision analog circuits, the signal itself is the product — so how clean it is matters directly. THD tells you how much harmonic distortion a stage adds; noise floor tells you the quietest signal you can resolve.
+Distortion and noise measurements. In audio and precision analog circuits, the signal itself is the product — so how clean it is matters directly. THD tells how much harmonic distortion a stage adds; noise floor tells the quietest signal that can be resolved.
 
 ## THD: Total Harmonic Distortion
 
-**Concept:** How much of the output is harmonics that weren't in the input
-
-### What THD Means
-
-If you feed a pure sine wave into an amplifier, the output should be a pure sine wave (scaled by the gain). Any harmonics (2×, 3×, 4× the fundamental frequency) are distortion added by the amplifier. THD is the ratio of harmonic energy to fundamental energy:
+Feed a pure sine wave into an amplifier — the output should be a pure sine wave (scaled by gain). Any harmonics (2×, 3×, 4× the fundamental frequency) are distortion added by the amplifier.
 
 **THD = sqrt(V2² + V3² + V4² + ...) / V1**
 
-Where V1 is the fundamental amplitude and V2, V3, etc. are the harmonic amplitudes.
+Where V1 is the fundamental amplitude and V2, V3, etc. are harmonic amplitudes.
 
-| THD | What it means in practice |
-|-----|--------------------------|
+| THD | Practical meaning |
+|-----|-------------------|
 | < 0.01% (-80 dB) | Excellent — high-fidelity audio, precision instrumentation |
 | 0.01–0.1% (-80 to -60 dB) | Good — most listeners can't distinguish from 0.01% |
-| 0.1–1% (-60 to -40 dB) | Audible on careful listening — acceptable for some applications |
-| 1–10% (-40 to -20 dB) | Clearly audible — guitar amps intentionally run here |
-| > 10% | Severe distortion — something is clipping or broken (unless intentional) |
+| 0.1–1% (-60 to -40 dB) | Audible on careful listening |
+| 1–10% (-40 to -20 dB) | Clearly audible — guitar amps run here intentionally |
+| > 10% | Severe distortion — clipping or broken |
 
-## Oscilloscope FFT: Measuring THD
+## Measuring THD with Oscilloscope FFT
 
-**Tool:** Oscilloscope with FFT, clean sine wave source
-**When:** Quick bench measurement of harmonic distortion
+Feed a clean sine wave from a low-distortion function generator into the circuit input. Capture the output and run FFT with Hann or flat-top window. Identify the fundamental peak and each harmonic peak (2×, 3×, 4×, 5× fundamental). Read each peak's amplitude in dBV.
 
-### Procedure
+Convert each harmonic from dBV to voltage: **V = 10^(dBV/20)**
 
-1. Feed a clean sine wave from a low-distortion function generator into the circuit input
-2. Capture the output on the scope
-3. Run FFT with a Hann or flat-top window
-4. Identify the fundamental peak and each harmonic peak (2×, 3×, 4×, 5× fundamental)
-5. Read each peak's amplitude in dBV
-6. Calculate THD:
-   - Convert each harmonic from dBV to voltage: V = 10^(dBV/20)
-   - THD = sqrt(V2² + V3² + ...) / V1 × 100%
+**THD = sqrt(V2² + V3² + ...) / V1 × 100%**
 
-### What You Learn
-
-- The approximate THD of the circuit under test
-- Which harmonics dominate — 2nd harmonic indicates asymmetric distortion, 3rd indicates symmetric clipping
-
-### Gotchas
-
-- Your signal source must be cleaner than the circuit you're measuring. If the generator has 0.1% THD and the circuit adds 0.05% THD, you can't separate them. For THD below 0.1%, you need a dedicated low-distortion oscillator
-- The scope's own ADC has distortion (SFDR/SINAD specs). Most bench scopes can reliably measure THD down to about -50 to -60 dB (0.3–0.1%). Below that, the scope's distortion dominates
-- FFT windowing matters for amplitude accuracy. Flat-top window gives the most accurate peak amplitudes; Hann window is a reasonable compromise
-- Make sure the scope input isn't clipping — a clipped input adds harmonics from the scope, not the circuit
+Which harmonics dominate reveals the distortion type: 2nd harmonic indicates asymmetric distortion; 3rd indicates symmetric clipping.
 
 ## Noise Floor Measurement
 
-**Tool:** Oscilloscope (AC-coupled, bandwidth-limited) or dedicated audio analyzer
-**When:** Measuring the residual noise when no signal is applied
+Connect the circuit output to the scope with no input signal applied (or input shorted to ground). AC-couple the channel to remove DC offset. Set bandwidth limit (20 MHz for general noise; 20 kHz for audio-specific). Set vertical scale to the most sensitive range that shows noise without clipping.
 
-### Oscilloscope Method
-
-1. Connect the circuit output to the scope with no input signal applied (or input shorted to ground through a low impedance)
-2. AC-couple the channel to remove DC offset
-3. Set bandwidth limit (20 MHz for general noise; 20 kHz or 80 kHz for audio-specific measurements)
-4. Set vertical scale to the most sensitive range that shows the noise without clipping
-5. Measure the RMS voltage of the noise — use the scope's RMS measurement function
-
-### Noise in dBV and dBu
+Measure the RMS voltage of the noise using the scope's measurement function.
 
 | Reference | Formula | Common in |
 |-----------|---------|-----------|
-| dBV | 20 × log10(Vrms / 1V) | Consumer audio, general electronics |
+| dBV | 20 × log10(Vrms / 1V) | Consumer audio |
 | dBu | 20 × log10(Vrms / 0.775V) | Professional audio |
 | dBFS | Relative to ADC full-scale | Digital audio |
 
-### What You Learn
-
-- The noise floor of the circuit — the quietest signal it can resolve
-- The signal-to-noise ratio: **SNR = 20 × log10(V_signal_rms / V_noise_rms)**
-- Whether the noise is broadband (hiss) or has specific frequency components (hum, buzz, switching noise)
-
-### Gotchas
-
-- Measurement bandwidth directly affects the noise reading. Wider bandwidth = more noise captured = higher reading. Always specify the bandwidth when quoting a noise floor measurement. A "1 mV noise floor" at 20 kHz bandwidth is very different from 1 mV at 20 MHz bandwidth
-- The scope's own input noise may be comparable to or higher than the circuit's noise. Check the scope's noise floor (input terminated with 50 Ohm or shorted) and make sure the circuit's noise is well above it
-- Grounding matters enormously for noise measurements. Use short ground connections and keep the probe cable away from switching power supplies, motors, and other noise sources
-
 ## SNR: Signal-to-Noise Ratio
 
-**Tool:** Same as THD and noise floor measurements
-**When:** Quantifying the usable dynamic range of a signal chain
+Apply a full-scale sine wave (maximum level before clipping) and measure output signal amplitude (RMS). Remove the input signal and measure output noise amplitude (RMS) at the same gain setting.
 
-### Procedure
-
-1. Apply a full-scale sine wave at the circuit input (the maximum level before clipping)
-2. Measure the output signal amplitude (RMS)
-3. Remove the input signal (or short the input)
-4. Measure the output noise amplitude (RMS) at the same gain setting
-5. Calculate: **SNR (dB) = 20 × log10(V_signal / V_noise)**
-
-### Typical SNR Values
+**SNR (dB) = 20 × log10(V_signal / V_noise)**
 
 | System | Typical SNR |
 |--------|------------|
 | Decent op-amp stage | 80–100 dB |
 | CD-quality audio (16-bit) | ~96 dB (theoretical) |
 | 24-bit audio interface | ~110–120 dB (practical) |
-| Cheap audio amplifier | 60–80 dB |
-| AM radio | ~40 dB |
 
-### Gotchas
+## Tips
 
-- SNR depends on the signal level. At lower signal levels, SNR decreases proportionally. Always specify the signal level when quoting SNR
-- SINAD (Signal-to-Noise-and-Distortion) combines noise and distortion into one number: **SINAD = 20 × log10(V_signal / sqrt(V_noise² + V_distortion²))**. This is more representative of actual signal quality than SNR alone
+- The signal source must be cleaner than the circuit being measured — for THD below 0.1%, a dedicated low-distortion oscillator is needed
+- Always specify bandwidth when quoting noise floor — "1 mV noise" at 20 kHz bandwidth differs from 1 mV at 20 MHz bandwidth
+- Use flat-top window for FFT amplitude accuracy
+
+## Caveats
+
+- Most bench scopes can reliably measure THD down to about -50 to -60 dB (0.1–0.3%) — below that, the scope's distortion dominates
+- FFT windowing matters — flat-top for amplitude accuracy, Hann for frequency resolution
+- Make sure the scope input isn't clipping — a clipped input adds harmonics from the scope, not the circuit
+- Measurement bandwidth directly affects noise reading — wider bandwidth captures more noise
+- The scope's own input noise may be comparable to the circuit's noise — check scope noise floor first
+
+## Bench Relevance
+
+- Strong 2nd harmonic indicates asymmetric transfer curve — check bias in single-ended stages
+- Strong 3rd harmonic indicates symmetric clipping — check headroom
+- Strong odd harmonics (3rd, 5th, 7th) indicate crossover distortion in push-pull output stages
+- Noise floor higher than expected limits dynamic range — check for oscillation, interference, or inadequate decoupling
+- SINAD (signal-to-noise-and-distortion) is more representative of actual signal quality than SNR alone

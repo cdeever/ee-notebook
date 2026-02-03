@@ -20,8 +20,6 @@ True RMS digital multimeter. 6000-count display, CAT III-600V rated, with LPF an
 | Input impedance | 10 MΩ (standard), LoZ available |
 | Power | 3× AAA batteries |
 
----
-
 ## Mode Selection
 
 Rotate the dial to select the primary function. The button panel modifies behavior within each mode.
@@ -50,63 +48,43 @@ Rotate the dial to select the primary function. The button panel modifies behavi
 | **mA/µA** | Red lead for mA and µA current |
 | **10A** | Red lead for high-current measurements only |
 
-**Caution:** Plugging the red lead into the current jack and then probing across a voltage source creates a near-short through the meter's current shunt. This blows the fuse or worse.
+**Warning:** Plugging the red lead into the current jack and then probing across a voltage source creates a near-short through the meter's current shunt, blowing the fuse or worse.
 
 ## Key Button Functions
 
-| Button | What It Does |
+| Button | Function |
 |---|---|
 | **SELECT** | Toggles between sub-modes (DC/AC, °C/°F) |
 | **RANGE** | Cycles through manual ranges; hold for auto-range |
-| **REL** | Relative mode — zeroes the display, shows delta from reference |
-| **HOLD** | Freezes the current reading on the display |
+| **REL** | Relative mode — zeroes display, shows delta from reference |
+| **HOLD** | Freezes current reading on display |
 | **MIN/MAX** | Records and displays minimum and maximum readings |
-| **LPF** | Low Pass Filter — filters out high-frequency noise (useful on VFD-driven circuits) |
-| **LoZ** | Low impedance mode — uses low input impedance to reject ghost voltages |
-| **NCV** | Non-Contact Voltage detection — hold meter near a conductor to detect live AC |
+| **LPF** | Low Pass Filter — filters out high-frequency noise |
+| **LoZ** | Low impedance mode — rejects ghost voltages |
+| **NCV** | Non-Contact Voltage detection |
 | **LIGHT** | Toggles backlight |
 
 ## Common Procedures
 
 ### Quick DC Voltage Check
 
-1. Red lead in V/Ω jack, black in COM
-2. Dial to V⎓
-3. Probe red to test point, black to ground
-4. Read the display — auto-range selects the right scale
+Red lead in V/Ω jack, black in COM. Dial to V⎓. Probe red to test point, black to ground. Read display — auto-range selects the right scale.
 
 ### Checking for Ghost Voltages
 
-If you read an unexpected voltage on a supposedly dead circuit:
-
-1. Press **LoZ** to switch to low-impedance input mode
-2. Re-measure — if the reading drops to zero or near-zero, the original reading was a ghost voltage from capacitive coupling
-3. If the reading persists in LoZ mode, the voltage is real
+If unexpected voltage appears on a supposedly dead circuit, press **LoZ** to switch to low-impedance input mode. Re-measure. If reading drops to zero or near-zero, the original reading was a ghost voltage from capacitive coupling. If reading persists in LoZ mode, the voltage is real.
 
 ### Continuity Check
 
-1. Dial to ⏛
-2. Touch probes to the two points
-3. Beep = connection (< ~10Ω), no beep = open
-4. Watch the resistance reading for marginal joints — a beep at 5Ω is different from a beep at 0.2Ω
+Dial to ⏛. Touch probes to the two points. Beep indicates connection (< ~10Ω), no beep indicates open. Watch resistance reading for marginal joints — a beep at 5Ω differs from a beep at 0.2Ω.
 
 ### Using LPF (Low Pass Filter)
 
-When measuring AC voltage on circuits driven by variable frequency drives (VFDs) or PWM:
-
-1. Dial to V~ (AC Volts)
-2. Press **LPF** to enable the low-pass filter
-3. This filters out high-frequency switching noise and shows the fundamental frequency component
-4. Without LPF, the True RMS reading includes the switching frequency content and reads higher than the actual power-frequency voltage
+When measuring AC voltage on circuits driven by VFDs or PWM, dial to V~ and press **LPF** to enable low-pass filter. This filters high-frequency switching noise and shows the fundamental frequency component. Without LPF, True RMS reading includes switching frequency content and reads higher than actual power-frequency voltage.
 
 ### Relative Mode for Small Differences
 
-1. Short the probes together (or place on a reference point)
-2. Press **REL** — display zeros
-3. Now measure — the display shows the difference from the reference
-4. Useful for: measuring small resistances (zeroing out lead resistance), comparing components, tracking drift
-
----
+Short the probes together (or place on a reference point) and press **REL** — display zeros. Now measure — display shows difference from reference. Useful for measuring small resistances (zeroing lead resistance), comparing components, and tracking drift.
 
 ## Specifications
 
@@ -128,7 +106,7 @@ When measuring AC voltage on circuits driven by variable frequency drives (VFDs)
 | 60.00 V | 0.01 V | ±(1.0% + 5 digits) |
 | 600.0 V | 0.1 V | ±(1.0% + 5 digits) |
 
-AC bandwidth: typically 40 Hz – 1 kHz for rated accuracy. True RMS responds to non-sinusoidal waveforms but accuracy degrades above the rated bandwidth.
+AC bandwidth: typically 40 Hz – 1 kHz for rated accuracy.
 
 ### DC Current
 
@@ -141,10 +119,6 @@ AC bandwidth: typically 40 Hz – 1 kHz for rated accuracy. True RMS responds to
 | 10.00 A | 0.01 A |
 
 The 10A range uses a separate input jack with its own fuse.
-
-### AC Current (True RMS)
-
-Same ranges as DC current. True RMS measurement.
 
 ### Resistance
 
@@ -169,49 +143,20 @@ Same ranges as DC current. True RMS measurement.
 | 6.000 mF | 0.001 mF |
 | 100.0 mF | 0.1 mF |
 
-### Frequency
-
-| Range | Resolution |
-|---|---|
-| Up to 10 MHz | Varies by range |
-
 ### Temperature
 
 | Range | Resolution | Sensor |
 |---|---|---|
 | −40°C to 1000°C | 1°C | K-type thermocouple |
-| −40°F to 1832°F | 1°F | K-type thermocouple |
-
-### Other Functions
-
-| Function | Key Spec |
-|---|---|
-| Continuity | Beeps < 10Ω |
-| Diode test | Test current ~1 mA, reads forward voltage |
-| Duty cycle | 0.1% to 99.9% |
-| NCV | Non-contact AC voltage detection |
-| Clamp adapter input | 10 mV/A (60A max) |
-
-### Physical
-
-| Parameter | Value |
-|---|---|
-| Dimensions | 175 × 81 × 48.5 mm (6.9 × 3.2 × 1.9 in) |
-| Weight | 350 g (12.3 oz) |
-| Power | 3× AAA |
-
----
 
 ## Limits to Know
 
-These are the situations where this meter won't give you a trustworthy answer:
-
-- **Bandwidth:** AC voltage accuracy is spec'd for low frequencies (roughly 40 Hz – 1 kHz). Measuring switching converter ripple at 500 kHz? The DMM will underread or miss it entirely. Use the scope.
-- **Input impedance:** 10 MΩ standard. High-impedance circuits (> 1 MΩ source impedance) will be loaded. LoZ mode is intentionally low-impedance — don't use it on high-Z circuits.
-- **DC accuracy floor:** ±0.7% + 5 counts. On the 6V range, that's ±42 mV + 5 mV = ±47 mV worst case. For a 3.3V rail, that's ±1.4%. Fine for "is it there?" but marginal for precise regulation measurements.
-- **Current measurement burden voltage:** The shunt resistor drops voltage. On low-voltage circuits, this can affect the circuit behavior.
-- **CAT III-600V:** Rated for distribution-level measurements up to 600V. Not rated for CAT IV (utility entrance) or any voltage above 600V.
-- **6000 count limit:** The maximum display reading is 5999. On the 6V range, you can't read above 5.999V — it overranges and switches to the 60V range, losing a digit of resolution.
+- **Bandwidth:** AC voltage accuracy is spec'd for low frequencies (40 Hz – 1 kHz). Measuring switching converter ripple at 500 kHz gives underreading or nothing. Use scope instead.
+- **Input impedance:** 10 MΩ standard. High-impedance circuits (> 1 MΩ source) will be loaded. LoZ mode is intentionally low-impedance — don't use on high-Z circuits.
+- **DC accuracy floor:** ±0.7% + 5 counts. On 6V range, that's ±47 mV worst case. For 3.3V rail, that's ±1.4%. Fine for presence check, marginal for precise regulation measurement.
+- **Current measurement burden voltage:** The shunt resistor drops voltage, which can affect low-voltage circuit behavior.
+- **CAT III-600V:** Rated for distribution-level measurements up to 600V. Not rated for CAT IV or above 600V.
+- **6000 count limit:** Maximum display reading is 5999. On 6V range, readings above 5.999V overrange to 60V range, losing a digit of resolution.
 
 ## Reference Links
 

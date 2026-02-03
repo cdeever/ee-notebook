@@ -18,39 +18,36 @@ weight: 20
 | Sample rate | 1 GSa/s (1 channel), 500 MSa/s (2 channels) |
 | Record length | 10 Mpts per channel |
 | Vertical resolution | 8 bits (256 levels) |
-| Display | 8" TFT LCD, 800 × 600, 65535 colors |
+| Display | 8" TFT LCD, 800 × 600 |
 | Max input voltage | 400V peak (1 MΩ input) |
-
----
 
 ## Channel Setup
 
-| Control | What It Does |
+| Control | Function |
 |---|---|
-| **CH1 / CH2** | Select the channel to configure |
+| **CH1 / CH2** | Select channel to configure |
 | **Vertical scale knob** | Sets V/div (2 mV/div to 10 V/div) |
-| **Vertical position knob** | Moves the waveform up/down on screen |
+| **Vertical position knob** | Moves waveform up/down on screen |
 | **Coupling** (menu) | DC, AC, or GND |
-| **Probe attenuation** (menu) | Set to match your probe: 1x, 10x, 100x, 1000x |
+| **Probe attenuation** (menu) | Set to match probe: 1x, 10x, 100x, 1000x |
 | **BW Limit** (menu) | 20 MHz bandwidth limit — reduces high-frequency noise |
-| **Invert** (menu) | Flips the waveform vertically |
+| **Invert** (menu) | Flips waveform vertically |
 
-**Important:** Always set the probe attenuation in the scope menu to match your physical probe setting. If the probe is set to 10x but the scope thinks it's 1x, all voltage readings are off by 10×.
+**Important:** Always set probe attenuation in scope menu to match physical probe setting. If probe is 10x but scope thinks 1x, all voltage readings are off by 10×.
 
 ## Timebase
 
-| Control | What It Does |
+| Control | Function |
 |---|---|
 | **Horizontal scale knob** | Sets time/div (2 ns/div to 5 s/div) |
-| **Horizontal position knob** | Moves the waveform left/right (adjusts trigger point position) |
+| **Horizontal position knob** | Moves waveform left/right |
 
 ### Choosing Timebase
 
-- See a few cycles of a repetitive waveform: set time/div so 3–5 cycles fill the screen
+- 3–5 cycles visible: appropriate for most waveforms
 - 1 kHz signal → ~200 µs/div
 - 1 MHz signal → ~200 ns/div
 - Power-up capture → 50–100 ms/div
-- Single fast pulse → set timebase short, use single trigger
 
 ## Triggering
 
@@ -59,97 +56,77 @@ weight: 20
 | **Source** | CH1, CH2, External |
 | **Type** | Edge, Video (NTSC/PAL/SECAM) |
 | **Slope** | Rising or falling edge |
-| **Level** | Adjust with trigger level knob — set to ~50% of the waveform amplitude |
-| **Mode** | Auto (free-running), Normal (waits for trigger), Single (one-shot capture) |
+| **Level** | Adjust with trigger level knob — set to ~50% of waveform amplitude |
+| **Mode** | Auto (free-running), Normal (waits for trigger), Single (one-shot) |
 
 ### Common Trigger Recipes
 
-| Situation | Mode | Source | Setup |
-|---|---|---|---|
-| Repetitive waveform | Auto or Normal | Signal channel | Edge trigger, rising, level at ~50% |
-| One-shot event (power-up, glitch) | Single | Relevant channel | Edge trigger, set level just above/below the event threshold, press Run and then cause the event |
-| Noisy signal | Normal | Signal channel | Raise trigger level above the noise floor to get a stable display |
-| Two signals, want to see timing relationship | Normal | Trigger on the reference signal | Display both channels, trigger on the one with clean edges |
+| Situation | Mode | Setup |
+|---|---|---|
+| Repetitive waveform | Auto or Normal | Edge trigger, rising, level at ~50% |
+| One-shot event | Single | Set level just above/below event threshold, press Run, cause event |
+| Noisy signal | Normal | Raise trigger level above noise floor |
+| Two signals, timing relationship | Normal | Trigger on reference signal with clean edges |
 
 ## Coupling Modes
 
 | Mode | When to Use |
 |---|---|
-| **DC** | Default. Shows the full signal including DC offset. Use for most measurements. |
-| **AC** | Blocks DC, shows only AC content. Use for: ripple on a power rail, small AC signal on a large DC offset. |
-| **GND** | Disconnects input, shows ground reference line. Use to set the zero-volt reference position on screen. |
+| **DC** | Default. Shows full signal including DC offset. |
+| **AC** | Blocks DC, shows only AC content. Use for ripple, small AC on large DC offset. |
+| **GND** | Disconnects input, shows ground reference. Use to set zero-volt position. |
 
-### AC Coupling Gotcha
-
-AC coupling inserts a high-pass filter (blocks DC). Low-frequency signals (below ~10 Hz) get attenuated. The waveform "droops" on slow timebase settings. If your signal has low-frequency content that matters, use DC coupling and adjust the vertical offset.
+**AC coupling note:** Inserts high-pass filter blocking DC. Low-frequency signals (below ~10 Hz) get attenuated. Waveform "droops" on slow timebase settings.
 
 ## Measurements
 
 ### Automatic Measurements
 
-The scope can auto-measure these parameters (use the Measure menu):
+Available via Measure menu:
+- **Voltage:** Vpp, Vmax, Vmin, Vtop, Vbase, Vamp, Vavg, Vrms, Overshoot
+- **Time:** Frequency, Period, Rise Time, Fall Time, Delay, Pulse Width, Duty Cycle
 
-- **Voltage:** Vpp, Vmax, Vmin, Vtop, Vbase, Vamp, Vavg, Vrms, Overshoot, Preshoot
-- **Time:** Frequency, Period, Rise Time, Fall Time, Delay (A→B), Pulse Width, Duty Cycle
-
-Up to 5 measurements can be displayed simultaneously.
+Up to 5 measurements displayed simultaneously.
 
 ### Cursors
 
-For manual measurement when auto-measure doesn't capture what you need:
-
 - **Voltage cursors:** Two horizontal lines — read ΔV between them
-- **Time cursors:** Two vertical lines — read ΔT between them, plus 1/ΔT frequency
+- **Time cursors:** Two vertical lines — read ΔT and 1/ΔT frequency
 
 ### Math
 
-- **CH1 + CH2, CH1 − CH2, CH1 × CH2** — useful for differential measurements (subtract two channels)
-- **FFT** — frequency domain view. Select source channel, window function, and vertical scale (dB or linear)
+- **CH1 + CH2, CH1 − CH2, CH1 × CH2** — useful for differential measurements
+- **FFT** — frequency domain view
 
 ## Probe Compensation
 
-Do this every time you use a new probe or change probe settings:
+Perform every time a new probe is used or probe settings change:
 
-1. Connect the probe to the **PROBE COMP** output (square wave reference, usually ~1 kHz, 3Vpp)
-2. Set scope to display the square wave
-3. Look at the corners of the square wave:
-   - **Overshoot / ringing:** probe is overcompensated → turn the trimmer capacitor on the probe down
-   - **Rounded corners / slow rise:** probe is undercompensated → turn the trimmer up
-   - **Clean square corners:** probe is compensated correctly
-4. Adjust the small trimmer screw on the probe until the corners are square
+1. Connect probe to **PROBE COMP** output (square wave reference)
+2. Display the square wave
+3. Examine corners:
+   - Overshoot/ringing: overcompensated → turn trimmer down
+   - Rounded corners/slow rise: undercompensated → turn trimmer up
+   - Clean square corners: compensated correctly
+4. Adjust trimmer on probe until corners are square
 
 ## Common Procedures
 
 ### Measuring a DC Rail
 
-1. DC coupling, probe attenuation set correctly (10x probe → set scope to 10x)
-2. Set vertical scale to show the expected voltage (e.g., 1 V/div for a 3.3V rail)
-3. Probe the rail, read the DC level from the auto-measurement or cursor
+DC coupling, probe attenuation set correctly. Set vertical scale to show expected voltage. Probe the rail, read DC level from auto-measurement or cursor.
 
 ### Measuring Ripple
 
-1. AC coupling to reject the DC component
-2. BW Limit ON (20 MHz) to reduce probe noise
-3. Use tip-and-barrel probing (remove ground clip) for best results
-4. Set vertical scale to see the ripple (start at 10–50 mV/div)
-5. Read Vpp from auto-measurement
+AC coupling to reject DC component. BW Limit ON (20 MHz). Use tip-and-barrel probing. Set vertical scale to see ripple (start at 10–50 mV/div). Read Vpp from auto-measurement.
 
 ### Capturing a Single Event
 
-1. Set trigger mode to **Single**
-2. Set trigger source, slope, and level to catch the event
-3. Set timebase to capture the event duration
-4. Press **Run** — the scope arms and waits
-5. Cause the event — the scope triggers once and stops
-6. Analyze the captured waveform
+Set trigger mode to **Single**. Set trigger source, slope, and level. Set timebase to capture event duration. Press **Run** — scope arms and waits. Cause event — scope triggers once and stops.
 
 ### Comparing Two Signals
 
-1. Connect signals to CH1 and CH2
-2. Trigger on the reference signal (the one with clean, predictable edges)
-3. Both channels display simultaneously — observe amplitude, phase, timing
-
----
+Connect signals to CH1 and CH2. Trigger on reference signal. Both channels display simultaneously — observe amplitude, phase, timing.
 
 ## Specifications
 
@@ -160,11 +137,9 @@ Do this every time you use a new probe or change probe settings:
 | Sensitivity | 2 mV/div to 10 V/div |
 | Bandwidth | 100 MHz (−3 dB), 20 MHz with BW limit |
 | Input impedance | 1 MΩ ∥ ~20 pF |
-| Input coupling | DC, AC, GND |
 | Resolution | 8 bits |
-| Displacement range | ±1V (2–100 mV/div), ±10V (200 mV–1 V/div), ±100V (2–10 V/div) |
 
-Scope vertical accuracy is typically ±3–5% — significantly worse than a DMM. Use the scope for waveform shape and timing; use the DMM for precise DC voltage readings.
+Vertical accuracy is typically ±3–5% — significantly worse than DMM.
 
 ### Horizontal System
 
@@ -175,45 +150,24 @@ Scope vertical accuracy is typically ±3–5% — significantly worse than a DMM
 | Sample rate (2 ch) | 500 MSa/s |
 | Record length | 10 Mpts per channel |
 
-### Trigger System
-
-| Parameter | Value |
-|---|---|
-| Sources | CH1, CH2, External |
-| Types | Edge, Video (NTSC/PAL/SECAM) |
-| Modes | Auto, Normal, Single |
-
 ### Connectivity
 
 | Interface | Use |
 |---|---|
-| USB (device) | PC connection for screenshots and waveform data |
-| USB (host) | USB storage for saving waveforms |
-| VGA | External monitor output |
+| USB (device) | PC connection |
+| USB (host) | USB storage |
+| VGA | External monitor |
 | LAN | Remote control (SCPI) |
-
-### Physical
-
-| Parameter | Value |
-|---|---|
-| Dimensions | 340 × 155 × 70 mm |
-| Weight | 2.63 kg |
-| Cooling | Fan |
-
----
 
 ## Limits to Know
 
-These are the situations where this scope won't give you a trustworthy answer:
-
-- **Bandwidth (100 MHz):** The −3 dB point is 100 MHz. Signals above ~70 MHz are attenuated. A 100 MHz signal reads ~30% low. For accurate amplitude, keep signal frequency below ~1/3 of bandwidth (~33 MHz). Rise time limit: ~3.5 ns (0.35 / 100 MHz) — you can't measure edges faster than this.
-- **Sample rate vs. channels:** At 1 GSa/s single-channel, Nyquist is 500 MHz (fine for 100 MHz bandwidth). But at 500 MSa/s dual-channel, Nyquist drops to 250 MHz. For fast signals on both channels, the sample rate is the bottleneck for capturing edges and high-frequency detail.
-- **8-bit vertical resolution:** 256 levels across the screen. At 1 V/div (8V full-scale), each level is ~31 mV. Small signals riding on large ones get quantized. To see detail, zoom the vertical scale so the signal fills most of the screen.
-- **Record length vs. sample rate trade-off:** 10 Mpts at 1 GSa/s gives 10 ms of capture. If you need longer captures (e.g., 100 ms for a power-up sequence), the scope reduces sample rate to fit, and you lose time resolution. At 10 ms/div (100 ms total), sample rate drops to 100 MSa/s.
-- **Vertical accuracy (±3–5%):** A "3.30V" reading on the scope could really be 3.13V–3.47V. For absolute DC voltage, use the DMM.
-- **No current probing built in:** Need an external current probe or sense resistor technique.
-- **2 channels only:** For multi-rail power sequencing or complex signal tracing, you may need to capture in multiple passes and correlate, or prioritize which two signals matter most.
-- **Basic trigger types:** Edge and video only — no pulse width, runt, or serial decode triggers. Catching glitches requires some creativity with trigger level placement.
+- **Bandwidth (100 MHz):** Signals above ~70 MHz are attenuated. A 100 MHz signal reads ~30% low. For accurate amplitude, keep frequency below ~33 MHz. Rise time limit: ~3.5 ns.
+- **Sample rate vs. channels:** At 500 MSa/s dual-channel, Nyquist drops to 250 MHz. For fast signals on both channels, sample rate is the bottleneck.
+- **8-bit vertical resolution:** 256 levels across screen. At 1 V/div (8V full-scale), each level is ~31 mV. Small signals on large ones get quantized.
+- **Record length vs. sample rate:** 10 Mpts at 1 GSa/s gives 10 ms capture. Longer captures reduce sample rate.
+- **Vertical accuracy (±3–5%):** A "3.30V" reading could be 3.13V–3.47V. Use DMM for absolute voltage.
+- **2 channels only:** Multi-rail sequencing may require multiple passes.
+- **Basic trigger types:** Edge and video only — no pulse width, runt, or serial decode.
 
 ## Reference Links
 

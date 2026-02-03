@@ -19,76 +19,60 @@ Capacitor ESR and capacitance meter. Measures ESR in-circuit, capacitance out-of
 | Test voltage | ~40 mV typical (into 40Ω) |
 | In-circuit capable | ESR only (not capacitance) |
 | Display | Alphanumeric LCD with backlight |
-| Power | 1× AAA (alkaline, NiMH, or LiFe) |
-
----
+| Power | 1× AAA |
 
 ## Basic Operation
 
-The ESR70 is about as simple as a test instrument gets:
-
 1. Power on (single button)
 2. Touch probes to the capacitor
-3. Read the display — ESR in ohms, capacitance in µF
-4. That's it. No mode selection, no range setting.
+3. Read display — ESR in ohms, capacitance in µF
+4. Meter auto-starts measurement when component is detected
 
-The meter auto-starts measurement when it detects a component on the probes.
-
-## What the Display Shows
+## Display Reading
 
 | Reading | Meaning |
 |---|---|
-| ESR value (Ω) | Equivalent series resistance at the test frequency (~50–100 kHz) |
+| ESR value (Ω) | Equivalent series resistance at test frequency (~50–100 kHz) |
 | Capacitance (µF) | Measured capacitance (out-of-circuit only) |
-| Audible tone | Pitch varies with ESR — low tone = low ESR (good), high tone = high ESR (suspect) |
+| Audible tone | Pitch varies with ESR — low = low ESR (good), high = high ESR (suspect) |
 
 ## Probe Connections
 
 - Gold-plated crocodile clips with 2mm plugs
-- Probes are removable — any 2mm-compatible probes can be used
-- Extra-long silicone-covered cables (450mm)
-- For tight spaces, remove the crocodile clips and use the bare probe tips
+- Probes are removable — any 2mm-compatible probes work
+- 450mm silicone-covered cables
+- For tight spaces, remove crocodile clips and use bare probe tips
 
 ## Procedures
 
 ### Out-of-Circuit Capacitor Test
 
-The full test — gives you both ESR and capacitance:
+Full test giving both ESR and capacitance:
 
-1. **Discharge the capacitor first.** Short the leads with a resistor (100Ω is fine) to safely drain any stored charge
-2. Remove the capacitor from the circuit (desolder at least one lead)
-3. Connect the ESR70 probes to the capacitor leads
+1. **Discharge the capacitor first** — short leads with resistor (100Ω) to drain stored charge
+2. Remove capacitor from circuit (desolder at least one lead)
+3. Connect probes to capacitor leads
 4. Read ESR and capacitance
-5. Compare to the part's rated values
+5. Compare to rated values
 
 ### In-Circuit ESR Test
 
-Faster but limited — gives ESR only, no capacitance:
+Faster but limited — ESR only, no capacitance:
 
-1. **Power off the circuit and discharge capacitors**
-2. Leave the capacitor soldered in place
-3. Connect probes to the capacitor's pads
+1. **Power off circuit and discharge capacitors**
+2. Leave capacitor soldered in place
+3. Connect probes to capacitor pads
 4. Read ESR value
 
-**In-circuit caveats:**
-- Parallel components (other capacitors, low-impedance paths) affect the reading
-- The reading shows the ESR of whatever impedance the probes see — which may not be just the one capacitor
-- Use in-circuit ESR as a screening tool: if the reading is clearly high, the cap is bad. If the reading looks normal, it might still be bad (parallel paths masking it)
-- For definitive testing, desolder and test out-of-circuit
+**In-circuit notes:** Parallel components affect reading. Use as screening tool — clearly high reading indicates bad cap; normal reading might mask issues from parallel paths. For definitive testing, desolder and test out-of-circuit.
 
 ### Low-Ohms Resistance Check
 
-The ESR70 also works as a low-ohms resistance meter:
-
-1. Touch probes to the component or connection
-2. Read the resistance — useful for checking trace resistance, connector contact resistance, or very low-value resistors
-3. Resolution: 0.01Ω below 2Ω
+Touch probes to component or connection and read resistance. Useful for trace resistance, connector contact resistance, or very low-value resistors. Resolution: 0.01Ω below 2Ω.
 
 ## Interpreting ESR Readings
 
-### What's "Good" ESR?
-
-ESR depends on capacitance value, voltage rating, and capacitor series. Rough guidelines for aluminum electrolytics:
+### Reference Values for Aluminum Electrolytics
 
 | Capacitance | Voltage | Typical Good ESR |
 |---|---|---|
@@ -99,32 +83,40 @@ ESR depends on capacitance value, voltage rating, and capacitor series. Rough gu
 | 10 µF | 50V | < 1.0Ω |
 | 1 µF | 50V | < 5Ω |
 
-**Always check the specific part's datasheet** — these are rough screening values. Low-ESR series caps have much tighter specs than general-purpose parts.
+**Always check specific part's datasheet** — these are rough screening values.
 
 ### Warning Signs
 
-- ESR much higher than expected → capacitor is drying out, degraded, or heat-damaged
-- ESR reads open (no reading) → capacitor has failed open
-- Capacitance correct but ESR high → the cap looks OK on a capacitance meter but is actually failing. This is the classic electrolytic failure mode.
+- ESR much higher than expected → capacitor drying out, degraded, or heat-damaged
+- ESR reads open (no reading) → capacitor failed open
+- Capacitance correct but ESR high → classic electrolytic failure mode; cap looks OK on capacitance meter but is actually failing
 
 ## Audible Alerts
 
-The ESR70 uses pitch to indicate ESR level — you can test capacitors without looking at the display:
+Pitch indicates ESR level — test capacitors without looking at display:
 
 - **Low pitch:** Low ESR (good)
 - **High pitch:** High ESR (suspect)
-- **No tone / error tone:** Open or out of range
+- **No tone / error:** Open or out of range
 
-This is useful when you're testing a row of capacitors on a board and want to quickly find the outlier.
+Useful when testing a row of capacitors to quickly find the outlier.
 
 ## Tips
 
-- **Always discharge capacitors before testing.** The ESR70 injects a small test signal (~40 mV) and is not designed to handle charged caps. A charged capacitor won't damage the meter but will give a wrong reading.
-- **Test at room temperature.** ESR changes with temperature — cold caps measure higher ESR. The spec'd operating range is 15–35°C.
-- **Auto power-off** kicks in after ~1 minute of inactivity. Just press the button to wake it up.
-- **Probe contact matters.** Bad contact on the crocodile clips adds resistance that shows up in the ESR reading. Clean the capacitor leads if they're oxidized.
+- Always discharge capacitors before testing — meter injects ~40 mV test signal and expects discharged caps
+- Test at room temperature — ESR changes with temperature; cold caps measure higher
+- Auto power-off after ~1 minute; press button to wake
+- Probe contact matters — clean oxidized capacitor leads; bad contact adds resistance
 
----
+## Caveats
+
+- **ESR ceiling (40Ω):** Caps with ESR above 40Ω read out of range. If ESR exceeds 40Ω, the cap is dead anyway.
+- **Capacitance floor (0.3 µF):** Cannot measure ESR on caps below 0.3 µF. Small ceramics and film caps are out of range.
+- **In-circuit accuracy:** Parallel capacitors, traces, and low-impedance paths affect measurement. Suspiciously low in-circuit reading may mean meter sees parallel path.
+- **Test frequency (50–100 kHz):** ESR is frequency-dependent. Testing at ~100 kHz is relevant for switching supply decoupling; ESR at other frequencies may differ.
+- **Temperature sensitivity:** ESR increases at lower temperatures. Readings below 15°C may be higher than datasheet spec at 25°C — this is cap behavior, not meter error.
+- **Charged capacitors:** Meter expects discharged caps. Charged cap gives incorrect reading.
+- **Resolution limits:** Below 2Ω, resolution is 0.01–0.02Ω. For very low-ESR caps (polymer, MLCC), differences of 0.01Ω are at resolution limit.
 
 ## Specifications
 
@@ -146,38 +138,12 @@ This is useful when you're testing a row of capacitors on a board and want to qu
 | Range | 0.3 µF to 90,000 µF |
 | Conditions | Out-of-circuit only |
 
-Capacitance measurement is available only when the capacitor is disconnected from the circuit. In-circuit, only ESR is reported.
-
 ### Operating Conditions
 
 | Parameter | Value |
 |---|---|
-| Operating temperature | 15°C to 35°C (60°F to 95°F) |
+| Operating temperature | 15°C to 35°C |
 | Auto power-off | ~1 minute |
-| Low battery protection | Will not operate if battery is low |
-
-### Probes
-
-| Parameter | Value |
-|---|---|
-| Type | Gold-plated crocodile clips |
-| Connector | 2mm plugs (removable) |
-| Cable length | 450 mm silicone-covered |
-| Compatible | Any 2mm probes |
-
----
-
-## Limits to Know
-
-These are the situations where this meter won't give you a trustworthy answer:
-
-- **ESR ceiling (40Ω):** Capacitors with ESR above 40Ω read as out of range. Very small or very degraded caps may exceed this. But honestly, if ESR is above 40Ω, the cap is dead anyway.
-- **Capacitance floor (0.3 µF):** Can't measure ESR on caps below 0.3 µF. Small ceramic caps, film caps, and most non-electrolytic types are out of range.
-- **In-circuit accuracy:** In-circuit ESR readings are approximate. Parallel capacitors, traces, and low-impedance paths affect the measurement. A suspiciously low in-circuit reading may mean the meter is seeing a parallel path, not the capacitor's true ESR.
-- **Test frequency (50–100 kHz):** ESR is frequency-dependent. The ESR70 tests at ~100 kHz, which is relevant for switching power supply decoupling. ESR at other frequencies (e.g., audio) may differ.
-- **Temperature sensitivity:** ESR increases at lower temperatures. If you're testing caps in a cold environment (below 15°C), the reading may be higher than the datasheet spec measured at 25°C. This is the cap's behavior, not a meter error — but be aware of it.
-- **Charged capacitors:** The meter expects the capacitor to be discharged. A charged cap will give an incorrect reading and may confuse the auto-detection. Always discharge first.
-- **Resolution limits:** Below 2Ω, resolution is 0.01–0.02Ω. For very low-ESR caps (polymer, MLCC), differences of 0.01Ω are at the resolution limit and shouldn't be over-interpreted.
 
 ## Reference Links
 
