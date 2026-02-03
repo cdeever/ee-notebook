@@ -65,11 +65,24 @@ The terms are often used interchangeably, but there's a subtle distinction:
 
 In practice, the same capacitor does both jobs simultaneously. The distinction matters more when thinking about which frequency range you're targeting.
 
-## Gotchas
+## Tips
 
-- **100 nF is a convention, not a rule** — 100 nF (0.1 uF) is the standard bypass cap because it provides reasonable impedance across a useful frequency range in a common package size. But it's not always the right value. High-speed digital may need smaller caps (lower ESL). High-current analog may need larger caps (more energy storage)
-- **Ceramic capacitor DC bias derating** — A "10 uF" X5R cap at its rated voltage might only have 3-5 uF. This means your bulk decoupling has less capacitance than you think. Oversize the voltage rating or the capacitance value
+- Place bypass capacitors as close to IC power pins as physically possible — every millimeter of trace adds inductance
+- Use a combination of capacitor values (bulk + mid-range + local bypass) to maintain low impedance across the full frequency range
+- Connect bypass caps to ground through short, wide traces or direct vias to the ground plane
+- Probe power integrity at the IC's power pins, not at a distant point on the supply rail
+
+## Caveats
+
+- **100 nF is a convention, not a rule** — 100 nF (0.1 µF) is the standard bypass cap because it provides reasonable impedance across a useful frequency range in a common package size. High-speed digital may need smaller caps (lower ESL). High-current analog may need larger caps (more energy storage)
+- **Ceramic capacitor DC bias derating** — A "10 µF" X5R cap at its rated voltage might only have 3-5 µF. This means bulk decoupling has less capacitance than expected. Oversize the voltage rating or the capacitance value
 - **Too many capacitors can cause problems** — At certain frequencies, the parallel combination of caps can create anti-resonances (impedance peaks). This is rare in practice with good layout, but it can matter in sensitive designs
 - **Don't forget the input side** — Power supply ICs (especially switching regulators) need input decoupling too. The pulsating input current of a buck converter needs a low-impedance path right at the converter
-- **Test point access** — When debugging power integrity, you need to probe between the IC's power pin and its ground pin — not between the supply rail and a distant ground point. The voltage you care about is what the IC sees at its pins
 - **Ferrite beads** — A ferrite bead in series with the supply trace acts as a frequency-dependent resistor that attenuates high-frequency noise. Combined with a bypass cap on the IC side, it forms a low-pass filter. Useful for isolating noisy digital supplies from sensitive analog supplies
+
+## Bench Relevance
+
+- Digital circuits with glitchy behavior or missed transitions often have inadequate decoupling — check for voltage dips at the IC power pins during switching
+- Analog circuits with unexplained noise may have digital supply noise coupling through shared power rails — add ferrite bead isolation
+- A circuit that works on one PCB layout but not another points to layout-dependent decoupling effectiveness
+- High-frequency ringing on power rails suggests capacitor self-resonance or excessive trace inductance — use smaller packages or shorter traces

@@ -90,10 +90,24 @@ The reference voltage defines the full-scale range of an ADC. A 12-bit ADC with 
 
 For high-resolution ADCs (16+ bits), reference noise and drift become the dominant error sources, not the ADC itself.
 
-## Gotchas
+## Tips
+
+- Buffer precision references with an op-amp follower to eliminate load regulation errors
+- Allow warm-up time (5-30 minutes depending on precision requirements) before taking measurements
+- Select reference voltage values that simplify ADC scaling (e.g., 4.096 V for 1 mV/LSB at 12 bits)
+- For 16+ bit ADCs, reference noise and drift typically dominate over converter errors — budget accordingly
+
+## Caveats
 
 - **Load the reference consistently** — Changes in load current cause voltage changes (load regulation error). For best accuracy, present a constant load to the reference, or use a buffer amplifier
-- **Decouple the reference output** — A capacitor on the reference output reduces noise and improves transient response. But check the datasheet — some references are unstable with certain capacitor values
+- **Decouple the reference output** — A capacitor on the reference output reduces noise and improves transient response. Check the datasheet — some references are unstable with certain capacitor values
 - **Allow warm-up time** — References shift during the first few minutes after power-on as the die temperature stabilizes. Precision measurements require waiting for the reference to settle
 - **Mechanical stress** — Some references are sensitive to PCB stress (bending, thermal gradients). Conformal coating and PCB stress relief help in precision applications
-- **Don't use a regulator as a reference** — Regulators and references look similar (both produce fixed voltages), but regulators are optimized for load current capability and transient response, not for absolute voltage accuracy or tempco. A 3.3 V LDO might have 1% initial accuracy and 100 ppm/C tempco — usable for power but poor as a measurement reference
+- **Don't use a regulator as a reference** — Regulators and references look similar (both produce fixed voltages), but regulators are optimized for load current capability and transient response, not for absolute voltage accuracy or tempco. A 3.3 V LDO might have 1% initial accuracy and 100 ppm/°C tempco — usable for power but poor as a measurement reference
+
+## Bench Relevance
+
+- ADC readings that drift over time may trace to reference warm-up — measure the reference voltage directly over time after power-on
+- Reference voltage that varies with load indicates insufficient buffering or load regulation issues
+- A reference that changes value when the PCB is flexed suggests stress sensitivity — check mounting and consider stress relief
+- System accuracy that doesn't meet expectations often traces to reference drift exceeding the assumed tempco — measure reference stability over temperature

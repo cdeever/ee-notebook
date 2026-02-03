@@ -98,7 +98,14 @@ Switching regulator layout is critical — far more so than linear regulators. P
 - Keep sensitive analog traces away from switching nodes
 - The switch node (between the switch and inductor) is the noisiest net on the board — keep it short and don't route anything sensitive near it
 
-## Gotchas
+## Tips
+
+- Keep the switching loop (input cap → switch → inductor → output cap → ground) as tight and small as possible
+- Use an LDO post-regulator for noise-sensitive analog circuits fed from a switching supply
+- Select inductors with saturation current rating exceeding peak current (DC + ripple) by at least 20%
+- Place input and output capacitors directly at the converter IC pins, not at the end of traces
+
+## Caveats
 
 - **Minimum load** — Some converters (especially boost) require a minimum load to regulate properly. With no load, the output voltage can rise above the target
 - **Light-load efficiency** — Switching losses and quiescent current dominate at light loads. Some converters switch to a low-frequency burst mode (PFM) at light loads to improve efficiency, but this makes the output ripple frequency variable and unpredictable
@@ -106,3 +113,10 @@ Switching regulator layout is critical — far more so than linear regulators. P
 - **Audible noise** — Converters switching in or near the audible range (20 Hz-20 kHz) can produce audible whine from magnetostriction in the inductor. This is common in burst-mode operation at light loads
 - **EMI compliance** — Switching regulators are the #1 source of conducted and radiated EMI on most boards. Meeting EMI standards often requires input filters, shielding, and careful layout — all of which add cost and complexity
 - **Start-up and soft-start** — Inrush current during start-up can trip upstream protection or cause voltage dips. Most modern converters have soft-start features that ramp the output voltage slowly, but the soft-start time and behavior need to be appropriate for the application
+
+## Bench Relevance
+
+- A converter that oscillates or has ringing on the output has loop stability problems — check compensation component values and verify against the datasheet
+- Output voltage that exceeds the target at light loads indicates minimum load isn't met — add a dummy load resistor
+- Excessive output ripple points to undersized output capacitor, high-ESR capacitor, or DC bias derating reducing effective capacitance
+- Audible whine from the inductor area indicates burst mode operation or subharmonic oscillation — check the light-load operating mode

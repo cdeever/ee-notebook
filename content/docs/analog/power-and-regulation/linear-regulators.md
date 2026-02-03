@@ -72,11 +72,25 @@ Since a linear regulator converts excess voltage directly to heat, thermal manag
 
 See [Thermal Reality]({{< relref "/docs/fundamentals/power-energy-heat/thermal-reality" >}}) for the thermal model details.
 
-## Gotchas
+## Tips
+
+- Use LDOs for post-regulation after a switching converter to get both efficiency and low noise
+- Calculate worst-case power dissipation at maximum V_in and maximum I_load, then verify thermal design meets this
+- Choose output capacitor type carefully — check the datasheet for ESR requirements to avoid oscillation
+- For battery-powered designs, select LDOs with low quiescent current for sleep mode efficiency
+
+## Caveats
 
 - **Dropout is not constant** — Dropout voltage increases with load current. The datasheet spec is usually at full rated current. At light loads, dropout may be much less
-- **Quiescent current** — The regulator itself draws current even with no load. Ranges from microamps (modern LDOs) to milliamps (older parts). Matters for battery life in sleep modes
+- **Quiescent current** — The regulator itself draws current even with no load. Ranges from microamps (modern LDOs) to milliamps (older parts). This affects battery life in sleep modes
 - **Reverse current** — If the output voltage ever exceeds the input (e.g., during power sequencing), current can flow backwards through the regulator, potentially damaging it. Some regulators have internal protection; many don't
-- **Input capacitor matters too** — The input cap provides instantaneous current during load transients and prevents input-side oscillation. Don't forget it
-- **Ground pin current** — The current flowing out the ground pin is the quiescent current, not the load current (for positive regulators). The load current flows through the pass element from input to output. But for some LDO architectures, ground current increases with load — check the datasheet
+- **Input capacitor matters too** — The input cap provides instantaneous current during load transients and prevents input-side oscillation
+- **Ground pin current** — The current flowing out the ground pin is the quiescent current, not the load current (for positive regulators). The load current flows through the pass element from input to output. For some LDO architectures, ground current increases with load — check the datasheet
 - **Thermal shutdown** — Most regulators have thermal shutdown that turns off the output if the junction temperature gets too high. This protects the part but drops the output, potentially causing downstream problems. Design so thermal shutdown is never reached in normal operation
+
+## Bench Relevance
+
+- A regulator that oscillates typically has the wrong output capacitor ESR — try a different capacitor type or add a small series resistor
+- Output voltage below spec at high load indicates the regulator is in dropout — increase input voltage or reduce the input-output differential
+- A regulator cycling on and off under load is hitting thermal shutdown — improve heatsinking or reduce power dissipation
+- Output that follows input minus a small drop indicates operation below dropout — the regulator is not regulating
