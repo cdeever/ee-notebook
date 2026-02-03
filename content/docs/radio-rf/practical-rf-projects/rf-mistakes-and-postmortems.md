@@ -5,7 +5,7 @@ weight: 30
 
 # RF Mistakes & Postmortems
 
-Every RF failure teaches something that success never would. The circuits described here all started with reasonable schematics and good intentions, but each one failed in a way that revealed something important about RF behavior. These aren't hypothetical scenarios — they're the kinds of failures that happen on real benches, and each one leaves you better equipped for the next build.
+Every RF failure teaches something that success never would. The circuits described here all started with reasonable schematics and good intentions, but each one failed in a way that revealed something important about RF behavior. These are not hypothetical scenarios — they are the kinds of failures that happen on real benches, and each one leaves the builder better equipped for the next project.
 
 ## The Oscillating Amplifier
 
@@ -18,7 +18,7 @@ Every RF failure teaches something that success never would. The circuits descri
 2. A 10-ohm resistor in series with the second stage's base, reducing out-of-band gain
 3. A 100 pF capacitor from the second stage's collector to ground, rolling off gain above 200 MHz
 
-**The lesson**: Amplifier stability analysis must consider gain at all frequencies, not just the design frequency. The schematic worked perfectly in SPICE simulation because SPICE doesn't model trace inductance, supply rail impedance, or parasitic coupling. The board layout was the schematic's undoing.
+**The lesson**: Amplifier stability analysis must consider gain at all frequencies, not just the design frequency. The schematic worked perfectly in SPICE simulation because SPICE does not model trace inductance, supply rail impedance, or parasitic coupling. The board layout was the schematic's undoing.
 
 ## The Detuned Antenna
 
@@ -45,7 +45,7 @@ The coupling path was through the power supply leads into the receiver and throu
 2. A shielded enclosure around the buck converter reduced radiated emissions.
 3. The buck converter was replaced with an LDO linear regulator for the receiver's final stage, eliminating switching noise entirely for the most sensitive circuit.
 
-**The lesson**: Switching power supplies and sensitive receivers are natural enemies. The harmonic-rich switching waveform can land on any frequency. Calculate whether the switching frequency harmonics overlap your receive band, and if they do, use linear regulation or aggressive filtering. A 15 dB noise floor increase means losing signals that would otherwise be perfectly readable.
+**The lesson**: Switching power supplies and sensitive receivers are natural enemies. The harmonic-rich switching waveform can land on any frequency. Calculating whether the switching frequency harmonics overlap the receive band is essential, and if they do, linear regulation or aggressive filtering is the answer. A 15 dB noise floor increase means losing signals that would otherwise be perfectly readable.
 
 ## Ground Loop Coupling
 
@@ -60,7 +60,7 @@ The second mechanism was worse: the transmitter's second harmonic at 866 MHz was
 2. An additional harmonic filter on the transmitter output reduced the second harmonic from -25 dBc to -50 dBc.
 3. The receiver's bandpass filter was upgraded to a design with 40 dB rejection at 866 MHz.
 
-**The lesson**: Shared ground planes couple circuits that you think are isolated. At RF, the ground plane is not an equipotential surface — it has impedance, and current flows in patterns determined by the traces above it. Physical separation, ground plane partitioning, and filtering are all necessary when high-power and high-sensitivity circuits coexist.
+**The lesson**: Shared ground planes couple circuits that appear isolated. At RF, the ground plane is not an equipotential surface — it has impedance, and current flows in patterns determined by the traces above it. Physical separation, ground plane partitioning, and filtering are all necessary when high-power and high-sensitivity circuits coexist.
 
 ## The Connector Problem
 
@@ -72,7 +72,7 @@ The failure was invisible from the outside. The connector looked normal. The nut
 
 **The fix**: Replaced the connector. Tested by flexing the cable while monitoring VSWR on the NanoVNA — the new connector showed stable VSWR under flex.
 
-**The lesson**: Connectors fail more often than circuits. When measurements are intermittent or irreproducible, suspect the connectors and cables before suspecting the circuit. Flex each cable and wiggle each connector while watching the measurement. A $2 connector can waste hours of debugging time.
+**The lesson**: Connectors fail more often than circuits. When measurements are intermittent or irreproducible, the connectors and cables are the first suspects before the circuit. Flex each cable and wiggle each connector while watching the measurement. A $2 connector can waste hours of debugging time.
 
 ## The Ground Plane Slot Antenna
 
@@ -88,19 +88,33 @@ The flex cable passing through the slot acted as a feedpoint, further enhancing 
 
 ## What to Check First Next Time
 
-Each failure above points to a general debugging principle. When an RF circuit doesn't work:
+Each failure above points to a general debugging principle. When an RF circuit does not work:
 
 1. **Check DC first**: Bias voltages, supply currents, regulator outputs. Half of RF problems present as DC anomalies.
 2. **Check connectors and cables**: Flex, wiggle, swap. The cheapest and most common failure mode.
-3. **Look for oscillation**: Wide-span spectrum analyzer sweep. Is there energy where there shouldn't be?
-4. **Isolate the power supply**: Does the problem change when you switch from a switching supply to a battery or linear regulator?
+3. **Look for oscillation**: Wide-span spectrum analyzer sweep. Is there energy where there should not be?
+4. **Isolate the power supply**: Does the problem change when switching from a switching supply to a battery or linear regulator?
 5. **Test in the final mechanical configuration**: Enclosure, cables, mounting — all affect RF behavior.
-6. **Change one thing at a time**: Disciplined debugging reveals causes. Changing three things at once leaves you uncertain which change mattered.
+6. **Change one thing at a time**: Disciplined debugging reveals causes. Changing three things at once leaves uncertainty about which change mattered.
 
-## Gotchas
+## Tips
 
-- **Assuming simulation matches reality** — SPICE and EM simulators model the schematic or layout you gave them, not the board you built. Parasitic effects, component tolerances, and assembly variations are not included unless you explicitly model them.
-- **Blaming the wrong component** — An oscillation caused by a supply rail feedback path looks like a transistor problem if you only probe the transistor. Broaden your investigation before replacing parts.
-- **Fixing the symptom, not the cause** — Adding an attenuator to reduce a spur is not a fix — it's a mask. The spur is still there, and the attenuator reduces the desired signal too. Find and eliminate the source.
-- **Intermittent problems that "go away"** — An intermittent failure that disappears on its own will return. Document the conditions (temperature, cable position, mechanical stress) that triggered it and design a test to reproduce it reliably.
-- **Not documenting failures** — Every failure is data. Record what happened, what you measured, and what fixed it. The next time a similar symptom appears, your notes are more valuable than any textbook.
+- Before suspecting the circuit, flex every cable and wiggle every connector while watching the measurement instrument — connector failures account for a disproportionate share of RF debugging time
+- Run a wide-span spectrum analyzer sweep (DC to at least 3x the operating frequency) as a first diagnostic step to catch parasitic oscillations and unexpected spurs that narrow-band measurements miss
+- Keep a set of known-good cables and connectors verified with a VNA, and always use them first when a measurement seems anomalous
+- When a transmitter and receiver share a PCB, calculate the transmitter's harmonic frequencies and compare them against the receiver's passband before layout — this check takes minutes and prevents board respins
+
+## Caveats
+
+- **Assuming simulation matches reality** — SPICE and EM simulators model the schematic or layout provided to them, not the board as built. Parasitic effects, component tolerances, and assembly variations are not included unless explicitly modeled
+- **Blaming the wrong component** — An oscillation caused by a supply rail feedback path looks like a transistor problem if only the transistor is probed. Broadening the investigation before replacing parts avoids wasted effort
+- **Fixing the symptom, not the cause** — Adding an attenuator to reduce a spur is not a fix — it is a mask. The spur is still there, and the attenuator reduces the desired signal too. Find and eliminate the source
+- **Intermittent problems that "go away"** — An intermittent failure that disappears on its own will return. Document the conditions (temperature, cable position, mechanical stress) that triggered it and design a test to reproduce it reliably
+- **Not documenting failures** — Every failure is data. Record what happened, what was measured, and what fixed it. The next time a similar symptom appears, those notes are more valuable than any textbook
+
+## Bench Relevance
+
+- A parasitic oscillation shows up as an unexpected spectral peak on a wide-span spectrum analyzer sweep, often at a frequency unrelated to the design frequency, and disappears when a ferrite bead or series resistor is added to the supply rail
+- Ground plane coupling between a transmitter and receiver section manifests as a rise in the receiver's noise floor that correlates exactly with transmitter activation — measuring noise floor with the transmitter on and off isolates this effect
+- An intermittent connector failure appears as erratic, jumping VSWR readings on a NanoVNA that stabilize when the cable is held in one position but spike when flexed or tapped
+- A noisy switching power supply produces a comb of spectral lines at multiples of the switching frequency, visible on a spectrum analyzer connected to the supply output through a coupling capacitor

@@ -9,16 +9,16 @@ The simplest RF transmitter is an oscillator connected to an antenna. The simple
 
 ## Crystal Oscillator Transmitter
 
-The most basic RF transmitter uses a quartz crystal to set the frequency and a single transistor to sustain oscillation. A Colpitts or Pierce oscillator circuit with a crystal at, say, 7.040 MHz produces a few milliwatts of RF energy. Connect that to a wire antenna, and you have a transmitter — crude, but functional.
+The most basic RF transmitter uses a quartz crystal to set the frequency and a single transistor to sustain oscillation. A Colpitts or Pierce oscillator circuit with a crystal at, say, 7.040 MHz produces a few milliwatts of RF energy. Connect that to a wire antenna, and the result is a transmitter — crude, but functional.
 
 What makes this a good learning project:
 
-- The crystal controls the frequency to within a few tens of ppm, so you know exactly where to look on a receiver.
+- The crystal controls the frequency to within a few tens of ppm, so the expected location on a receiver is known precisely.
 - The circuit requires only 5-10 components: one transistor, one crystal, a few capacitors and resistors, and a power source.
 - The output is a CW (continuous wave) signal — no modulation to complicate things.
 - The power level is low enough (5-50 mW depending on the design) that a dummy load and near-field probe can detect it without an antenna.
 
-The practical challenge: getting the oscillator to start reliably and produce a clean signal. Common problems include insufficient feedback (oscillator won't start), excessive feedback (distorted output with strong harmonics), and crystal heating (frequency drift as the crystal warms up). A good oscillator starts within milliseconds of power application and settles to a stable frequency within a few seconds.
+The practical challenge: getting the oscillator to start reliably and produce a clean signal. Common problems include insufficient feedback (oscillator will not start), excessive feedback (distorted output with strong harmonics), and crystal heating (frequency drift as the crystal warms up). A good oscillator starts within milliseconds of power application and settles to a stable frequency within a few seconds.
 
 Crystal oscillator output is rich in harmonics — the square-ish waveform at the collector or drain contains energy at the fundamental and all odd harmonics. A 7 MHz oscillator produces significant energy at 21, 35, 49 MHz and beyond. A low-pass filter after the oscillator is essential to avoid transmitting on harmonic frequencies.
 
@@ -33,7 +33,7 @@ A basic AM transmitter for learning:
 3. Modulator stage that varies the oscillator's supply voltage with the audio signal
 4. Output filter to suppress harmonics
 
-The result is a signal you can receive on any AM radio (if the frequency is in the AM broadcast band) or on an SDR tuned to the crystal frequency. Hearing your own voice or music transmitted wirelessly, even across a room, makes the abstract concepts of modulation and demodulation tangible.
+The result is a signal receivable on any AM radio (if the frequency is in the AM broadcast band) or on an SDR tuned to the crystal frequency. Hearing a transmitted voice or music wirelessly, even across a room, makes the abstract concepts of modulation and demodulation tangible.
 
 The power output of such a circuit is typically 10-100 mW before filtering. This is enough to receive across a room or a building with a simple receiver, but it also means regulatory compliance matters — see the legal section below.
 
@@ -46,13 +46,13 @@ The mixer multiplies the incoming RF signal by a local oscillator (LO) at the sa
 Why this is an excellent learning project:
 
 - **Minimal parts count**: One mixer IC (like the SA612/NE602), one oscillator (VFO or crystal), a few filter components, and an audio amplifier (LM386 or similar).
-- **Teaches frequency conversion**: You directly experience the relationship between LO frequency, signal frequency, and audio output.
-- **Reveals mixer behavior**: You hear intermodulation, images, LO leakage, and other mixer effects as audible artifacts.
+- **Teaches frequency conversion**: The relationship between LO frequency, signal frequency, and audio output is experienced directly.
+- **Reveals mixer behavior**: Intermodulation, images, LO leakage, and other mixer effects are audible as artifacts.
 
 Practical limitations of direct conversion:
 
-- **Audio frequency images**: A signal 1 kHz above the LO and a signal 1 kHz below the LO both produce 1 kHz audio. You hear both, and can't distinguish them without additional processing (I/Q detection and phasing).
-- **LO radiation**: The local oscillator couples back through the mixer to the antenna and radiates. Other nearby receivers can hear your LO.
+- **Audio frequency images**: A signal 1 kHz above the LO and a signal 1 kHz below the LO both produce 1 kHz audio. Both are heard, and they cannot be distinguished without additional processing (I/Q detection and phasing).
+- **LO radiation**: The local oscillator couples back through the mixer to the antenna and radiates. Other nearby receivers can hear the LO.
 - **Microphonics**: Mechanical vibration modulates the VFO frequency, creating audio artifacts. Tapping the circuit produces audible thumps.
 - **DC offset and hum**: The mixer produces a DC component that can saturate the audio amplifier. AC coupling and careful grounding are necessary.
 
@@ -62,7 +62,7 @@ The superheterodyne architecture converts the incoming signal to a fixed interme
 
 The signal path: antenna, RF preselector filter, mixer, IF filter, IF amplifier, detector, audio amplifier.
 
-The key insight: by converting every incoming signal to the same IF (say 455 kHz for AM, 10.7 MHz for FM, or 9 MHz for communications receivers), you only need to build one high-performance filter at a fixed frequency. The LO tunes to select different incoming signals by changing the difference frequency.
+The key insight: by converting every incoming signal to the same IF (say 455 kHz for AM, 10.7 MHz for FM, or 9 MHz for communications receivers), only one high-performance filter at a fixed frequency is needed. The LO tunes to select different incoming signals by changing the difference frequency.
 
 For a receiver tuning 7.0 to 7.3 MHz with a 10 MHz IF, the LO tunes from 17.0 to 17.3 MHz. The mixer produces the difference: 17.0 - 7.0 = 10.0 MHz, 17.3 - 7.3 = 10.0 MHz. Every signal in the tuning range gets converted to 10 MHz, where the crystal filter selects the desired signal.
 
@@ -75,7 +75,7 @@ Building a superheterodyne receiver is a significantly more complex project than
 
 ## Legal Considerations
 
-RF transmission is regulated everywhere. Before transmitting, understand the legal framework:
+RF transmission is regulated everywhere. Before transmitting, the legal framework must be understood:
 
 | Regulation | What It Allows | Limits |
 |---|---|---|
@@ -88,13 +88,13 @@ For learning, the safest approach is:
 
 1. **Use a dummy load** for all transmitter testing. No antenna means no radiation (in theory — in practice, even a dummy load radiates a little).
 2. **Get a ham radio license** (Technician class in the US) for legal transmission privileges on amateur bands. The exam is straightforward.
-3. **Start with receiving** — all receiving is legal, and you learn just as much about RF behavior by receiving as by transmitting.
+3. **Start with receiving** — all receiving is legal, and the same RF behavior concepts apply to receiving as to transmitting.
 
-## What You Learn from Building vs Buying
+## What Building vs Buying Teaches
 
 The gap between schematic and working circuit teaches things no textbook covers:
 
-- **Component placement matters**: Moving a capacitor 2 cm changes the behavior at RF. The schematic doesn't show this.
+- **Component placement matters**: Moving a capacitor 2 cm changes the behavior at RF. The schematic does not show this.
 - **Ground is not ground**: Different ground points on the same board have different RF voltages. Star grounding, ground plane design, and via placement all matter.
 - **Stray coupling is real**: Two unshielded inductors near each other couple magnetically. A trace running near an oscillator pulls its frequency.
 - **Stability is hard**: An oscillator that works at room temperature may drift or stop at 0C or 50C. A receiver that works alone may fail when a nearby switching power supply turns on.
@@ -112,11 +112,25 @@ In roughly increasing order of complexity:
 
 Each project builds on the concepts from the previous one and connects to the fundamentals covered in [RF Fundamentals]({{< relref "/docs/radio-rf/rf-fundamentals" >}}).
 
-## Gotchas
+## Tips
 
-- **Breadboards are terrible for RF** — The stray capacitance between breadboard rows is 1-2 pF per row. Above 30-50 MHz, breadboard circuits are unreliable. Use dead-bug construction (components soldered directly to a copper ground plane) or proper PCBs.
-- **Crystal frequency is not exact** — A crystal marked "7.040 MHz" oscillates at that frequency only under specific load capacitance conditions. In your circuit, it may oscillate 1-5 kHz away depending on the feedback network.
-- **The oscillator won't start** — Insufficient loop gain, wrong bias point, or too much loading. Check that the transistor is biased in the active region and that the feedback network provides enough gain at the crystal frequency.
-- **AM modulation depth confusion** — 100% modulation doubles the peak voltage and quadruples the peak power. Over-modulating (above 100%) causes splatter — wideband interference that's audible on adjacent frequencies and violates regulations.
-- **Receiver overload from nearby transmitters** — A direct conversion receiver near a strong broadcast station or cell tower may produce intermodulation products that sound like real signals. An attenuator or preselector filter at the input helps.
-- **Forgetting the output filter** — An unfiltered oscillator transmitter radiates harmonics across a wide spectrum. Always use a low-pass filter between the oscillator and any antenna connection, even for bench testing.
+- Start with a crystal oscillator on a copper-clad board rather than a breadboard — dead-bug construction eliminates most stray capacitance problems and provides immediate, reliable results at HF
+- Keep a dummy load connected during all transmitter experiments to avoid accidental radiation and to provide a consistent 50-ohm reference for power measurements
+- Use an SDR as a companion receiver when building transmitters — the waterfall display reveals harmonics, spurs, and instability that a single-frequency measurement would miss
+- Label every crystal with its measured oscillation frequency in the actual circuit, not just the marked frequency, to avoid confusion on future builds
+
+## Caveats
+
+- **Breadboards are terrible for RF** — The stray capacitance between breadboard rows is 1-2 pF per row. Above 30-50 MHz, breadboard circuits are unreliable. Use dead-bug construction (components soldered directly to a copper ground plane) or proper PCBs
+- **Crystal frequency is not exact** — A crystal marked "7.040 MHz" oscillates at that frequency only under specific load capacitance conditions. In the actual circuit, it may oscillate 1-5 kHz away depending on the feedback network
+- **The oscillator will not start** — Insufficient loop gain, wrong bias point, or too much loading. Check that the transistor is biased in the active region and that the feedback network provides enough gain at the crystal frequency
+- **AM modulation depth confusion** — 100% modulation doubles the peak voltage and quadruples the peak power. Over-modulating (above 100%) causes splatter — wideband interference that is audible on adjacent frequencies and violates regulations
+- **Receiver overload from nearby transmitters** — A direct conversion receiver near a strong broadcast station or cell tower may produce intermodulation products that sound like real signals. An attenuator or preselector filter at the input helps
+- **Forgetting the output filter** — An unfiltered oscillator transmitter radiates harmonics across a wide spectrum. Always use a low-pass filter between the oscillator and any antenna connection, even for bench testing
+
+## Bench Relevance
+
+- An oscillator that refuses to start or starts intermittently typically shows no AC signal at the collector/drain while DC bias voltages appear normal — checking for RF activity with a scope probe or near-field sniffer confirms whether oscillation is present
+- Strong harmonics from an unfiltered crystal oscillator appear as distinct spectral lines at odd multiples of the fundamental on an SDR waterfall or spectrum analyzer, often only 10-15 dB below the fundamental
+- AM over-modulation manifests as audible distortion and visible broadening of the signal on a spectrum display, with splatter extending hundreds of kHz beyond the normal signal bandwidth
+- LO radiation from a direct conversion receiver is detectable as a steady carrier on a nearby SDR tuned to the LO frequency, confirming mixer-to-antenna coupling
