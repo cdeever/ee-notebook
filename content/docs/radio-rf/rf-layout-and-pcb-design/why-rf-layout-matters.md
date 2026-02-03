@@ -5,11 +5,11 @@ weight: 10
 
 # Why RF Layout Matters More Than Schematic
 
-At low frequencies, layout is about connectivity — you route traces to connect components and the electrical behavior is determined entirely by the schematic. At RF frequencies, layout is about electromagnetics. The physical geometry of copper on the board determines impedance, coupling, radiation, and resonance. Two identical schematics with different layouts can produce completely different RF performance.
+At low frequencies, layout is about connectivity — traces connect components and the electrical behavior is determined entirely by the schematic. At RF frequencies, layout is about electromagnetics. The physical geometry of copper on the board determines impedance, coupling, radiation, and resonance. Two identical schematics with different layouts can produce completely different RF performance.
 
 ## The Schematic Is Necessary but Not Sufficient
 
-A schematic captures component values, topology, and connections. It tells you that a 100 pF capacitor connects between the amplifier output and a 50-ohm load. What it does not tell you:
+A schematic captures component values, topology, and connections. It shows that a 100 pF capacitor connects between the amplifier output and a 50-ohm load. What it does not show:
 
 - The characteristic impedance of the trace between the amplifier and the capacitor
 - Whether the return current has a continuous, uninterrupted path beneath the signal trace
@@ -66,10 +66,24 @@ RF layout is a skill that develops with practice, measurement, and iteration. Si
 
 The good news is that the principles are consistent and learnable. Controlled impedance, continuous return paths, short connections, adequate decoupling, and proper shielding solve most RF layout problems. The rest is frequency-specific experience.
 
-## Gotchas
+## Tips
 
-- **Schematic simulation success does not guarantee board-level performance** — A circuit that simulates perfectly in SPICE can fail completely on a real PCB if layout parasitics are not accounted for. Always include parasitic estimates in simulation, and verify critical paths with EM tools.
-- **Copy-paste from evaluation boards, do not "improve" the layout** — IC vendors spend significant effort optimizing evaluation board layouts. Rearranging components to look neater or fit a different board shape often destroys RF performance.
-- **Routing convenience creates coupling** — Running input and output traces of a high-gain amplifier on the same side of the board, even with spacing, can create a feedback path. Use opposite sides or physical barriers.
-- **Ground pour is not automatically good ground** — A copper pour labeled "GND" that connects to the ground plane through a single via in the corner provides virtually no RF grounding. Ground must be low-impedance at the frequency of interest, which means many vias and short paths.
-- **Every uncontrolled structure is an antenna** — An ungrounded copper shape, a floating pad, or a long unmatched trace will radiate or receive energy. If it is not part of the design, it is part of the problem.
+- Start every RF layout by defining the stackup and calculating controlled-impedance trace widths before placing any components
+- Copy the IC vendor's evaluation board layout as closely as possible, matching component placement, orientation, and ground via locations
+- Run an EM simulation or at least a parasitic extraction on critical matching networks and filter structures before committing to fabrication
+- Treat the ground plane layer beneath RF signal traces as a keep-out zone for all other routing
+
+## Caveats
+
+- **Schematic simulation success does not guarantee board-level performance** — A circuit that simulates perfectly in SPICE can fail completely on a real PCB if layout parasitics are not accounted for; always include parasitic estimates in simulation and verify critical paths with EM tools
+- **Copy-paste from evaluation boards, do not "improve" the layout** — IC vendors spend significant effort optimizing evaluation board layouts; rearranging components to look neater or fit a different board shape often destroys RF performance
+- **Routing convenience creates coupling** — Running input and output traces of a high-gain amplifier on the same side of the board, even with spacing, can create a feedback path; use opposite sides or physical barriers
+- **Ground pour is not automatically good ground** — A copper pour labeled "GND" that connects to the ground plane through a single via in the corner provides virtually no RF grounding; ground must be low-impedance at the frequency of interest, which means many vias and short paths
+- **Every uncontrolled structure is an antenna** — An ungrounded copper shape, a floating pad, or a long unmatched trace will radiate or receive energy; if it is not part of the design, it is part of the problem
+
+## Bench Relevance
+
+- A network analyzer sweep that shows unexpected gain variation or dips often traces back to uncontrolled trace impedances or parasitic feedback paths in the layout
+- Oscillation visible on a spectrum analyzer (a strong tone not present in the schematic design) frequently results from output-to-input coupling through parallel traces or shared return paths
+- A filter whose measured center frequency is shifted 15-30 MHz from simulation typically has excess parasitic capacitance or inductance from trace lengths, pad sizes, or via placement
+- Degraded noise figure measured at the LNA output compared to the datasheet value often points to lossy input traces, poor ground connections, or coupling from nearby digital circuits

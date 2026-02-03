@@ -5,7 +5,7 @@ weight: 40
 
 # Via Placement & Stitching
 
-Vias are the vertical connections in a PCB — metal-plated holes that carry signals and ground between layers. At DC, a via is just a connection. At RF, a via is an inductor, and its inductance matters. A standard PCB via has roughly 0.5-1 nH of inductance, which sounds negligible until you calculate its impedance at GHz frequencies: 1 nH at 1 GHz is 6.3 ohms, and at 5 GHz it is 31 ohms. That is enough to disrupt impedance matching, detune filters, and compromise ground connections.
+Vias are the vertical connections in a PCB — metal-plated holes that carry signals and ground between layers. At DC, a via is just a connection. At RF, a via is an inductor, and its inductance matters. A standard PCB via has roughly 0.5-1 nH of inductance, which sounds negligible until the impedance at GHz frequencies is considered: 1 nH at 1 GHz is 6.3 ohms, and at 5 GHz it is 31 ohms. That is enough to disrupt impedance matching, detune filters, and compromise ground connections.
 
 ## Via Inductance
 
@@ -34,7 +34,7 @@ For a 100 pF capacitor (approximately 0.5 nH internal ESL) with a 0.8 nH via to 
 
 At that frequency, the bypass capacitor presents its lowest impedance. Well below that frequency, it acts as a capacitor. Above it, the inductance dominates and the "capacitor" behaves as an inductor.
 
-If you need effective bypassing at 2.4 GHz, a 100 pF cap with a single standard via will not do the job — it resonated at 440 MHz and is inductive at 2.4 GHz. You need either a smaller capacitor (which resonates at a higher frequency), a shorter via (microvia or blind via), or multiple vias in parallel to reduce the total inductance.
+For effective bypassing at 2.4 GHz, a 100 pF cap with a single standard via will not do the job — it resonated at 440 MHz and is inductive at 2.4 GHz. The options are a smaller capacitor (which resonates at a higher frequency), a shorter via (microvia or blind via), or multiple vias in parallel to reduce the total inductance.
 
 ## Multiple Vias in Parallel
 
@@ -75,7 +75,7 @@ For a via fence to be effective as a shield, the spacing between vias must be le
 | 10 GHz | 14 mm | 0.7 mm |
 | 24 GHz | 6 mm | 0.3 mm |
 
-At 2.4 GHz, a via fence needs vias every 3 mm or closer. At 10 GHz, you need vias every 0.7 mm — which starts to push PCB fabrication limits for standard processes. At millimeter-wave frequencies, via fences may need to be supplemented with continuous copper walls (embedded in the PCB stackup) or tightly packed via arrays.
+At 2.4 GHz, a via fence needs vias every 3 mm or closer. At 10 GHz, vias are needed every 0.7 mm — which starts to push PCB fabrication limits for standard processes. At millimeter-wave frequencies, via fences may need to be supplemented with continuous copper walls (embedded in the PCB stackup) or tightly packed via arrays.
 
 ## Layer Transitions for RF Signals
 
@@ -89,11 +89,25 @@ When an RF signal trace must transition between layers, the via creates an imped
 
 **Pad-less vias.** Removing the landing pads on unused layers reduces the capacitive loading of the via, improving the impedance match through the transition.
 
-## Gotchas
+## Tips
 
-- **A single via to ground is not "grounded" at GHz frequencies** — 1 nH at 5 GHz is over 30 ohms. For any ground connection that matters at high frequency, use multiple vias or microvias.
-- **Via inductance scales with board thickness** — A 4-layer board with 62-mil total thickness has much higher via inductance than a 6-layer board where the RF layers are separated by only 10 mil. Stackup choice directly affects via performance.
-- **Ground stitching is not optional at GHz frequencies** — Without stitching, the ground planes form a resonant cavity that can amplify noise at specific frequencies. If you see mysterious narrowband noise spikes, check ground plane resonances.
-- **Via fence gaps leak energy** — Electromagnetic energy finds the weakest point in a shield. A via fence with even one missing via has dramatically reduced shielding at the gap location.
-- **Back-drilling adds cost but is necessary above 10 GHz** — Via stubs create resonances that can notch out signals at critical frequencies. If your design operates above 10 GHz, budget for back-drilling in fabrication.
-- **Mutual inductance between parallel vias reduces the benefit** — Two vias placed very close together (touching pads) do not give 50% inductance — mutual coupling keeps the total higher. Space parallel vias apart for best reduction.
+- Place two or three ground vias under the ground pad of every critical bypass capacitor at GHz frequencies to cut via inductance
+- Space parallel vias at least two diameters apart to minimize mutual inductance and maximize the inductance reduction benefit
+- Lay out ground stitching vias in a regular grid across the entire board at lambda/20 spacing for the highest frequency of concern
+- For layer transitions, place ground vias symmetrically on both sides of the signal via within 0.5 mm
+
+## Caveats
+
+- **A single via to ground is not "grounded" at GHz frequencies** — 1 nH at 5 GHz is over 30 ohms; for any ground connection that matters at high frequency, use multiple vias or microvias
+- **Via inductance scales with board thickness** — A 4-layer board with 62-mil total thickness has much higher via inductance than a 6-layer board where the RF layers are separated by only 10 mil; stackup choice directly affects via performance
+- **Ground stitching is not optional at GHz frequencies** — Without stitching, the ground planes form a resonant cavity that can amplify noise at specific frequencies; mysterious narrowband noise spikes may indicate ground plane resonances
+- **Via fence gaps leak energy** — Electromagnetic energy finds the weakest point in a shield; a via fence with even one missing via has dramatically reduced shielding at the gap location
+- **Back-drilling adds cost but is necessary above 10 GHz** — Via stubs create resonances that can notch out signals at critical frequencies; designs operating above 10 GHz should budget for back-drilling in fabrication
+- **Mutual inductance between parallel vias reduces the benefit** — Two vias placed very close together (touching pads) do not give 50% inductance — mutual coupling keeps the total higher; space parallel vias apart for best reduction
+
+## Bench Relevance
+
+- A TDR trace showing an impedance spike at a layer transition indicates that the signal via lacks adjacent ground vias for the return current
+- Narrowband noise spikes visible on a spectrum analyzer at frequencies corresponding to ground plane dimensions suggest cavity resonances due to insufficient stitching
+- Bypass capacitor impedance measured on a VNA that rises above the expected curve at high frequency reveals via inductance dominating the capacitor's performance
+- Reduced shielding effectiveness measured between two board sections, despite a via fence, often traces to a gap or missing via in the fence allowing energy leakage

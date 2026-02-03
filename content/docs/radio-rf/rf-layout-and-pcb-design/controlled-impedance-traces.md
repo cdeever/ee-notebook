@@ -34,7 +34,7 @@ Microstrip is easy to probe, easy to access for rework, and well-supported by PC
 
 The signal trace is sandwiched between two ground planes inside the PCB stackup. The electric field is entirely contained in the dielectric, which provides better shielding and less radiation than microstrip.
 
-For 50 ohms in stripline, the trace is typically narrower than microstrip for the same dielectric thickness, because the field is fully enclosed. Stripline offers better isolation and more consistent impedance, but the trace is buried inside the board — you cannot probe it, and rework is impossible.
+For 50 ohms in stripline, the trace is typically narrower than microstrip for the same dielectric thickness, because the field is fully enclosed. Stripline offers better isolation and more consistent impedance, but the trace is buried inside the board — it cannot be probed, and rework is impossible.
 
 ### Coplanar Waveguide (CPW)
 
@@ -84,11 +84,11 @@ When ordering PCBs with controlled impedance, include:
 
 1. **Stackup drawing** with layer assignments, dielectric thicknesses, and materials
 2. **Impedance table** listing each controlled impedance: the target value, tolerance, trace geometry (microstrip/stripline/CPW), and which layers
-3. **Test coupon requirements** if you need the fabricator to verify impedance with TDR measurements
+3. **Test coupon requirements** if the fabricator should verify impedance with TDR measurements
 
 Example specification line: "50 ohm +/- 10%, microstrip, Layer 1 over Layer 2, 1 oz copper, FR4 core."
 
-The fabricator will adjust trace width to hit the target impedance on their actual stackup, so the final width may differ from what your calculator predicted. This is normal — the impedance is the specification, not the trace width.
+The fabricator will adjust trace width to hit the target impedance on their actual stackup, so the final width may differ from the calculator prediction. This is normal — the impedance is the specification, not the trace width.
 
 ## Bends and Discontinuities
 
@@ -100,11 +100,25 @@ RF traces should avoid sharp corners. A 90-degree bend creates a capacitive disc
 
 At frequencies below about 5 GHz, chamfered bends are usually adequate. Above 10 GHz, curved bends or careful EM simulation of discontinuities becomes important.
 
-## Gotchas
+## Tips
 
-- **"50-ohm trace" means nothing without a stackup** — The trace width for 50 ohms depends entirely on the dielectric thickness and material. A 50-ohm trace on one stackup is 30 ohms on another. Always calculate for your specific stackup.
-- **Solder mask changes impedance** — Solder mask over a microstrip trace adds dielectric loading, typically lowering impedance by 2-5 ohms. Some designs specify solder mask relief (no mask) over RF traces.
-- **FR4 dielectric constant varies with frequency** — Datasheets typically give Er at 1 MHz. At 1 GHz it may be 4.2; at 10 GHz it may be below 4.0. Use frequency-appropriate values for high-frequency designs.
-- **Do not taper traces casually** — A trace that changes width changes impedance. If you must transition between widths (for example, to connect to a component pad), keep the transition short and taper smoothly.
-- **Coplanar ground must connect to the ground plane** — CPW ground copper on the same layer needs frequent via connections to the ground plane below. Without them, the coplanar ground floats and the impedance is undefined.
-- **Fabrication etch varies across the panel** — Trace width may differ between the center and edge of a PCB panel by 0.5-1 mil. For tight-tolerance designs, specify where on the panel your board should be placed, or accept that edge boards may have wider tolerances.
+- Use the PCB fabricator's stackup calculator rather than generic tools, since actual dielectric thickness and Er values vary between manufacturers
+- Specify solder mask relief over critical RF microstrip traces to avoid the 2-5 ohm impedance shift from mask loading
+- Use chamfered or curved bends on all RF traces and set the design tool to enforce this as a routing rule
+- Request test coupons on the production panel to verify controlled impedance with TDR before assembling expensive RF components
+
+## Caveats
+
+- **"50-ohm trace" means nothing without a stackup** — The trace width for 50 ohms depends entirely on the dielectric thickness and material; a 50-ohm trace on one stackup is 30 ohms on another; always calculate for the specific stackup
+- **Solder mask changes impedance** — Solder mask over a microstrip trace adds dielectric loading, typically lowering impedance by 2-5 ohms; some designs specify solder mask relief (no mask) over RF traces
+- **FR4 dielectric constant varies with frequency** — Datasheets typically give Er at 1 MHz; at 1 GHz it may be 4.2; at 10 GHz it may be below 4.0; use frequency-appropriate values for high-frequency designs
+- **Do not taper traces casually** — A trace that changes width changes impedance; if a transition between widths is necessary (for example, to connect to a component pad), keep the transition short and taper smoothly
+- **Coplanar ground must connect to the ground plane** — CPW ground copper on the same layer needs frequent via connections to the ground plane below; without them, the coplanar ground floats and the impedance is undefined
+- **Fabrication etch varies across the panel** — Trace width may differ between the center and edge of a PCB panel by 0.5-1 mil; for tight-tolerance designs, specify where on the panel the board should be placed, or accept that edge boards may have wider tolerances
+
+## Bench Relevance
+
+- A TDR measurement showing impedance deviations along an RF trace (bumps above or below 50 ohms) directly reveals trace width errors or stackup mismatches
+- Return loss worse than -15 dB on a VNA sweep across a connector or transition often indicates an uncontrolled pad-to-trace taper or incorrect trace width
+- A microstrip trace that measures 2-5 ohms below its calculated impedance likely has solder mask loading that was not accounted for in the design
+- Inconsistent S-parameter measurements between boards from the same panel batch can indicate fabrication etch variation, especially for boards placed near the panel edge

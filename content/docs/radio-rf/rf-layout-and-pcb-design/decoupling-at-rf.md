@@ -33,7 +33,7 @@ A common instinct is to place multiple capacitor values in parallel — say 10 u
 
 For example, a 100 nF cap (SRF at 150 MHz, inductive above) in parallel with a 100 pF cap (SRF at 2 GHz, capacitive below) creates a parallel resonance somewhere around 400-600 MHz. At that frequency, the combined impedance can be 10-100 times higher than either capacitor alone.
 
-This does not mean you should avoid multiple values — it means you need to analyze the combined impedance across frequency, not just assume that more values are better. Simulation tools like SPICE can model the combined impedance of multiple bypass capacitors including their ESL and ESR.
+This does not mean multiple values should be avoided — it means the combined impedance across frequency must be analyzed, not just assumed to improve with more values. Simulation tools like SPICE can model the combined impedance of multiple bypass capacitors including their ESL and ESR.
 
 Strategies to manage anti-resonance:
 
@@ -77,16 +77,30 @@ A ferrite bead in series with the power supply, followed by a bypass capacitor t
 
 ## Designing a Decoupling Strategy
 
-1. **Identify the frequency range** — What frequencies need to be decoupled? For a 2.4 GHz radio IC, you need low impedance from DC to at least 3-5 GHz.
-2. **Choose capacitor values based on SRF** — Select values whose SRFs cover the critical frequency bands. For 2.4 GHz, you might use 10 nF (SRF around 400 MHz) and 1 pF (SRF around 6 GHz), plus a bulk 1 uF for low-frequency bypassing.
+1. **Identify the frequency range** — What frequencies need to be decoupled? For a 2.4 GHz radio IC, the target is low impedance from DC to at least 3-5 GHz.
+2. **Choose capacitor values based on SRF** — Select values whose SRFs cover the critical frequency bands. For 2.4 GHz, reasonable choices include 10 nF (SRF around 400 MHz) and 1 pF (SRF around 6 GHz), plus a bulk 1 uF for low-frequency bypassing.
 3. **Simulate the combined impedance** — Use SPICE or an impedance calculator to plot the total impedance of the parallel combination, including ESL and ESR for each cap, plus via and trace inductance.
 4. **Minimize trace and via inductance** — Place caps as close to the pin as possible, use multiple vias, and consider blind/buried vias for the lowest inductance.
 5. **Add ferrite beads if needed** — For isolating noisy power sections or preventing conducted emissions.
 
-## Gotchas
+## Tips
 
-- **A capacitor above its SRF is an inductor** — Placing a 100 nF cap for "high-frequency decoupling" does nothing at 1 GHz because it self-resonated at 150 MHz and is inductive above that. Always check the SRF for your chosen package.
-- **More capacitor values can make things worse** — Parallel resonances between capacitor values create impedance peaks. Simulate before adding values.
-- **Trace length to the bypass cap matters more than cap value at GHz** — A perfect capacitor at the end of a 10 mm trace is worse than a mediocre capacitor at 1 mm. Minimize the loop area first.
-- **Ferrite beads saturate with DC current** — A 600-ohm ferrite bead rated for 200 mA might drop to 100-ohm impedance at 500 mA. Always check the saturation curve.
-- **Do not put ferrite beads on RF signal paths** — Ferrite beads are for power supply filtering. On a signal path, they add loss and distortion. Use proper RF filtering (LC networks, SAW filters) for signal paths.
+- Simulate the combined impedance of all parallel bypass capacitors in SPICE (including ESL and ESR) to identify and mitigate anti-resonance peaks before fabrication
+- Place bypass capacitor pads within 1-2 mm of the IC power pin and put the ground via directly at the capacitor ground pad to minimize loop area
+- Use 0402 or 0201 packages for GHz-frequency bypass capacitors to maximize self-resonant frequency
+- Check the ferrite bead impedance-vs-frequency curve and the DC saturation curve for the actual operating current, not just the 100 MHz headline impedance
+
+## Caveats
+
+- **A capacitor above its SRF is an inductor** — Placing a 100 nF cap for "high-frequency decoupling" does nothing at 1 GHz because it self-resonated at 150 MHz and is inductive above that; always check the SRF for the chosen package
+- **More capacitor values can make things worse** — Parallel resonances between capacitor values create impedance peaks; simulate before adding values
+- **Trace length to the bypass cap matters more than cap value at GHz** — A perfect capacitor at the end of a 10 mm trace is worse than a mediocre capacitor at 1 mm; minimize the loop area first
+- **Ferrite beads saturate with DC current** — A 600-ohm ferrite bead rated for 200 mA might drop to 100-ohm impedance at 500 mA; always check the saturation curve
+- **Do not put ferrite beads on RF signal paths** — Ferrite beads are for power supply filtering; on a signal path, they add loss and distortion; use proper RF filtering (LC networks, SAW filters) for signal paths
+
+## Bench Relevance
+
+- Power supply noise measured on an oscilloscope at a specific frequency band that matches an anti-resonance peak between bypass capacitor values confirms a parallel resonance problem
+- An IC that oscillates or exhibits spurious tones only when running at full power may have bypass capacitors that are inductive at the oscillation frequency, providing no decoupling
+- Measuring bypass capacitor impedance with a VNA at the actual pad location (not on a test fixture) reveals the true series inductance including trace and via contributions
+- A ferrite bead in a power filter that passes more noise under load than at idle indicates DC current saturation reducing its high-frequency impedance

@@ -37,7 +37,7 @@ Most RF layout failures are not exotic or subtle — they are well-known mistake
 
 **Why it kills performance:** A trace that should be 50 ohms but is actually 90 ohms creates a return loss of about 8 dB at every point along its length. Signals reflect, gain drops, and matching networks designed for 50 ohms no longer work. A narrow trace also has higher resistive loss, degrading noise figure in receive paths.
 
-**The fix:** Calculate the 50-ohm trace width for your specific stackup using an impedance calculator. Apply this width to all RF traces. Specify controlled impedance to the PCB fabricator. See [Controlled Impedance Traces]({{< relref "/docs/radio-rf/rf-layout-and-pcb-design/controlled-impedance-traces" >}}).
+**The fix:** Calculate the 50-ohm trace width for the specific stackup using an impedance calculator. Apply this width to all RF traces. Specify controlled impedance to the PCB fabricator. See [Controlled Impedance Traces]({{< relref "/docs/radio-rf/rf-layout-and-pcb-design/controlled-impedance-traces" >}}).
 
 ## Sharp 90-Degree Bends
 
@@ -84,10 +84,24 @@ A systematic layout review checklist prevents most of these errors:
 7. Check ground stitching via spacing and coverage
 8. Compare the layout to the IC vendor's evaluation board layout
 
-## Gotchas
+## Tips
 
-- **DRC does not catch RF layout mistakes** — Standard design rule checks verify electrical connectivity and spacing, not electromagnetic performance. You need a separate RF layout review process.
-- **Evaluation board layouts are optimized — your rearrangement is not** — IC vendors iterate their eval board layouts with VNA measurements. Rearranging components to save space or look cleaner usually degrades performance.
-- **Multiple small mistakes accumulate** — Any single mistake might only cost 1-2 dB. But five mistakes on one signal path cost 5-10 dB, which can be the difference between a working design and a failed one.
-- **Some mistakes only appear at temperature or voltage extremes** — A marginally stable amplifier layout might work at room temperature but oscillate at -20C when gain increases. Test across the full operating range.
-- **Layout mistakes are expensive to fix** — Each PCB respin costs money and weeks of schedule. Getting the layout right the first time is worth the review effort.
+- Run through a systematic layout review checklist (ground plane continuity, via placement, bypass cap distance, trace widths, bend angles, clearance, stitching, eval board comparison) before releasing for fabrication
+- Compare the layout side-by-side with the IC vendor's evaluation board layout and flag every deviation for justification
+- Use post-layout parasitic extraction or EM simulation on critical RF blocks (filters, matching networks, amplifier stages) rather than relying on schematic-only simulation
+- Maintain at least 3x trace-width clearance between RF and digital/power traces, and use different layers with a solid ground plane between them when possible
+
+## Caveats
+
+- **DRC does not catch RF layout mistakes** — Standard design rule checks verify electrical connectivity and spacing, not electromagnetic performance; a separate RF layout review process is necessary
+- **Evaluation board layouts are optimized — custom rearrangements are not** — IC vendors iterate their eval board layouts with VNA measurements; rearranging components to save space or look cleaner usually degrades performance
+- **Multiple small mistakes accumulate** — Any single mistake might only cost 1-2 dB, but five mistakes on one signal path cost 5-10 dB, which can be the difference between a working design and a failed one
+- **Some mistakes only appear at temperature or voltage extremes** — A marginally stable amplifier layout might work at room temperature but oscillate at -20C when gain increases; test across the full operating range
+- **Layout mistakes are expensive to fix** — Each PCB respin costs money and weeks of schedule; getting the layout right the first time is worth the review effort
+
+## Bench Relevance
+
+- A board that passes schematic simulation but shows 10-20 dB worse return loss on the VNA than expected likely has uncontrolled trace impedance or missing ground vias at layer transitions
+- Radiated emissions exceeding limits at specific harmonics, visible on a spectrum analyzer or EMC pre-scan, frequently trace to ground plane slots under high-speed or RF signal traces
+- An amplifier stage that oscillates intermittently on the bench (visible as spurious tones on a spectrum analyzer) often has insufficient clearance between input and output traces or shared return paths
+- Filter rejection that measures 15-20 dB less than simulated usually indicates parasitic coupling through the layout that bypasses the filter structure entirely

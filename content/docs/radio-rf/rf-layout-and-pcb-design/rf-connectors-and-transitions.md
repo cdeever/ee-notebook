@@ -78,7 +78,7 @@ Key principles:
 
 **Minimize the uncontrolled region.** The length of PCB between the connector pin and the start of the controlled-impedance trace should be as short as fabrication allows. Every millimeter of uncontrolled trace adds parasitic inductance and capacitance.
 
-**Use the vendor's recommended footprint.** Connector manufacturers provide recommended PCB footprints that have been optimized for impedance continuity. Modifying the footprint to "clean it up" or fit your layout can degrade the transition.
+**Use the vendor's recommended footprint.** Connector manufacturers provide recommended PCB footprints that have been optimized for impedance continuity. Modifying the footprint to "clean it up" or fit a custom layout can degrade the transition.
 
 ## Edge-Mount vs Vertical-Mount vs End-Launch
 
@@ -106,11 +106,25 @@ The cable connecting two connectors is as important as the connectors themselves
 | LMR-240 | 6.1 mm | 0.35 | Moderate | Antenna runs |
 | Semi-rigid 0.085 | 2.2 mm | 0.7 | Rigid (formable) | Precision connections |
 
-## Gotchas
+## Tips
 
-- **U.FL connectors wear out after about 30 matings** — If you are debugging a board and keep connecting/disconnecting a U.FL cable, the connector degrades quickly. Use an SMA-to-U.FL adapter cable and only disconnect the SMA end.
-- **SMA connectors need torque-wrench tightening** — Hand-tightened SMA connections are not repeatable. For measurements, use a torque wrench set to the manufacturer's specification (usually 5-8 in-lb). Over-tightening damages the connector.
-- **75-ohm BNC and 50-ohm BNC look identical** — They will mate, but the impedance mismatch creates reflections. Video equipment uses 75 ohms; RF test equipment uses 50 ohms. Check before connecting.
-- **Edge-mount SMA footprints vary between manufacturers** — An SMA connector from one vendor may not fit the footprint designed for another. Always match the footprint to the specific connector part number.
-- **Cable loss adds up quickly at GHz frequencies** — A 1-meter cable with 1 dB/m loss at 5.8 GHz eats 1 dB of your link budget. In a receiver, that 1 dB directly degrades noise figure. Keep cables short or use lower-loss types.
-- **Connector return loss degrades with wear** — A new SMA connector might have 26 dB return loss. After hundreds of mating cycles, this can degrade to 15-18 dB. Replace connectors in precision setups periodically.
+- Use the connector manufacturer's recommended PCB footprint without modification to maintain impedance continuity through the launch
+- Place at least 3-4 ground vias directly at the connector ground pads, as close to the center pin pad as fabrication allows
+- For bench prototypes, prefer edge-mount SMA connectors for the shortest, most controllable signal path onto the board
+- Use an SMA-to-U.FL adapter cable so the fragile U.FL side stays connected and only the robust SMA end is cycled during debugging
+
+## Caveats
+
+- **U.FL connectors wear out after about 30 matings** — Repeated connect/disconnect cycles during debugging degrade the connector quickly; use an SMA-to-U.FL adapter cable and only disconnect the SMA end
+- **SMA connectors need torque-wrench tightening** — Hand-tightened SMA connections are not repeatable; for measurements, use a torque wrench set to the manufacturer's specification (usually 5-8 in-lb); over-tightening damages the connector
+- **75-ohm BNC and 50-ohm BNC look identical** — They will mate, but the impedance mismatch creates reflections; video equipment uses 75 ohms and RF test equipment uses 50 ohms; check before connecting
+- **Edge-mount SMA footprints vary between manufacturers** — An SMA connector from one vendor may not fit the footprint designed for another; always match the footprint to the specific connector part number
+- **Cable loss adds up quickly at GHz frequencies** — A 1-meter cable with 1 dB/m loss at 5.8 GHz eats 1 dB of the link budget; in a receiver, that 1 dB directly degrades noise figure; keep cables short or use lower-loss types
+- **Connector return loss degrades with wear** — A new SMA connector might have 26 dB return loss; after hundreds of mating cycles, this can degrade to 15-18 dB; replace connectors in precision setups periodically
+
+## Bench Relevance
+
+- Return loss measured at a connector that worsens compared to previous measurements (e.g., 26 dB dropping to 15 dB) indicates connector wear and the need for replacement
+- A VNA sweep showing a reflection spike right at the board edge where the SMA connector mounts points to a launch impedance discontinuity from a non-optimized pad-to-trace transition
+- Inconsistent S-parameter measurements that change when a cable is moved or flexed indicate a phase-unstable cable or a worn connector with intermittent contact
+- Insertion loss that is several dB worse than expected at the operating frequency often traces to cable loss that was not accounted for in the measurement setup

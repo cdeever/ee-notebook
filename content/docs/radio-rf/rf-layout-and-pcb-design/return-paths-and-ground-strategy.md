@@ -13,7 +13,7 @@ At DC, current returns through the ground plane along the path of least resistan
 
 At RF, the picture changes entirely. Return current flows in the ground plane directly beneath the signal trace — mirroring the signal path. This happens because the mutual inductance between the signal trace and the return path is minimized when they are as close together as possible. At high frequency, inductance dominates over resistance, so the current follows the path of least inductance, not least resistance.
 
-The return current is concentrated in a strip roughly three times the trace width, centered directly below the signal trace. At 100 MHz and above, this concentration is strong enough that you can think of the signal trace and its return as a tightly coupled pair — a transmission line.
+The return current is concentrated in a strip roughly three times the trace width, centered directly below the signal trace. At 100 MHz and above, this concentration is strong enough that the signal trace and its return effectively behave as a tightly coupled pair — a transmission line.
 
 ## What Happens When the Return Path Is Interrupted
 
@@ -39,7 +39,7 @@ The most reliable approach to RF ground strategy:
 
 3. **Do not split the ground plane under RF circuits.** A solid copper pour is almost always better than a split plane for RF return current.
 
-4. **If you must cross a split, bridge it.** Use a line of stitching vias or a wide copper bridge at the crossing point to provide a low-impedance return path.
+4. **If a signal must cross a split, bridge it.** Use a line of stitching vias or a wide copper bridge at the crossing point to provide a low-impedance return path.
 
 5. **Maintain ground continuity at connectors.** RF connectors must have ground pins or pads that connect to the ground plane with minimal inductance — multiple vias directly at the connector footprint.
 
@@ -73,11 +73,25 @@ When an RF trace must change layers (for example, from top to inner layer), the 
 
 A signal via without adjacent ground vias forces the return current to find its own path between layers, which may be a distant via. This creates a large loop and an impedance bump that is visible on TDR and degrades return loss.
 
-## Gotchas
+## Tips
 
-- **A slot in the ground plane is the number one RF layout killer** — It takes discipline to maintain a solid ground plane, especially when routing power traces or digital signals. Check for inadvertent slots created by power traces, component cutouts, or poorly placed vias.
-- **Return current is invisible in the schematic** — The schematic shows no return path. You must visualize it during layout: for every signal trace, ask "where does the return current flow?"
-- **Ground plane cuts for "noise isolation" often make RF worse** — A cut that prevents low-frequency noise coupling will cause high-frequency radiation if any fast signal crosses it. Prefer solid ground with careful placement.
-- **Connector ground pins are part of the return path** — An SMA connector with a single ground via has high inductance. Use the full footprint with all ground pads viaed to the plane.
-- **Via fences need to be continuous** — A via fence with a gap is like a wall with a door. RF energy will find the gap and leak through it. Close all gaps, especially at corners.
-- **Layer transitions need ground vias, not just the signal via** — A single signal via changing layers without ground vias is one of the most common sources of unexpected impedance bumps in RF designs.
+- Dedicate an entire PCB layer to an unbroken ground plane immediately adjacent to the RF signal layer, and treat it as a no-route zone
+- Use a design rule check (DRC) or visual inspection to verify that no power or digital traces create slots beneath RF signal paths
+- When mixing RF and digital on the same board, partition by component placement rather than by ground plane splits
+- Place at least two symmetrically positioned ground vias adjacent to every signal via at a layer transition
+
+## Caveats
+
+- **A slot in the ground plane is the number one RF layout killer** — It takes discipline to maintain a solid ground plane, especially when routing power traces or digital signals; check for inadvertent slots created by power traces, component cutouts, or poorly placed vias
+- **Return current is invisible in the schematic** — The schematic shows no return path; it must be visualized during layout by asking "where does the return current flow?" for every signal trace
+- **Ground plane cuts for "noise isolation" often make RF worse** — A cut that prevents low-frequency noise coupling will cause high-frequency radiation if any fast signal crosses it; prefer solid ground with careful placement
+- **Connector ground pins are part of the return path** — An SMA connector with a single ground via has high inductance; use the full footprint with all ground pads viaed to the plane
+- **Via fences need to be continuous** — A via fence with a gap is like a wall with a door; RF energy will find the gap and leak through it; close all gaps, especially at corners
+- **Layer transitions need ground vias, not just the signal via** — A single signal via changing layers without ground vias is one of the most common sources of unexpected impedance bumps in RF designs
+
+## Bench Relevance
+
+- A TDR trace that shows a sudden impedance spike or dip along an RF path often indicates a ground plane slot or discontinuity directly beneath the signal trace
+- Radiated emissions that increase by 10-20 dB at specific frequencies, visible on a near-field probe scan, typically point to return current detours around ground plane interruptions
+- Crosstalk between unrelated circuits that appears only above a few hundred MHz often traces to return currents sharing ground copper through a slot or split
+- A via transition that shows a visible bump on TDR but looks correct in the schematic usually lacks adjacent ground vias for the return current path

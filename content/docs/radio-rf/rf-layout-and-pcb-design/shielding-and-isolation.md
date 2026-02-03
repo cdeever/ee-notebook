@@ -5,7 +5,7 @@ weight: 70
 
 # Shielding & Isolation Techniques
 
-RF energy goes where it wants, not where you want. Shielding is about controlling electromagnetic energy — keeping it inside a circuit block so it does not radiate, and keeping external energy outside so it does not interfere. At RF frequencies, even small openings leak energy, and the effectiveness of any shield depends on frequency, construction, and how well it is grounded.
+RF energy goes where physics dictates, not where the designer intends. Shielding is about controlling electromagnetic energy — keeping it inside a circuit block so it does not radiate, and keeping external energy outside so it does not interfere. At RF frequencies, even small openings leak energy, and the effectiveness of any shield depends on frequency, construction, and how well it is grounded.
 
 ## Why Shielding Matters
 
@@ -90,10 +90,24 @@ How a shield connects to ground depends on frequency:
 
 The transition frequency is not sharp. In practice, for RF work above 100 MHz, always use multi-point grounding for shields. The ground loop concern that dominates at audio frequencies is irrelevant at RF, where the wavelength is short enough that multiple ground points create beneficial cancellation rather than problematic loops.
 
-## Gotchas
+## Tips
 
-- **A shield can without sufficient ground vias is a resonant cavity** — The can itself becomes an enclosure that resonates at frequencies related to its dimensions. Without good grounding, it amplifies RF energy inside rather than containing it.
-- **Snap-on shield lids leak more than soldered cans** — The mechanical contact points have small gaps that function as slot apertures. For critical isolation, specify soldered construction or add conductive gaskets.
-- **Guard traces without vias are floating antennas** — A guard trace connected to ground at only two distant points has high impedance between them at RF. It picks up noise and re-radiates it. Stitch to ground every 2-3 mm at GHz frequencies.
-- **Shield can resonances can fall on your operating frequency** — A 20 mm x 20 mm shield can has a first resonance around 5-7 GHz depending on height and fill. If your circuit operates near that frequency, the shield amplifies instead of attenuating. Add absorber material or partition the can.
-- **Slots in shield seams are worse than holes** — A 0.5 mm gap running the length of a shield can seam is an efficient slot antenna. Ensure seam continuity with solder or conductive gaskets.
+- Use two-piece shield cans (soldered frame with snap-on lid) for production RF designs to allow rework while maintaining a reliable ground perimeter
+- Stitch guard traces to ground with vias every 2-3 mm at GHz frequencies to prevent them from acting as re-radiating antennas
+- Keep all apertures in a shield smaller than lambda/20 at the highest frequency of concern, and prefer multiple small holes over one large hole for ventilation
+- Calculate the first resonant frequency of every shield can based on its dimensions to ensure it does not coincide with the operating frequency
+
+## Caveats
+
+- **A shield can without sufficient ground vias is a resonant cavity** — The can itself becomes an enclosure that resonates at frequencies related to its dimensions; without good grounding, it amplifies RF energy inside rather than containing it
+- **Snap-on shield lids leak more than soldered cans** — The mechanical contact points have small gaps that function as slot apertures; for critical isolation, specify soldered construction or add conductive gaskets
+- **Guard traces without vias are floating antennas** — A guard trace connected to ground at only two distant points has high impedance between them at RF; it picks up noise and re-radiates it; stitch to ground every 2-3 mm at GHz frequencies
+- **Shield can resonances can fall on the operating frequency** — A 20 mm x 20 mm shield can has a first resonance around 5-7 GHz depending on height and fill; if the circuit operates near that frequency, the shield amplifies instead of attenuating; add absorber material or partition the can
+- **Slots in shield seams are worse than holes** — A 0.5 mm gap running the length of a shield can seam is an efficient slot antenna; ensure seam continuity with solder or conductive gaskets
+
+## Bench Relevance
+
+- A near-field probe scan that shows unexpectedly high emissions from a shielded section often indicates insufficient ground vias around the shield can perimeter, turning it into a resonant cavity
+- Removing a shield can lid and observing improved (not degraded) performance is a strong sign that the can was resonating at the operating frequency
+- Coupling between two board sections that persists despite a guard ring or via fence usually points to a gap in the stitching or a guard trace that lacks frequent ground connections
+- Interference from a nearby digital circuit that only appears in a narrow frequency band may indicate energy leaking through a slot aperture in a shield seam at that frequency
