@@ -29,3 +29,5 @@ The emphasis is practical. These aren't software-engineering abstractions applie
 - **[System-Level Thinking]({{< relref "system-level-thinking" >}})** — Systems as coordination problems: environmental inputs, emergent failures, and the observability limits that make system-level debugging hard.
 
 - **[Practical Mental Models]({{< relref "practical-mental-models" >}})** — Frameworks for reasoning about energy, information, time, and control across layers — and recognizing when an abstraction is helping vs. hiding a problem.
+
+- **[Building Blocks Reference]({{< relref "building-blocks-reference" >}})** — A browseable catalog of common electronics building blocks organized by abstraction level, from single components to multi-device systems.
