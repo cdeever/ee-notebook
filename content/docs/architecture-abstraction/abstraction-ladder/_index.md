@@ -8,7 +8,7 @@ bookCollapseSection: true
 
 Every circuit can be understood at multiple levels of detail — and picking the right level is half the job.
 
-A voltage regulator can be a three-terminal black box that outputs 3.3 V, a feedback loop with a pass element and error amplifier, or a collection of transistors and resistors with specific bias points. All three views are correct. The question is which one is useful right now — and that depends on what you're trying to do: design, debug, verify, or understand.
+A voltage regulator can be a three-terminal black box that outputs 3.3 V, a feedback loop with a pass element and error amplifier, or a collection of transistors and resistors with specific bias points. All three views are correct. The question is which one is useful right now — and that depends on the task at hand: design, debug, verify, or understand.
 
 The abstraction ladder is the hierarchy of these levels: primitives at the bottom, systems at the top, with blocks, subsystems, and devices in between. Each rung hides detail from the one above and depends on assumptions about the one below. Moving up gains simplicity. Moving down gains explanatory power. The skill is knowing when to climb and when to descend.
 

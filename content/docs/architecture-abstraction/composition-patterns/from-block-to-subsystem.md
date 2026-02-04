@@ -52,7 +52,7 @@ Identifying a subsystem on a schematic requires recognizing the relationships be
 - **Find the feedback loop.** Most active subsystems have at least one. Trace from the output back to the control input — the blocks along that path usually constitute the core of the subsystem.
 - **Find the protection circuits.** Current sense resistors, comparators watching voltage thresholds, thermal sensors connected to shutdown pins — these are subsystem-level blocks that define the operating boundaries.
 - **Find the startup and sequencing logic.** Enable pins, soft-start circuits, power-good outputs — these exist to manage the subsystem's relationship with time and with the rest of the design.
-- **Find the specification in the datasheet or design notes.** The subsystem's spec tells you what the composition is supposed to achieve, which makes it much easier to evaluate whether the block-level implementation can actually deliver it.
+- **Find the specification in the datasheet or design notes.** The subsystem's spec reveals what the composition is supposed to achieve, which makes it much easier to evaluate whether the block-level implementation can actually deliver it.
 
 ## Tips
 
@@ -68,6 +68,6 @@ Identifying a subsystem on a schematic requires recognizing the relationships be
 
 ## Bench Relevance
 
-- A power supply that rings or overshoots on load transients is showing you a feedback loop with insufficient phase margin — a subsystem-level composition problem that won't be visible from any individual block measurement.
+- A power supply that rings or overshoots on load transients reveals a feedback loop with insufficient phase margin — a subsystem-level composition problem that won't be visible from any individual block measurement.
 - A subsystem that starts up correctly on some power-on cycles but not others has a sequencing or startup timing issue — the blocks may all be functional, but they're initializing in the wrong order or with insufficient settling time.
 - Touching a probe to a node inside a feedback loop and seeing the output shift indicates that the probe's impedance is loading the loop enough to change its operating point — the subsystem's behavior depends on the inter-block relationships that the probe is altering.

@@ -1,9 +1,9 @@
 ---
-title: "What You Can and Can't Treat as a Black Box"
+title: "What Can and Can't Be Treated as a Black Box"
 weight: 30
 ---
 
-# What You Can and Can't Treat as a Black Box
+# What Can and Can't Be Treated as a Black Box
 
 A black box is a component whose internal workings are ignored in favor of its input-output contract. Apply a signal here, get a result there, with specified characteristics. The datasheet is the contract. When the contract holds, the internal details are irrelevant — and ignoring them is not laziness but good engineering practice. Reasoning about every transistor inside an op-amp while designing a gain stage would be paralyzing and unnecessary.
 

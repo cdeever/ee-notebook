@@ -58,11 +58,11 @@ Device-level failures are often invisible during subsystem-level testing because
 ## Caveats
 
 - **"Works on the bench" is a weaker statement than it sounds** — Bench testing usually means short cables, a lab supply with excellent regulation, no nearby interference sources, and room temperature. The device operates with its own internal supply, its own ground network, its own thermal environment, and whatever electromagnetic environment it lives in. The gap between bench conditions and device conditions is where integration failures live.
-- **Device-level debugging requires device-level thinking** — When a device exhibits a problem that no subsystem shows in isolation, adding more subsystem-level measurements won't find the cause. You need to measure the interactions: shared supply rail noise, ground differential between subsystems, thermal gradients across the board. These are device-level observations.
+- **Device-level debugging requires device-level thinking** — When a device exhibits a problem that no subsystem shows in isolation, adding more subsystem-level measurements won't find the cause. The interactions need measuring: shared supply rail noise, ground differential between subsystems, thermal gradients across the board. These are device-level observations.
 - **Integration is not a one-time event** — Each design revision, component substitution, or layout change can reintroduce integration effects that were previously resolved. A new switching frequency, a different PCB stackup, or a relocated connector can change the coupling between subsystems.
 
 ## Bench Relevance
 
-- A device that works at room temperature but fails in an enclosure is showing you a thermal integration problem — the enclosure restricts airflow, and some subsystem is exceeding its thermal limits.
-- Noise on an analog measurement that correlates with a digital bus's activity is cross-subsystem coupling through power, ground, or proximity. The correlation pattern tells you the coupling mechanism: supply frequency means conducted, clock frequency means radiated, and data-dependent means ground bounce.
+- A device that works at room temperature but fails in an enclosure reveals a thermal integration problem — the enclosure restricts airflow, and some subsystem is exceeding its thermal limits.
+- Noise on an analog measurement that correlates with a digital bus's activity is cross-subsystem coupling through power, ground, or proximity. The correlation pattern reveals the coupling mechanism: supply frequency means conducted, clock frequency means radiated, and data-dependent means ground bounce.
 - A device that fails intermittently on power-up but works once running has a startup sequencing or reset timing problem. Monitoring the power rails, reset lines, and enable signals with a scope during power-up — capturing the first 100 ms — usually reveals which subsystem is losing the race.

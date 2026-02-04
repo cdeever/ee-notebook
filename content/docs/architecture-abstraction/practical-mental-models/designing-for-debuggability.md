@@ -19,7 +19,7 @@ Test points are the cheapest and most effective debug feature available. A 1 mm 
 
 Critical signals that warrant test points:
 
-- **Every power rail**, at the point of use (not just at the regulator output). Supply voltage at the regulator tells you the regulator is working. Supply voltage at the IC tells you the IC is getting the power it needs. These can differ significantly, and the difference is diagnostic.
+- **Every power rail**, at the point of use (not just at the regulator output). Supply voltage at the regulator confirms the regulator is working. Supply voltage at the IC confirms the IC is getting the power it needs. These can differ significantly, and the difference is diagnostic.
 - **Key references and bias voltages** — bandgap reference outputs, DAC reference outputs, bias network outputs. These set the operating points of downstream circuits; if they're wrong, everything downstream is wrong.
 - **Clock signals** — at the oscillator output and at the point of use. A clock that's clean at the source but degraded at the destination has a distribution problem. A clock that's wrong at the source has a different problem entirely.
 - **Status and control signals** — reset, enable, power-good, fault, lock-detect. These binary signals report subsystem state and can be observed with a logic probe or a single oscilloscope channel.

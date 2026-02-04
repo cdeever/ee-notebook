@@ -9,7 +9,7 @@ A resistor is a primitive. Two resistors forming a voltage divider is a block. T
 
 ## What Makes a Block
 
-A block is the smallest grouping of primitives that has a coherent function you can describe in a sentence. "This is a low-pass filter." "This is a voltage reference." "This is a common-emitter gain stage." "This is a pull-up network." The description captures the design intent — what the circuit is supposed to do — and that intent is what elevates a pile of parts into a functional unit.
+A block is the smallest grouping of primitives that has a coherent function describable in a sentence. "This is a low-pass filter." "This is a voltage reference." "This is a common-emitter gain stage." "This is a pull-up network." The description captures the design intent — what the circuit is supposed to do — and that intent is what elevates a pile of parts into a functional unit.
 
 Blocks have properties that their constituent primitives don't:
 
@@ -31,7 +31,7 @@ Several patterns help identify block boundaries:
 
 **Named nets and reference designators.** Designers often name nets at block boundaries: VREF, FILT_OUT, CLK_BUF. These names encode the designer's block-level thinking. Reference designators sometimes cluster numerically within blocks, though this is less reliable.
 
-**Datasheet application circuits.** Many blocks are direct implementations of datasheet reference circuits. Recognizing a standard inverting amplifier configuration, a standard boost converter topology, or a standard crystal oscillator circuit lets you identify the block immediately and know its intended behavior.
+**Datasheet application circuits.** Many blocks are direct implementations of datasheet reference circuits. Recognizing a standard inverting amplifier configuration, a standard boost converter topology, or a standard crystal oscillator circuit identifies the block immediately and reveals its intended behavior.
 
 ## The Composition Contract
 
@@ -39,7 +39,7 @@ When primitives combine into a block, the block offers a contract to the rest of
 
 The contract has explicit and implicit terms:
 
-**Explicit terms** are the ones you can calculate or simulate: gain, bandwidth, output voltage range, input impedance. These are the parameters you'd put in a design spreadsheet or verify in simulation.
+**Explicit terms** are the ones that can be calculated or simulated: gain, bandwidth, output voltage range, input impedance. These are the parameters that go in a design spreadsheet or get verified in simulation.
 
 **Implicit terms** are the assumptions that are easy to overlook: the block assumes its supply is stable, its ground is quiet, its thermal environment is within range, and its input signal doesn't contain energy outside its designed bandwidth. These implicit assumptions are where most composition failures originate, because they're the terms nobody wrote down.
 
@@ -57,18 +57,18 @@ The most instructive block failures aren't component failures — they're compos
 
 ## Tips
 
-- When you encounter a block you don't recognize, try to identify its topology before analyzing individual component values. Knowing it's a Sallen-Key filter, a Colpitts oscillator, or a cascode stage tells you more than knowing every resistor value.
+- When encountering an unfamiliar block, try to identify its topology before analyzing individual component values. Knowing it's a Sallen-Key filter, a Colpitts oscillator, or a cascode stage is more informative than knowing every resistor value.
 - Verify block-level behavior before moving to higher-level integration. If the reference voltage is wrong, everything downstream that depends on it will be wrong too — and the downstream symptoms won't point back to the reference.
 - When a block's output doesn't match expectations, check the implicit contract terms first: supply voltage, ground quality, load impedance, and input signal range. These are violated more often than explicit design parameters.
 
 ## Caveats
 
-- **Block boundaries are a thinking tool, not a physical reality** — The same set of components can be grouped into blocks in different ways depending on what you're analyzing. A feedback resistor "belongs" to the gain block when analyzing gain, but "belongs" to the stability analysis when checking phase margin. Use the grouping that matches your current question.
+- **Block boundaries are a thinking tool, not a physical reality** — The same set of components can be grouped into blocks in different ways depending on the analysis. A feedback resistor "belongs" to the gain block when analyzing gain, but "belongs" to the stability analysis when checking phase margin. The grouping should match the current question.
 - **Not every cluster of parts is a block** — Decoupling capacitors, test points, and ESD protection components are primitives that serve the design without forming a functional block of their own. Trying to force every component into a block-level grouping overcomplicates the analysis.
 - **Textbook blocks and real blocks diverge** — A textbook common-emitter stage has four or five components. A real one may have additional parts for bias stability, frequency compensation, or protection that aren't in the canonical topology. Recognizing the core topology while accounting for the additions is part of reading real schematics.
 
 ## Bench Relevance
 
-- A block whose output changes when you connect a scope probe is showing you a loading violation — the probe impedance is comparable to the block's output impedance, and the composition contract assumed a lighter load.
+- A block whose output changes when a scope probe is connected reveals a loading violation — the probe impedance is comparable to the block's output impedance, and the composition contract assumed a lighter load.
 - Oscillation in an amplifier block that isn't supposed to oscillate is a composition failure, not a component failure. Check the feedback path, the supply bypassing, and the input/output impedance interactions before suspecting bad parts.
 - A filter that doesn't cut off where expected often has parasitic capacitance or inductance modifying the block's transfer function. The parts are right; the block includes more than what's on the schematic.

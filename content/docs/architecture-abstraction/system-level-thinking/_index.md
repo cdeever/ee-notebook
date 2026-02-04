@@ -18,4 +18,4 @@ System-level thinking is the discipline of reasoning about what happens when ind
 
 - **[Why Bench-Stable Designs Fail in Systems]({{< relref "why-bench-stable-designs-fail" >}})** — The gap between controlled bench conditions and real operating environments, and the failure modes that only appear in deployment.
 
-- **[Observability Limits at System Scale]({{< relref "observability-limits" >}})** — Why you can't probe everything, why system-level symptoms are often indirect, and how to debug when direct measurement isn't possible.
+- **[Observability Limits at System Scale]({{< relref "observability-limits" >}})** — Why not everything can be probed, why system-level symptoms are often indirect, and how to debug when direct measurement isn't possible.

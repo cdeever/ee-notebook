@@ -10,7 +10,7 @@ Electronics is built by combining smaller things into larger things — but the 
 
 This section traces how composition works at each transition in the abstraction ladder: how primitives become blocks, blocks become subsystems, and subsystems become devices. At each step, something new emerges — a transfer function, a specification, an interface — that didn't exist in the pieces individually. And at each step, new failure modes appear that couldn't exist in the pieces alone: interactions between parts, loading effects, stability concerns, and coupling through shared resources like power and ground.
 
-Understanding these composition patterns isn't just an intellectual exercise. It directly shapes how you read schematics, how you partition a design for testing, and how you isolate faults. If you know how things were put together, you know where the seams are — and the seams are where things come apart.
+Understanding these composition patterns isn't just an intellectual exercise. It directly shapes how schematics are read, how a design gets partitioned for testing, and how faults are isolated. Knowing how things were put together reveals where the seams are — and the seams are where things come apart.
 
 ## What This Section Covers
 

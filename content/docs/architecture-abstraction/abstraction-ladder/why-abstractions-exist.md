@@ -5,7 +5,7 @@ weight: 20
 
 # Why Abstractions Exist (and When They Break)
 
-Abstractions exist because you cannot think about everything at once. A circuit with a hundred components has thousands of interacting parameters — voltages, currents, temperatures, parasitics, tolerances, timing relationships. No one holds all of that in their head simultaneously. Abstraction is the act of selectively ignoring detail so you can focus on the detail that matters for the question you're asking right now.
+Abstractions exist because no one can think about everything at once. A circuit with a hundred components has thousands of interacting parameters — voltages, currents, temperatures, parasitics, tolerances, timing relationships. No one holds all of that in their head simultaneously. Abstraction is the act of selectively ignoring detail so attention can stay on the detail that matters for the question being asked right now.
 
 This isn't a compromise or a shortcut — it's how all successful engineering works. But it only works as long as the ignored details actually stay ignorable. When they don't, the abstraction breaks, and reasoning based on it produces wrong answers.
 
@@ -15,11 +15,11 @@ A useful abstraction compresses the behavior of something complex into a simpler
 
 Good abstractions share several properties:
 
-**They have well-defined boundaries.** You know what's inside and what's outside. A regulated power supply takes in an input voltage range and delivers an output voltage within a tolerance. The boundary is the input/output specification.
+**They have well-defined boundaries.** It's clear what's inside and what's outside. A regulated power supply takes in an input voltage range and delivers an output voltage within a tolerance. The boundary is the input/output specification.
 
-**They hide irrelevant detail.** When you're designing a digital logic circuit, you don't need to know the doping profile of the transistors inside the gates. That detail is real, but it's been abstracted away because it doesn't affect the logic-level behavior under normal conditions.
+**They hide irrelevant detail.** When designing a digital logic circuit, there's no need to know the doping profile of the transistors inside the gates. That detail is real, but it's been abstracted away because it doesn't affect the logic-level behavior under normal conditions.
 
-**They're composable.** You can combine abstractions to build larger things without needing to re-derive the internal behavior of each piece. A gain stage followed by a filter followed by a buffer — each block has a known transfer function, and the cascade can be analyzed block by block.
+**They're composable.** Abstractions can be combined to build larger things without needing to re-derive the internal behavior of each piece. A gain stage followed by a filter followed by a buffer — each block has a known transfer function, and the cascade can be analyzed block by block.
 
 **They have stated assumptions.** Every abstraction comes with conditions. The regulator holds its output voltage as long as the input stays above dropout, the load stays below maximum, and the junction temperature stays within limits. These assumptions are the contract. When they're met, the abstraction is safe to use.
 
@@ -54,18 +54,18 @@ Two subsystems that are "asynchronous" in the design intent may still have timin
 
 When an abstraction breaks, the reasoning built on top of it becomes unreliable. This is worse than having no abstraction at all, because the abstraction actively misleads:
 
-- You measure the output of a "regulated" supply and trust the reading, not realizing the regulation has been lost due to dropout.
-- You treat two channels as "independent" and look for the problem in one channel, never suspecting that the fault is coupling from the other.
-- You assume a digital signal is "high" because the voltage reads 2.8 V, without recognizing that the receiving device's threshold is 3.0 V.
+- Measuring the output of a "regulated" supply and trusting the reading, not realizing the regulation has been lost due to dropout.
+- Treating two channels as "independent" and looking for the problem in one channel, never suspecting that the fault is coupling from the other.
+- Assuming a digital signal is "high" because the voltage reads 2.8 V, without recognizing that the receiving device's threshold is 3.0 V.
 
-The most expensive consequence is wasted debugging time. When your mental model doesn't match reality, you search in the wrong place, collect irrelevant measurements, and test hypotheses that can't explain the actual failure.
+The most expensive consequence is wasted debugging time. When the mental model doesn't match reality, the search goes to the wrong place, irrelevant measurements pile up, and hypotheses that can't explain the actual failure get tested instead.
 
 ## Recognizing a Broken Abstraction
 
 Abstraction failures rarely announce themselves. They show up as symptoms that don't make sense within the current level of reasoning:
 
 - A signal looks correct at every test point, but the system doesn't work.
-- A measurement changes depending on where or how you probe it.
+- A measurement changes depending on where or how the circuit is probed.
 - A fault appears only when two subsystems are active simultaneously.
 - A design that simulates perfectly fails on the bench.
 - Removing a "non-functional" component (a bypass cap, a ground strap) changes behavior.
@@ -74,9 +74,9 @@ When the symptoms don't fit the model, the first question should be: what is thi
 
 ## Tips
 
-- When a measurement surprises you, check the assumptions before checking the circuit. The most common reason for a surprising measurement is that you're relying on an abstraction that doesn't hold in this context.
-- Keep a mental list of the assumptions you're making. "I'm assuming the supply is stable." "I'm assuming the ground is quiet." "I'm assuming these two signals don't interact." When the symptoms stop making sense, walk the list.
-- The best time to identify abstraction boundaries is during design, not debugging. If you specify the contract for each block or subsystem explicitly — input ranges, output specs, load assumptions, thermal requirements — you've built something you can test systematically later.
+- When a measurement is surprising, check the assumptions before checking the circuit. The most common reason for a surprising measurement is reliance on an abstraction that doesn't hold in this context.
+- Keep a mental list of the assumptions in play. "The supply is stable." "The ground is quiet." "These two signals don't interact." When the symptoms stop making sense, walk the list.
+- The best time to identify abstraction boundaries is during design, not debugging. Specifying the contract for each block or subsystem explicitly — input ranges, output specs, load assumptions, thermal requirements — creates something that can be tested systematically later.
 
 ## Caveats
 
@@ -87,6 +87,6 @@ When the symptoms don't fit the model, the first question should be: what is thi
 ## Bench Relevance
 
 - A regulated supply reading that drifts with load or temperature is an abstraction breaking in real time — the supply is no longer the stable rail the rest of the circuit assumes it to be.
-- A signal that changes shape or level when you add or remove a load downstream is showing you a hidden impedance interaction the block-level model didn't account for.
+- A signal that changes shape or level when a load is added or removed downstream reveals a hidden impedance interaction the block-level model didn't account for.
 - Crosstalk that appears only when two subsystems run simultaneously indicates physical coupling that the schematic treats as nonexistent — the layout made the abstraction false.
 - A circuit that works reliably in isolation but fails intermittently when integrated into a larger system is the signature of an abstraction boundary that's leaking.
