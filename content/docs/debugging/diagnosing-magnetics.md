@@ -5,11 +5,11 @@ weight: 46
 
 # Diagnosing Magnetics on the Bench
 
-Magnetic components don't fail in obvious ways. A saturated inductor looks identical to a healthy one on the bench. A transformer with excessive leakage inductance measures the same DC resistance as a good one. Diagnosing magnetics problems requires the right instruments and knowing what waveforms, temperatures, and current-draw patterns tell you.
+Magnetic components don't fail in obvious ways. A saturated inductor looks identical to a healthy one on the bench. A transformer with excessive leakage inductance measures the same DC resistance as a good one. Diagnosing magnetics problems requires the right instruments and knowing what waveforms, temperatures, and current-draw patterns reveal.
 
 ## Scope Waveforms: What to Look For
 
-The oscilloscope is the primary diagnostic tool for magnetics in switching circuits. You're looking at the inductor current waveform and the voltage across the component or the switching node.
+The oscilloscope is the primary diagnostic tool for magnetics in switching circuits. The key signals are the inductor current waveform and the voltage across the component or at the switching node.
 
 ### Healthy Inductor in a Buck Converter
 
@@ -19,11 +19,11 @@ The oscilloscope is the primary diagnostic tool for magnetics in switching circu
 ### Saturated Inductor
 
 - **Current waveform:** The rising edge of the current ramp curves upward at the end of the on-time — the slope increases because inductance is dropping. In severe saturation, the current spikes sharply upward near the end of each on-time, like a hockey stick. The peak current is much higher than expected
-- **What to do:** Reduce the load current and see if the curve straightens out. If it does, the inductor is running out of headroom. Either the inductor is undersized, or the operating conditions have drifted (higher input voltage, higher temperature)
+- **What to do:** Reducing the load current and checking whether the curve straightens out confirms this. If it does, the inductor is running out of headroom. Either the inductor is undersized, or the operating conditions have drifted (higher input voltage, higher temperature)
 
 ### Ringing from Leakage Inductance
 
-- **Switch node voltage (flyback or forward converter):** After the switch turns off, there's a voltage spike above the reflected output voltage, followed by a damped oscillation. The spike amplitude and ring frequency tell you about the leakage energy and the parasitic capacitance
+- **Switch node voltage (flyback or forward converter):** After the switch turns off, a voltage spike appears above the reflected output voltage, followed by a damped oscillation. The spike amplitude and ring frequency indicate the leakage energy and the parasitic capacitance
 - **Healthy:** A small ring that damps in 2–4 cycles, with peak voltage well below the switch's rating
 - **Problematic:** Large ring amplitude approaching the switch's voltage rating, or a ring that doesn't damp (indicating insufficient snubber resistance)
 
@@ -40,27 +40,27 @@ Not strictly a magnetics problem, but it shows up in the magnetics waveforms. In
 
 ### Current Probe (Clamp-On or Dedicated)
 
-- Clip it around the wire or the inductor lead
+- Clips around the wire or the inductor lead
 - No circuit modification required
 - AC-only probes (like Rogowski coils) show ripple but not DC. DC-capable probes (Hall-effect) show both
-- Watch the bandwidth — a 50 MHz current probe shows the ringing; a 100 kHz probe smooths it out and hides problems
+- Bandwidth matters — a 50 MHz current probe shows the ringing; a 100 kHz probe smooths it out and hides problems
 
 ### Sense Resistor
 
 - A small resistor (1–50 milliohms) in series with the inductor
-- Measure voltage across it with a differential probe or an oscilloscope referenced to one side of the resistor
+- Measured with a differential probe or an oscilloscope referenced to one side of the resistor
 - Shows both DC and AC with full bandwidth
 - Adds resistance and loss to the circuit — acceptable for diagnosis, not for production unless it's a designed-in current sense resistor
-- At milliohm values, PCB trace resistance and probe contact resistance can introduce significant errors. Use Kelvin (4-wire) connections if possible
+- At milliohm values, PCB trace resistance and probe contact resistance can introduce significant errors. Kelvin (4-wire) connections help where possible
 
 ## Temperature as a Diagnostic
 
 ### Where to Measure
 
-- **Core surface:** Indicates total loss (core + copper). Use a thermocouple, IR thermometer, or thermal camera. Thermal cameras are excellent for magnetics diagnosis because they show the temperature distribution — a hot spot on one side of the core suggests localized saturation or a winding fault
+- **Core surface:** Indicates total loss (core + copper). A thermocouple, IR thermometer, or thermal camera works here. Thermal cameras are excellent for magnetics diagnosis because they show the temperature distribution — a hot spot on one side of the core suggests localized saturation or a winding fault
 - **Wire at the terminals:** High temperature here relative to the core suggests excessive DCR or AC resistance in the winding
 
-### What Temperature Tells You
+### What Temperature Indicates
 
 | Observation | Likely Cause |
 |---|---|
@@ -72,16 +72,16 @@ Not strictly a magnetics problem, but it shows up in the magnetics waveforms. In
 
 ### IR Thermometer Limitations
 
-- Shiny surfaces (bare ferrite, bare copper) have low emissivity and read lower than the actual temperature. Stick a small piece of tape (known emissivity ~0.95) on the surface and measure the tape
-- The spot size of the IR thermometer matters — if the spot is larger than the component, you're averaging the component temperature with the cooler PCB around it
+- Shiny surfaces (bare ferrite, bare copper) have low emissivity and read lower than the actual temperature. Applying a small piece of tape (known emissivity ~0.95) on the surface and measuring the tape gives a more accurate reading
+- The spot size of the IR thermometer matters — if the spot is larger than the component, the reading averages the component temperature with the cooler PCB around it
 
 ## LCR Meter Measurements
 
-An LCR meter measures inductance, capacitance, and resistance at a specific test frequency and test current level. Useful for:
+An LCR meter measures inductance, capacitance, and resistance at a specific test frequency and test current level.
 
 ### Verifying Inductance Value
 
-Measure at the frequency and current level closest to your operating conditions. Most bench LCR meters test at 100 Hz or 1 kHz with milliamp-level test current. This gives you the small-signal, low-frequency inductance — which may be significantly higher than the inductance at operating current and frequency.
+Measure at the frequency and current level closest to the operating conditions. Most bench LCR meters test at 100 Hz or 1 kHz with milliamp-level test current. This gives the small-signal, low-frequency inductance — which may be significantly higher than the inductance at operating current and frequency.
 
 If the reading matches the datasheet value, the component is probably nominal. If it reads significantly low, the core may be cracked (loss of magnetic path = lower permeability), or the component has been through a thermal event that degraded the core.
 
@@ -94,7 +94,7 @@ A winding with a shorted turn (from insulation breakdown) will show:
 
 ### DC Resistance Measurement
 
-Use the LCR meter's DC resistance mode (or a DMM in 4-wire resistance mode) to measure winding resistance. Compare to the datasheet DCR. Significant deviation suggests:
+The LCR meter's DC resistance mode (or a DMM in 4-wire resistance mode) measures winding resistance. Compare to the datasheet DCR. Significant deviation suggests:
 - Open winding (infinite resistance) — broken wire
 - Higher than expected — corroded connections, thinner wire than spec, or a long, fine-wire winding with higher temperature than expected
 - Lower than expected — probably measurement error (lead resistance, contact resistance) or a different part
@@ -117,7 +117,7 @@ Monitoring input current to a power supply during different operating conditions
 
 - Thermal runaway: losses heat the component, increasing losses further
 - Core permeability drift with temperature (some materials have a pronounced temperature dependence)
-- Check with a thermal camera — if the inductor or transformer is the hottest component on the board and the temperature is still rising, that's the culprit
+- A thermal camera check is definitive — if the inductor or transformer is the hottest component on the board and the temperature is still rising, that's the culprit
 
 ### Asymmetric Current Draw on AC Input
 
@@ -125,17 +125,17 @@ If a circuit draws more current on one half-cycle of the AC mains than the other
 
 ## Quick Functional Checks Without Instruments
 
-When you don't have a scope or LCR meter:
+When a scope or LCR meter isn't available:
 
 - **Continuity check:** A DMM in resistance mode confirms the winding isn't open. Compare resistance of suspect windings to known-good ones or to the datasheet DCR
-- **Ring test:** For simple inductors, you can build a ring tester — apply a pulse to the inductor and watch the ringing on a scope (or listen with a piezo speaker). A healthy inductor rings cleanly; a shorted turn damps the ring quickly. This is a common ham radio technique for checking toroidal cores
-- **Touch test:** If the component is too hot to touch (above ~60°C), something may be wrong — or the design runs hot by intention. Compare to a known-good board if available
+- **Ring test:** For simple inductors, a ring tester applies a pulse to the inductor and shows the ringing on a scope (or through a piezo speaker). A healthy inductor rings cleanly; a shorted turn damps the ring quickly. This is a common ham radio technique for checking toroidal cores
+- **Touch test:** If the component is too hot to touch (above ~60°C), something may be wrong — or the design runs hot by intention. Comparing to a known-good board helps if available
 - **Listen:** Audible noise from an inductor or transformer that wasn't there before suggests a mechanical change (loose winding, cracked core) or an operating condition change (different load, different frequency)
 
-## Gotchas
+## Caveats
 
-- **LCR meters measure at small signal.** A component that reads 10 uH on the LCR meter may provide only 6 uH at your operating current. LCR meters with DC bias capability exist but are expensive. Without one, you have to infer operating inductance from scope waveforms (L = V × dt / dI from the current ramp slope)
+- **LCR meters measure at small signal.** A component that reads 10 uH on the LCR meter may provide only 6 uH at operating current. LCR meters with DC bias capability exist but are expensive. Without one, operating inductance must be inferred from scope waveforms (L = V × dt / dI from the current ramp slope)
 - **Current probes have insertion impedance.** A clamp-on probe around a wire adds a small series impedance. For low-impedance power circuits this is negligible, but for high-impedance signal circuits it can affect the measurement
-- **Thermal equilibrium takes time.** Don't judge a component's temperature after 30 seconds of operation. Run the circuit at full load for 15–30 minutes (or until the temperature stabilizes) before concluding the component runs at an acceptable temperature. The initial rate of temperature rise is not the final temperature
+- **Thermal equilibrium takes time.** A component's temperature after 30 seconds of operation is not representative. Running the circuit at full load for 15–30 minutes (or until the temperature stabilizes) is necessary before concluding the component runs at an acceptable temperature. The initial rate of temperature rise is not the final temperature
 - **"It measures fine on the bench" doesn't mean it works in the circuit.** A magnetics component can pass all static tests (inductance, DCR, SRF) and still fail in the application due to saturation at operating current, core loss at operating frequency, or thermal issues in the enclosure. Bench measurements characterize the component; in-circuit measurements characterize the system
-- **Scope probes on switching nodes need bandwidth and low inductance.** A long ground lead on a scope probe adds inductance that rings with the parasitic capacitance, creating false ringing in the measurement that looks like a circuit problem. Use a ground spring or tip-and-barrel probing technique for clean measurements at switching nodes
+- **Scope probes on switching nodes need bandwidth and low inductance.** A long ground lead on a scope probe adds inductance that rings with the parasitic capacitance, creating false ringing in the measurement that looks like a circuit problem. A ground spring or tip-and-barrel probing technique produces clean measurements at switching nodes
