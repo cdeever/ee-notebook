@@ -1,6 +1,6 @@
 ---
 title: "📏 Measurement & Test"
-weight: 9
+weight: 10
 bookCollapseSection: true
 ---
 

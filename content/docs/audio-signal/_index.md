@@ -1,6 +1,6 @@
 ---
 title: "🎵 Audio & Signal Processing"
-weight: 5
+weight: 6
 bookCollapseSection: true
 ---
 

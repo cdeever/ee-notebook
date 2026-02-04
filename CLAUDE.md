@@ -20,13 +20,14 @@ Content is organized into ten sections, each a subdirectory of `content/docs/`:
 | 1 | `fundamentals/` | Fundamentals |
 | 2 | `analog/` | Analog Electronics |
 | 3 | `digital/` | Digital Electronics |
-| 4 | `embedded/` | Microcontrollers & Embedded Systems |
-| 5 | `audio-signal/` | Audio & Signal Processing |
-| 6 | `radio-rf/` | Radio & RF |
-| 7 | `retro-legacy/` | Retro & Legacy Systems |
-| 8 | `design-development/` | Design & Development |
-| 9 | `measurement/` | Measurement & Test |
-| 10 | `debugging/` | Debugging, Failure & Repair |
+| 4 | `architecture-abstraction/` | Architecture & Abstraction |
+| 5 | `embedded/` | Embedded Systems |
+| 6 | `audio-signal/` | Audio & Signal Processing |
+| 7 | `radio-rf/` | Radio & RF |
+| 8 | `retro-legacy/` | Retro & Legacy Systems |
+| 9 | `design-development/` | Design & Development |
+| 10 | `measurement/` | Measurement & Test |
+| 11 | `debugging/` | Debugging, Failure & Repair |
 
 ## Adding a New Entry
 
