@@ -32,7 +32,7 @@ Multi-drop, differential, half-duplex (or full-duplex with four wires). RS-485 s
 - Receiver threshold: ±200 mV differential. Anything above +200 mV is a valid logic state; anything below −200 mV is the other state. The gap between provides noise margin
 - Requires termination resistors (120 Ω typical) at each end of the bus to prevent reflections
 
-**Gotchas with RS-485:**
+**Caveats with RS-485:**
 - A and B naming is not standardized — some manufacturers swap them. If communication doesn't work, swap the two data lines before debugging further
 - Bias resistors (pull-up on one line, pull-down on the other) keep the bus in a defined state when no driver is active. Without biasing, the bus floats during idle periods and receivers may see garbage
 - Half-duplex requires driver enable control. The transmitting device enables its driver, sends data, then disables the driver. If the driver stays enabled, it blocks all other devices on the bus. A stuck driver enable line is a common failure mode
