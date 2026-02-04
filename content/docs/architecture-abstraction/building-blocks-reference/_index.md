@@ -22,4 +22,4 @@ The catalog will grow over time as new circuits and systems appear on the bench.
 
 - **[Devices]({{< relref "devices" >}})** — Self-contained products or modules with external interfaces: things that come in enclosures, have connectors, and are documented as units.
 
-- **[Systems]({{< relref "systems" >}})** — Multi-device configurations coordinated to accomplish a purpose: test setups, signal chains, and control loops where emergent behavior dominates.
+- **[Systems]({{< relref "systems" >}})** — Multi-device configurations coordinated to accomplish a purpose: signal chains, control loops, and coordinated embedded deployments where emergent behavior dominates.
