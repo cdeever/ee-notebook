@@ -19,7 +19,7 @@ This is essential for any high-throughput data path: continuous ADC sampling, SP
 
 DMA controllers have a fixed number of channels (sometimes called streams) — typically 4 to 16 depending on the MCU. Each channel can be configured for a different transfer. Peripherals generate DMA request signals when they have data ready (for reception) or when they can accept data (for transmission).
 
-The mapping between peripherals and DMA channels is MCU-specific and often not flexible. On many STM32 parts, for example, USART1_RX can only use DMA channel 5 — you cannot reassign it. This means DMA channel allocation is a system-level resource planning problem: if two peripherals need DMA and both are mapped to the same channel, you have a conflict. Some newer MCUs (STM32G4, STM32H7) include a DMA request multiplexer (DMAMUX) that allows arbitrary mapping, which is significantly more convenient.
+The mapping between peripherals and DMA channels is MCU-specific and often not flexible. On many STM32 parts, for example, USART1_RX can only use DMA channel 5 — it cannot be reassigned. This means DMA channel allocation is a system-level resource planning problem: if two peripherals need DMA and both are mapped to the same channel, there is a conflict. Some newer MCUs (STM32G4, STM32H7) include a DMA request multiplexer (DMAMUX) that allows arbitrary mapping, which is significantly more convenient.
 
 Failing to check the channel-to-peripheral mapping in the reference manual is a classic mistake. The DMA will simply not trigger, and there is no error indication — just silence.
 
@@ -43,7 +43,7 @@ DMA transfers can be byte (8-bit), half-word (16-bit), or word (32-bit). The tra
 
 For continuous data streams — ADC sampling, audio I/O — the DMA needs to run indefinitely without firmware intervention for each buffer. Circular mode makes this possible: when the DMA reaches the end of the buffer, it wraps back to the beginning and keeps going.
 
-The firmware problem is then: how do you process data that is being actively overwritten? The standard approach is **double buffering** (sometimes called ping-pong buffering). The DMA buffer is divided into two halves. The DMA controller generates a half-transfer interrupt when it finishes the first half, and a transfer-complete interrupt when it finishes the second half (and wraps). Firmware processes one half while DMA fills the other.
+The firmware problem is then: how to process data that is being actively overwritten? The standard approach is **double buffering** (sometimes called ping-pong buffering). The DMA buffer is divided into two halves. The DMA controller generates a half-transfer interrupt when it finishes the first half, and a transfer-complete interrupt when it finishes the second half (and wraps). Firmware processes one half while DMA fills the other.
 
 This works, but the timing constraint is real: firmware must finish processing one half before DMA comes back around and overwrites it. If processing takes too long, data is silently corrupted. There is no hardware guard — the DMA does not stop or raise an error if it overwrites data the CPU has not read yet.
 
@@ -59,7 +59,7 @@ Getting priority wrong usually does not cause data loss — it causes latency. A
 
 DMA and the CPU share the bus fabric. On Cortex-M MCUs, the AHB bus matrix provides some concurrency — the CPU can fetch instructions from flash while the DMA accesses RAM — but conflicts are possible. Heavy DMA traffic on SRAM can stall CPU data accesses, increasing interrupt latency and making execution timing less predictable.
 
-On simpler MCUs with a single bus (or on Cortex-M0 devices with a simpler bus matrix), DMA and CPU accesses are strictly interleaved. This means every DMA transfer cycle steals a bus cycle from the CPU. If DMA is moving data continuously, the CPU runs at a fraction of its normal speed. The reference manual usually documents the bus architecture, but the practical impact depends on your specific memory layout — placing DMA buffers in a different SRAM bank than the code's stack and variables can help, if the MCU has multiple banks.
+On simpler MCUs with a single bus (or on Cortex-M0 devices with a simpler bus matrix), DMA and CPU accesses are strictly interleaved. This means every DMA transfer cycle steals a bus cycle from the CPU. If DMA is moving data continuously, the CPU runs at a fraction of its normal speed. The reference manual usually documents the bus architecture, but the practical impact depends on the specific memory layout — placing DMA buffers in a different SRAM bank than the code's stack and variables can help, if the MCU has multiple banks.
 
 ## Configuration Complexity
 
@@ -76,7 +76,7 @@ A typical DMA channel setup requires:
 - Circular mode (yes/no)
 - Interrupts to enable (transfer complete, half transfer, error)
 
-Getting any one of these wrong produces behavior that ranges from "nothing happens" to "data is silently corrupted" to "hard fault." DMA writes to the wrong memory address because the increment mode was wrong, or DMA transfers the wrong number of bytes because the width did not match the count, or DMA never starts because the trigger source was misconfigured. These failures are difficult to debug because the CPU is not directly involved — you cannot single-step through a DMA transfer.
+Getting any one of these wrong produces behavior that ranges from "nothing happens" to "data is silently corrupted" to "hard fault." DMA writes to the wrong memory address because the increment mode was wrong, or DMA transfers the wrong number of bytes because the width did not match the count, or DMA never starts because the trigger source was misconfigured. These failures are difficult to debug because the CPU is not directly involved — it is not possible to single-step through a DMA transfer.
 
 The most reliable debugging approach is to start with the simplest possible configuration (memory-to-memory, known data pattern, check the destination after transfer completes), verify that works, and then add complexity one parameter at a time. Using a debugger to inspect the DMA controller registers after setup — before triggering the transfer — catches many configuration errors.
 

@@ -5,7 +5,7 @@ weight: 20
 
 # Is My Probe Bandwidth Sufficient?
 
-Bandwidth tells you the highest frequency a measurement system can faithfully reproduce. Below the bandwidth limit, signals come through accurately. At the bandwidth limit, the signal is already 30% low (-3 dB). Above it, the signal is increasingly attenuated and distorted. A probe with insufficient bandwidth doesn't just reduce amplitude — it changes waveshape, hides fast edges, and makes ringing disappear.
+Bandwidth defines the highest frequency a measurement system can faithfully reproduce. Below the bandwidth limit, signals come through accurately. At the bandwidth limit, the signal is already 30% low (-3 dB). Above it, the signal is increasingly attenuated and distorted. A probe with insufficient bandwidth doesn't just reduce amplitude — it changes waveshape, hides fast edges, and makes ringing disappear.
 
 ## What Bandwidth Means
 

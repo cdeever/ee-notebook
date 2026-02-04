@@ -1,9 +1,9 @@
 ---
-title: "What You'd Do Differently Next Time"
+title: "What to Do Differently Next Time"
 weight: 40
 ---
 
-# What You'd Do Differently Next Time
+# What to Do Differently Next Time
 
 The retrospective's most actionable output isn't a list of what went wrong — it's a list of concrete changes for the next project. "The power supply oscillated" is a diagnosis. "Always simulate the feedback loop before committing to the output capacitor" is a change. The difference is specificity: a diagnosis identifies what happened; a change prescribes what to do about it.
 

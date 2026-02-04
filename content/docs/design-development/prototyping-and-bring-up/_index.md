@@ -14,8 +14,8 @@ Bring-up is where theory meets practice. Power rails may not come up cleanly, os
 
 ## What This Section Covers
 
-- **[Prototype Strategies: Fast vs Faithful]({{< relref "prototype-strategies" >}})** — Choosing the right prototype approach based on what you need to learn.
-- **[Assembly Options]({{< relref "assembly-options" >}})** — Selecting assembly methods that match your batch size, component mix, and turnaround needs.
+- **[Prototype Strategies: Fast vs Faithful]({{< relref "prototype-strategies" >}})** — Choosing the right prototype approach based on what needs to be learned.
+- **[Assembly Options]({{< relref "assembly-options" >}})** — Selecting assembly methods that match the batch size, component mix, and turnaround needs.
 - **[Bring-Up Checklists]({{< relref "bring-up-checklists" >}})** — Systematic first-power-on procedures that prevent damage and capture useful data.
 - **[Power-First Validation]({{< relref "power-first-validation" >}})** — Verifying every supply rail before testing any functionality.
 - **[Safe Smoke Testing]({{< relref "safe-smoke-testing" >}})** — Applying power for the first time without releasing the magic smoke.

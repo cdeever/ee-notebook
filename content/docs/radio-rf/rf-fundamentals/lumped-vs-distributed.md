@@ -25,7 +25,7 @@ Specific failures of the lumped model at increasing frequency:
 
 **Component lead inductance.** A through-hole resistor with 6 mm leads on each side has roughly 12 nH of series inductance. At 100 MHz, that inductance has 7.5 ohm of reactance — irrelevant if the resistor is 10 kohm, but significant if it is a 50 ohm termination resistor. At 1 GHz, the same inductance is 75 ohm — the lead inductance dominates the component value.
 
-**Capacitor self-resonance.** A capacitor's lead and body inductance forms a series LC resonant circuit. A 100 nF ceramic capacitor might self-resonate around 15-25 MHz. Below resonance, it behaves as a capacitor. At resonance, its impedance dips to nearly zero (just ESR). Above resonance, it behaves as an inductor. If your bypass capacitor is operating above its self-resonant frequency, it is not bypassing — it is adding inductance.
+**Capacitor self-resonance.** A capacitor's lead and body inductance forms a series LC resonant circuit. A 100 nF ceramic capacitor might self-resonate around 15-25 MHz. Below resonance, it behaves as a capacitor. At resonance, its impedance dips to nearly zero (just ESR). Above resonance, it behaves as an inductor. If a bypass capacitor is operating above its self-resonant frequency, it is not bypassing — it is adding inductance.
 
 **Trace routing effects.** At low frequency, routing a trace around an obstacle adds a few millimeters and is electrically invisible. At 5 GHz, an extra centimeter of trace is 106 degrees of electrical length on FR4 — enough to completely change the signal's phase relationship with the rest of the circuit.
 
@@ -38,9 +38,9 @@ When lumped assumptions break down, the circuit must be analyzed as a distribute
 - Signals propagate as waves along the conductor, with finite velocity
 - The ratio of dL to dC determines the characteristic impedance: Z0 = sqrt(L/C)
 
-This is [transmission line]({{< relref "/docs/radio-rf/transmission-lines/what-makes-a-transmission-line" >}}) behavior. It does not require a special "transmission line" component — any conductor pair exhibits this when the electrical length is significant. The copper trace on your PCB, the leads of your component, the wire connecting your breadboard — they all become transmission lines at high enough frequency.
+This is [transmission line]({{< relref "/docs/radio-rf/transmission-lines/what-makes-a-transmission-line" >}}) behavior. It does not require a special "transmission line" component — any conductor pair exhibits this when the electrical length is significant. The copper trace on a PCB, the leads of a component, the wire connecting a breadboard — they all become transmission lines at high enough frequency.
 
-In a distributed system, the concept of a single node voltage breaks down. Instead, you work with incident and reflected waves, characteristic impedance, reflection coefficients, and scattering parameters. The mathematics shifts from Kirchhoff's laws to the telegrapher's equations.
+In a distributed system, the concept of a single node voltage breaks down. Instead, analysis shifts to incident and reflected waves, characteristic impedance, reflection coefficients, and scattering parameters. The mathematics shifts from Kirchhoff's laws to the telegrapher's equations.
 
 ## A Concrete Example: 1 cm Trace at 100 MHz vs 10 GHz
 
@@ -67,7 +67,7 @@ The physical trace did not change. Its electrical role in the circuit is complet
 
 There is no sharp boundary between lumped and distributed regimes. Between "safely lumped" and "definitely distributed" there is a transition zone where both approaches give useful but imperfect results.
 
-In this zone (roughly lambda/20 to lambda/5), you can sometimes extend the lumped model by adding parasitic elements — a few picofarads of stray capacitance here, a nanohenry of lead inductance there. This is the approach of lumped-element equivalent circuits for components at moderate frequencies. Manufacturers provide these models for surface-mount components, and they work well in this middle ground.
+In this zone (roughly lambda/20 to lambda/5), it is sometimes possible to extend the lumped model by adding parasitic elements — a few picofarads of stray capacitance here, a nanohenry of lead inductance there. This is the approach of lumped-element equivalent circuits for components at moderate frequencies. Manufacturers provide these models for surface-mount components, and they work well in this middle ground.
 
 Beyond about lambda/5, however, a single lumped parasitic is no longer enough. The structure needs multiple sections or a full distributed model. This is where simulation tools like electromagnetic field solvers become necessary — they compute the fields directly rather than relying on lumped approximations.
 
@@ -77,7 +77,7 @@ Beyond about lambda/5, however, a single lumped parasitic is no longer enough. T
 
 **Ground paths must be short and direct.** Lumped analysis ignores ground path length. Distributed analysis reveals that a long ground return creates inductance that raises the effective impedance of the ground, allowing ground bounce and coupling. This is why RF circuits use solid ground planes and via-fenced ground connections.
 
-**Simulation tools change.** Below about 100 MHz, SPICE with lumped models works well. Above 1 GHz, you need electromagnetic simulation (HFSS, Sonnet, CST, or at minimum, transmission-line-aware tools like microstrip calculators). The transition zone uses a hybrid: SPICE with parasitic-aware component models and transmission line elements for long traces.
+**Simulation tools change.** Below about 100 MHz, SPICE with lumped models works well. Above 1 GHz, electromagnetic simulation is needed (HFSS, Sonnet, CST, or at minimum, transmission-line-aware tools like microstrip calculators). The transition zone uses a hybrid: SPICE with parasitic-aware component models and transmission line elements for long traces.
 
 **Design rules tighten.** In the lumped regime, component placement and routing are flexible. In the distributed regime, trace length, width, spacing, layer stackup, and via placement are all constrained by electrical requirements. RF PCB layout is slow and deliberate compared to low-frequency work.
 

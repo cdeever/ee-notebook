@@ -5,7 +5,7 @@ weight: 90
 
 # Single-Board Computers as Systems
 
-A single-board computer is a complete Linux-capable system on one PCB: SoC, RAM, storage interface, power regulation, and I/O connectors. SBCs are where MPU concepts become tangible — you can hold one, plug it in, and have a shell prompt. But the gap between "it boots on the bench" and "it runs reliably in a product" is wider than it looks.
+A single-board computer is a complete Linux-capable system on one PCB: SoC, RAM, storage interface, power regulation, and I/O connectors. SBCs are where MPU concepts become tangible — hold one, plug it in, and there is a shell prompt. But the gap between "it boots on the bench" and "it runs reliably in a product" is wider than it looks.
 
 ## What Makes an SBC
 
@@ -33,7 +33,7 @@ The BeagleBone's weakness is community size and documentation density. TI's refe
 
 ## Other Platforms Worth Knowing
 
-**NVIDIA Jetson** (Nano, Orin Nano, Orin NX) — GPU compute for ML inference and computer vision. When you need to run neural network inference at the edge, Jetson is the standard platform.
+**NVIDIA Jetson** (Nano, Orin Nano, Orin NX) — GPU compute for ML inference and computer vision. When a project needs to run neural network inference at the edge, Jetson is the standard platform.
 
 **Allwinner-based boards** (Orange Pi, Banana Pi) — compete on price. Thinner software support and community, but attractive when cost matters most.
 

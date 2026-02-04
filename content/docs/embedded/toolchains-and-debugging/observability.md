@@ -5,28 +5,28 @@ weight: 30
 
 # Observability
 
-A debugger with breakpoints is powerful, but it has a fundamental limitation: it stops the system. Halting the CPU changes timing, breaks real-time deadlines, disrupts communication protocols, and makes time-dependent bugs disappear. Some of the hardest embedded bugs only manifest at full speed — race conditions, interrupt priority inversions, marginal timing on a bus — and stopping the CPU to observe them is like opening the oven to check if the souffle has risen. You need ways to see what happened without changing when it happened.
+A debugger with breakpoints is powerful, but it has a fundamental limitation: it stops the system. Halting the CPU changes timing, breaks real-time deadlines, disrupts communication protocols, and makes time-dependent bugs disappear. Some of the hardest embedded bugs only manifest at full speed — race conditions, interrupt priority inversions, marginal timing on a bus — and stopping the CPU to observe them is like opening the oven to check if the souffle has risen. The challenge is finding ways to see what happened without changing when it happened.
 
 There is also the production case. Deployed systems do not have a debug probe attached. When a device fails in the field, the only information available is whatever the firmware recorded before things went wrong. Observability is not a debugging convenience — it is a design requirement.
 
 ## GPIO Toggling
 
-The simplest and most underrated debugging technique. Toggle a GPIO pin high at the start of a function or ISR and low at the end. Connect the pin to an oscilloscope or logic analyzer. Now you can see:
+The simplest and most underrated debugging technique. Toggle a GPIO pin high at the start of a function or ISR and low at the end. Connect the pin to an oscilloscope or logic analyzer. This reveals:
 
 - **Execution duration** — The pulse width is the function's execution time, measured to nanosecond accuracy by the scope.
 - **Jitter** — Variation in pulse width or period reveals scheduling inconsistency, interrupt latency variation, or contention for shared resources.
-- **Execution frequency** — How often the function runs, and whether it matches your expectation.
+- **Execution frequency** — How often the function runs, and whether it matches the expected rate.
 - **Relative timing** — Use two GPIO pins for two different code paths to see their timing relationship.
 
-The cost is one GPIO pin and two register writes (set high, set low) — a few nanoseconds of overhead. On most Cortex-M parts, you can write directly to the BSRR register for single-cycle atomic GPIO toggling. I keep a couple of header pins broken out on every prototype board specifically for this purpose.
+The cost is one GPIO pin and two register writes (set high, set low) — a few nanoseconds of overhead. On most Cortex-M parts, writing directly to the BSRR register enables single-cycle atomic GPIO toggling. I keep a couple of header pins broken out on every prototype board specifically for this purpose.
 
-This technique works when nothing else does. Before the UART is initialized, before the debug probe is configured, before the ITM clock is set up — a GPIO toggle and an oscilloscope will tell you whether your code is running and how long it takes.
+This technique works when nothing else does. Before the UART is initialized, before the debug probe is configured, before the ITM clock is set up — a GPIO toggle and an oscilloscope will reveal whether the code is running and how long it takes.
 
 ## UART Logging
 
 The workhorse of embedded observability. Send text strings over a UART to a serial terminal on the host. Every developer knows `printf` debugging, and on embedded it works the same way — with some caveats.
 
-**Baud rate and timing impact:** At 115200 baud, each character takes approximately 87 microseconds. A 50-character log line takes over 4 milliseconds. If your main loop runs at 1 kHz, one log line per iteration consumes nearly half the loop budget. This is not hypothetical — I have seen systems where adding UART logging changed timing enough to mask the bug being investigated.
+**Baud rate and timing impact:** At 115200 baud, each character takes approximately 87 microseconds. A 50-character log line takes over 4 milliseconds. If the main loop runs at 1 kHz, one log line per iteration consumes nearly half the loop budget. This is not hypothetical — I have seen systems where adding UART logging changed timing enough to mask the bug being investigated.
 
 **Mitigation strategies:**
 
@@ -38,11 +38,11 @@ UART logging also requires a physical connection — a UART-to-USB adapter or an
 
 ## Structured Logging
 
-Once you have more than one subsystem producing log output, raw `printf` becomes unmanageable. Structured logging adds metadata to each message:
+Once more than one subsystem is producing log output, raw `printf` becomes unmanageable. Structured logging adds metadata to each message:
 
 - **Log levels** — Error, warning, info, debug. Filter output by severity at compile time or runtime. Production builds might only emit errors and warnings.
-- **Timestamps** — A millisecond (or microsecond) timer value at the start of each message. Essential for understanding the order and timing of events. Use a hardware timer, not a variable you increment — the timer keeps running even when the CPU is busy.
-- **Source identifiers** — Which module produced the message (e.g., `[SPI]`, `[MOTOR]`, `[ADC]`). This makes log output greppable and lets you enable/disable logging per subsystem.
+- **Timestamps** — A millisecond (or microsecond) timer value at the start of each message. Essential for understanding the order and timing of events. Use a hardware timer, not a manually incremented variable — the timer keeps running even when the CPU is busy.
+- **Source identifiers** — Which module produced the message (e.g., `[SPI]`, `[MOTOR]`, `[ADC]`). This makes log output greppable and allows enabling/disabling logging per subsystem.
 
 **Binary logging** is a more advanced technique: instead of formatting strings on the target, emit a compact binary record (message ID, timestamp, parameter values) and decode it on the host. This is dramatically faster — a 4-byte message ID plus a few parameters versus a 50-character formatted string — and reduces flash usage (no format strings stored in `.rodata`). The tradeoff is that raw binary output is not human-readable without a decoder.
 
@@ -63,7 +63,7 @@ I think of ITM as "UART logging without the UART" — same concept, less timing 
 
 ## ETM (Embedded Trace Macrocell)
 
-ETM records every instruction the CPU executes. This is full instruction trace — not just the points where you added logging, but the complete execution path including branches taken, functions called, and interrupts serviced.
+ETM records every instruction the CPU executes. This is full instruction trace — not just the points where logging was added, but the complete execution path including branches taken, functions called, and interrupts serviced.
 
 ETM requires:
 
@@ -71,7 +71,7 @@ ETM requires:
 - A trace-capable debug probe with a high-speed trace port (Segger J-Trace, ARM DSTREAM, Lauterbach)
 - A target board with the trace pins routed to a header (4-bit or wider parallel trace port)
 
-The probes are expensive (hundreds to thousands of dollars) and the board must be designed for trace from the start. But for hard-to-reproduce bugs — the kind where the system crashes once a day and you cannot figure out the sequence of events leading to the crash — ETM is invaluable. You can reconstruct the complete execution history leading up to the fault.
+The probes are expensive (hundreds to thousands of dollars) and the board must be designed for trace from the start. But for hard-to-reproduce bugs — the kind where the system crashes once a day and the sequence of events leading to the crash is unclear — ETM is invaluable. It allows reconstructing the complete execution history leading up to the fault.
 
 I have not used ETM regularly. It is on my list of tools to explore more deeply for complex timing bugs.
 
@@ -113,7 +113,7 @@ When a system crashes in the field, there is no debugger to inspect the state. T
 - The faulting PC — which instruction caused the crash
 - The link register (LR) — which function called the one that crashed
 - The fault status registers (CFSR, HFSR, MMFAR, BFAR on Cortex-M3+) — what type of fault occurred and what address was involved
-- A software version identifier — so you can match the crash to a specific firmware build
+- A software version identifier — to match the crash to a specific firmware build
 - A timestamp or uptime counter — how long the system ran before crashing
 
 **Implementation pattern:** Reserve a small block of SRAM (or use backup SRAM on STM32) that is not zeroed by the startup code. Write fault data to this region in the fault handler. On reboot, check for a magic value that indicates valid crash data. Read and report it, then clear the magic value.

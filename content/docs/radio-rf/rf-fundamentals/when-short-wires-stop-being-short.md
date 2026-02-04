@@ -22,7 +22,7 @@ A through-hole resistor with 5 mm leads on each side has approximately 10 nH of 
 | Frequency | Reactance of 10 nH | Impact |
 |-----------|-------------------|--------|
 | 1 MHz | 0.063 ohm | Negligible for nearly any application |
-| 10 MHz | 0.63 ohm | Negligible unless you are building precision 50 ohm circuits |
+| 10 MHz | 0.63 ohm | Negligible unless building precision 50 ohm circuits |
 | 100 MHz | 6.3 ohm | Significant — changes the impedance of a 50 ohm termination by 12% |
 | 500 MHz | 31 ohm | Dominant — the lead inductance has more reactance than a 10 ohm resistor |
 | 1 GHz | 63 ohm | The resistor is mostly inductor at this point |
@@ -31,7 +31,7 @@ This is why RF circuits exclusively use surface-mount components with the shorte
 
 ## PCB Traces as Transmission Lines
 
-A PCB trace over a ground plane is a microstrip transmission line. At low frequencies, you ignore this and treat it as a wire. At RF, you cannot.
+A PCB trace over a ground plane is a microstrip transmission line. At low frequencies, this is ignored and the trace is treated as a wire. At RF, it cannot be.
 
 A 10 cm trace on FR4 microstrip becomes electrically significant (exceeds lambda/10) at roughly:
 - 170 MHz for a microstrip trace (effective wavelength in FR4)
@@ -39,7 +39,7 @@ A 10 cm trace on FR4 microstrip becomes electrically significant (exceeds lambda
 
 Above this frequency, the trace must be treated as a [transmission line]({{< relref "/docs/radio-rf/transmission-lines/what-makes-a-transmission-line" >}}) with controlled impedance, proper termination, and attention to return path continuity.
 
-What happens when you ignore this:
+What happens when this is ignored:
 - Impedance mismatches cause reflections, creating ringing on digital signals and standing waves on RF signals
 - The effective impedance at the load depends on trace length, not just the load itself
 - Radiation from the trace increases — an unterminated trace is an antenna

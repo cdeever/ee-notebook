@@ -29,7 +29,7 @@ U-Boot is the dominant bootloader in embedded Linux, and understanding it is pra
 
 U-Boot maintains environment variables that control boot behavior — which device to boot from, the kernel command line, load addresses, and boot scripts. A typical boot sequence: U-Boot loads a kernel image and device tree blob from the SD card, sets the kernel command line to specify the root filesystem location, and hands off to the kernel.
 
-When things go wrong, you can interrupt automatic boot by pressing a key on the serial console, dropping into the U-Boot shell where you can manually inspect boot media, load files, examine memory, and test configurations. Much configuration lives in U-Boot rather than the kernel — if U-Boot loads the wrong device tree or passes a bad command line, the kernel fails in ways that look like kernel bugs but are really bootloader configuration errors.
+When things go wrong, interrupt automatic boot by pressing a key on the serial console, dropping into the U-Boot shell where it is possible to manually inspect boot media, load files, examine memory, and test configurations. Much configuration lives in U-Boot rather than the kernel — if U-Boot loads the wrong device tree or passes a bad command line, the kernel fails in ways that look like kernel bugs but are really bootloader configuration errors.
 
 The Raspberry Pi is a notable exception — it uses a proprietary bootloader running on the VideoCore GPU rather than U-Boot.
 

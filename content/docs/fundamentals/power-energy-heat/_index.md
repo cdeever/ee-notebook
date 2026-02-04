@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Power, Energy & Heat
 
-Where theory gets physical. Power calculations are straightforward on paper, but the real world adds thermal limits, time constants, and failure modes that don't show up in the math until you go looking for them.
+Where theory gets physical. Power calculations are straightforward on paper, but the real world adds thermal limits, time constants, and failure modes that don't show up in the math until someone goes looking for them.
 
 ## What This Section Covers
 

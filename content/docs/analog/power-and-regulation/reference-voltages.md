@@ -17,7 +17,7 @@ A "stable" voltage means the output doesn't change when:
 - Time passes (aging)
 - The manufacturing process varies
 
-No reference achieves perfect stability on all of these. The question is always: how much drift can you tolerate for your application?
+No reference achieves perfect stability on all of these. The question is always: how much drift is tolerable for the application?
 
 ## Reference Types
 

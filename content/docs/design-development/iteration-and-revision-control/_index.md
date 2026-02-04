@@ -18,5 +18,5 @@ Without revision discipline, projects drift into confusion: which schematic matc
 - **[Change Tracking & Rationale]({{< relref "change-tracking-and-rationale" >}})** — Recording not just what changed, but why it changed.
 - **[BOM Drift]({{< relref "bom-drift" >}})** — Managing the living document that defines what's actually on the board.
 - **[ECOs Without Bureaucracy]({{< relref "ecos-without-bureaucracy" >}})** — Applying engineering change discipline at a scale appropriate to the project.
-- **[When to Spin vs Patch]({{< relref "when-to-spin-vs-patch" >}})** — Deciding whether to order a new board or rework the one you have.
+- **[When to Spin vs Patch]({{< relref "when-to-spin-vs-patch" >}})** — Deciding whether to order a new board or rework the current one.
 - **[Hardware Versioning Sanity]({{< relref "hardware-versioning-sanity" >}})** — Keeping track of what hardware is what when multiple revisions coexist.

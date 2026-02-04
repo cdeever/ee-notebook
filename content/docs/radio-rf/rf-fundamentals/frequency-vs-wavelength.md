@@ -5,7 +5,7 @@ weight: 10
 
 # Frequency vs Wavelength
 
-Everything in RF starts with one equation: wavelength equals the speed of light divided by frequency. At audio frequencies, wavelengths are measured in kilometers and the physical size of a circuit is irrelevant. At RF and microwave frequencies, wavelengths shrink to meters, centimeters, and millimeters — and suddenly the physical dimensions of your board, traces, and wires become a significant fraction of a wavelength. That is when everything changes.
+Everything in RF starts with one equation: wavelength equals the speed of light divided by frequency. At audio frequencies, wavelengths are measured in kilometers and the physical size of a circuit is irrelevant. At RF and microwave frequencies, wavelengths shrink to meters, centimeters, and millimeters — and suddenly the physical dimensions of the board, traces, and wires become a significant fraction of a wavelength. That is when everything changes.
 
 ## The Fundamental Relationship
 
@@ -15,7 +15,7 @@ The equation is simple:
 
 Where lambda is wavelength in meters, c is the speed of light (approximately 3 x 10^8 m/s in free space), and f is frequency in hertz.
 
-This tells you the physical length of one complete cycle of the wave. At 1 MHz, one cycle stretches 300 meters. At 1 GHz, one cycle is 30 centimeters — roughly the length of a ruler. At 10 GHz, one cycle is 3 centimeters — smaller than a credit card.
+This gives the physical length of one complete cycle of the wave. At 1 MHz, one cycle stretches 300 meters. At 1 GHz, one cycle is 30 centimeters — roughly the length of a ruler. At 10 GHz, one cycle is 3 centimeters — smaller than a credit card.
 
 The inverse relationship means every decade increase in frequency shrinks the wavelength by a factor of 10. This compression is what pulls physical geometry into the design equation.
 
@@ -47,7 +47,7 @@ This is not a hard boundary — it is a guideline for when to start worrying. So
 
 ## Why This Changes Circuit Design
 
-At low frequencies, a schematic is a complete description of a circuit. The physical layout — where you place parts, how you route wires — is a manufacturing concern, not an electrical one. Every node on the schematic has one voltage at any instant, and that voltage is the same everywhere on that node.
+At low frequencies, a schematic is a complete description of a circuit. The physical layout — where parts are placed, how wires are routed — is a manufacturing concern, not an electrical one. Every node on the schematic has one voltage at any instant, and that voltage is the same everywhere on that node.
 
 At RF, this breaks down in several ways:
 
@@ -69,7 +69,7 @@ For FR4 PCB material (epsilon_r approximately 4.4), the wavelength is roughly ha
 
 For coaxial cable, the dielectric (often PTFE or polyethylene) similarly shortens the wavelength. A cable with a velocity factor of 0.66 has a wavelength that is 66% of the free-space value.
 
-This is an important detail that is easy to forget: the lambda/10 rule applies to the wavelength in the medium the signal travels through, not the free-space wavelength. A PCB trace needs to be treated as a transmission line at a lower frequency than you might expect from just looking at the free-space numbers.
+This is an important detail that is easy to forget: the lambda/10 rule applies to the wavelength in the medium the signal travels through, not the free-space wavelength. A PCB trace needs to be treated as a transmission line at a lower frequency than the free-space numbers alone would suggest.
 
 ## Tips
 

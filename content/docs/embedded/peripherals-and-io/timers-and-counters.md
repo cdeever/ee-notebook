@@ -23,9 +23,9 @@ A 16-bit timer clocked at 1 MHz with no prescaler rolls over every 65.536 ms (65
 
 The prescaler divides the input clock before it reaches the counter, effectively setting the timer's time base. A prescaler of 7 divides the clock by 8 (prescaler + 1 in most implementations), so a 72 MHz system clock becomes a 9 MHz timer tick.
 
-**The resolution-range tradeoff:** A larger prescaler gives a longer total period before overflow, but each tick represents a coarser time step. At 1 MHz, each tick is 1 us and a 16-bit timer covers 65.5 ms. Prescale to 1 kHz and each tick is 1 ms, covering 65.5 seconds — but you have lost the ability to time anything shorter than 1 ms.
+**The resolution-range tradeoff:** A larger prescaler gives a longer total period before overflow, but each tick represents a coarser time step. At 1 MHz, each tick is 1 us and a 16-bit timer covers 65.5 ms. Prescale to 1 kHz and each tick is 1 ms, covering 65.5 seconds — but the ability to time anything shorter than 1 ms is lost.
 
-Choosing the prescaler is one of the first decisions when configuring a timer. Start with what resolution you need, work backward to the required prescaler value, and verify the resulting range is sufficient. If both fine resolution and long range are needed, use a 32-bit timer or chain two 16-bit timers (most MCUs support this).
+Choosing the prescaler is one of the first decisions when configuring a timer. Start with the needed resolution, work backward to the required prescaler value, and verify the resulting range is sufficient. If both fine resolution and long range are needed, use a 32-bit timer or chain two 16-bit timers (most MCUs support this).
 
 ## PWM Generation
 

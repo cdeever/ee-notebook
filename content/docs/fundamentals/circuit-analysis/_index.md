@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Circuit Analysis Techniques
 
-Turning schematics into understanding. These techniques are how you go from "I see a schematic" to "I know what this node voltage should be." They're the analytical backbone for debugging, design review, and making sense of someone else's circuit.
+Turning schematics into understanding. These techniques bridge the gap from "I see a schematic" to "I know what this node voltage should be." They're the analytical backbone for debugging, design review, and making sense of someone else's circuit.
 
 ## What This Section Covers
 

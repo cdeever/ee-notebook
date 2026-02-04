@@ -15,7 +15,7 @@ The split is absolute. Code running at EL0 cannot execute privileged instruction
 
 The interface between user space and kernel space is the system call. When user-space code needs to open a file, read from a device, or send a network packet, it invokes a syscall — a controlled transition from EL0 to EL1. The cost is not trivial: hundreds of nanoseconds to a few microseconds for the round-trip. On an MCU, writing to a peripheral register is a single store instruction. On an MPU through the kernel, that same conceptual operation takes orders of magnitude longer.
 
-One thing worth internalizing: running as root does not make your code kernel-space code. Root is a user-space concept — the kernel grants more permission checks, but your code still runs at EL0, still goes through syscalls, and still cannot touch hardware directly.
+One thing worth internalizing: running as root does not make application code kernel-space code. Root is a user-space concept — the kernel grants more permission checks, but the code still runs at EL0, still goes through syscalls, and still cannot touch hardware directly.
 
 ## Kernel Drivers
 
@@ -33,7 +33,7 @@ The `sysfs` filesystem at `/sys/` exposes device attributes as simple files. An 
 
 Simple I/O — sensors polled at low rates, LEDs, simple actuators — works fine from user space. See [GPIO]({{< relref "/docs/embedded/peripherals-and-io/gpio" >}}) and [SPI & I2C]({{< relref "/docs/embedded/communication-interfaces/spi-and-i2c" >}}) for how these interfaces work at the MCU register level.
 
-## When You Need a Kernel Driver
+## When a Kernel Driver Is Needed
 
 User-space access is convenient but has hard limits.
 

@@ -61,11 +61,11 @@ The reasons are cumulative:
 
 **Loading effects.** A hand near a circuit introduces capacitance (a human body has roughly 100 pF to ground). At 100 MHz, 100 pF has an impedance of 16 ohm. A hand near a high-impedance node adds a significant load. This is why RF circuits on the bench sometimes behave differently depending on operator proximity.
 
-**Resonance detuning.** If the wire or cable is part of a resonant structure (even unintentionally), moving it changes the resonant frequency. An oscillator whose frequency shifts when you move a nearby cable has parasitic coupling to that cable — the cable is part of the resonant circuit.
+**Resonance detuning.** If the wire or cable is part of a resonant structure (even unintentionally), moving it changes the resonant frequency. An oscillator whose frequency shifts when a nearby cable is moved has parasitic coupling to that cable — the cable is part of the resonant circuit.
 
 ## The Mindset Shift
 
-Working effectively at RF requires a fundamental change in how you think about circuits:
+Working effectively at RF requires a fundamental change in how circuits are understood:
 
 **From nodes to fields.** Instead of asking "what is the voltage at this node?", ask "what is the field distribution in this region?" Problems arise from field interactions, not just node voltages.
 
@@ -75,7 +75,7 @@ Working effectively at RF requires a fundamental change in how you think about c
 
 **From schematics to layouts.** The schematic defines the intentional circuit. The layout defines the actual circuit, including all the unintentional coupling, radiation, and parasitic elements. In RF, the layout often matters more than the schematic. Two identical schematics with different layouts will perform differently.
 
-**From measurement to interaction.** At RF, connecting a measurement instrument changes the circuit. A probe adds capacitance and a ground path. A cable adds an antenna. A spectrum analyzer input adds a load. The measurement is never passive — you must account for the instrument's effect on the circuit.
+**From measurement to interaction.** At RF, connecting a measurement instrument changes the circuit. A probe adds capacitance and a ground path. A cable adds an antenna. A spectrum analyzer input adds a load. The measurement is never passive — the instrument's effect on the circuit must be accounted for.
 
 ## Tips
 

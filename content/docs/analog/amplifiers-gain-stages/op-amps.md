@@ -24,17 +24,17 @@ These assumptions lead to two golden rules for negative feedback circuits:
 - **No current flows into the inputs** (from assumption 2)
 - **The two inputs are at the same voltage** (from assumption 1 + negative feedback)
 
-Apply these two rules, and you can analyze any op-amp feedback circuit with just KCL and Ohm's law.
+Apply these two rules, and any op-amp feedback circuit can be analyzed with just KCL and Ohm's law.
 
 ## Why the Ideal Assumptions Fail
 
-Every real op-amp violates all five assumptions. The question is whether the violations matter for your application.
+Every real op-amp violates all five assumptions. The question is whether the violations matter for the application.
 
 **Finite open-loop gain (A_OL):**
 - Typical: 100 dB (100,000 V/V) at DC
 - Drops at 20 dB/decade above the dominant pole (usually a few Hz to a few hundred Hz)
 - At the gain-bandwidth product (GBW) frequency, A_OL = 1
-- Closed-loop gain can't exceed A_OL at any frequency. If your circuit needs gain of 100 at 1 MHz, you need an op-amp with GBW > 100 MHz
+- Closed-loop gain can't exceed A_OL at any frequency. If a circuit needs gain of 100 at 1 MHz, the op-amp must have GBW > 100 MHz
 
 **Finite input impedance:**
 - Typically megaohms to teraohms for FET-input op-amps
@@ -84,7 +84,7 @@ Every real op-amp violates all five assumptions. The question is whether the vio
 ### Differential Amplifier
 
 - Amplifies the difference between two inputs while rejecting what's common to both
-- Depends critically on resistor matching. 1% resistor mismatch in a differential amp can give you only 40 dB common-mode rejection. For better CMRR, use instrumentation amplifiers (three op-amp topology)
+- Depends critically on resistor matching. 1% resistor mismatch in a differential amp limits common-mode rejection to about 40 dB. For better CMRR, use instrumentation amplifiers (three op-amp topology)
 
 ## Real-World Limitations Checklist
 

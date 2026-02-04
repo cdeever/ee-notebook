@@ -9,11 +9,11 @@ Two niche serial interfaces that come up often enough to be worth knowing. 1-Wir
 
 ## 1-Wire
 
-1-Wire is a Dallas/Maxim protocol that lives up to its name: one data wire plus ground. Power can even be derived parasitically from the data line, so in some configurations you literally need only two conductors to talk to a device and power it.
+1-Wire is a Dallas/Maxim protocol that lives up to its name: one data wire plus ground. Power can even be derived parasitically from the data line, so in some configurations only two conductors are needed to talk to a device and power it.
 
 ### Common Uses
 
-The most widely used 1-Wire device is the DS18B20 temperature sensor. iButtons (authentication tokens and data loggers) also use 1-Wire. The protocol is niche compared to I2C or SPI, but it has a loyal following in applications where you need many temperature sensors on a single wire — home automation, industrial monitoring, aquarium controllers.
+The most widely used 1-Wire device is the DS18B20 temperature sensor. iButtons (authentication tokens and data loggers) also use 1-Wire. The protocol is niche compared to I2C or SPI, but it has a loyal following in applications requiring many temperature sensors on a single wire — home automation, industrial monitoring, aquarium controllers.
 
 ### MCU Implementation
 
@@ -33,9 +33,9 @@ External VCC power avoids this issue entirely and is the simpler option when wir
 
 ### Device Discovery
 
-Every 1-Wire device has a factory-programmed 64-bit ROM code (8-bit family code, 48-bit serial number, 8-bit CRC). The protocol includes a ROM search algorithm that discovers all devices on the bus by walking a binary tree of ROM codes. This is elegant but slow — each search pass takes hundreds of bit operations, and you need multiple passes to find all devices.
+Every 1-Wire device has a factory-programmed 64-bit ROM code (8-bit family code, 48-bit serial number, 8-bit CRC). The protocol includes a ROM search algorithm that discovers all devices on the bus by walking a binary tree of ROM codes. This is elegant but slow — each search pass takes hundreds of bit operations, and multiple passes are needed to find all devices.
 
-In practice, you often know which devices are on the bus and can skip discovery, addressing them directly by ROM code.
+In practice, the devices on the bus are often known ahead of time, allowing discovery to be skipped and devices addressed directly by ROM code.
 
 ### Performance
 
@@ -57,13 +57,13 @@ SMBus and I2C share the same physical layer — two-wire, open-drain, pull-up re
 
 ### Common Uses
 
-SMBus is the standard interface for laptop battery packs (the "smart battery" protocol), power supply monitoring (PMBus, which is a superset of SMBus), board management controllers, and temperature monitoring ICs in servers and PCs. If you are working with power management ICs or battery fuel gauges, you will encounter SMBus.
+SMBus is the standard interface for laptop battery packs (the "smart battery" protocol), power supply monitoring (PMBus, which is a superset of SMBus), board management controllers, and temperature monitoring ICs in servers and PCs. In practice, working with power management ICs or battery fuel gauges means encountering SMBus.
 
 ### MCU Perspective
 
 Most MCU I2C peripherals can communicate with SMBus devices without modification at the electrical level. The I2C hardware handles start/stop conditions, addressing, and ACK/NACK the same way. What the firmware needs to handle varies by device:
 
-**PEC**: If the SMBus device requires PEC on certain commands (check the datasheet — some make it optional, some mandate it), firmware must compute and append the CRC-8 byte for writes, and verify it for reads. Some MCU I2C peripherals (STM32, for example) have hardware PEC calculation built into the I2C block — you enable it in a register and the hardware appends or checks the CRC automatically. On MCUs without hardware PEC, it is a simple software CRC.
+**PEC**: If the SMBus device requires PEC on certain commands (check the datasheet — some make it optional, some mandate it), firmware must compute and append the CRC-8 byte for writes, and verify it for reads. Some MCU I2C peripherals (STM32, for example) have hardware PEC calculation built into the I2C block — enable it in a register and the hardware appends or checks the CRC automatically. On MCUs without hardware PEC, it is a simple software CRC.
 
 **Timeouts**: SMBus's 35ms clock-low timeout means firmware should configure an I2C timeout to detect and recover from a stuck bus. Many I2C peripherals have a configurable timeout, but it is often disabled by default. Without it, a misbehaving SMBus device can hang the I2C driver indefinitely.
 
@@ -71,7 +71,7 @@ Most MCU I2C peripherals can communicate with SMBus devices without modification
 
 ### Practical Notes
 
-If a device datasheet says "SMBus compatible," your I2C peripheral will almost certainly communicate with it. Start with a normal I2C read/write and see if it responds. Then check whether the specific commands you need require PEC — many devices accept commands with or without PEC, but a few refuse commands that lack it. The PMBus specification is particularly strict about PEC for certain write operations.
+If a device datasheet says "SMBus compatible," a standard I2C peripheral will almost certainly communicate with it. Start with a normal I2C read/write and see if it responds. Then check whether the specific commands needed require PEC — many devices accept commands with or without PEC, but a few refuse commands that lack it. The PMBus specification is particularly strict about PEC for certain write operations.
 
 The clock low timeout is worth implementing in firmware regardless of SMBus — it protects against [I2C bus lockup]({{< relref "spi-and-i2c" >}}), which is a real failure mode on any I2C bus.
 

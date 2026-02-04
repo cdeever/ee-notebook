@@ -27,7 +27,7 @@ With emitter degeneration (R_E in the emitter path): A_v ≈ -R_C / R_E. This tr
 
 Without degeneration, gain depends on g_m, which depends on bias current, which depends on temperature, component tolerances, and supply voltage. The gain is high but unpredictable.
 
-With degeneration, gain depends on R_C / R_E — a resistor ratio. Resistors are stable, predictable, and cheap. You trade raw gain for predictability. This is the same principle that makes op-amp circuits work (feedback sets the gain).
+With degeneration, gain depends on R_C / R_E — a resistor ratio. Resistors are stable, predictable, and cheap. The tradeoff is raw gain for predictability. This is the same principle that makes op-amp circuits work (feedback sets the gain).
 
 ## Common Collector (Emitter Follower) / Common Drain (Source Follower)
 
@@ -40,7 +40,7 @@ Input at the base (gate), output at the emitter (source). The collector (drain) 
 - Low output impedance (approximately 1/g_m)
 - Current gain: high
 
-The emitter follower doesn't amplify voltage — it amplifies current. It transforms a high-impedance source into a low-impedance output. Use it when you need to drive a load without loading the source, or as a buffer between a high-impedance signal and a low-impedance load.
+The emitter follower doesn't amplify voltage — it amplifies current. It transforms a high-impedance source into a low-impedance output. Use it to drive a load without loading the source, or as a buffer between a high-impedance signal and a low-impedance load.
 
 **Output impedance:** Z_out ≈ (R_source / beta) + (1/g_m) for a BJT. At moderate currents, this is tens of ohms — much lower than the source impedance.
 

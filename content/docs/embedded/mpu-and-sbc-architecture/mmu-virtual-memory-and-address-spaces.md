@@ -9,9 +9,9 @@ The MMU is the biggest conceptual leap from MCU to MPU. On an MCU, a pointer is 
 
 ## Why Virtual Memory Exists
 
-On a microcontroller, every piece of code shares one flat physical address space. Your main loop, your ISRs, your RTOS tasks — they all see the same memory, can write to the same addresses, and can corrupt each other freely. See [Memory Map]({{< relref "/docs/embedded/mcu-architecture/memory-map" >}}) for how that flat physical address space works on Cortex-M.
+On a microcontroller, every piece of code shares one flat physical address space. The main loop, ISRs, RTOS tasks — they all see the same memory, can write to the same addresses, and can corrupt each other freely. See [Memory Map]({{< relref "/docs/embedded/mcu-architecture/memory-map" >}}) for how that flat physical address space works on Cortex-M.
 
-Virtual memory solves problems that emerge when running multiple independent programs on the same hardware. Isolation: a buggy process must not corrupt another's data. Protection: user-space code must not access kernel memory. Convenience: each process pretends it has the entire address space to itself. Additional benefits follow from the same mechanism — shared libraries loaded once in physical memory can be mapped into every process that needs them, and memory-mapped files let you access file contents as if they were in memory.
+Virtual memory solves problems that emerge when running multiple independent programs on the same hardware. Isolation: a buggy process must not corrupt another's data. Protection: user-space code must not access kernel memory. Convenience: each process sees the entire address space as its own. Additional benefits follow from the same mechanism — shared libraries loaded once in physical memory can be mapped into every process that needs them, and memory-mapped files allow accessing file contents as if they were in memory.
 
 All of this requires hardware support. The MMU sits between the CPU and the memory bus, translating every virtual address to a physical address on the fly. Without it, none of these features are practical.
 

@@ -5,7 +5,7 @@ weight: 30
 
 # USB
 
-USB is one of those interfaces where the hardware peripheral does surprisingly little and the firmware does almost everything. The MCU provides the electrical interface and handles low-level packet mechanics, but enumeration, device class behavior, descriptor management, and data flow are all firmware's problem. Compared to [UART]({{< relref "uart" >}}) or [SPI]({{< relref "spi-and-i2c" >}}) where you configure a few registers and start moving bytes, USB requires a complete protocol stack to do anything useful.
+USB is one of those interfaces where the hardware peripheral does surprisingly little and the firmware does almost everything. The MCU provides the electrical interface and handles low-level packet mechanics, but enumeration, device class behavior, descriptor management, and data flow are all firmware's problem. Compared to [UART]({{< relref "uart" >}}) or [SPI]({{< relref "spi-and-i2c" >}}) where configuring a few registers and starting to move bytes is straightforward, USB requires a complete protocol stack to do anything useful.
 
 This page covers USB from the MCU/firmware perspective — what the hardware provides, what firmware must handle, and the practical realities of getting a USB device working on an embedded system.
 
@@ -18,9 +18,9 @@ USB is fundamentally asymmetric. There is always a **host** and a **device**, an
 
 Some MCUs support **OTG (On-The-Go)**, which means the same peripheral can operate as either host or device, negotiating the role at connection time via the ID pin on the USB connector. OTG is useful for niche applications — an embedded device that can talk to a USB flash drive when acting as host, or appear as a serial device when connected to a PC. But OTG adds complexity to both hardware and firmware, and most projects never need it.
 
-For embedded development, the practical reality is: you are building a USB device. The host is a PC (or phone, or SBC) running a full operating system with mature USB host drivers. Your firmware's job is to appear as a well-behaved device that the host can enumerate and communicate with.
+For embedded development, the practical reality is: the firmware is building a USB device. The host is a PC (or phone, or SBC) running a full operating system with mature USB host drivers. The firmware's job is to appear as a well-behaved device that the host can enumerate and communicate with.
 
-I have not personally done much with host-mode USB on MCUs. The few times I have seen it used, it was for reading USB mass storage devices (flash drives) in data logging applications. It works, but the host stack consumes significant RAM and flash, and debugging is harder because you are now responsible for both sides of the protocol.
+I have not personally done much with host-mode USB on MCUs. The few times I have seen it used, it was for reading USB mass storage devices (flash drives) in data logging applications. It works, but the host stack consumes significant RAM and flash, and debugging is harder because the developer is now responsible for both sides of the protocol.
 
 ## Speed Grades
 
@@ -50,7 +50,7 @@ USB defines four transfer types, each designed for different use cases. Understa
 
 **Bulk Transfers** — Designed for large, non-time-critical data. MSC (mass storage) and CDC (serial) use bulk transfers. Bulk gets whatever bandwidth is left over after control, interrupt, and isochronous transfers are scheduled. There is no latency guarantee — in a busy USB bus, bulk transfers can be delayed significantly. But bulk has error detection and automatic retransmission, so data integrity is guaranteed. For most embedded data transfer applications, bulk is the right choice.
 
-**Interrupt Transfers** — Despite the name, these are not interrupt-driven in the hardware sense. The host polls the device at a guaranteed interval (1 ms to 255 ms at full speed). HID devices use interrupt transfers — when you press a key, the keyboard reports it on the next poll. The guaranteed polling interval means bounded latency, which is why HID feels responsive. The tradeoff is limited bandwidth: at full speed with a 1 ms polling interval and 64-byte packets, the maximum is 64 KB/s.
+**Interrupt Transfers** — Despite the name, these are not interrupt-driven in the hardware sense. The host polls the device at a guaranteed interval (1 ms to 255 ms at full speed). HID devices use interrupt transfers — when a key is pressed, the keyboard reports it on the next poll. The guaranteed polling interval means bounded latency, which is why HID feels responsive. The tradeoff is limited bandwidth: at full speed with a 1 ms polling interval and 64-byte packets, the maximum is 64 KB/s.
 
 **Isochronous Transfers** — Fixed bandwidth, guaranteed timing, but no error recovery. If a packet is corrupted, it is lost — there is no retransmission. This is designed for streaming data where a late packet is worse than a lost packet: audio and video. USB audio devices use isochronous transfers to maintain a constant sample rate. Implementing isochronous transfers in firmware is more complex because the timing constraints are hard and the buffer management must be precise. I have not implemented isochronous transfers myself yet, but from what I have read, the interaction between the USB frame timing and the audio sample clock is the tricky part.
 
@@ -86,7 +86,7 @@ Device classes define how the device behaves after enumeration. The most common 
 
 **Vendor-Specific** — A custom protocol where the device does not conform to any standard class. The device uses vendor-specific interface descriptors and defines its own endpoint layout and data format. The downside: the host needs a custom driver (or uses a generic USB library like libusb). This is the right choice when no standard class fits, but the need for host-side software makes it less convenient than using a standard class.
 
-**Composite Devices** — A single USB device that presents multiple classes simultaneously. For example, CDC + MSC (serial console and mass storage on the same device) or CDC + HID. The device descriptor sets the class to 0x00 (defined at interface level), and each interface has its own class. Composite devices require more endpoints and more careful descriptor layout, but USB stack libraries like TinyUSB make this manageable. I have used CDC + MSC composite devices for data loggers where you want both a serial debug console and the ability to read log files as a mass storage device.
+**Composite Devices** — A single USB device that presents multiple classes simultaneously. For example, CDC + MSC (serial console and mass storage on the same device) or CDC + HID. The device descriptor sets the class to 0x00 (defined at interface level), and each interface has its own class. Composite devices require more endpoints and more careful descriptor layout, but USB stack libraries like TinyUSB make this manageable. I have used CDC + MSC composite devices for data loggers where both a serial debug console and the ability to read log files as a mass storage device are needed.
 
 ### Clock Requirements
 
@@ -96,17 +96,17 @@ If the clock is slightly off, the device may enumerate but then fail intermitten
 
 ## USB Stacks and Libraries
 
-Nobody writes USB from scratch. The protocol is too complex and too fiddly for hand-rolled implementations to be worthwhile. The practical reality is that you pick a USB stack library and configure it for your device class and MCU.
+Nobody writes USB from scratch. The protocol is too complex and too fiddly for hand-rolled implementations to be worthwhile. The practical reality is picking a USB stack library and configuring it for the target device class and MCU.
 
 **TinyUSB** — The current best choice for most new projects. It is portable across many MCU families (STM32, NXP, RP2040, ESP32-S2/S3, and more), well-documented, actively maintained, and supports device and host modes. The API is clean, the examples are practical, and the community is helpful. If I were starting a new USB project today, I would use TinyUSB unless there was a specific reason not to.
 
-**STM32 USB Middleware** — ST's own USB stack, generated by STM32CubeMX. It works and integrates with the rest of the HAL ecosystem, but the code is harder to follow than TinyUSB and the documentation is thinner. The generated code tends to be verbose and the abstraction layers can make debugging harder. That said, if you are already deep in the STM32 HAL ecosystem and using CubeMX for everything, it is the path of least resistance.
+**STM32 USB Middleware** — ST's own USB stack, generated by STM32CubeMX. It works and integrates with the rest of the HAL ecosystem, but the code is harder to follow than TinyUSB and the documentation is thinner. The generated code tends to be verbose and the abstraction layers can make debugging harder. That said, for projects already deep in the STM32 HAL ecosystem and using CubeMX for everything, it is the path of least resistance.
 
-**LUFA (Lightweight USB Framework for AVRs)** — The go-to for AVR-based USB (ATmega32U4, AT90USB1287). Mature and well-tested, but AVR-specific. If you are working with Arduino Leonardo/Pro Micro style boards, LUFA (or the Arduino USB stack built on it) is what you will encounter.
+**LUFA (Lightweight USB Framework for AVRs)** — The go-to for AVR-based USB (ATmega32U4, AT90USB1287). Mature and well-tested, but AVR-specific. When working with Arduino Leonardo/Pro Micro style boards, LUFA (or the Arduino USB stack built on it) is what comes up.
 
-The common pattern across all these stacks: you provide descriptor tables, implement callbacks for class-specific events (data received, data requested, configuration changed), and the stack handles the protocol machinery. Getting the descriptors right is still your problem, but the stack handles the enumeration state machine, endpoint management, and low-level peripheral interaction.
+The common pattern across all these stacks: provide descriptor tables, implement callbacks for class-specific events (data received, data requested, configuration changed), and the stack handles the protocol machinery. Getting the descriptors right is still the developer's problem, but the stack handles the enumeration state machine, endpoint management, and low-level peripheral interaction.
 
-One thing I have learned: read the USB stack's examples first, then modify them for your use case. Starting from a working CDC example and changing it to do what you need is dramatically faster than trying to configure a USB stack from scratch based on the API documentation.
+One thing I have learned: read the USB stack's examples first, then modify them for the target use case. Starting from a working CDC example and adapting it is dramatically faster than trying to configure a USB stack from scratch based on the API documentation.
 
 ## Power Delivery
 
@@ -122,9 +122,9 @@ USB provides power as well as data, and the power specifications interact with f
 
 ## DMA and USB
 
-Some MCU USB peripherals support [DMA]({{< relref "dma" >}}) for moving data between the endpoint buffers and application memory. Whether this matters depends on the data rate and how much CPU time you can afford to spend on USB data handling. For a CDC serial port running at a few KB/s, interrupt-driven transfers are fine. For MSC or high-throughput vendor-specific devices, DMA can free up significant CPU time.
+Some MCU USB peripherals support [DMA]({{< relref "dma" >}}) for moving data between the endpoint buffers and application memory. Whether this matters depends on the data rate and how much CPU time is available for USB data handling. For a CDC serial port running at a few KB/s, interrupt-driven transfers are fine. For MSC or high-throughput vendor-specific devices, DMA can free up significant CPU time.
 
-The details are MCU-specific. On some STM32 parts, the USB peripheral has its own dedicated SRAM for endpoint buffers, and DMA is not directly applicable — the CPU must copy data between this USB SRAM and main RAM. On others (particularly those with the "OTG" USB peripheral), DMA is integrated into the USB data path. Check the reference manual for your specific part.
+The details are MCU-specific. On some STM32 parts, the USB peripheral has its own dedicated SRAM for endpoint buffers, and DMA is not directly applicable — the CPU must copy data between this USB SRAM and main RAM. On others (particularly those with the "OTG" USB peripheral), DMA is integrated into the USB data path. Check the reference manual for the specific part.
 
 ## Tips
 

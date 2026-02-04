@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Impedance Matching
 
-Making power go where you want it.
+Making power go where it needs to go.
 
 Impedance matching is the art of making two parts of an RF system look like they belong together electrically. When impedances are matched, power transfers efficiently and reflections are minimized. When they're not, energy bounces back, signals degrade, and components can be damaged.
 

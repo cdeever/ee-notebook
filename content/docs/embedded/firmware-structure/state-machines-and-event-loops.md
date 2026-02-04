@@ -56,13 +56,13 @@ void run_state_machine(void) {
 }
 ```
 
-This is clear, debuggable, and works well for linear sequences and simple protocols. The state variable tells you exactly where the system is. A transition is a single assignment. Adding a new state means adding a case.
+This is clear, debuggable, and works well for linear sequences and simple protocols. The state variable shows exactly where the system is. A transition is a single assignment. Adding a new state means adding a case.
 
 The limitation: when the number of states and events grows, the switch becomes unwieldy. Transitions are scattered across cases, making it hard to see the full picture. And if multiple independent behaviors need their own state (one for communication, one for sensor management, one for UI), nesting switch-case machines or running them in parallel gets messy fast.
 
 ## Table-Driven State Machines
 
-A table-driven approach separates the state machine's structure from its behavior. You define a table where each row specifies: current state, event, next state, and an action function to call during the transition.
+A table-driven approach separates the state machine's structure from its behavior. The table is defined so that each row specifies: current state, event, next state, and an action function to call during the transition.
 
 ```c
 typedef struct {
@@ -128,11 +128,11 @@ The cooperative model fails when any task cannot guarantee a short execution tim
 - **Cryptographic operations** — Hashing or encryption on a resource-constrained MCU can take significant time
 - **Complex calculations** — Filtering, FFT, or control-loop math that exceeds the scheduling period
 
-When one task overruns, every other task's timing slips. There is no recovery mechanism. If the timing requirements are hard (motor commutation, audio sample rate), this is unacceptable — and the motivation for preemptive scheduling with an RTOS, covered in {{< relref "/docs/embedded/real-time-concepts" >}}. The intermediate solution is to break long operations into smaller chunks that fit within the cooperative time budget, but this adds complexity and only works if you know the worst-case chunk time.
+When one task overruns, every other task's timing slips. There is no recovery mechanism. If the timing requirements are hard (motor commutation, audio sample rate), this is unacceptable — and the motivation for preemptive scheduling with an RTOS, covered in {{< relref "/docs/embedded/real-time-concepts" >}}. The intermediate solution is to break long operations into smaller chunks that fit within the cooperative time budget, but this adds complexity and only works if the worst-case chunk time is known.
 
 ## Avoiding Spaghetti
 
-Without structure, firmware grows into nested if/else chains with hidden state in global flags. State machines and event queues are the antidote — they do not eliminate complexity, but they make it visible. States are named (you can grep for `STATE_ERROR`). Transitions are explicit (the compiler warns about unhandled enum values with `-Wswitch`). Events flow through a single dispatch function, which is a natural place for logging, validation, and breakpoints.
+Without structure, firmware grows into nested if/else chains with hidden state in global flags. State machines and event queues are the antidote — they do not eliminate complexity, but they make it visible. States are named (grep for `STATE_ERROR` to find every reference). Transitions are explicit (the compiler warns about unhandled enum values with `-Wswitch`). Events flow through a single dispatch function, which is a natural place for logging, validation, and breakpoints.
 
 ## Debugging State Machines
 
@@ -145,7 +145,7 @@ void set_state(system_state_t new_state) {
 }
 ```
 
-Where `log_transition` writes to a circular buffer in SRAM, outputs on a debug UART, or toggles trace pins. Even in production firmware, a small transition log in RAM costs almost nothing and is invaluable when diagnosing field failures. On the bench, adding the state variable to the debugger's watch window gives you a live view of the machine. For complex machines, drawing the state diagram on paper and tracing actual transitions against it helps — sometimes the code does not match the intended design, and the diagram makes the discrepancy obvious.
+Where `log_transition` writes to a circular buffer in SRAM, outputs on a debug UART, or toggles trace pins. Even in production firmware, a small transition log in RAM costs almost nothing and is invaluable when diagnosing field failures. On the bench, adding the state variable to the debugger's watch window gives a live view of the machine. For complex machines, drawing the state diagram on paper and tracing actual transitions against it helps — sometimes the code does not match the intended design, and the diagram makes the discrepancy obvious.
 
 ## Tips
 

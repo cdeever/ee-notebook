@@ -5,13 +5,13 @@ weight: 10
 
 # Build Systems & Toolchains
 
-Getting source code into a running microcontroller involves more stages than most developers realize at first. On a desktop, you type `gcc main.c -o main` and run the result. On an embedded target, the CPU cannot run a compiler, the output format matters, the linker script defines the hardware memory layout, and a startup file runs before `main()` even exists. Each stage in this pipeline can produce errors that look like they belong to a different stage entirely, which makes understanding the full chain worth the effort.
+Getting source code into a running microcontroller involves more stages than most developers realize at first. On a desktop, the typical workflow is `gcc main.c -o main` and run the result. On an embedded target, the CPU cannot run a compiler, the output format matters, the linker script defines the hardware memory layout, and a startup file runs before `main()` even exists. Each stage in this pipeline can produce errors that look like they belong to a different stage entirely, which makes understanding the full chain worth the effort.
 
 ## Cross-Compilation
 
 The target microcontroller has no operating system, no filesystem, and nowhere near enough memory to run a compiler. So the host machine — a laptop or desktop — runs a compiler that emits instructions for the target architecture. For ARM Cortex-M, the standard toolchain is `arm-none-eabi-gcc`: ARM architecture, no operating system, Embedded ABI. The "none" is important. It means no assumptions about a hosted environment — no `printf` that writes to a terminal, no `malloc` backed by an OS heap, no standard I/O.
 
-Installing the toolchain is usually straightforward (package managers, ARM's downloads, or bundled with an IDE), but version mismatches between the compiler, newlib (the embedded C library), and your project's expected ABI can produce linker errors that are genuinely baffling. I keep the toolchain version pinned per project for this reason.
+Installing the toolchain is usually straightforward (package managers, ARM's downloads, or bundled with an IDE), but version mismatches between the compiler, newlib (the embedded C library), and the project's expected ABI can produce linker errors that are genuinely baffling. I keep the toolchain version pinned per project for this reason.
 
 ## The Compilation Pipeline
 
@@ -29,8 +29,8 @@ An error at any stage can masquerade as something else. A missing `volatile` qua
 
 Not all flags are equal. These are the ones I find myself reaching for repeatedly on Cortex-M projects:
 
-- **`-O0`** — No optimization. Variables live where you expect. Stepping in the debugger follows the source line by line. Essential for debugging, but the binary is large and slow. A project that fits in flash at `-Os` may overflow at `-O0` — keep both build configurations working.
-- **`-O2` / `-Os`** — Production optimization. `-Os` optimizes for size, which is often the right choice when flash is tight. The debugger may skip lines, reorder operations, or eliminate variables entirely. If a bug disappears at `-O2`, it is almost certainly a missing `volatile` or an undefined-behavior issue in your code, not a compiler bug.
+- **`-O0`** — No optimization. Variables live where expected. Stepping in the debugger follows the source line by line. Essential for debugging, but the binary is large and slow. A project that fits in flash at `-Os` may overflow at `-O0` — keep both build configurations working.
+- **`-O2` / `-Os`** — Production optimization. `-Os` optimizes for size, which is often the right choice when flash is tight. The debugger may skip lines, reorder operations, or eliminate variables entirely. If a bug disappears at `-O2`, it is almost certainly a missing `volatile` or an undefined-behavior issue in the code, not a compiler bug.
 - **`-Wall -Wextra`** — Enable the important warnings. I treat warnings as errors (`-Werror`) in CI builds. The compiler catches real bugs here: sign comparison, unused variables, implicit fallthrough in switch statements.
 - **`-ffunction-sections -fdata-sections`** paired with **`-Wl,--gc-sections`** — Places each function and global variable in its own linker section, then lets the linker discard sections that are never referenced. This is dead code elimination, and it can save significant flash on projects that pull in libraries where only a fraction of functions are used.
 - **`-mthumb`** — Selects Thumb instruction encoding, which is the standard (and often only) mode for Cortex-M. Forgetting this flag with a bare `arm-none-eabi-gcc` invocation produces ARM-mode code that the Cortex-M cannot execute.
@@ -49,19 +49,19 @@ MEMORY {
 
 Sections placement follows a standard pattern: `.text` (executable code) and `.rodata` (constants) go in flash. `.data` (initialized globals) is stored in flash but copied to SRAM at startup. `.bss` (zero-initialized globals) is zeroed in SRAM at startup. The stack typically starts at the top of SRAM and grows downward. See {{< relref "/docs/embedded/mcu-architecture/memory-map" >}} for how these sections map to the hardware address space.
 
-Getting the linker script wrong is uniquely dangerous because the build succeeds. The linker trusts you. If you declare 128 KB of SRAM on a chip that only has 64 KB, the linker places data in nonexistent memory, and the firmware crashes at runtime with no compile-time warning.
+Getting the linker script wrong is uniquely dangerous because the build succeeds. The linker trusts the script. If the script declares 128 KB of SRAM on a chip that only has 64 KB, the linker places data in nonexistent memory, and the firmware crashes at runtime with no compile-time warning.
 
-Vendor-provided linker scripts are a good starting point, but they often include features you may not need (heap allocation, multiple SRAM banks) or make assumptions about stack size that do not match your application. Reading the vendor's linker script line by line, at least once, is time well spent.
+Vendor-provided linker scripts are a good starting point, but they often include features that may not be needed (heap allocation, multiple SRAM banks) or make assumptions about stack size that do not match the application. Reading the vendor's linker script line by line, at least once, is time well spent.
 
 ## The Startup File
 
 Before `main()`, someone has to set up the vector table, copy `.data` from flash to SRAM, zero `.bss`, and call `SystemInit()`. That someone is the startup file — usually assembly (e.g., `startup_stm32f411xe.s`) provided by the MCU vendor. For details on what the startup file does and why it matters, see {{< relref "/docs/embedded/firmware-structure/startup-and-initialization" >}}.
 
-Most projects never modify the startup file, and that is fine. But when you need to add an early debug GPIO toggle, change the initial stack location, or support a custom bootloader entry, understanding what this file does is essential. It is not magic — it is a short sequence of loads, stores, and branch instructions.
+Most projects never modify the startup file, and that is fine. But when adding an early debug GPIO toggle, change the initial stack location, or support a custom bootloader entry, understanding what this file does is essential. It is not magic — it is a short sequence of loads, stores, and branch instructions.
 
 ## ELF vs Binary vs Intel HEX
 
-The linker produces an ELF (Executable and Linkable Format) file. ELF contains everything: machine code, debug symbols, section headers, relocation info. Your debugger reads the ELF file to map addresses back to source lines.
+The linker produces an ELF (Executable and Linkable Format) file. ELF contains everything: machine code, debug symbols, section headers, relocation info. The debugger reads the ELF file to map addresses back to source lines.
 
 Flash programmers and bootloaders typically want one of two formats:
 
@@ -74,19 +74,19 @@ Another useful tool is `arm-none-eabi-objdump`, which can disassemble the ELF fi
 
 ## Build Systems
 
-**Make** is the traditional choice. A `Makefile` lists source files, compiler flags, and build rules. It is transparent — you can read the Makefile and see exactly what commands will run. It is also verbose, error-prone for large projects, and does not handle header dependency tracking well without extra tooling.
+**Make** is the traditional choice. A `Makefile` lists source files, compiler flags, and build rules. It is transparent — reading the Makefile shows exactly what commands will run. It is also verbose, error-prone for large projects, and does not handle header dependency tracking well without extra tooling.
 
 **CMake** is increasingly common in embedded, especially with frameworks like Zephyr and STM32CubeIDE's newer project formats. CMake generates build files (Makefiles, Ninja files) from a higher-level description. It handles cross-compilation via toolchain files, and dependency tracking is automatic. The learning curve is real, but for multi-target or multi-library projects, it pays off.
 
-**Vendor IDEs** (STM32CubeIDE, Keil, IAR) hide the build system behind a GUI. This works until it does not — when you need to add a custom linker script section, integrate a third-party library, or reproduce the build in CI. Understanding what the IDE is doing underneath (which compiler flags, which linker script, which startup file) matters when the GUI options are not enough.
+**Vendor IDEs** (STM32CubeIDE, Keil, IAR) hide the build system behind a GUI. This works until it does not — when adding a custom linker script section, integrating a third-party library, or reproducing the build in CI. Understanding what the IDE is doing underneath (which compiler flags, which linker script, which startup file) matters when the GUI options are not enough.
 
-Whichever build system you use, the goal is the same: reproducible builds. Given the same source, the same toolchain version, and the same flags, the output should be identical every time. When a build breaks, the first question is always "what changed?" — and a well-structured build system makes that question answerable.
+Whichever build system is chosen, the goal is the same: reproducible builds. Given the same source, the same toolchain version, and the same flags, the output should be identical every time. When a build breaks, the first question is always "what changed?" — and a well-structured build system makes that question answerable.
 
 ## Map Files
 
 The linker's map file (`-Wl,-Map=firmware.map`) is the report card for the build. It shows where every function and variable was placed, how much flash and SRAM are used, and which sections are consuming the most space.
 
-When the build fails with "region FLASH overflowed" or "region SRAM overflowed," the map file tells you exactly what filled up. I check the map file periodically even when the build succeeds, to catch memory usage trends before they become emergencies.
+When the build fails with "region FLASH overflowed" or "region SRAM overflowed," the map file shows exactly what filled up. I check the map file periodically even when the build succeeds, to catch memory usage trends before they become emergencies.
 
 Reading a map file for the first time is overwhelming — they are long and dense. Start by looking at the memory usage summary at the bottom (total flash used, total SRAM used) and the list of symbols sorted by size. The largest functions and data objects are usually the first candidates for optimization when space runs tight. Tools like `puncover` or `bloaty` can parse map files and present the data more readably, but the raw map file is always available and requires no extra tooling.
 

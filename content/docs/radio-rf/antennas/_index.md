@@ -16,9 +16,9 @@ Antenna design is where circuit theory meets electromagnetic field theory — an
 
 - **[What an Antenna Actually Does]({{< relref "what-an-antenna-actually-does" >}})** — The physical mechanism of radiation, reciprocity, gain, and how to read radiation patterns.
 - **[Common Antenna Types]({{< relref "common-antenna-types" >}})** — A practical survey of dipoles, monopoles, loops, patches, Yagis, and their tradeoffs.
-- **[Radiation Resistance & Efficiency]({{< relref "radiation-resistance-and-efficiency" >}})** — Understanding what limits how much of your transmit power actually gets radiated.
+- **[Radiation Resistance & Efficiency]({{< relref "radiation-resistance-and-efficiency" >}})** — Understanding what limits how much transmit power actually gets radiated.
 - **[Polarization & Orientation]({{< relref "polarization-and-orientation" >}})** — How wave orientation affects signal strength and when it matters in practice.
 - **[Ground Planes & Counterpoise]({{< relref "ground-planes-and-counterpoise" >}})** — The often-misunderstood "other half" of monopole antennas and PCB antenna designs.
 - **[Antenna Tuning & Trimming]({{< relref "antenna-tuning-and-trimming" >}})** — Practical techniques for adjusting antenna resonance and impedance match.
-- **[Measuring Antennas Without a Lab]({{< relref "measuring-antennas" >}})** — What you can learn with a NanoVNA and field measurements, and what requires serious facilities.
-- **[Antennas in Enclosures & Real Environments]({{< relref "antennas-in-enclosures" >}})** — Why antenna performance changes dramatically when you put it in a product or a room.
+- **[Measuring Antennas Without a Lab]({{< relref "measuring-antennas" >}})** — What a NanoVNA and field measurements can reveal, and what requires serious facilities.
+- **[Antennas in Enclosures & Real Environments]({{< relref "antennas-in-enclosures" >}})** — Why antenna performance changes dramatically inside a product or a room.

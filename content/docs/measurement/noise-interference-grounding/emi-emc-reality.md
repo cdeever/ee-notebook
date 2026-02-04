@@ -1,9 +1,9 @@
 ---
-title: "EMI/EMC Reality (When Your Circuit Becomes a Radio)"
+title: "EMI/EMC Reality (When the Circuit Becomes a Radio)"
 weight: 5
 ---
 
-# EMI/EMC Reality (When Your Circuit Becomes a Radio)
+# EMI/EMC Reality (When the Circuit Becomes a Radio)
 
 Every circuit is a radio. It transmits and receives whether intended or not. EMI (electromagnetic interference) is the unwanted signal; EMC (electromagnetic compatibility) is the discipline of making circuits coexist without interfering. In a compliance lab, these are measured against standards with calibrated antennas. At the bench, they're the reason the ADC reads garbage, the microcontroller resets when the relay fires, or the audio circuit buzzes when USB is plugged in.
 

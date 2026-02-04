@@ -18,7 +18,7 @@ Entries cover antennas, impedance matching, transmission lines, RF layout, propa
 
 - **[Transmission Lines]({{< relref "transmission-lines" >}})** — Characteristic impedance, reflections, VSWR, termination, and the behavior of cables and traces as RF components.
 
-- **[Impedance Matching]({{< relref "impedance-matching" >}})** — Making power go where you want it: matching networks, Smith chart techniques, and real-world compromises.
+- **[Impedance Matching]({{< relref "impedance-matching" >}})** — Making power go where it needs to go: matching networks, Smith chart techniques, and real-world compromises.
 
 - **[Antennas]({{< relref "antennas" >}})** — Where circuits meet physics: antenna types, radiation resistance, polarization, tuning, and measurement.
 

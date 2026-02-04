@@ -70,7 +70,7 @@ A solid ground plane under signal traces:
 
 - Keep analog signal traces short, especially high-impedance ones
 - Route sensitive traces away from noisy traces (switching nodes, clock lines, power traces)
-- Don't route analog signals through connectors if you can avoid it (connector pins add capacitance, inductance, and potential contamination)
+- Don't route analog signals through connectors if avoidable (connector pins add capacitance, inductance, and potential contamination)
 
 ### Component Placement
 

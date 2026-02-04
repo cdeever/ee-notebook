@@ -5,7 +5,7 @@ weight: 30
 
 # Concurrency & Shared Resources
 
-The hardest bugs in embedded firmware are concurrency bugs. They appear intermittently, depend on exact timing, and often vanish when you add instrumentation to find them. The root cause is always the same: two execution contexts access the same data, and the result depends on who gets there first. Understanding the problem and the available solutions is essential for writing firmware that does not fail under load at 2 AM in a customer's facility.
+The hardest bugs in embedded firmware are concurrency bugs. They appear intermittently, depend on exact timing, and often vanish when instrumentation is added to find them. The root cause is always the same: two execution contexts access the same data, and the result depends on who gets there first. Understanding the problem and the available solutions is essential for writing firmware that does not fail under load at 2 AM in a customer's facility.
 
 ## The Fundamental Problem
 

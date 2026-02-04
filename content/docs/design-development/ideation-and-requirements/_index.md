@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Ideation & Requirements
 
-Deciding what you're actually building.
+Deciding what to actually build.
 
 Before any schematic is drawn or component is selected, there's a phase where the project takes shape — or fails to. This subsection covers the messy, important work of defining what a project needs to do, what constraints it must operate within, and when building hardware is even the right answer.
 
@@ -14,7 +14,7 @@ Most failed projects fail here, not at the layout stage. Ambiguous requirements,
 
 ## What This Section Covers
 
-- **[Problem Definition vs Solution Bias]({{< relref "problem-definition-vs-solution-bias" >}})** — Recognizing when you're jumping to a circuit before understanding the actual need.
+- **[Problem Definition vs Solution Bias]({{< relref "problem-definition-vs-solution-bias" >}})** — Recognizing the tendency to jump to a circuit before understanding the actual need.
 - **[Functional vs Non-Functional Requirements]({{< relref "functional-vs-non-functional-requirements" >}})** — Separating what the system must do from how well it must do it.
 - **[Component Dependencies & Datasheet-Driven Requirements]({{< relref "component-dependencies-and-datasheet-driven-requirements" >}})** — Reading datasheets to discover what candidate components need, before those needs become surprises.
 - **[Constraints: Size, Power, Cost & Environment]({{< relref "constraints" >}})** — Identifying the boundaries every design must live within.

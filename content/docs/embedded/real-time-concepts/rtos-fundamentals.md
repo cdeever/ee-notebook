@@ -77,7 +77,7 @@ On a 64 KB SRAM MCU, this is comfortable. On a 16 KB SRAM MCU, five tasks with 1
 
 - **Multiple independent activities with different timing requirements** -- a control loop, a communication handler, and a user interface each run at their own rate with their own priority
 - **Clean separation of concerns** -- each task handles one responsibility; interactions happen through explicit primitives rather than shared globals and flags
-- **Built-in synchronization** -- queues, semaphores, and mutexes are tested and correct; writing your own lock-free data structures in bare metal is error-prone
+- **Built-in synchronization** -- queues, semaphores, and mutexes are tested and correct; writing custom lock-free data structures in bare metal is error-prone
 - **Feature growth** -- adding a new feature means adding a new task, not restructuring the superloop. Existing task timing is less affected because the scheduler handles preemption
 
 ## When an RTOS Hurts
@@ -91,7 +91,7 @@ On a 64 KB SRAM MCU, this is comfortable. On a 16 KB SRAM MCU, five tasks with 1
 
 **FreeRTOS** is the most widely used embedded RTOS. It is small (a few thousand lines of kernel code), well-documented, and runs on virtually every MCU with more than a few KB of RAM. Amazon maintains it now, with cloud connectivity features added. For learning RTOS concepts, FreeRTOS is the standard starting point.
 
-**Zephyr** is a more ambitious project -- closer to a full embedded OS than a minimal kernel. It includes a device tree model, a driver framework, networking stacks, Bluetooth, and a build system (west + CMake). The learning curve is steeper, but the payoff is a richer ecosystem. I think of Zephyr as where you go when FreeRTOS feels too bare.
+**Zephyr** is a more ambitious project -- closer to a full embedded OS than a minimal kernel. It includes a device tree model, a driver framework, networking stacks, Bluetooth, and a build system (west + CMake). The learning curve is steeper, but the payoff is a richer ecosystem. I think of Zephyr as what comes next when FreeRTOS feels too bare.
 
 **ThreadX** (now Azure RTOS), **ChibiOS**, **RT-Thread**, and **NuttX** fill various niches. ChibiOS has very fast context switching and a strong STM32 HAL. NuttX targets POSIX compatibility. ThreadX is known for safety certifications.
 

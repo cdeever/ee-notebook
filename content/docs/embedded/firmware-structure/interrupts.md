@@ -5,13 +5,13 @@ weight: 20
 
 # Interrupts
 
-Interrupts are the fundamental mechanism for real-time response in embedded systems. Instead of constantly polling a peripheral to see if something happened, the hardware itself signals the CPU: "stop what you are doing and handle this." The CPU saves its current context, jumps to a handler function, executes it, restores context, and resumes where it left off. This sounds straightforward, but the details — priority levels, nesting, shared data, and latency — are where most embedded bugs come from.
+Interrupts are the fundamental mechanism for real-time response in embedded systems. Instead of constantly polling a peripheral to see if something happened, the hardware itself signals the CPU: "stop what is happening and handle this." The CPU saves its current context, jumps to a handler function, executes it, restores context, and resumes where it left off. This sounds straightforward, but the details — priority levels, nesting, shared data, and latency — are where most embedded bugs come from.
 
 ## How Interrupts Work
 
 When a peripheral (timer overflow, UART byte received, GPIO edge detected) asserts its interrupt line, the CPU finishes the current instruction, pushes a set of registers onto the stack (on Cortex-M: R0-R3, R12, LR, PC, xPSR — eight words), fetches the handler address from the vector table, and begins executing the ISR. When the ISR returns (via a special return value in the LR), the CPU pops the saved registers and resumes the interrupted code.
 
-This context save/restore is automatic on Cortex-M — the hardware does it, not the compiler. This means ISR functions in C look like normal functions with no special prologue or epilogue (unlike AVR, where the compiler must generate explicit register save/restore sequences, and you need the `ISR()` macro or `__attribute__((interrupt))` to get the right code generation).
+This context save/restore is automatic on Cortex-M — the hardware does it, not the compiler. This means ISR functions in C look like normal functions with no special prologue or epilogue (unlike AVR, where the compiler must generate explicit register save/restore sequences, and the `ISR()` macro or `__attribute__((interrupt))` to get the right code generation).
 
 ## The NVIC
 
@@ -46,7 +46,7 @@ Interrupt latency is the time from the hardware event (e.g., pin edge) to the fi
 
 In practice, latency is longer than 12 cycles because of:
 
-- **Higher-priority ISR already running** — Your interrupt waits until the higher-priority handler finishes
+- **Higher-priority ISR already running** — The pending interrupt waits until the higher-priority handler finishes
 - **Disabled-interrupt regions** — Code that disables interrupts (via `__disable_irq()` or `PRIMASK`) adds the disabled window duration directly to the latency
 - **Multi-cycle instructions** — The CPU must finish the current instruction before taking the exception. Most Cortex-M instructions are 1 cycle, but load/store multiples and divides can take many cycles
 - **Flash wait states** — Vector fetch goes through the flash interface; additional wait states add cycles
@@ -68,7 +68,7 @@ Practical rules I have collected (and am still learning to apply consistently):
 - **Never call blocking functions** — No `delay_ms()`, no busy-wait loops, no `printf()`. These belong in main loop context.
 - **Never allocate memory** — `malloc()` is not reentrant on most embedded C libraries. Calling it from an ISR risks heap corruption.
 - **Clear the interrupt source flag** — If the peripheral's interrupt flag is not cleared, the ISR returns and the NVIC immediately re-enters it. This creates an interrupt storm: the main loop never runs, the system appears locked up, and the watchdog (if present) eventually resets the device.
-- **Keep shared data access atomic** — If the ISR writes a 32-bit variable that the main loop reads, consider whether the access is atomic on your platform. On Cortex-M, aligned 32-bit reads and writes are atomic, but 64-bit values or multi-field structures are not.
+- **Keep shared data access atomic** — If the ISR writes a 32-bit variable that the main loop reads, consider whether the access is atomic on the target platform. On Cortex-M, aligned 32-bit reads and writes are atomic, but 64-bit values or multi-field structures are not.
 
 ## Shared Data and volatile
 
@@ -106,7 +106,7 @@ __enable_irq();
 
 This is a blunt instrument. While interrupts are disabled, every pending interrupt is delayed. The disabled window adds directly to worst-case interrupt latency for the entire system. Best practice is to keep critical sections as short as possible — ideally just a few instructions — and measure the actual disabled duration with a logic analyzer.
 
-On Cortex-M3+, `BASEPRI` offers a finer tool: it masks interrupts below a given priority without affecting higher-priority ones. This lets you protect shared data from a specific set of ISRs without blocking time-critical higher-priority handlers. I have not used `BASEPRI` extensively yet, but it seems like the right approach for systems with both hard-real-time and background interrupts.
+On Cortex-M3+, `BASEPRI` offers a finer tool: it masks interrupts below a given priority without affecting higher-priority ones. This allows protecting shared data from a specific set of ISRs without blocking time-critical higher-priority handlers. I have not used `BASEPRI` extensively yet, but it seems like the right approach for systems with both hard-real-time and background interrupts.
 
 ## Tips
 

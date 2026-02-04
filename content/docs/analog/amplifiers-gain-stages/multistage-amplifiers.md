@@ -5,7 +5,7 @@ weight: 30
 
 # Multistage Amplifiers
 
-When one stage isn't enough. A single transistor stage tops out at maybe 40-50 dB of gain under practical conditions. For more gain, better impedance matching, or wider bandwidth, you cascade multiple stages. The art is in how you connect them — each connection point is a potential source of loading, instability, or signal degradation.
+When one stage isn't enough. A single transistor stage tops out at maybe 40-50 dB of gain under practical conditions. For more gain, better impedance matching, or wider bandwidth, multiple stages are cascaded. The art is in how the stages connect — each connection point is a potential source of loading, instability, or signal degradation.
 
 ## Why Cascade?
 
@@ -18,7 +18,7 @@ Single-stage limitations that multistage designs solve:
 
 ## Interstage Coupling
 
-How you connect stages determines the frequency response and DC behavior.
+How stages are connected determines the frequency response and DC behavior.
 
 ### DC Coupling (Direct Coupling)
 
@@ -43,11 +43,11 @@ How you connect stages determines the frequency response and DC behavior.
 
 ## Loading Effects
 
-When you connect the output of one stage to the input of the next, the second stage loads the first. The loaded gain of the first stage is:
+When the output of one stage connects to the input of the next, the second stage loads the first. The loaded gain of the first stage is:
 
 A_loaded = A_v x (Z_load / (Z_out + Z_load))
 
-If the next stage's input impedance is comparable to the first stage's output impedance, you lose significant gain. This is why impedance matching between stages matters.
+If the next stage's input impedance is comparable to the first stage's output impedance, significant gain is lost. This is why impedance matching between stages matters.
 
 **Solutions:**
 - Use an emitter follower (source follower) as a buffer between stages

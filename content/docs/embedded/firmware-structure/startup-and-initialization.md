@@ -5,7 +5,7 @@ weight: 10
 
 # Startup & Initialization
 
-There is a surprising amount of code that runs before `main()`. On a desktop system, the operating system handles loading your program into memory, setting up the stack, and initializing the runtime. On a bare-metal microcontroller, there is no OS — the silicon itself dictates what happens at power-on, and the startup code must get the hardware from an undefined state to a point where C code can run safely. Understanding this sequence matters because bugs here are among the hardest to diagnose: the system fails before your application logic ever executes.
+There is a surprising amount of code that runs before `main()`. On a desktop system, the operating system handles loading the program into memory, setting up the stack, and initializing the runtime. On a bare-metal microcontroller, there is no OS to lean on — the silicon itself dictates what happens at power-on, and the startup code must get the hardware from an undefined state to a point where C code can run safely. Understanding this sequence matters because bugs here are among the hardest to diagnose: the system fails before the application logic ever executes.
 
 ## The Vector Table
 
@@ -15,7 +15,7 @@ The very first thing the Cortex-M CPU reads after power-on or reset is the vecto
 - **Entry 1** — The address of the reset handler. The CPU sets the PC to this address and begins execution. This is the true entry point of the firmware.
 - **Entries 2+** — Exception and interrupt handler addresses: NMI, HardFault, MemManage, BusFault, UsageFault, SVCall, PendSV, SysTick, and then vendor-specific peripheral interrupts.
 
-The vector table is typically defined in the startup file provided by the chip vendor or toolchain. It looks like an array of function pointers in C, or a block of `.word` directives in assembly. If you never look at it, things usually work. But when they do not — when the system resets into a HardFault loop or hangs at power-on — the vector table is one of the first things to check.
+The vector table is typically defined in the startup file provided by the chip vendor or toolchain. It looks like an array of function pointers in C, or a block of `.word` directives in assembly. In normal operation, things usually work without inspecting it. But when they do not — when the system resets into a HardFault loop or hangs at power-on — the vector table is one of the first things to check.
 
 ## The Reset Handler
 
@@ -28,7 +28,7 @@ The reset handler is the first code that actually executes. On most Cortex-M too
 5. **Call `__libc_init_array()` or equivalent** — Runs global constructors and static initializers (mainly relevant for C++).
 6. **Call `main()`** — Finally, application code begins.
 
-If you are using C++, static constructors run before `main()`. They execute in an unspecified order, which means one static object's constructor cannot safely depend on another. I have seen systems crash because a static object tried to use a peripheral that had not been initialized yet — the fix was to move the initialization into `main()`.
+In C++, static constructors run before `main()`. They execute in an unspecified order, which means one static object's constructor cannot safely depend on another. I have seen systems crash because a static object tried to use a peripheral that had not been initialized yet — the fix was to move the initialization into `main()`.
 
 ## Clock Initialization
 
@@ -41,7 +41,7 @@ Switching to the final operating frequency involves:
 - Setting flash wait states to match the new clock speed — this is easy to forget, and getting it wrong causes hard faults or corrupted instruction fetches
 - Updating the peripheral bus prescalers (AHB, APB1, APB2) so peripherals run within their rated clock ranges
 
-The order matters. If you switch the system clock to the PLL before the PLL is locked, the CPU runs on an unstable clock and behavior is undefined. If you forget to increase flash wait states before raising the clock speed, instruction fetches fail intermittently — a maddening bug because it is not deterministic.
+The order matters. If the system clock is switched to the PLL before the PLL is locked, the CPU runs on an unstable clock and behavior is undefined. If flash wait states are not increased before raising the clock speed, instruction fetches fail intermittently — a maddening bug because it is not deterministic.
 
 ## Peripheral Initialization Order
 
@@ -55,7 +55,7 @@ A typical initialization order:
 4. Timers and PWM outputs
 5. ADC / DAC — may need specific clock sources and stabilization time
 6. DMA channels — must be configured before enabling the peripheral that triggers them
-7. Interrupts — enable in the NVIC only after the peripheral is fully configured, or you risk taking an interrupt before the handler is ready
+7. Interrupts — enable in the NVIC only after the peripheral is fully configured, or there is a risk of taking an interrupt before the handler is ready
 
 Getting this sequence wrong produces subtle bugs. A UART that transmits garbage because its baud rate register was written before the UART clock was enabled. A DMA transfer that corrupts memory because the source peripheral was not configured. These are the kinds of problems that work on one board revision and fail on another, because the timing of power-on states can vary.
 
@@ -91,7 +91,7 @@ Strategies that help:
 
 - **Toggle a GPIO pin at the top of the reset handler** — if the pin never toggles, execution is not reaching the reset handler. Check the vector table.
 - **Set a breakpoint on `Reset_Handler` in the debugger** — most debuggers can halt at reset if configured to do so ("halt on connect" or "break on reset").
-- **Implement an early HardFault handler** that blinks an LED or writes to a known SRAM location you can inspect after halting. The default handler is usually an infinite loop, which tells you nothing.
+- **Implement an early HardFault handler** that blinks an LED or writes to a known SRAM location that can be inspected after halting. The default handler is usually an infinite loop, which reveals nothing.
 - **Check the `.map` file** — verify that `.data`, `.bss`, and the stack are placed in valid SRAM regions. A linker script error that places the stack outside physical SRAM is a silent, immediate crash.
 
 ## Tips

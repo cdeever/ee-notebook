@@ -31,7 +31,7 @@ The WWDG typically runs from the system clock (APB1 on STM32), so it is not inde
 
 ## Watchdog Placement
 
-Where you kick the watchdog in your code determines what the watchdog actually proves. This is the most common mistake I see in watchdog implementation: kicking it from the wrong place.
+Where the watchdog is kicked in the code determines what the watchdog actually proves. This is the most common mistake I see in watchdog implementation: kicking it from the wrong place.
 
 **Bad: kicking from a timer ISR.** A timer ISR runs on a hardware interrupt, independent of the main loop. If the main loop hangs but interrupts are still enabled, the timer ISR keeps kicking the watchdog, and the watchdog never fires. The system is hung, but the watchdog thinks everything is fine.
 

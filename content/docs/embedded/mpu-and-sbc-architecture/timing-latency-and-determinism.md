@@ -5,17 +5,17 @@ weight: 70
 
 # Timing, Latency & Determinism
 
-On an MCU, interrupt response is deterministic — the datasheet gives a worst-case cycle count, and you can trust it. On an MPU running Linux, "how fast will it respond" becomes "how fast will it usually respond, and what is the worst case nobody can guarantee." This page covers why MPUs are not deterministic, what can be done about it, and when to stop fighting Linux and offload real-time work to a co-processor.
+On an MCU, interrupt response is deterministic — the datasheet gives a worst-case cycle count, and it can be trusted. On an MPU running Linux, "how fast will it respond" becomes "how fast will it usually respond, and what is the worst case nobody can guarantee." This page covers why MPUs are not deterministic, what can be done about it, and when to stop fighting Linux and offload real-time work to a co-processor.
 
 ## Why MPUs Are Not Deterministic
 
-An MPU running Linux has many layers of hardware and software between an external event and your code's response, and each layer introduces variable delay. The combined effect is sobering.
+An MPU running Linux has many layers of hardware and software between an external event and the application's response, and each layer introduces variable delay. The combined effect is sobering.
 
-**Caches** are the first source of jitter. A cache hit returns data in a few cycles; a miss can cost 50-200+ cycles going to DRAM. Since cache state depends on what other code has been running, you cannot predict whether your critical code path will be hot or cold.
+**Caches** are the first source of jitter. A cache hit returns data in a few cycles; a miss can cost 50-200+ cycles going to DRAM. Since cache state depends on what other code has been running, there is no way to predict whether a critical code path will be hot or cold.
 
 **Virtual memory** adds another layer. Every memory access goes through the TLB. A TLB miss forces a page table walk. Worse, if the page is not even mapped (a page fault), the kernel must handle the fault — allocating memory, possibly reading from disk — adding microseconds to milliseconds of latency. See [MMU, Virtual Memory & Address Spaces]({{< relref "mmu-virtual-memory-and-address-spaces" >}}).
 
-**The Linux scheduler** is perhaps the most visible source of non-determinism. Your process shares the CPU with potentially hundreds of other threads, and the default scheduler optimizes for throughput and fairness, not response time. Kernel code paths can hold spinlocks or disable preemption, blocking everything else on that CPU.
+**The Linux scheduler** is perhaps the most visible source of non-determinism. Any given process shares the CPU with potentially hundreds of other threads, and the default scheduler optimizes for throughput and fairness, not response time. Kernel code paths can hold spinlocks or disable preemption, blocking everything else on that CPU.
 
 **Interrupts** go through the kernel's interrupt framework — acknowledge, top-half handler, then schedule a bottom-half — before anything reaches user space. This overhead is typically 5-20 microseconds even in the best case.
 

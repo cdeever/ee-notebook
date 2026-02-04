@@ -13,7 +13,7 @@ Some buses have built-in discovery mechanisms. PCI and USB devices identify them
 
 Before device trees, Linux solved this with board files — C source files compiled directly into the kernel, one per supported board. The approach worked but scaled horribly, requiring kernel recompilation for even trivial changes. Device tree moved the hardware description out of the kernel into a separate data file. One kernel binary can boot on many different boards, as long as each supplies a device tree blob (DTB) describing its hardware. ARM adopted the mechanism around 2011-2012, and it was the single biggest cleanup in the ARM kernel's history. See [Boot Chain: ROM to Bootloader to Kernel]({{< relref "boot-chain" >}}) for how the DTB gets loaded and passed to the kernel during the boot process.
 
-The practical impact is significant even if you never write a device tree from scratch. Vendor-supplied DTBs describe the board's hardware. Overlays patch the DTB for add-on hardware. And when something does not work, understanding that the device tree is the kernel's only source of hardware knowledge tells you where to look. The kernel does not probe the bus to see what is there — it reads the device tree and trusts it.
+The practical impact is significant even without ever writing a device tree from scratch. Vendor-supplied DTBs describe the board's hardware. Overlays patch the DTB for add-on hardware. And when something does not work, understanding that the device tree is the kernel's only source of hardware knowledge points to where to look. The kernel does not probe the bus to see what is there — it reads the device tree and trusts it.
 
 ## How Device Trees Work
 
@@ -35,7 +35,7 @@ A common source of confusion is the interaction between overlays and pin muxing.
 
 Bindings are the contract between the device tree and drivers — a specification of what properties a device tree node must contain for a given driver to work correctly. Binding documents live in the kernel source under `Documentation/devicetree/bindings/`, and the kernel community has been migrating to YAML-based schemas that can be machine-validated.
 
-The critical insight is what happens when the matching process fails. If a node's `compatible` string does not match any loaded driver, the kernel silently ignores it. There is no warning in `dmesg`, no error message, nothing. The device simply does not exist from the kernel's perspective. This is by design, but it makes debugging painful. If you add a device tree node and the device does not appear, the first thing to check is whether the `compatible` string exactly matches what the driver registers. A single typo means no match.
+The critical insight is what happens when the matching process fails. If a node's `compatible` string does not match any loaded driver, the kernel silently ignores it. There is no warning in `dmesg`, no error message, nothing. The device simply does not exist from the kernel's perspective. This is by design, but it makes debugging painful. If a device tree node is added and the device does not appear, the first thing to check is whether the `compatible` string exactly matches what the driver registers. A single typo means no match.
 
 ## Tips
 

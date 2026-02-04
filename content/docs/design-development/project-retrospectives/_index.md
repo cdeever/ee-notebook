@@ -14,8 +14,8 @@ These entries are frameworks for reflection — templates for thinking about pro
 
 ## What This Section Covers
 
-- **[What Surprised You]({{< relref "what-surprised-you" >}})** — Identifying the gaps between expectation and reality that reveal where your intuition needs recalibration.
+- **[What Was Surprising]({{< relref "what-surprised-you" >}})** — Identifying the gaps between expectation and reality that reveal where intuition needs recalibration.
 - **[What Failed Quietly]({{< relref "what-failed-quietly" >}})** — Finding the subtle degradations and silent process breakdowns that don't announce themselves.
 - **[What Assumptions Broke]({{< relref "what-assumptions-broke" >}})** — Tracing design failures back to the beliefs that turned out to be wrong.
-- **[What You'd Do Differently Next Time]({{< relref "what-youd-do-differently" >}})** — Converting hindsight into actionable changes for future projects.
+- **[What to Do Differently Next Time]({{< relref "what-youd-do-differently" >}})** — Converting hindsight into actionable changes for future projects.
 - **[Turning Mistakes into Patterns]({{< relref "turning-mistakes-into-patterns" >}})** — Building reusable checklists, templates, and rules from hard-won lessons.

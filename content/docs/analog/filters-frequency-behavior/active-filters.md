@@ -11,7 +11,7 @@ Op-amp-based filter designs that overcome the limitations of passive RC filters:
 
 Passive RC filters have fundamental limitations:
 
-- **No gain** — A passive filter can only attenuate. If you need to filter and amplify, you need two circuits
+- **No gain** — A passive filter can only attenuate. If a circuit needs to filter and amplify, it requires two stages
 - **Loading** — Cascading passive stages requires impedance management or buffers
 - **No inductorless resonance** — Getting a sharp (high-Q) band-pass with only R and C requires active feedback. Passive high-Q requires inductors, which are large, expensive, and have parasitic resistance
 - **Limited Q** — Passive RLC filters' Q is limited by component losses (inductor DCR, capacitor ESR)
@@ -49,7 +49,7 @@ Uses three op-amps to produce simultaneous low-pass, band-pass, and high-pass ou
 - Q and frequency can be adjusted independently
 - Low sensitivity to component tolerances
 - Higher component count (three op-amps per second-order section)
-- The go-to topology when you need tunable Q or frequency
+- The go-to topology when tunable Q or frequency is needed
 
 ### Biquad
 
@@ -64,14 +64,14 @@ The transfer function mathematics determines the shape of the filter response. T
 - Monotonic roll-off
 - -3 dB at the cutoff frequency
 - Moderate phase nonlinearity
-- The default choice when you don't have specific requirements
+- The default choice when there are no specific requirements
 
 **Chebyshev (Type I):**
 - Steeper roll-off than Butterworth for the same order
-- Ripple in the passband (you specify how much — 0.5 dB and 1 dB are common)
+- Ripple in the passband (designer-specified — 0.5 dB and 1 dB are common)
 - Sharper transition band
 - Worse phase nonlinearity
-- Use when you need a sharper cutoff and can tolerate passband ripple
+- Use when a sharper cutoff is needed and passband ripple is tolerable
 
 **Bessel (Maximally Flat Phase):**
 - Best phase linearity (preserves waveform shape)
@@ -84,7 +84,7 @@ The transfer function mathematics determines the shape of the filter response. T
 1. **Define requirements** — Cutoff frequency, roll-off rate (which sets the filter order), passband ripple tolerance, stopband attenuation
 2. **Choose response type** — Butterworth for general use, Chebyshev for sharp cutoff, Bessel for pulse fidelity
 3. **Choose topology** — Sallen-Key for simplicity, MFB for higher Q, state variable for tunability
-4. **Calculate component values** — Use standard design tables (coefficient tables for each response type) and scale for your desired frequency and impedance level
+4. **Calculate component values** — Use standard design tables (coefficient tables for each response type) and scale for the desired frequency and impedance level
 5. **Verify with simulation** — Component tolerances and op-amp limitations can shift the response. Simulate before building
 6. **Build and measure** — Compare measured response to design and simulation. Adjust if needed
 

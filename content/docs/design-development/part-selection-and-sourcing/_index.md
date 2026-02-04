@@ -14,8 +14,8 @@ The supply chain disruptions of the early 2020s made every electronics designer 
 
 ## What This Section Covers
 
-- **[Availability vs Ideal Specs]({{< relref "availability-vs-ideal-specs" >}})** — Starting with what you can actually buy, not what looks perfect on paper.
-- **[Lifecycle Status: Active, NRND & EOL]({{< relref "lifecycle-status" >}})** — Understanding where a component sits in its lifecycle and what that means for your design.
+- **[Availability vs Ideal Specs]({{< relref "availability-vs-ideal-specs" >}})** — Starting with what is actually available, not what looks perfect on paper.
+- **[Lifecycle Status: Active, NRND & EOL]({{< relref "lifecycle-status" >}})** — Understanding where a component sits in its lifecycle and what that means for the design.
 - **[Second-Source Strategies]({{< relref "second-source-strategies" >}})** — Reducing supply chain risk by designing in alternatives from the start.
 - **[Parametric Search Pitfalls]({{< relref "parametric-search-pitfalls" >}})** — Navigating distributor search tools without being misled by incomplete or simplified data.
 - **[Distributor Realities]({{< relref "distributor-realities" >}})** — Understanding the practical landscape of authorized distributors, brokers, and sourcing channels.

@@ -44,13 +44,13 @@ TX and RX cross over — each device transmits on its TX and the other receives 
 
 The MCU's UART peripheral needs a baud rate, a frame format (almost always 8N1), and a clock source. The baud rate generator divides the peripheral clock to produce the bit timing. This is where things get quietly wrong: if the peripheral clock and the desired baud rate do not divide evenly, the actual baud rate deviates from the target. The receiver can tolerate roughly plus or minus 2% mismatch before bits get sampled at the wrong time. At 115200 baud with a 48 MHz peripheral clock, the divisor works out cleanly. At 9600 baud from a 72 MHz clock, check the actual error — the datasheet or reference manual usually has a table.
 
-TX and RX are independent. You can transmit without receiving, and vice versa. Each direction has its own buffer — sometimes a single register, sometimes a small hardware FIFO (4 to 16 bytes is common). FIFO depth matters for burst handling: if the CPU is busy when data arrives and the FIFO overflows, bytes are lost silently. There is no error interrupt for "you were too slow" on most parts — the overrun flag is there, but easy to miss.
+TX and RX are independent. Transmitting without receiving is fine, and vice versa. Each direction has its own buffer — sometimes a single register, sometimes a small hardware FIFO (4 to 16 bytes is common). FIFO depth matters for burst handling: if the CPU is busy when data arrives and the FIFO overflows, bytes are lost silently. There is no error interrupt for "the CPU was too slow" on most parts — the overrun flag is there, but easy to miss.
 
 ## When UART Fits
 
 UART is the default for debug consoles, GPS modules, Bluetooth modules (which often present a UART interface), and any point-to-point link where simplicity matters more than speed. The lack of a clock line means fewer wires, but it also means both sides must agree on timing before they start talking — there is no discovery or negotiation.
 
-For debugging and log output, UART is nearly universal. A USB-to-UART adapter (FTDI, CP2102, CH340) gives you a serial terminal on a PC for the cost of a few dollars and two wires. Many development boards include this bridge on-board. Printf-style debug output over UART is the embedded equivalent of console.log — not elegant, but immediately useful and always available.
+For debugging and log output, UART is nearly universal. A USB-to-UART adapter (FTDI, CP2102, CH340) provides a serial terminal on a PC for the cost of a few dollars and two wires. Many development boards include this bridge on-board. Printf-style debug output over UART is the embedded equivalent of console.log — not elegant, but immediately useful and always available.
 
 UART also serves as the control interface for many external modules. Bluetooth modules (HC-05, RN4870), WiFi modules, cellular modems, and GPS receivers all commonly expose a UART interface with AT commands or a proprietary protocol. In these cases, UART is not just a debug channel — it is the primary data path between the MCU and the module.
 

@@ -9,11 +9,11 @@ Application processor cores and the SoCs built around them are a different world
 
 ## Cortex-A: The Application Processor Core
 
-If you are coming from Cortex-M territory, the Cortex-A family feels like a different species. The Cortex-M cores described in [Core Architectures]({{< relref "/docs/embedded/mcu-architecture/core-architectures" >}}) are designed around determinism: short pipelines, in-order execution, single-issue, and predictable cycle counts. The Cortex-A cores prioritize throughput. They execute instructions out of order, speculatively fetch down both sides of a branch, issue multiple instructions per cycle, and rely on deep pipelines to sustain high clock frequencies. The hardware hides memory latency — while one instruction waits for a cache miss, others continue executing — but at the cost of predictability. You cannot count cycles on a Cortex-A the way you can on an M0.
+Coming from Cortex-M territory, the Cortex-A family feels like a different species. The Cortex-M cores described in [Core Architectures]({{< relref "/docs/embedded/mcu-architecture/core-architectures" >}}) are designed around determinism: short pipelines, in-order execution, single-issue, and predictable cycle counts. The Cortex-A cores prioritize throughput. They execute instructions out of order, speculatively fetch down both sides of a branch, issue multiple instructions per cycle, and rely on deep pipelines to sustain high clock frequencies. The hardware hides memory latency — while one instruction waits for a cache miss, others continue executing — but at the cost of predictability. Counting cycles on a Cortex-A the way one can on an M0 is not possible.
 
-The specific cores worth knowing fall into two camps. The efficiency cores — A53 and A55 — are modest designs that trade peak performance for low power and small die area. The A53 is probably the single most widely deployed 64-bit core in the world. The performance cores — A72, A76, and beyond — are wide, aggressive out-of-order designs that chase single-threaded performance. For the SBC world, the A72 (Raspberry Pi 4) and A76 (Pi 5) are the cores you encounter most often, with A55 appearing on budget boards.
+The specific cores worth knowing fall into two camps. The efficiency cores — A53 and A55 — are modest designs that trade peak performance for low power and small die area. The A53 is probably the single most widely deployed 64-bit core in the world. The performance cores — A72, A76, and beyond — are wide, aggressive out-of-order designs that chase single-threaded performance. For the SBC world, the A72 (Raspberry Pi 4) and A76 (Pi 5) are the cores encountered most often, with A55 appearing on budget boards.
 
-Understanding the [MCU vs MPU decision]({{< relref "mcu-vs-mpu" >}}) helps frame why these differences matter. You choose a Cortex-A because you need the throughput, the memory management hardware, and the software ecosystem — not because you need deterministic timing.
+Understanding the [MCU vs MPU decision]({{< relref "mcu-vs-mpu" >}}) helps frame why these differences matter. The Cortex-A is the right choice when throughput, memory management hardware, and software ecosystem matter — not when deterministic timing is the priority.
 
 ## Multi-Core and big.LITTLE
 
@@ -27,7 +27,7 @@ ARM's big.LITTLE architecture (and its successor DynamIQ) combines heterogeneous
 
 The term "System on Chip" is literal — the CPU core, even a quad-core cluster, is often a minority of the die area. The rest is a collection of specialized hardware blocks: GPU, video encoder/decoder, camera ISP, crypto engine, display controller, and bus controllers for USB, PCIe, SDIO, and MIPI interfaces. Each block has its own registers, DMA channels, and interrupt lines, and the Linux kernel needs a driver for each one.
 
-The practical consequence is that an SoC's value depends heavily on driver support. A chip may integrate a capable hardware video decoder, but if the Linux kernel does not have a working driver for it, you are stuck with CPU-based software decoding. There are SBCs with impressive spec sheets where half the hardware blocks are unusable under mainline Linux because the vendor only provided drivers for their Android BSP. Community Linux support (mainline kernel drivers, upstream device tree bindings) matters as much as the silicon itself.
+The practical consequence is that an SoC's value depends heavily on driver support. A chip may integrate a capable hardware video decoder, but if the Linux kernel does not have a working driver for it, the system is stuck with CPU-based software decoding. There are SBCs with impressive spec sheets where half the hardware blocks are unusable under mainline Linux because the vendor only provided drivers for their Android BSP. Community Linux support (mainline kernel drivers, upstream device tree bindings) matters as much as the silicon itself.
 
 On an MCU, the CPU *is* the chip, with peripherals attached. On an SoC, the CPU is one client on a shared bus, competing with a GPU, a VPU, camera pipelines, and DMA engines for access to the same DRAM. A 4K video decode pipeline or a GPU rendering a display frame can dominate the memory bus, leaving the CPU starved for bandwidth.
 
@@ -53,7 +53,7 @@ A handful of SoC families dominate the embedded Linux and SBC world. Each has a 
 
 **NXP i.MX 6/8.** Targets industrial, automotive, and medical applications with long-term availability guarantees and comprehensive reference manuals. Higher cost, heavier software stack, but 10-year supply commitments and vendor support.
 
-The pattern across these families: you are choosing a combination of silicon capability, software maturity, documentation quality, and supply chain characteristics. For learning, start with whatever has the strongest community. For production, documentation and vendor support matter more than raw specs.
+The pattern across these families: the choice involves a combination of silicon capability, software maturity, documentation quality, and supply chain characteristics. For learning, start with whatever has the strongest community. For production, documentation and vendor support matter more than raw specs.
 
 ## Tips
 

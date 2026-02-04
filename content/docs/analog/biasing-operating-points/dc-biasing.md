@@ -13,7 +13,7 @@ Without proper biasing, an amplifier might clip, distort, draw too much current,
 
 Consider a common emitter amplifier. The transistor needs to be in the active region to amplify — V_BE around 0.6-0.7 V, collector current at some target value, and enough V_CE headroom for the signal to swing.
 
-If you just connect a signal source to the base with no DC bias, the transistor is off for the entire negative half of the signal and distorts the positive half. The bias sets the transistor at a point in the middle of its linear range so the signal can swing symmetrically in both directions.
+If a signal source connects to the base with no DC bias, the transistor is off for the entire negative half of the signal and distorts the positive half. The bias sets the transistor at a point in the middle of its linear range so the signal can swing symmetrically in both directions.
 
 The same principle applies to MOSFETs (V_GS must be above threshold), JFETs (V_GS must be in the right range), and even op-amp circuits (inputs must be within the common-mode range).
 
@@ -27,7 +27,7 @@ I_B = (VCC - V_BE) / R_B, and I_C = beta x I_B.
 
 **Problem:** I_C depends directly on beta, which varies 2:1 or more between devices and with temperature. This topology produces wildly inconsistent results. Avoid it for anything that needs to work reliably.
 
-**When it's acceptable:** Quick experiments where you just need the transistor to turn on and don't care about the exact operating point.
+**When it's acceptable:** Quick experiments where the transistor just needs to turn on and the exact operating point doesn't matter.
 
 ### Collector Feedback Bias
 

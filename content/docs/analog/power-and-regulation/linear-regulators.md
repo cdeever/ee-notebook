@@ -5,7 +5,7 @@ weight: 10
 
 # Linear Regulators
 
-The simplest way to get a stable voltage: dissipate the difference between what you have and what you need as heat. A linear regulator is a controlled variable resistance between the input and output that continuously adjusts to maintain a fixed output voltage regardless of load current and input voltage variations.
+The simplest way to get a stable voltage: dissipate the difference between the available input and the desired output as heat. A linear regulator is a controlled variable resistance between the input and output that continuously adjusts to maintain a fixed output voltage regardless of load current and input voltage variations.
 
 ## How They Work
 
@@ -26,7 +26,7 @@ The minimum voltage difference between input and output required for the regulat
 
 **LDO (Low-Dropout) regulators:** 100-500 mV dropout. An LDO producing 3.3 V might work from 3.4 V input.
 
-**Why LDO matters:** In battery-powered designs, every millivolt of dropout is wasted headroom. An LDO lets you squeeze more useful life out of a battery by working closer to the minimum voltage.
+**Why LDO matters:** In battery-powered designs, every millivolt of dropout is wasted headroom. An LDO squeezes more useful life out of a battery by working closer to the minimum voltage.
 
 **What happens below dropout:** The output follows the input minus the dropout. The regulator stops regulating and just passes the input through with a small drop. The output is unregulated and drops with the input.
 
@@ -40,7 +40,7 @@ This is the core tradeoff. A 12 V to 5 V regulator at 500 mA dissipates (12 - 5)
 
 The efficiency: eta = V_out / V_in. For 12 V to 5 V, that's 42%. The other 58% is heat. Worse, the efficiency drops as the input-output differential increases.
 
-**This is why linear regulators are impractical for large voltage drops at high current.** A 24 V to 3.3 V conversion at 1 A dissipates 20.7 W. You need a switching regulator for that (see [Switching Regulators]({{< relref "switching-regulators" >}})).
+**This is why linear regulators are impractical for large voltage drops at high current.** A 24 V to 3.3 V conversion at 1 A dissipates 20.7 W. A switching regulator is needed for that (see [Switching Regulators]({{< relref "switching-regulators" >}})).
 
 **When linear regulators win:** Small voltage drops, low current, or when the clean output (no switching noise) is worth the efficiency penalty. LDOs post-regulating after a switching regulator combine switching efficiency with linear quietness.
 
@@ -67,7 +67,7 @@ Linear regulators need output capacitors for stability and transient response:
 Since a linear regulator converts excess voltage directly to heat, thermal management is often the design constraint:
 
 - Calculate P_diss for worst-case conditions (maximum V_in, maximum I_load)
-- Look up junction-to-ambient thermal resistance (theta_JA) for your package and PCB layout
+- Look up junction-to-ambient thermal resistance (theta_JA) for the package and PCB layout
 - Verify: T_junction = T_ambient + P_diss x theta_JA < T_max
 
 See [Thermal Reality]({{< relref "/docs/fundamentals/power-energy-heat/thermal-reality" >}}) for the thermal model details.

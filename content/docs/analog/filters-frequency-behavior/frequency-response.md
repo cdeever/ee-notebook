@@ -5,7 +5,7 @@ weight: 30
 
 # Frequency Response
 
-Every analog circuit has a frequency response — how its gain and phase change with frequency. Even circuits that aren't designed as filters have bandwidth limits, resonances, and roll-off characteristics that determine how they handle signals. Understanding frequency response is understanding what your circuit actually does to a signal across its entire operating range.
+Every analog circuit has a frequency response — how its gain and phase change with frequency. Even circuits that aren't designed as filters have bandwidth limits, resonances, and roll-off characteristics that determine how they handle signals. Understanding frequency response is understanding what a circuit actually does to a signal across its entire operating range.
 
 ## Gain vs. Frequency
 
@@ -47,7 +47,7 @@ The standard visualization of frequency response: gain (in dB) and phase (in deg
 
 **Sketching approximate Bode plots by hand:**
 
-For many circuits, you can sketch a reasonable Bode plot by identifying poles and zeros:
+For many circuits, a reasonable Bode plot can be sketched by identifying poles and zeros:
 
 1. At each pole frequency, the slope changes by -20 dB/decade
 2. At each zero frequency, the slope changes by +20 dB/decade
@@ -60,7 +60,7 @@ This asymptotic approximation is surprisingly useful for quick analysis and sani
 
 **-3 dB bandwidth** is the standard measure: the frequency range over which gain stays within 3 dB of the maximum. For a low-pass system, bandwidth extends from DC to f_3dB.
 
-**Gain-bandwidth product (GBW):** For most amplifiers, the product of gain and bandwidth is approximately constant. An amplifier with GBW = 10 MHz can provide gain of 100 up to 100 kHz, or gain of 10 up to 1 MHz. You can trade gain for bandwidth but the product stays fixed.
+**Gain-bandwidth product (GBW):** For most amplifiers, the product of gain and bandwidth is approximately constant. An amplifier with GBW = 10 MHz can provide gain of 100 up to 100 kHz, or gain of 10 up to 1 MHz. The tradeoff is gain for bandwidth, but the product stays fixed.
 
 **Rise time and bandwidth:** For a first-order system, t_rise ≈ 0.35 / BW. An amplifier with 10 MHz bandwidth has a rise time of about 35 ns. This connects frequency-domain and time-domain behavior.
 
@@ -83,7 +83,7 @@ Circuits that aren't designed as filters still have frequency-dependent behavior
 **Step response (oscilloscope):**
 - Apply a square wave and observe the output
 - Overshoot indicates gain peaking. Ringing indicates underdamped resonance. Slow rise time indicates limited bandwidth
-- Quick and qualitative, but doesn't give you precise dB values at each frequency
+- Quick and qualitative, but doesn't provide precise dB values at each frequency
 
 **Noise injection:**
 - Inject broadband noise and compare input to output spectrum (FFT)

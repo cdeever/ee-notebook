@@ -10,7 +10,7 @@ Where the analog front end meets the digital back end.
 
 Software-defined radio moves signal processing from analog hardware into software. Instead of fixed-function receivers with crystal filters and analog demodulators, an SDR digitizes a wide swath of spectrum and processes it computationally. This makes the radio flexible, reconfigurable, and — for learning — extraordinarily revealing.
 
-SDR is both a practical technology and a powerful learning tool. It makes RF visible in ways that traditional test equipment doesn't — you can see entire bands, demodulate signals in real time, and experiment with modulation and filtering without building analog hardware.
+SDR is both a practical technology and a powerful learning tool. It makes RF visible in ways that traditional test equipment doesn't — entire bands become visible, signals can be demodulated in real time, and modulation and filtering experiments happen without building analog hardware.
 
 ## What This Section Covers
 

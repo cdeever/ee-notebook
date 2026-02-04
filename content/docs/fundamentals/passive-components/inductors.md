@@ -35,7 +35,7 @@ LC filters provide sharper roll-off than RC filters. Used in power supply output
 
 RF circuits use inductors for impedance matching, tank circuits, and chokes. At RF frequencies, every wire is an inductor, and PCB trace inductance matters.
 
-## Saturation: The Main Gotcha
+## Saturation: The Main Caveat
 
 Every inductor with a magnetic core has a saturation current. Above this current, the core can't store more magnetic energy, and the inductance drops dramatically — often to a fraction of its rated value.
 

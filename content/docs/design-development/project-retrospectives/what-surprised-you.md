@@ -1,9 +1,9 @@
 ---
-title: "What Surprised You"
+title: "What Was Surprising"
 weight: 10
 ---
 
-# What Surprised You
+# What Was Surprising
 
 Every project contains surprises. Some are pleasant — a circuit works better than expected, a clever shortcut saves a week of effort. But the most valuable surprises are the unpleasant ones: things expected to go smoothly that didn't, assumptions made confidently that turned out to be wrong. These surprises are the gap between the mental model and reality, and closing that gap is what turns experience into expertise.
 

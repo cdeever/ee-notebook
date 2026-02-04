@@ -46,7 +46,7 @@ Below f_c, the output rolls off at +20 dB/decade. Above f_c, the output follows 
 **Time domain:** The step response is an exponential decay — the filter differentiates slow changes and passes fast ones. A step input produces a spike that decays with time constant tau = RC.
 
 **Common uses:**
-- AC coupling (blocking DC, passing signal). This is a high-pass filter whether you think of it that way or not
+- AC coupling (blocking DC, passing signal). This is a high-pass filter whether recognized as one or not
 - Audio coupling between stages
 - Removing DC offset before a measurement
 - Tilt correction in pulse circuits
@@ -55,7 +55,7 @@ Below f_c, the output rolls off at +20 dB/decade. Above f_c, the output follows 
 
 Every AC coupling capacitor forms a high-pass filter with the impedance it sees. The -3 dB point is f_c = 1 / (2 x pi x C x R_load).
 
-For audio: to pass down to 20 Hz into a 10 kohm load, you need C > 1 / (2 x pi x 20 x 10000) = 0.8 uF. A 1 uF cap is the standard choice.
+For audio: to pass down to 20 Hz into a 10 kohm load, the requirement is C > 1 / (2 x pi x 20 x 10000) = 0.8 uF. A 1 uF cap is the standard choice.
 
 The low-frequency roll-off causes droop on square waves and tilt on pulses. The coupling cap needs to be large enough that the droop is negligible at the lowest frequency of interest.
 
@@ -82,7 +82,7 @@ This impedance-divider perspective connects directly to the [Voltage Dividers & 
 
 Two identical RC low-pass filters in series give -40 dB/decade roll-off (second-order), but the -3 dB point shifts to a lower frequency (about 0.64 x f_c of a single stage).
 
-Important: you can only cascade without interaction if each stage doesn't load the previous one. If the second filter loads the first (because its input impedance is comparable to the first filter's output impedance), the combined response is not simply the product of the two individual responses.
+Important: cascading without interaction only works if each stage doesn't load the previous one. If the second filter loads the first (because its input impedance is comparable to the first filter's output impedance), the combined response is not simply the product of the two individual responses.
 
 Solutions:
 - Buffer (op-amp follower) between stages

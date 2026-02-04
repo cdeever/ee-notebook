@@ -11,32 +11,32 @@ The split between microcontrollers and microprocessors is one of the first archi
 
 The defining feature that separates an MPU from an MCU is the Memory Management Unit (MMU). An MMU provides virtual-to-physical address translation, which enables process isolation, memory protection, and the ability to run a full operating system with independent user-space processes. Without an MMU, the processor sees physical memory directly — every piece of code can reach every address. With an MMU, the OS controls what each process can see and touch.
 
-This single hardware difference cascades into everything else. An MMU means the system can run Linux (or another OS with virtual memory). Linux means a networking stack, a filesystem, process management, and a vast software ecosystem — but it also means boot times measured in seconds, non-deterministic scheduling, and layers of abstraction between your code and the hardware.
+This single hardware difference cascades into everything else. An MMU means the system can run Linux (or another OS with virtual memory). Linux means a networking stack, a filesystem, process management, and a vast software ecosystem — but it also means boot times measured in seconds, non-deterministic scheduling, and layers of abstraction between application code and the hardware.
 
 An MCU's Memory Protection Unit (MPU — confusingly similar acronym) is not the same thing. The Cortex-M MPU can restrict access to memory regions, but it does not translate addresses. There is no virtual memory, no process isolation in the OS sense. The MPU is a safety net for firmware bugs, not an operating system foundation. See [Core Architectures]({{< relref "/docs/embedded/mcu-architecture/core-architectures" >}}) for details on Cortex-M core features.
 
-## What an MCU Gives You
+## What an MCU Provides
 
-A microcontroller is a complete system on a single chip: CPU core, flash, SRAM, peripherals, clock generation, and power management. Firmware runs directly on the hardware with nothing between your code and the registers. The [Memory Map]({{< relref "/docs/embedded/mcu-architecture/memory-map" >}}) is flat — a pointer to address `0x4000_0000` accesses that exact physical location, which might be a UART data register or a GPIO output register.
+A microcontroller is a complete system on a single chip: CPU core, flash, SRAM, peripherals, clock generation, and power management. Firmware runs directly on the hardware with nothing between the code and the registers. The [Memory Map]({{< relref "/docs/embedded/mcu-architecture/memory-map" >}}) is flat — a pointer to address `0x4000_0000` accesses that exact physical location, which might be a UART data register or a GPIO output register.
 
-This directness is the MCU's greatest strength. Interrupt latency is deterministic and measured in clock cycles (12-15 cycles on Cortex-M). Context switching in an RTOS is microseconds. You can toggle a GPIO pin in response to an interrupt and know exactly how many nanoseconds the response will take. See [Determinism & Timing]({{< relref "/docs/embedded/real-time-concepts/determinism-and-timing" >}}) for why this matters.
+This directness is the MCU's greatest strength. Interrupt latency is deterministic and measured in clock cycles (12-15 cycles on Cortex-M). Context switching in an RTOS is microseconds. A GPIO pin can be toggled in response to an interrupt with exact knowledge of how many nanoseconds the response will take. See [Determinism & Timing]({{< relref "/docs/embedded/real-time-concepts/determinism-and-timing" >}}) for why this matters.
 
-MCUs also bring simplicity. A bare-metal firmware image is a single binary that starts executing from the reset vector. There is no bootloader chain, no kernel, no driver model, no filesystem (unless you add one). The entire system state is visible through a debugger connected via SWD or JTAG.
+MCUs also bring simplicity. A bare-metal firmware image is a single binary that starts executing from the reset vector. There is no bootloader chain, no kernel, no driver model, no filesystem (unless one is added). The entire system state is visible through a debugger connected via SWD or JTAG.
 
 The tradeoff is capability. MCUs typically have kilobytes to low megabytes of RAM, limited or no networking stack, no process isolation, and no standard way to run complex software like databases, web servers, or machine learning frameworks.
 
-## What an MPU Gives You
+## What an MPU Provides
 
 An MPU (microprocessor) is a CPU core with an MMU but without the integrated peripherals and memory of an MCU. In practice, MPUs almost always come as Systems-on-Chip (SoCs) that include the CPU core(s), DDR memory controller, GPU, and a collection of peripherals — but external DRAM, storage (eMMC, NAND, SD), and a power management IC (PMIC) are required on the board.
 
-What you get for that complexity:
+What that complexity provides:
 
 - **Virtual memory and process isolation** — Each process gets its own address space. A bug in one process cannot corrupt another.
 - **A full operating system** — Linux provides a networking stack, filesystems, USB host support, a device driver model, and package management.
 - **Rich software ecosystem** — Python, Node.js, databases, OpenCV, TensorFlow Lite, and thousands of libraries run without modification.
 - **Multi-core processing** — Most application processors have 2-4 cores, enabling true parallelism.
 
-The cost is indirection. Your application code talks to the kernel, the kernel talks to the hardware. Interrupt response is measured in microseconds to milliseconds, not clock cycles. Boot time is seconds to tens of seconds, not the instant-on of an MCU.
+The cost is indirection. Application code talks to the kernel, the kernel talks to the hardware. Interrupt response is measured in microseconds to milliseconds, not clock cycles. Boot time is seconds to tens of seconds, not the instant-on of an MCU.
 
 ## The Gray Zone
 
@@ -46,7 +46,7 @@ The boundary between MCU and MPU is not always clean. Several devices deliberate
 
 **Low-end MPUs running an RTOS.** A Cortex-A5 or A7 can run FreeRTOS or Zephyr instead of Linux, trading OS capability for reduced overhead.
 
-**Hybrid devices.** The STM32MP1 includes both a Cortex-A7 (Linux) and a Cortex-M4 (bare-metal or RTOS) on the same die. NXP's i.MX 8M pairs A53 cores with M4/M7. These sidestep the choice entirely — you get both, at the cost of two toolchains, two debug setups, and an IPC mechanism.
+**Hybrid devices.** The STM32MP1 includes both a Cortex-A7 (Linux) and a Cortex-M4 (bare-metal or RTOS) on the same die. NXP's i.MX 8M pairs A53 cores with M4/M7. These sidestep the choice entirely — both architectures are available, at the cost of two toolchains, two debug setups, and an IPC mechanism.
 
 **The i.MX RT crossover.** NXP's i.MX RT series uses Cortex-M7 cores with MPU-class features: external SDRAM, LCD controllers, camera interfaces. They run at 500+ MHz with no MMU — high-performance MCU work without Linux.
 

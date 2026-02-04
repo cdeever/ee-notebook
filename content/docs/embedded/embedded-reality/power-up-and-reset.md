@@ -25,7 +25,7 @@ The brownout detector (BOD, or BOR on some parts) is a separate comparator that 
 
 Without brownout detection, the consequences are ugly. As VCC drops, flash reads become unreliable first (the charge threshold for reading a 1 vs. 0 shifts), then SRAM, then the CPU logic itself. The MCU does not stop executing; it executes corrupt instructions from misread flash. This can do real damage: writing garbage to EEPROM, driving outputs to incorrect states, or corrupting external peripherals over SPI or I2C. I have seen a system without BOD enabled corrupt its own configuration data during a power sag -- it took weeks to trace.
 
-Most MCUs allow the BOD threshold to be configured in option bytes or fuse bits. Set it as high as practical for your supply voltage. The tradeoff is that a higher threshold makes the system more sensitive to supply noise, so the power supply needs to be clean.
+Most MCUs allow the BOD threshold to be configured in option bytes or fuse bits. Set it as high as practical for the supply voltage. The tradeoff is that a higher threshold makes the system more sensitive to supply noise, so the power supply needs to be clean.
 
 Some MCUs offer multiple BOD threshold levels (e.g., STM32 BOR levels 0 through 4, ranging from about 1.7V to 2.7V for a 3.3V part). Others provide a single fixed threshold that is either enabled or disabled. On parts where the BOD is configured via fuse bits or option bytes, the setting is non-volatile -- it persists across power cycles and firmware reflashes. This is worth verifying on new hardware: a chip with BOD disabled at the factory will stay that way until explicitly configured.
 
@@ -37,7 +37,7 @@ The datasheet's POR specification assumes VCC rises monotonically and reaches th
 - **Decoupling capacitors** near the MCU's VCC pins slow the local ramp and smooth out noise, which is generally good -- but very large capacitors can make the ramp too slow
 - **Non-monotonic ramps** happen when a supply overshoots and rings, or when a load draws heavy current during startup. If VCC crosses the POR threshold, drops below it, and rises again, some POR circuits handle this correctly and some do not
 
-The safest approach is to measure the actual VCC ramp on your board with an oscilloscope and verify it meets the datasheet requirements. I have been surprised by how often the measured ramp differs from what the schematic implies. If the ramp is too slow, options include reducing bulk capacitance near the MCU, using a faster power supply, or adding an external reset supervisor that holds the MCU in reset until VCC is genuinely stable regardless of ramp rate. See {{< relref "/docs/measurement/power-rails-supplies" >}} for practical measurement techniques.
+The safest approach is to measure the actual VCC ramp on the board with an oscilloscope and verify it meets the datasheet requirements. I have been surprised by how often the measured ramp differs from what the schematic implies. If the ramp is too slow, options include reducing bulk capacitance near the MCU, using a faster power supply, or adding an external reset supervisor that holds the MCU in reset until VCC is genuinely stable regardless of ramp rate. See {{< relref "/docs/measurement/power-rails-supplies" >}} for practical measurement techniques.
 
 ## Startup Races
 

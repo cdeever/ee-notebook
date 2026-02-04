@@ -5,7 +5,7 @@ weight: 80
 
 # DMA in MPU Systems
 
-DMA on an MCU means configuring a peripheral to read from or write to physical memory addresses — you set up source, destination, and length in registers, and the transfer runs without CPU intervention. DMA on an MPU running Linux involves the same concept but adds layers of complexity: virtual-to-physical address translation, cache coherency, and kernel-managed DMA mappings. The hardware problem is the same — move data without burning CPU cycles — but the software machinery is fundamentally different.
+DMA on an MCU means configuring a peripheral to read from or write to physical memory addresses — set up source, destination, and length in registers, and the transfer runs without CPU intervention. DMA on an MPU running Linux involves the same concept but adds layers of complexity: virtual-to-physical address translation, cache coherency, and kernel-managed DMA mappings. The hardware problem is the same — move data without burning CPU cycles — but the software machinery is fundamentally different.
 
 ## DMA with an MMU
 
@@ -27,7 +27,7 @@ Some SoCs provide hardware cache coherency for DMA through interconnect protocol
 
 ## DMA and User Space
 
-For the vast majority of embedded Linux work — SPI devices, I2C sensors, UARTs — DMA is invisible to user-space code. The kernel driver manages DMA internally, and user space interacts through standard file operations. You never allocate a DMA buffer or think about cache coherency. The driver handles all of it. See [Drivers, Kernel Space & User Space]({{< relref "drivers-kernel-space-and-user-space" >}}) for how this abstraction works.
+For the vast majority of embedded Linux work — SPI devices, I2C sensors, UARTs — DMA is invisible to user-space code. The kernel driver manages DMA internally, and user space interacts through standard file operations. There is no need to allocate a DMA buffer or think about cache coherency. The driver handles all of it. See [Drivers, Kernel Space & User Space]({{< relref "drivers-kernel-space-and-user-space" >}}) for how this abstraction works.
 
 User-space DMA exists for specialized high-performance scenarios (networking with DPDK, camera capture with V4L2, GPU rendering with DRM/KMS), but for typical embedded work, understanding that these frameworks exist and handle the DMA complexity is more important than knowing the implementation details.
 

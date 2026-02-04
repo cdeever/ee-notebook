@@ -5,11 +5,11 @@ weight: 10
 
 # Noise Sources
 
-Noise is the unwanted signal that sets the floor of your measurement — the minimum detectable signal, the limit of your resolution, the reason your clean sinewave has fuzz on it. Understanding where noise comes from and how it enters a circuit is the first step toward designing circuits that are quiet enough for the job.
+Noise is the unwanted signal that sets the measurement floor — the minimum detectable signal, the limit of resolution, the reason a clean sinewave has fuzz on it. Understanding where noise comes from and how it enters a circuit is the first step toward designing circuits that are quiet enough for the job.
 
 ## Fundamental Noise Sources
 
-These noise sources are physical — they exist in every circuit because of the nature of electrons and materials. You can minimize them, but you can't eliminate them.
+These noise sources are physical — they exist in every circuit because of the nature of electrons and materials. They can be minimized, but not eliminated.
 
 ### Thermal Noise (Johnson-Nyquist Noise)
 
@@ -64,7 +64,7 @@ Beyond the fundamental sources, noise gets into circuits through practical paths
 
 ### Power Supply Noise
 
-Switching regulator ripple, mains hum (50/60 Hz), and broadband regulator noise all appear on power rails. If the PSRR of your circuit isn't adequate, supply noise becomes signal noise. See [Decoupling & Bypassing]({{< relref "/docs/analog/power-and-regulation/decoupling-and-bypassing" >}}).
+Switching regulator ripple, mains hum (50/60 Hz), and broadband regulator noise all appear on power rails. If the circuit's PSRR isn't adequate, supply noise becomes signal noise. See [Decoupling & Bypassing]({{< relref "/docs/analog/power-and-regulation/decoupling-and-bypassing" >}}).
 
 ### Ground Noise
 

@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Component Testing
 
-Go/no-go on parts. Real values vs. markings. R, C, L, diodes, transistors, ESR. When you suspect a part, these are the measurements that confirm or clear it.
+Go/no-go on parts. Real values vs. markings. R, C, L, diodes, transistors, ESR. When a part is suspect, these are the measurements that confirm or clear it.
 
 - **[Is this part dead or alive?]({{< relref "dead-or-alive" >}})** — Quick go/no-go checks. Diode junctions, transistor beta, capacitor charge/discharge, inductor continuity. Catching the obviously blown parts first.
 - **[What's the actual value?]({{< relref "actual-value" >}})** — Measuring R, C, and L with a meter or LCR bridge. Unmarked parts, faded markings, and confirming that what's on the board matches what's on the schematic.

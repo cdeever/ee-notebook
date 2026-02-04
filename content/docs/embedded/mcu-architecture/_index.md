@@ -12,7 +12,7 @@ This section provides a conceptual overview of microcontroller architectures, fo
 
 Detailed core internals, pipeline behavior, ABI nuances, and toolchain-specific tuning are intentionally deferred to dedicated deep-dive pages and reference sections. Those details are essential when debugging or optimizing, but they are not required to understand the architectural landscape.
 
-After reading this section, you should be able to:
+After reading this section, the goal is to:
 
 - Explain the practical differences between major MCU core families
 - Understand why firmware does not trivially "port" between architectures

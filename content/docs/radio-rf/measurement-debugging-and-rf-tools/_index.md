@@ -18,6 +18,6 @@ This section covers the instruments, techniques, and practical approaches for me
 - **[Vector Network Analyzers]({{< relref "vector-network-analyzers" >}})** — Measuring magnitude and phase with S-parameters, calibration procedures, and practical uses including the NanoVNA.
 - **[Using Oscilloscopes at RF]({{< relref "using-oscilloscopes-at-rf" >}})** — Where time-domain instruments help at RF frequencies, and where they fall short.
 - **[Directional Couplers & Power Meters]({{< relref "directional-couplers-and-power-meters" >}})** — Sampling forward and reverse power, measuring RF power levels, and understanding coupling and directivity.
-- **[Probing Without Destroying the Circuit]({{< relref "probing-without-destroying" >}})** — Techniques for observing RF circuits without changing what you're trying to measure.
+- **[Probing Without Destroying the Circuit]({{< relref "probing-without-destroying" >}})** — Techniques for observing RF circuits without changing what is being measured.
 - **[Debugging Oscillations, Noise & Spurs]({{< relref "debugging-oscillations-noise-and-spurs" >}})** — Identifying and fixing unwanted oscillations, spurious emissions, and elevated noise floors.
 - **[Field-Expedient RF Measurement]({{< relref "field-expedient-measurement" >}})** — Making useful RF measurements with modest equipment, SDR receivers, and improvised techniques.

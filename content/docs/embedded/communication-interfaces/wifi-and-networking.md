@@ -17,7 +17,7 @@ Some MCUs integrate the PHY (notably certain NXP and Microchip parts), which sim
 
 ### The Software Stack
 
-Ethernet's hardware peripheral gets you frames on and off the wire. Making those frames useful requires a TCP/IP stack — a substantial software component. lwIP (lightweight IP) is the de facto standard for embedded Ethernet on Cortex-M MCUs, and it handles ARP, IP, ICMP, UDP, TCP, DHCP, and optionally DNS, HTTP, MQTT, and others.
+Ethernet's hardware peripheral gets frames on and off the wire. Making those frames useful requires a TCP/IP stack — a substantial software component. lwIP (lightweight IP) is the de facto standard for embedded Ethernet on Cortex-M MCUs, and it handles ARP, IP, ICMP, UDP, TCP, DHCP, and optionally DNS, HTTP, MQTT, and others.
 
 lwIP alone consumes 40-100 KB of flash and 20-40 KB of RAM, depending on configuration. Add an application protocol (HTTP server, MQTT client) and the footprint grows further. This is a fundamentally different resource category than UART or SPI — Ethernet is only viable on MCUs with sufficient memory, which in practice means the upper-mid-range parts and above.
 
@@ -39,7 +39,7 @@ Advantages: works with any MCU, no networking stack needed on the host MCU, radi
 
 **Integrated SoC** — The ESP32 is the dominant example: it has WiFi and Bluetooth radios integrated with dual Cortex-level processors. The WiFi stack runs on the same chip as the application. Nordic's nRF7002 is a WiFi companion chip. STM32 doesn't have integrated WiFi but pairs with external modules.
 
-With an integrated SoC, the application has direct access to the network stack (sockets, HTTP client libraries, MQTT). Throughput is higher and latency is lower than the AT command approach. But the firmware is more complex — you're managing a real-time network stack alongside application code.
+With an integrated SoC, the application has direct access to the network stack (sockets, HTTP client libraries, MQTT). Throughput is higher and latency is lower than the AT command approach. But the firmware is more complex — managing a real-time network stack alongside application code.
 
 ### WiFi-Specific Concerns
 
@@ -55,7 +55,7 @@ With an integrated SoC, the application has direct access to the network stack (
 
 Whether using Ethernet or WiFi, the software layers above the link are the same:
 
-**lwIP** is the most common embedded TCP/IP stack. It provides raw API (callback-based, single-threaded, lowest overhead), netconn API (sequential, requires RTOS), and socket API (BSD-like, requires RTOS, easiest to use). Choosing the right API depends on whether you have an RTOS and how complex the networking is.
+**lwIP** is the most common embedded TCP/IP stack. It provides raw API (callback-based, single-threaded, lowest overhead), netconn API (sequential, requires RTOS), and socket API (BSD-like, requires RTOS, easiest to use). Choosing the right API depends on whether an RTOS is present and how complex the networking is.
 
 **Application protocols** built on TCP/UDP:
 - **MQTT** — Lightweight publish/subscribe messaging. The default for IoT cloud connectivity. Small overhead, well-suited to embedded. Libraries: Paho, mosquitto, lwMQTT.

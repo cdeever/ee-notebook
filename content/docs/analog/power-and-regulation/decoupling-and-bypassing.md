@@ -63,7 +63,7 @@ The terms are often used interchangeably, but there's a subtle distinction:
 - **Decoupling** — Providing local energy storage to prevent supply voltage droops during fast current demands. The cap supplies current that the remote power supply can't deliver fast enough
 - **Bypassing** — Providing a low-impedance AC path to ground to shunt noise away from the supply pin. The cap shorts high-frequency noise to ground before it enters the IC
 
-In practice, the same capacitor does both jobs simultaneously. The distinction matters more when thinking about which frequency range you're targeting.
+In practice, the same capacitor does both jobs simultaneously. The distinction matters more when thinking about which frequency range is being targeted.
 
 ## Tips
 

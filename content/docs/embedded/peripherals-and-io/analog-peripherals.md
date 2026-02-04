@@ -29,7 +29,7 @@ A subtlety: when switching channels on a multiplexed ADC, the S&H capacitor reta
 
 The ADC measures the input as a ratio of the reference voltage. The reference can be:
 - **Internal bandgap reference** — typically 1.2 V, stable but limits input range
-- **Supply voltage (VDDA)** — convenient but only as clean and stable as your supply
+- **Supply voltage (VDDA)** — convenient but only as clean and stable as the supply
 - **External reference pin** — a dedicated VREF pin driven by a precision reference IC
 
 The choice of reference directly affects accuracy. Using VDDA as the reference means any supply noise modulates the conversion result. For ratiometric measurements (like a potentiometer divider powered from the same supply), VDDA as reference is actually ideal because supply variations cancel. For absolute voltage measurements, an external reference is worth the extra component. See [Reference Voltages]({{< relref "/docs/analog/power-and-regulation/reference-voltages" >}}) for more on precision references.
@@ -69,7 +69,7 @@ An analog comparator compares two voltages and outputs a digital HIGH or LOW dep
 - **Zero-crossing detection:** Detecting when an AC signal crosses ground, useful for phase measurement and TRIAC control timing
 - **Wake-up from low-power modes:** Some MCUs allow a comparator event to wake the CPU from sleep without keeping the ADC running, saving significant power
 
-**Hysteresis** is critical for comparator applications. Without hysteresis, a slowly changing input near the threshold causes the output to oscillate rapidly as noise pushes the signal back and forth across the threshold. On-chip comparators usually offer configurable hysteresis (5-50 mV typical), or you can implement external hysteresis with a resistor from the output to the non-inverting input. See [Stability & Oscillation]({{< relref "/docs/analog/noise-stability-reality/stability-and-oscillation" >}}) for more on feedback and oscillation in analog circuits.
+**Hysteresis** is critical for comparator applications. Without hysteresis, a slowly changing input near the threshold causes the output to oscillate rapidly as noise pushes the signal back and forth across the threshold. On-chip comparators usually offer configurable hysteresis (5-50 mV typical), or external hysteresis can be implemented with a resistor from the output to the non-inverting input. See [Stability & Oscillation]({{< relref "/docs/analog/noise-stability-reality/stability-and-oscillation" >}}) for more on feedback and oscillation in analog circuits.
 
 **Comparator output routing:** On many MCUs, the comparator output can be routed internally to timer capture inputs, interrupt lines, or even used as a blanking signal for PWM outputs — all without leaving the chip. This makes comparators very useful for real-time protection in motor control and power converter designs, where an overcurrent condition must shut down PWM outputs within nanoseconds, far faster than any software path.
 

@@ -55,7 +55,7 @@ This is the amplification region. The MOSFET is a voltage-controlled current sou
 
 **Terminology trap:** MOSFET "saturation" and BJT "saturation" are completely different. MOSFET saturation is the high-impedance, constant-current region used for amplification. BJT saturation is the low-impedance, fully-on switch state.
 
-## What Happens When You Leave the Intended Region
+## What Happens When the Device Leaves the Intended Region
 
 ### Clipping
 
@@ -81,7 +81,7 @@ At the bench:
 
 - **Measure V_CE (BJT) or V_DS (MOSFET)** — If V_CE < 0.3 V, the BJT is likely saturated. If V_DS is very low, the MOSFET is in the linear region
 - **Measure V_BE or V_GS** — Confirms the device is turned on (V_BE > ~0.6 V for BJT, V_GS > V_th for MOSFET)
-- **Check the output waveform** — Clipping on an oscilloscope immediately tells you the device is leaving the active region during part of the signal cycle
+- **Check the output waveform** — Clipping on an oscilloscope immediately indicates the device is leaving the active region during part of the signal cycle
 - **Measure collector/drain current** — Compare to the expected bias current. Significantly higher or lower suggests the wrong operating region
 
 ## Tips

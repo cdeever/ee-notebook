@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Measurement & Test
 
-Organized by what you're trying to measure, not by which instrument you pick up. Each subsection starts with a measurement situation — safety, probing, power rails, signals, noise — and works through the practical questions you face at the bench.
+Organized by what is being measured, not by which instrument gets picked up. Each subsection starts with a measurement situation — safety, probing, power rails, signals, noise — and works through the practical questions that come up at the bench.
 
 Subsections are ordered prerequisites-first: safety and probing technique before anything else, simple checks (continuity, components) before complex ones (signals, spectrum, protocols), and cross-cutting skills (noise, calibration) at the end.
 
@@ -14,7 +14,7 @@ Subsections are ordered prerequisites-first: safety and probing technique before
 
 - **[Safety & High Energy]({{< relref "safety-high-energy" >}})** — Mains, high voltage, CAT ratings, and the hazard assessment that comes before every measurement.
 
-- **[Probing & Measurement Technique]({{< relref "probing-technique" >}})** — Connecting without changing what you're measuring: loading, bandwidth, and grounding.
+- **[Probing & Measurement Technique]({{< relref "probing-technique" >}})** — Connecting without changing the thing being measured: loading, bandwidth, and grounding.
 
 - **[Continuity & Connections]({{< relref "continuity-connections" >}})** — The simplest checks: joints, shorts, wire mapping, and intermittent faults.
 
@@ -32,6 +32,6 @@ Subsections are ordered prerequisites-first: safety and probing technique before
 
 - **[Noise, Interference & Grounding]({{< relref "noise-interference-grounding" >}})** — Tracking unwanted signals: EMI, ground loops, crosstalk, coupling, and empirical fixes.
 
-- **[Calibration & Measurement Confidence]({{< relref "calibration-confidence" >}})** — Trusting your readings: accuracy, artifacts, calibration status, and measurement uncertainty.
+- **[Calibration & Measurement Confidence]({{< relref "calibration-confidence" >}})** — Trusting the readings: accuracy, artifacts, calibration status, and measurement uncertainty.
 
 - **[Test Instruments]({{< relref "test-instruments" >}})** — Reference pages for the instruments on the bench: specs, usage notes, and limits.

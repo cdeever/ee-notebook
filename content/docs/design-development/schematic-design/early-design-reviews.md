@@ -97,7 +97,7 @@ The most important aspect of design review is culture: reviews should be collabo
 
 Practical principles that support good review culture:
 
-- **The design, not the designer, is being reviewed.** Findings are about the circuit, not the person who drew it. "This pull-up might need to be lower for reliable communication at this bus speed" is constructive. "You forgot the pull-up" is accusatory.
+- **The design, not the designer, is being reviewed.** Findings are about the circuit, not the person who drew it. "This pull-up might need to be lower for reliable communication at this bus speed" is constructive. "The pull-up was forgotten" is accusatory.
 - **Questions are more effective than declarations.** "What happens to this node during power-up?" often leads to a productive discussion that reveals edge cases. "This is wrong" shuts down dialogue.
 - **Document findings, don't just discuss them.** Every issue identified in a review should be recorded (even informally — a shared document or issue list). Verbal-only reviews produce a pleasant conversation but unreliable follow-through.
 - **Close the loop.** After the review, the designer resolves each finding and the reviewer confirms resolution. Findings that are acknowledged but never resolved are the hallmark of ineffective reviews.

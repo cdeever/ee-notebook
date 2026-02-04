@@ -5,7 +5,7 @@ weight: 15
 
 # Feedback & Loop Intuition
 
-Feedback is the single most important idea in analog electronics. Almost every practical analog circuit — amplifiers, regulators, oscillators, PLLs, bias networks — uses feedback to make behavior predictable. But feedback is often taught as control theory math first and circuit intuition second. This page inverts that: what feedback actually does in circuits, why it exists, and the conceptual vocabulary you need before diving into stability analysis.
+Feedback is the single most important idea in analog electronics. Almost every practical analog circuit — amplifiers, regulators, oscillators, PLLs, bias networks — uses feedback to make behavior predictable. But feedback is often taught as control theory math first and circuit intuition second. This page inverts that: what feedback actually does in circuits, why it exists, and the conceptual vocabulary needed before diving into stability analysis.
 
 ## What Feedback Is in Circuits
 
@@ -44,7 +44,7 @@ Loop gain is the gain a signal experiences as it travels around the complete fee
 
 Or equivalently: T = A x B, where A is the forward gain and B is the fraction of the output fed back.
 
-**What loop gain tells you:**
+**What loop gain indicates:**
 
 - **High loop gain (>> 1):** The circuit tightly controls the output. Errors (distortion, noise, drift) are suppressed by the factor of the loop gain. The closed-loop gain approaches 1/B — determined entirely by the feedback network
 - **Low loop gain (approaching 1):** The feedback is weakening. The circuit starts to lose control. Errors are barely suppressed. The actual gain deviates from 1/B
@@ -56,7 +56,7 @@ Or equivalently: T = A x B, where A is the forward gain and B is the fraction of
 
 Here's where it gets physical. Loop gain doesn't just have a magnitude — it has a phase. As frequency increases, the amplifier and feedback network introduce phase shifts. If the total phase shift around the loop reaches 360 degrees (which looks like 0 degrees — the signal arrives back in phase with where it started) while the loop gain is still >= 1, the circuit oscillates.
 
-**Phase margin** measures how far you are from that catastrophe:
+**Phase margin** measures how far the circuit is from that catastrophe:
 
 - It's the difference between the actual phase shift and 360 degrees, measured at the crossover frequency (where loop gain = 1)
 - 90 degrees of phase margin: very stable, sluggish transient response
@@ -65,7 +65,7 @@ Here's where it gets physical. Loop gain doesn't just have a magnitude — it ha
 - 30 degrees: marginal, significant ringing
 - 0 degrees: sustained oscillation
 
-**The physical intuition:** Think of pushing someone on a swing. If you push at exactly the right moment (in phase), the swing goes higher each cycle — that's oscillation. If your pushes are slightly mistimed (out of phase), the energy doesn't build up and the swing settles to a steady amplitude. Phase margin is how far off your timing is from the resonant condition.
+**The physical intuition:** Think of pushing someone on a swing. If the push lands at exactly the right moment (in phase), the swing goes higher each cycle — that's oscillation. If the pushes are slightly mistimed (out of phase), the energy doesn't build up and the swing settles to a steady amplitude. Phase margin is how far off the timing is from the resonant condition.
 
 ## Why Compensation Exists
 
@@ -73,13 +73,13 @@ Most amplifiers, left to their own devices, don't have enough phase margin. Each
 
 **Compensation** deliberately shapes the loop gain vs. frequency curve to ensure adequate phase margin. The most common approach:
 
-**Dominant pole compensation:** Add a capacitor that creates a low-frequency pole, rolling off the gain early. This ensures the loop gain drops below 1 before the phase shift reaches the danger zone. The price is reduced bandwidth — you're intentionally making the amplifier slower to make it stable.
+**Dominant pole compensation:** Add a capacitor that creates a low-frequency pole, rolling off the gain early. This ensures the loop gain drops below 1 before the phase shift reaches the danger zone. The price is reduced bandwidth — intentionally making the amplifier slower to make it stable.
 
 This is why most op-amps have a gain-bandwidth product of only 1-10 MHz even though the transistors inside them could operate at hundreds of MHz. The internal compensation capacitor (typically 30 pF) limits the bandwidth to guarantee stability.
 
 **Other compensation strategies** (lead compensation, feedforward compensation) try to get more bandwidth while maintaining adequate phase margin. They're more complex but allow faster circuits. See [Stability & Oscillation]({{< relref "stability-and-oscillation" >}}) for the details.
 
-## Feedback in Circuits You Might Not Recognize
+## Feedback in Less Obvious Circuits
 
 Feedback isn't always obvious. Some circuits that use feedback without looking like textbook feedback loops:
 

@@ -8,7 +8,7 @@ bookCollapseSection: true
 
 Learning by building and breaking.
 
-RF theory becomes real when you build something and discover that it doesn't work the way the textbook said it should. This section collects practical projects, experiments, and postmortems from actual RF builds — the mistakes, the surprises, and the lessons that only come from hands-on experience.
+RF theory becomes real when something gets built and it doesn't work the way the textbook said it should. This section collects practical projects, experiments, and postmortems from actual RF builds — the mistakes, the surprises, and the lessons that only come from hands-on experience.
 
 Every entry here is meant to connect theory to practice. Simple transmitters, antenna experiments, SDR explorations, and debugging stories all serve the same purpose: building the intuition that comes from working with real RF circuits in real environments.
 

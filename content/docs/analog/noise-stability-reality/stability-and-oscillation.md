@@ -5,7 +5,7 @@ weight: 20
 
 # Stability & Oscillation
 
-Feedback done right produces a stable amplifier with predictable gain. Feedback done wrong produces an oscillator. The difference is phase margin — how much room you have between the actual phase shift and the 360 degrees that would sustain oscillation. Understanding stability is essential for any circuit with feedback, which includes almost every practical analog circuit.
+Feedback done right produces a stable amplifier with predictable gain. Feedback done wrong produces an oscillator. The difference is phase margin — how much room exists between the actual phase shift and the 360 degrees that would sustain oscillation. Understanding stability is essential for any circuit with feedback, which includes almost every practical analog circuit.
 
 ## The Oscillation Condition
 
@@ -89,12 +89,12 @@ A resistor in series with the output, outside the feedback loop, isolates capaci
 **On the oscilloscope:**
 - Continuous sine-wave oscillation at a specific frequency — the circuit is oscillating at the frequency where the Barkhausen criteria are met
 - Ringing on step responses (damped sine wave) — insufficient phase margin but not oscillating. The ringing frequency indicates where the phase margin is worst
-- High-frequency fuzz on the output — could be oscillation at a frequency above your scope's display resolution, or parasitic oscillation in a transistor stage
+- High-frequency fuzz on the output — could be oscillation at a frequency above the scope's display resolution, or parasitic oscillation in a transistor stage
 
 **Quick checks:**
 - Touch the output node with a scope probe (adds ~10 pF capacitance). If the oscillation frequency changes, it's load-dependent — suggests capacitive loading is the issue
-- Squeeze the feedback resistor with your fingers (adds parasitic capacitance). If the oscillation changes, stray feedback is involved
-- Add a small cap (10-100 pF) across the feedback resistor. If oscillation stops, you need lead compensation
+- Squeeze the feedback resistor between two fingers (adds parasitic capacitance). If the oscillation changes, stray feedback is involved
+- Add a small cap (10-100 pF) across the feedback resistor. If oscillation stops, lead compensation is needed
 
 ## Tips
 

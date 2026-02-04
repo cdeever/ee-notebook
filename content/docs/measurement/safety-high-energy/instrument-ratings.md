@@ -55,7 +55,7 @@ Professional meters (Fluke, Klein, etc.) use HRC ceramic fuses rated for high in
 - Check ratings on the meter, probes, and any adapters — the system rating is the lowest of the three
 - Replace glass fuses with HRC ceramic fuses before any mains-connected work
 - Aftermarket CAT III-rated test leads are a meaningful safety upgrade from cheap bundled probes
-- Memorize your equipment's ratings to avoid the "let me check" moment while holding energized probes
+- Memorize equipment ratings to avoid the "let me check" moment while holding energized probes
 - Match the measurement location to the appropriate CAT category — outlets are CAT II, panels are CAT III
 
 ## Caveats

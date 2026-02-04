@@ -5,7 +5,7 @@ weight: 20
 
 # Phase, Delay & Timing in Physical Space
 
-At DC, the entire circuit settles to its final state essentially instantly. At audio frequencies, propagation delay is so small compared to one cycle that you never think about it. At RF, signals take a measurable fraction of a cycle to travel from one point to another — and that fraction matters. Phase is no longer just a mathematical abstraction from AC circuit analysis; it is a physical reality tied to position along a wave.
+At DC, the entire circuit settles to its final state essentially instantly. At audio frequencies, propagation delay is so small compared to one cycle that it never comes up. At RF, signals take a measurable fraction of a cycle to travel from one point to another — and that fraction matters. Phase is no longer just a mathematical abstraction from AC circuit analysis; it is a physical reality tied to position along a wave.
 
 ## Propagation Is Not Instantaneous
 
@@ -31,7 +31,7 @@ The velocity factor depends on the dielectric constant of the material surroundi
 
 ## Phase as Physical Position
 
-A wave is a spatial pattern. At any instant in time, a sine wave has peaks, zeros, and troughs laid out in space along its direction of travel. Phase describes where you are in that pattern.
+A wave is a spatial pattern. At any instant in time, a sine wave has peaks, zeros, and troughs laid out in space along its direction of travel. Phase describes the position within that pattern.
 
 One complete cycle is 360 degrees. Starting at a voltage peak and moving one-quarter wavelength along the transmission line reaches a zero crossing — a 90-degree phase shift. Another quarter wavelength reaches the negative peak: 180 degrees, fully inverted.
 

@@ -34,7 +34,7 @@ SPI clock speeds commonly reach 10-40 MHz, and some peripherals support faster. 
 
 ### Data Transfer
 
-SPI is fundamentally a pair of shift registers exchanging data simultaneously. Every byte sent produces a byte received, even if you do not care about it. This means a "read" operation from a sensor typically involves sending a command byte (real data out) and then sending dummy bytes while clocking the response back in. Ignoring the received data during a write, or the transmitted data during a read, is fine — but you still have to clock both directions.
+SPI is fundamentally a pair of shift registers exchanging data simultaneously. Every byte sent produces a byte received, even if the received byte is not needed. This means a "read" operation from a sensor typically involves sending a command byte (real data out) and then sending dummy bytes while clocking the response back in. Ignoring the received data during a write, or the transmitted data during a read, is fine — but both directions still have to be clocked.
 
 There is no addressing, no ACK, and no flow control. The selected device responds because its CS is asserted, and it has no mechanism to say "wait" or "error." If the slave is not ready, the master gets whatever happens to be on MISO — usually 0xFF or 0x00.
 
@@ -60,7 +60,7 @@ Pull-up resistors are external and mandatory. The bus is open-drain: devices can
 
 ### Clock Stretching
 
-A slave can hold SCL low to pause the bus while it processes data. This is called clock stretching, and it is part of the I2C specification — but not all masters handle it properly, and not all slaves do it predictably. Some sensors stretch the clock for milliseconds during a conversion, which stalls the entire bus. In firmware, this appears as the I2C transfer taking much longer than expected, or as a timeout if you have one configured.
+A slave can hold SCL low to pause the bus while it processes data. This is called clock stretching, and it is part of the I2C specification — but not all masters handle it properly, and not all slaves do it predictably. Some sensors stretch the clock for milliseconds during a conversion, which stalls the entire bus. In firmware, this appears as the I2C transfer taking much longer than expected, or as a timeout if one is configured.
 
 ### Addressing and Bus Management
 
@@ -74,7 +74,7 @@ The ACK/NACK mechanism provides basic error feedback: if no device responds to a
 
 **I2C** — slow multi-device buses: sensors, EEPROMs, RTCs. Two wires for the whole bus regardless of device count, but limited speed and half-duplex.
 
-If the peripheral offers both I2C and SPI, and you have the pins, SPI is almost always easier to bring up and debug. I2C's strength is pin efficiency, not ease of use.
+If the peripheral offers both I2C and SPI, and the pins are available, SPI is almost always easier to bring up and debug. I2C's strength is pin efficiency, not ease of use.
 
 ## Data Handling
 
@@ -86,9 +86,9 @@ If the peripheral offers both I2C and SPI, and you have the pins, SPI is almost 
 
 ## Debugging SPI and I2C
 
-A logic analyzer with protocol decoding is the single most useful tool for SPI and I2C problems. Reading MCU status registers can tell you that a transfer failed, but not why. Seeing the actual waveforms — clock edges, data transitions, CS timing — reveals whether the issue is configuration (wrong clock mode), electrical (slow rise times), or firmware (CS toggled at the wrong time). Even a cheap 8-channel logic analyzer with protocol decoding changes serial bus debugging from guesswork to direct observation.
+A logic analyzer with protocol decoding is the single most useful tool for SPI and I2C problems. Reading MCU status registers can confirm that a transfer failed, but not why. Seeing the actual waveforms — clock edges, data transitions, CS timing — reveals whether the issue is configuration (wrong clock mode), electrical (slow rise times), or firmware (CS toggled at the wrong time). Even a cheap 8-channel logic analyzer with protocol decoding turns serial bus debugging from guesswork into direct observation.
 
-For I2C specifically, an oscilloscope is also valuable because rise time and signal shape matter. A logic analyzer shows you the decoded bits; an oscilloscope shows you whether the pull-ups are adequate. Both views are useful. See [Probing & Measurement Technique]({{< relref "/docs/measurement/probing-technique" >}}) for connection details.
+For I2C specifically, an oscilloscope is also valuable because rise time and signal shape matter. A logic analyzer shows the decoded bits; an oscilloscope shows whether the pull-ups are adequate. Both views are useful. See [Probing & Measurement Technique]({{< relref "/docs/measurement/probing-technique" >}}) for connection details.
 
 ## Tips
 

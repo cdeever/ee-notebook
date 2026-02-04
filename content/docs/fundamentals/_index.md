@@ -8,7 +8,7 @@ bookCollapseSection: true
 
 Nature's rules and universal constraints — the physics layer that everything else is built on. Ohm's law, Kirchhoff's laws, power and energy, passive component behavior, circuit analysis techniques, and the unit system that ties it all together.
 
-All of it seems simple until you actually need to apply it to a real circuit on the bench. Analog and digital design are human-engineered behavior layered on top of these rules. When something doesn't add up, the answer is almost always here.
+All of it seems simple until it needs to be applied to a real circuit on the bench. Analog and digital design are human-engineered behavior layered on top of these rules. When something doesn't add up, the answer is almost always here.
 
 ## Sections
 
@@ -26,4 +26,4 @@ All of it seems simple until you actually need to apply it to a real circuit on 
 
 - **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
 
-- **[Units, Notation & Measurement]({{< relref "units-notation-measurement" >}})** — SI prefixes, schematic conventions, and what instruments actually tell you.
+- **[Units, Notation & Measurement]({{< relref "units-notation-measurement" >}})** — SI prefixes, schematic conventions, and what instruments actually report.

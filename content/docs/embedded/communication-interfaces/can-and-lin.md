@@ -25,7 +25,7 @@ CAN is message-based, not address-based. Every message has an identifier (11-bit
 
 This is a fundamentally different model from UART or SPI, where communication is point-to-point between specific devices. On CAN, a temperature sensor broadcasts its reading with a specific message ID, and any node that cares about temperature accepts that message. The sensor does not know or care how many nodes are listening. Adding a new node that needs temperature data requires no changes to the sensor's firmware — just configure the new node's filters to accept that ID.
 
-The hardware provides a small number of mailboxes (typically 3 transmit, 2 receive FIFOs with configurable depth). Transmit mailboxes are prioritized by message ID — the CAN protocol's arbitration ensures that the highest-priority message (lowest ID) wins bus access when multiple nodes transmit simultaneously. On some MCUs (notably the STM32 bxCAN and FDCAN peripherals), the hardware filter bank is quite flexible — you can configure mask-based filters that accept ranges of IDs, or exact-match filters for specific messages. Getting the filter configuration right is important: if the filters are too open, the receive FIFO fills with messages the application does not need, potentially causing overruns. Too restrictive, and you miss messages.
+The hardware provides a small number of mailboxes (typically 3 transmit, 2 receive FIFOs with configurable depth). Transmit mailboxes are prioritized by message ID — the CAN protocol's arbitration ensures that the highest-priority message (lowest ID) wins bus access when multiple nodes transmit simultaneously. On some MCUs (notably the STM32 bxCAN and FDCAN peripherals), the hardware filter bank is quite flexible — the hardware supports mask-based filters that accept ranges of IDs, or exact-match filters for specific messages. Getting the filter configuration right is important: if the filters are too open, the receive FIFO fills with messages the application does not need, potentially causing overruns. Too restrictive, and messages are missed.
 
 ### CAN Transceivers
 
@@ -39,7 +39,7 @@ The CAN transceiver is a small, dedicated IC that sits between the MCU's CAN_TX/
 
 The transceiver choice matters for more than just electrical compatibility. Many automotive transceivers have standby and sleep modes that reduce quiescent current to microamps — critical for vehicle modules that must not drain the battery when the car is off. In standby mode, the transceiver can still monitor the bus for a wake-up pattern (a dominant state held for a defined duration) and assert a wake pin to bring the MCU out of its own low-power state. This selective wake-up capability is part of why automotive CAN networks can have dozens of modules without excessive parasitic drain.
 
-For bench prototyping and development, the transceiver is sometimes the part people forget. You cannot test CAN communication between two MCU boards without a transceiver on each side. Even loopback mode on the MCU's CAN peripheral (which is useful for initial firmware bring-up) only tests the internal data path — it does not exercise the transceiver or the physical bus.
+For bench prototyping and development, the transceiver is sometimes the part people forget. CAN communication between two MCU boards cannot be tested without a transceiver on each side. Even loopback mode on the MCU's CAN peripheral (which is useful for initial firmware bring-up) only tests the internal data path — it does not exercise the transceiver or the physical bus.
 
 ### Bit Timing and Bus Configuration
 
@@ -75,7 +75,7 @@ CAN is everywhere in vehicles, and increasingly in industrial systems. A few of 
 
 **DeviceNet** — Allen-Bradley's (Rockwell) CAN-based industrial network. Less common in new designs but still encountered in existing factory installations.
 
-**DBC files** are the de facto standard for describing CAN message layouts — which signals live in which message ID, their bit positions, scaling factors, and units. If you are working with vehicle CAN data, you will eventually encounter DBC files, and tools like Vector CANdb++, SavvyCAN, or the Python cantools library can parse them. Working with raw CAN without a DBC file (or equivalent documentation) means reverse-engineering message contents byte by byte, which is educational but slow.
+**DBC files** are the de facto standard for describing CAN message layouts — which signals live in which message ID, their bit positions, scaling factors, and units. When working with vehicle CAN data, DBC files will eventually come up, and tools like Vector CANdb++, SavvyCAN, or the Python cantools library can parse them. Working with raw CAN without a DBC file (or equivalent documentation) means reverse-engineering message contents byte by byte, which is educational but slow.
 
 I am not going deep on any of these protocols here — each one is its own rabbit hole. The point is that the CAN peripheral on the MCU handles the bus-level mechanics, but any real application involves a higher-layer protocol that defines what the messages mean and how nodes interact.
 
@@ -85,7 +85,7 @@ I am not going deep on any of these protocols here — each one is its own rabbi
 
 LIN (Local Interconnect Network) is a single-wire, master-slave serial bus designed as a low-cost complement to CAN. Where CAN provides multi-master arbitration, high speed, and robust error handling for critical vehicle systems, LIN handles the simple, non-critical stuff: adjusting mirrors, moving seats, reading a rain sensor, controlling interior lights. The entire point of LIN is cost reduction — one wire instead of two, a simple transceiver instead of a CAN transceiver, and slave controllers that can be much cheaper than CAN-capable MCUs.
 
-LIN was developed by a consortium of automotive manufacturers and semiconductor companies (the LIN specification is freely available). The current version is LIN 2.2A, though you will still encounter devices built to earlier versions.
+LIN was developed by a consortium of automotive manufacturers and semiconductor companies (the LIN specification is freely available). The current version is LIN 2.2A, though devices built to earlier versions are still encountered.
 
 ### Physical Layer
 
@@ -105,7 +105,7 @@ LIN runs at up to 20 kbps. That is not a typo — twenty kilobits per second. Th
 
 Unlike CAN's multi-master bus, LIN is strictly master-slave. One master node controls all communication on the bus. The master sends a header (consisting of a sync break, sync byte, and protected identifier), and the designated slave responds with data. No slave ever transmits without being asked. This eliminates the need for arbitration hardware — a major cost saving in the slave nodes.
 
-The master maintains a schedule table that defines which messages are sent at what intervals. This makes LIN communication completely deterministic: you know exactly when every message will appear on the bus. The schedule is typically defined at design time and does not change at runtime, though the specification allows the master to modify it.
+The master maintains a schedule table that defines which messages are sent at what intervals. This makes LIN communication completely deterministic: exactly when every message will appear on the bus is known in advance. The schedule is typically defined at design time and does not change at runtime, though the specification allows the master to modify it.
 
 A LIN frame consists of:
 1. **Sync break** — At least 13 dominant bits. This is longer than any valid UART byte and signals the start of a new frame.
@@ -125,7 +125,7 @@ For a LIN master, generating the sync break means either:
 
 For a LIN slave, detecting the sync break means recognizing a framing error (since the break violates normal UART framing) followed by the 0x55 sync byte. The slave can then measure the 0x55 pattern to calibrate its own baud rate — this auto-baud feature lets LIN slaves use cheaper, less accurate oscillators (like internal RC oscillators) instead of external crystals.
 
-Some MCUs do include dedicated LIN peripherals or UART modes with built-in LIN support: break detection, auto-baud from the sync field, and automatic checksum generation/checking. STM32's USART peripherals, for example, have a LIN mode that handles break detection in hardware. This simplifies the firmware considerably — without it, you are parsing UART framing errors and manually synchronizing to the break/sync pattern.
+Some MCUs do include dedicated LIN peripherals or UART modes with built-in LIN support: break detection, auto-baud from the sync field, and automatic checksum generation/checking. STM32's USART peripherals, for example, have a LIN mode that handles break detection in hardware. This simplifies the firmware considerably — without it, the firmware must parse UART framing errors and manually synchronize to the break/sync pattern.
 
 ### Use Cases
 
@@ -150,7 +150,7 @@ The cost argument for LIN is concrete:
 - **Cheaper slave MCUs** — A LIN slave only needs a UART and a basic oscillator. No CAN peripheral, no crystal (thanks to auto-baud), potentially a very small and cheap 8-bit MCU.
 - **Reduced wiring harness** — In a vehicle, the wiring harness is a significant cost. Every wire eliminated saves material, weight, and assembly time.
 
-When you multiply these savings across dozens of modules in a vehicle — and across millions of vehicles — the cost difference is substantial.
+Multiplied across dozens of modules in a vehicle — and across millions of vehicles — the cost difference is substantial.
 
 ### LIN vs. Plain UART
 

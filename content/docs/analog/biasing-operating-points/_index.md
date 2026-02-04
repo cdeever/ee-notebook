@@ -13,5 +13,5 @@ This is where many analog circuits quietly fail — not with smoke, but with dri
 ## What This Section Covers
 
 - **[DC Biasing]({{< relref "dc-biasing" >}})** — Why bias exists at all, and the major biasing topologies: fixed, self, and feedback.
-- **[Operating Regions]({{< relref "operating-regions" >}})** — Linear vs. saturation vs. cutoff, and what happens when you leave the intended region.
+- **[Operating Regions]({{< relref "operating-regions" >}})** — Linear vs. saturation vs. cutoff, and what happens when the device leaves the intended region.
 - **[Temperature & Drift]({{< relref "temperature-and-drift" >}})** — Why yesterday's circuit behaves differently today, and how to design against it.
