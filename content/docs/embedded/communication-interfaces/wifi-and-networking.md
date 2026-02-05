@@ -71,6 +71,7 @@ Whether using Ethernet or WiFi, the software layers above the link are the same:
 - Wait for PHY link-up status after Ethernet initialization before sending any traffic
 - Handle DNS failure explicitly rather than relying on TCP timeout
 - Follow lwIP thread-safety requirements carefully when integrating with an RTOS
+- In distributed systems, design for communication failure as the normal case — nodes will lose packets, gateways will miss messages, and the system needs to handle those cases without operator intervention
 
 ## Caveats
 

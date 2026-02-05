@@ -111,3 +111,4 @@ When using a broker:
 - **Return policies vary significantly.** Some distributors accept returns on standard parts; others consider all sales final for semiconductors — check the return policy before ordering large quantities of an uncertain part
 - **Free samples from manufacturers are real and useful.** Most major semiconductor manufacturers offer free samples of their ICs for evaluation, but quantities are small (2-5 units)
 - **Distributor-specific part numbers are not manufacturer part numbers.** Digi-Key and Mouser assign their own ordering codes (e.g., "296-12345-1-ND") that should not be used as the canonical reference
+- **Module quality varies widely across suppliers.** Two "ESP32 modules" from different manufacturers may have different RF performance, thermal behavior, and firmware compatibility despite using the same main IC — when a module behaves unexpectedly, the module itself (not just the design) is worth investigating

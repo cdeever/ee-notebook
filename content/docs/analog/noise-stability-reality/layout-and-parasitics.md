@@ -96,6 +96,7 @@ A solid ground plane under signal traces:
 - Keep high-impedance traces short and away from noisy digital signals
 - Use a solid, unbroken ground plane rather than split planes that force return currents to detour
 - Place decoupling caps as close to IC power pins as physically possible — every millimeter of trace adds inductance
+- Parasitics matter most where least expected — a capacitor's ESL dominates above its self-resonant frequency, a resistor's parasitic capacitance matters in high-impedance, high-frequency circuits, and the "ideal" model is always an approximation
 
 ## Caveats
 

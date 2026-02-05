@@ -104,6 +104,8 @@ The format doesn't matter. What matters is that the information exists somewhere
 - Specify power-up sequencing requirements as part of the interface definition, especially when signals cross between different voltage domains
 - Treat mechanical connections (connectors, cables, thermal paths) as first-class interfaces that need the same attention as electrical ones
 - Keep an informal interface table in the project notebook listing each interface and its key parameters — even a few notes catch mismatches before they become hardware bugs
+- Subsystem-level specs are the right abstraction for system integration decisions -- a buck converter's efficiency, ripple, and transient response determine whether it's suitable; the internal compensation network is only relevant if the spec isn't met
+- Device-level reasoning focuses on interface compatibility: voltage levels, communication protocols, mechanical fit, and power requirements -- internal details only matter when the device isn't meeting its spec
 
 ## Caveats
 

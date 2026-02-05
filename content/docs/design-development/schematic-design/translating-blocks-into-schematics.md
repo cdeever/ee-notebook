@@ -81,6 +81,8 @@ Even experienced designers make organizational errors that cause problems downst
 - Name every net that crosses a sheet boundary with an explicit, meaningful name -- never rely on tool-assigned net identifiers
 - Keep signal flow consistent: inputs on the left, outputs on the right, power at the top, ground at the bottom
 - Run ERC after every significant schematic change and resolve every warning rather than suppressing them
+- Block-level parameters (gain, cutoff frequency, impedance) are the right abstraction for most design calculations -- drop to primitive-level reasoning only when a block isn't meeting its spec
+- Block boundaries are defined by function, not physical grouping -- two resistors on opposite sides of the PCB can form a single block if they work together functionally
 
 ## Caveats
 

@@ -71,6 +71,7 @@ Capacitors provide short-term energy during supply interruptions. Energy = ½CV�
 - Ceramic caps are microphonic — Mechanical vibration causes voltage on the cap due to the piezoelectric effect of the ceramic dielectric. This matters in audio and precision analog circuits. C0G is less microphonic than X7R
 - ESR is not always bad — In voltage regulator output caps, some ESR helps stability. An LDO designed for electrolytic output caps (which have ESR) might oscillate with ultra-low-ESR ceramic caps. Check the datasheet
 - Capacitors in series halve the capacitance but double the voltage rating — Useful for AC mains work. But the voltage division is only equal if the capacitors are identical. Mismatched caps get unequal voltage sharing, and one might see more than its rating
+- Temperature and aging effects are almost always larger than expected — a design that works on the bench at 25°C may fail in the field at 60°C, and the failure will trace back to a component whose parameter shifted outside the assumed range
 
 ## Bench Relevance
 

@@ -122,6 +122,7 @@ This is intentional — it prevents competitors from reading the firmware. But i
 - Use watchpoints to find memory corruption bugs quickly — set a watchpoint on the corrupted variable's address and the CPU halts at the offending instruction
 - Check the CoreDebug->DHCSR C_DEBUGEN bit before semihosting calls to prevent hard faults when no debugger is attached
 - Keep a couple of header pins broken out on every prototype board for GPIO-based timing measurements
+- Development boards are learning tools, not production references — the schematic and layout choices made for a dev board (generous decoupling, wide traces, test points everywhere) often differ from what a cost-optimized production design would use
 
 ## Caveats
 

@@ -56,11 +56,8 @@ Most primitives are cross-cutting: a resistor appears in every domain of electro
 ## Tips
 
 - Datasheet parameters are specified at particular test conditions. The actual value in the circuit depends on temperature, frequency, voltage, and aging — checking the graphs, not just the headline number, avoids surprises.
-- Parasitics matter most where they're least expected. A capacitor's ESL dominates above its self-resonant frequency. A resistor's parasitic capacitance matters in high-impedance, high-frequency circuits. The "ideal" model is always an approximation.
-- When a primitive-level problem is suspected, substitution is the fastest diagnostic: swap the component and see if the behavior changes.
 
 ## Caveats
 
 - The boundary between a primitive and a block is defined by the level of reasoning, not by the part number. An op-amp is a primitive when selecting it from a catalog; it becomes a block when analyzing its internal compensation.
 - Some "primitives" contain significant internal complexity (voltage references, crystals with internal oscillator trim). The primitive label means reasoning at this level treats the component as a black box with datasheet parameters, not that the component is simple internally.
-- Temperature and aging effects are almost always larger than expected. A design that works on the bench at 25 °C may fail in the field at 60 °C, and the failure will trace back to a primitive whose parameter shifted outside the assumed range.

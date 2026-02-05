@@ -45,13 +45,9 @@ Systems are where the environment enters the picture. Temperature, EMI, cable le
 
 ## Tips
 
-- System-level debugging starts by verifying that each device works correctly in isolation before looking for interaction problems. Removing devices from the system one at a time often isolates the problematic interaction.
-- The error budget is the fundamental system-level design tool. Allocating allowable error across each stage of the chain, then verifying each stage meets its allocation, is more reliable than testing only the end-to-end result.
-- Power budget analysis should happen early in system design, not after everything is built. Adding up the worst-case current draw of every device, in every operating mode, often reveals that the chosen battery or supply is undersized before any hardware is assembled.
-- In wireless and distributed systems, design for communication failure as the normal case. Nodes will lose packets, gateways will miss messages, and the system needs to handle those cases without operator intervention.
+- The systems listed here are small-scale, project-oriented systems. Industrial, automotive, and aerospace systems operate at this same abstraction level but with vastly more complexity, formalized interface control documents, and safety/regulatory requirements that are beyond the scope of a learning notebook.
 
 ## Caveats
 
 - "System" is the most context-dependent level. A wireless module is a device when evaluated on its own; it becomes part of a system the moment it's integrated with sensors, a controller, and a power source toward a coordinated purpose. The system boundary is defined by the purpose, not by the hardware.
 - Emergent system behavior — ground loops, EMI coupling, thermal interactions, power supply crosstalk — is often not predictable from device-level specs alone. Some system-level problems only appear when everything is connected and running in the actual physical configuration.
-- The systems listed here are small-scale, project-oriented systems. Industrial, automotive, and aerospace systems operate at this same abstraction level but with vastly more complexity, formalized interface control documents, and safety/regulatory requirements that are beyond the scope of a learning notebook.

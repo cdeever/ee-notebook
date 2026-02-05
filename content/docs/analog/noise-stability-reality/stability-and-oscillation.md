@@ -102,6 +102,7 @@ A resistor in series with the output, outside the feedback loop, isolates capaci
 - Use a small series resistor (10-100 Ω) at the output to isolate capacitive loads from the feedback path
 - Add a small capacitor (10-100 pF) across the feedback resistor for lead compensation if oscillation persists
 - Test stability at unity gain — if stable there, higher gains will be stable too
+- The interaction between blocks matters as much as the blocks themselves — an amplifier stage that works perfectly in isolation may oscillate when connected to a capacitive load, or lose bandwidth when driven from a high-impedance source
 
 ## Caveats
 

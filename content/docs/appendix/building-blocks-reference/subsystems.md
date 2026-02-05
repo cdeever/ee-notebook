@@ -71,12 +71,9 @@ Subsystems are where domain specificity begins to matter more heavily. A buck co
 
 ## Tips
 
-- Subsystem-level specs are the right abstraction for system integration decisions. A buck converter's efficiency, ripple, and transient response determine whether it's suitable — the internal compensation network is only relevant if the spec isn't met.
-- Most subsystem-level debugging starts by verifying the interface contract: is the input within spec? Is the output meeting its promise? If the input is good and the output is bad, the problem is internal to the subsystem.
 - Integrated subsystem ICs (like a complete buck converter with internal MOSFETs, or a USB-to-serial bridge) compress many block-level decisions into silicon. The datasheet application circuit is the starting point, not a suggestion — deviating from it requires understanding which internal assumptions are being violated.
 
 ## Caveats
 
-- The line between a block and a subsystem is blurry. A simple linear regulator (LDO with two caps) could be called either. The test is whether reasoning focuses on specs and contracts (subsystem) or on transfer functions and component interactions (block).
 - "Subsystem" in this context means a functional unit within a larger design, not a standalone product. A buck converter module purchased as a finished product is a device; a buck converter designed as part of a board's power tree is a subsystem.
 - Communication subsystems (UART, SPI, I2C) are often implemented entirely in silicon inside a microcontroller. The subsystem-level reasoning still applies — baud rates, bus loading, protocol modes — even when there's no discrete circuit to inspect.

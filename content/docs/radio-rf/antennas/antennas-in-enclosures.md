@@ -124,6 +124,7 @@ The practical workflow for product antenna design:
 - Use 3D-printed mock enclosures with similar material and wall thickness during antenna prototyping if the final housing is not yet available
 - Hold a sample of the enclosure material near the antenna while measuring VSWR on a NanoVNA to estimate the frequency shift before committing to a layout
 - Test with human interaction (hand grip, pocket placement, table surface) and design the matching network for the worst-case condition that still must meet specifications
+- Wireless modules are sensitive to antenna placement, ground plane size, and nearby metal — reading the module manufacturer's antenna guidelines before committing to a physical layout saves rework
 
 ## Caveats
 

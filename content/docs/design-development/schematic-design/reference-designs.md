@@ -72,6 +72,8 @@ Some vendors also provide interactive design tools (TI's WEBENCH, Analog Devices
 - For every component carried over from a reference design, document its function at a deeper level than just "it's a capacitor" -- understanding ESR requirements, dielectric type, and voltage derating enables safe substitution
 - Recalculate affected component values whenever the operating conditions differ from the reference (different input voltage, output current, or temperature range)
 - Use vendor interactive design tools (TI WEBENCH, ADI LTpowerCAD) to generate a customized starting point rather than adapting a generic reference
+- Many IC datasheets describe "application circuits" that are really blocks -- the 555 timer's monostable circuit, an LM317's adjustable regulator circuit, or an NE5532's inverting amplifier circuit are all blocks composed from a primitive IC plus external components
+- The datasheet application circuit is the starting point, not a suggestion -- deviating from it requires understanding which internal assumptions are being violated
 
 ## Caveats
 

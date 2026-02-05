@@ -47,14 +47,10 @@ These are the purchased building blocks that get integrated into larger designs.
 
 ## Tips
 
-- Device-level reasoning focuses on interface compatibility: voltage levels, communication protocols, mechanical fit, and power requirements. Internal details only matter when the device isn't meeting its spec.
-- Development boards are learning tools, not production references. The schematic and layout choices made for a dev board (generous decoupling, wide traces, test points everywhere) often differ from what a cost-optimized production design would use.
-- Wireless modules and GPS modules are sensitive to antenna placement, ground plane size, and nearby metal. Reading the module manufacturer's antenna guidelines before committing to a physical layout saves rework.
-- Actuators (motors, servos, steppers) draw current in patterns very different from digital circuits — inductive spikes, high stall currents, and back-EMF. Power supply sizing and decoupling for motor circuits deserves separate attention from the logic power rail.
+- GPS modules need a clear view of the sky — indoor use or poor antenna placement causes long fix times or no fix at all.
 
 ## Caveats
 
 - The line between a device and a subsystem depends on perspective. A power supply module soldered onto a larger board might be treated as a subsystem in that context and a device when evaluated standalone.
 - "Device" in this catalog means a purchased module or product integrated into a build, not a formal product category. The emphasis is on building blocks a learner uses to construct larger systems.
 - Device specs often assume specific operating conditions (ambient temperature, load, input voltage). Real-world performance degrades at the edges of those conditions, and the derating curves in the datasheet (if they exist) are the guide to how much.
-- Module quality varies widely across suppliers. Two "ESP32 modules" from different manufacturers may have different RF performance, thermal behavior, and firmware compatibility despite using the same main IC. When a module behaves unexpectedly, the module itself — not just the design — is worth investigating.

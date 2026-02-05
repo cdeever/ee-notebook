@@ -153,6 +153,11 @@ Having a schematic doesn't mean trusting it blindly.
 
 ## Bench Relevance
 
+- **Substitution is the fastest diagnostic for primitive-level problems** — when a primitive-level problem is suspected, swap the component and see if the behavior changes.
+- **Circle the blocks first when analyzing unfamiliar schematics** — before tracing individual signals, identifying the functional blocks reveals the designer's intent and makes signal flow legible.
+- **Most debugging starts by verifying the interface contract** — is the input within spec? Is the output meeting its promise? If input is good and output is bad, the problem is internal to the subsystem.
+- **Verify each device works in isolation before looking for interactions** — system-level debugging starts by confirming each device functions correctly alone, then hunting for interaction problems by removing devices one at a time.
+- **Emergent behavior — ground loops, EMI coupling, thermal interactions** — system-level problems that only appear when everything is connected often trace to these cross-subsystem effects that don't exist in any device individually.
 - **A circuit that works reliably in isolation but fails intermittently when integrated into a larger system** is the signature of an abstraction boundary that's leaking.
 - **A symptom that appears only when the full system is running — but disappears when any single subsystem is isolated** — is a cross-level effect that requires zooming out to the system level to observe, then zooming in along the coupling path (power, ground, thermal, EMI) to find the root cause.
 - **A device that passes all bench tests but fails in the installed system** often shows up when the bench test environment doesn't replicate the real interface conditions — the bench supply is cleaner than the field supply, the bench temperature is lower than the enclosure temperature, or the bench ground connection is shorter and lower impedance than the field installation.

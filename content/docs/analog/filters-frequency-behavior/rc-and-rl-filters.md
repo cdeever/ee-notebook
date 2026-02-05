@@ -103,6 +103,7 @@ Solutions:
 - **Component tolerances** — A 10% capacitor tolerance means 10% cutoff frequency uncertainty. For precise filtering, use tight-tolerance components or active filters with gain-set feedback
 - **Parasitic behavior** — At high frequencies, resistors become inductive and capacitors become inductive above their self-resonant frequency. A "low-pass" filter with a 100 nF ceramic cap stops being a low-pass above 10-50 MHz depending on the package
 - **Phase shift** — A first-order filter introduces up to 90° of phase shift. At the cutoff frequency, the phase shift is 45°. In feedback loops, this phase shift can affect stability
+- **The same topology can serve different functions** — an RC network is a filter, a delay element, or a snubber depending on where it sits and what problem it solves
 
 ## Bench Relevance
 

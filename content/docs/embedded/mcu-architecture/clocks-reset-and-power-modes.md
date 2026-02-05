@@ -74,6 +74,8 @@ The key insight for low-power design is "race to sleep": a sensor node that wake
 - **Check the crystal ready flag before switching** — vendor startup code may or may not have a timeout on crystal startup; verifying the ready flag explicitly avoids hanging or running at the wrong frequency
 - **Use "race to sleep" for battery-powered designs** — finishing a task at full speed and entering deep sleep uses far less energy than running slowly and continuously, because total energy is power multiplied by time
 - **Read the reset cause register early in `main()`** — distinguishing a watchdog reset from a power-on reset allows firmware to skip slow initialization or log the fault before proceeding
+- **Crystal load capacitance matching is critical** — the load capacitors must match the crystal's specified load capacitance; wrong values cause frequency error or failure to start
+- **Power budget analysis should happen early in system design** — adding up the worst-case current draw of every device, in every operating mode, often reveals that the chosen battery or supply is undersized before any hardware is assembled
 
 ## Caveats
 

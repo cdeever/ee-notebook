@@ -79,6 +79,7 @@ The goal isn't perfect simulation — it's useful simulation. A simulation that 
 - Always verify that the SPICE model's behavior matches the datasheet before trusting it for design decisions -- if bandwidth or gain numbers disagree, investigate before proceeding
 - After building and measuring the real circuit, compare measurements back to simulation results to improve modeling skills and identify which parasitics matter most
 - Use simulation selectively: invest the time on feedback loops, filter responses, and stability-sensitive circuits rather than on simple voltage dividers or bias networks
+- Simulation is most useful at the block level -- it's detailed enough to capture real behavior but small enough to run quickly and interpret easily
 
 ## Caveats
 

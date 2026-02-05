@@ -75,13 +75,8 @@ Most blocks at this level are cross-cutting. A voltage divider works the same wa
 
 ## Tips
 
-- When analyzing an unfamiliar schematic, circling the blocks first — before tracing individual signals — reveals the designer's intent and makes the signal flow legible.
-- Block-level parameters (gain, cutoff frequency, impedance) are the right abstraction for most design calculations. Drop to primitive-level reasoning only when a block isn't meeting its spec.
-- The interaction between blocks matters as much as the blocks themselves. An amplifier stage that works perfectly in isolation may oscillate when connected to a capacitive load, or lose bandwidth when driven from a high-impedance source.
-- Simulation is most useful at the block level — it's detailed enough to capture real behavior but small enough to run quickly and interpret easily.
+- Datasheet "typical" application circuits are often blocks — the 555 timer's monostable circuit, an LM317's adjustable regulator circuit, or an NE5532's inverting amplifier circuit are all blocks composed from a primitive IC plus external components.
 
 ## Caveats
 
-- The same topology can serve different functions depending on component values and context. An RC network is a filter, a delay element, or a snubber depending on where it sits and what problem it solves.
-- Block boundaries are defined by function, not by physical grouping on the board. Two resistors on opposite sides of the PCB can form a single block if they work together functionally.
-- Many IC datasheets describe "application circuits" that are really blocks. The 555 timer's monostable circuit, an LM317's adjustable regulator circuit, or an NE5532's inverting amplifier circuit are all blocks composed from a primitive IC plus external components.
+- The line between a block and a subsystem is blurry. A simple linear regulator (LDO with two caps) could be called either. The test is whether reasoning focuses on specs and contracts (subsystem) or on transfer functions and component interactions (block).

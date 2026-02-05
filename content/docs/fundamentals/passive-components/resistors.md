@@ -58,6 +58,7 @@ The textbook formulas are straightforward. The practical nuances:
 - High-value resistors pick up noise — A 10 MΩ resistor in a high-impedance circuit is an antenna. Guard rings, shielding, and short leads help
 - SMD resistor markings — 4.7 kΩ might be marked "472" (47 × 10²). "4R7" means 4.7 Ω. "0" means 0 Ω (jumper). Worth memorizing the common codes
 - 0 Ω resistors exist — They're jumpers in SMD form. Used for routing flexibility on PCBs. They have milliohms of actual resistance and limited current ratings
+- Temperature and aging effects are almost always larger than expected — a design that works on the bench at 25°C may fail in the field at 60°C, and the failure will trace back to a component whose parameter shifted outside the assumed range
 
 ## Bench Relevance
 

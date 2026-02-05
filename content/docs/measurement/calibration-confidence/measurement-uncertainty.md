@@ -83,6 +83,7 @@ For bench work, formal uncertainty analysis is usually overkill:
 - Averaging increases precision (reduces random variation) but not accuracy (doesn't fix systematic errors)
 - Temperature is the biggest environmental factor for most measurements
 - Systematic errors (miscalibrated meter) don't reduce with averaging
+- The error budget is the fundamental system-level design tool — allocating allowable error across each stage of the chain, then verifying each stage meets its allocation, is more reliable than testing only the end-to-end result
 
 ## Caveats
 
