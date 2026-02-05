@@ -1,6 +1,6 @@
 ---
 title: "🏗️ Architecture & Abstraction"
-weight: 4
+weight: 1
 bookCollapseSection: true
 ---
 
@@ -8,19 +8,17 @@ bookCollapseSection: true
 
 How to think about electronics at different levels — and how to move between them.
 
-Electronics is built in layers. A resistor divider is a primitive. A voltage regulator is a block. A power supply is a subsystem. A bench instrument is a device. A test setup with DUT, supply, and scope is a system. Each layer hides detail from the one above it, and each layer depends on assumptions about the one below. When those assumptions hold, the abstraction saves time and mental effort. When they don't, the abstraction becomes a trap.
+Electronic systems can be understood in terms of structure as well as circuitry. Complex behavior emerges from simpler parts combined in consistent ways, and those combinations can be examined at different levels of detail depending on the task at hand. Being able to shift perspective — to see a circuit as a collection of components, a functional block, a subsystem, or a complete device — makes unfamiliar designs easier to understand and complex problems easier to reason about.
 
-This section is not about circuit design or specific technologies — those belong in their respective sections. It's about the structural thinking that cuts across all of them: how to decompose a problem, how to recognize which level of detail matters right now, how to trace failures that cross layer boundaries, and how to build mental models that survive contact with real hardware.
+This section introduces the structural view of electronics that underlies the rest of the notebook. It focuses on how systems are composed, how boundaries between levels behave, and how assumptions made at one level affect behavior at another. The goal is to establish a way of thinking that scales with complexity, allowing larger and less familiar systems to be understood as coherent structures rather than collections of isolated details.
 
-The emphasis is practical. These aren't software-engineering abstractions applied to hardware by analogy — they're patterns that emerge from working with real circuits, real ICs, and real systems on the bench.
+The emphasis is practical. These ideas reflect how electronic systems are organized and how their behavior emerges across levels of abstraction. Understanding them makes it easier to choose the right level of detail for a given task, to interpret schematics and measurements in context, and to trace problems that cross conventional boundaries between circuits, devices, and systems.
 
 ## Sections
 
-- **[The Abstraction Ladder]({{< relref "abstraction-ladder" >}})** — The hierarchy from primitives to systems: what each level is, why it exists, and how to choose the right one.
+- **[Abstraction Layers]({{< relref "abstraction-layers" >}})** — The hierarchy from primitives to systems: what each level is, why it exists, and how to choose the right one.
 
 - **[Composition Patterns]({{< relref "composition-patterns" >}})** — How smaller things combine into larger things: the interfaces, contracts, and assumptions at each boundary.
-
-- **[Integrated Circuits as Layer-Spanning Artifacts]({{< relref "ics-as-layer-spanning" >}})** — Why ICs don't fit neatly into one abstraction level, and what that means for reasoning about them.
 
 - **[Abstraction Leakage & Failure Propagation]({{< relref "abstraction-leakage" >}})** — How internal behavior escapes its layer, how failures propagate up and down, and how wrong-layer reasoning leads to misdiagnosis.
 
@@ -30,4 +28,4 @@ The emphasis is practical. These aren't software-engineering abstractions applie
 
 - **[Practical Mental Models]({{< relref "practical-mental-models" >}})** — Frameworks for reasoning about energy, information, time, and control across layers — and recognizing when an abstraction is helping vs. hiding a problem.
 
-- **[Building Blocks Reference]({{< relref "building-blocks-reference" >}})** — A browseable catalog of common electronics building blocks organized by abstraction level, from single components to multi-device systems.
+- **[Integrated Circuits as Layer-Spanning Artifacts]({{< relref "ics-as-layer-spanning" >}})** — Why ICs don't fit neatly into one abstraction level, and what that means for reasoning about them.

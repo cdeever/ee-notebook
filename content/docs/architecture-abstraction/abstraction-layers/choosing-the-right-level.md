@@ -5,7 +5,7 @@ weight: 30
 
 # Choosing the Right Level to Think At
 
-The right abstraction level isn't fixed — it depends on the task at hand. Designing, reviewing, building, verifying, and debugging each pull toward different rungs of the ladder. Choosing poorly doesn't just waste time — it actively generates confusion, because it leads to asking questions that the current level can't answer, or collecting measurements that can't distinguish between the possibilities under consideration.
+The right abstraction level isn't fixed — it depends on the task at hand. Designing, reviewing, building, verifying, and debugging each pull toward different abstraction layers. Choosing poorly doesn't just waste time — it actively generates confusion, because it leads to asking questions that the current level can't answer, or collecting measurements that can't distinguish between the possibilities under consideration.
 
 The heuristic isn't complicated: match the level of reasoning to the level of the question being asked.
 

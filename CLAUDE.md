@@ -17,10 +17,10 @@ Content is organized into ten sections, each a subdirectory of `content/docs/`:
 
 | Weight | Directory | Title |
 |--------|-----------|-------|
-| 1 | `fundamentals/` | Fundamentals |
-| 2 | `analog/` | Analog Electronics |
-| 3 | `digital/` | Digital Electronics |
-| 4 | `architecture-abstraction/` | Architecture & Abstraction |
+| 1 | `architecture-abstraction/` | Architecture & Abstraction |
+| 2 | `fundamentals/` | Fundamentals |
+| 3 | `analog/` | Analog Electronics |
+| 4 | `digital/` | Digital Electronics |
 | 5 | `embedded/` | Embedded Systems |
 | 6 | `audio-signal/` | Audio & Signal Processing |
 | 7 | `radio-rf/` | Radio & RF |
@@ -28,6 +28,7 @@ Content is organized into ten sections, each a subdirectory of `content/docs/`:
 | 9 | `design-development/` | Design & Development |
 | 10 | `measurement/` | Measurement & Test |
 | 11 | `debugging/` | Debugging, Failure & Repair |
+| 12 | `appendix/` | Appendix |
 
 ## Adding a New Entry
 

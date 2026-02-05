@@ -1,6 +1,6 @@
 ---
 title: "Integrated Circuits as Layer-Spanning Artifacts"
-weight: 30
+weight: 80
 bookCollapseSection: true
 ---
 

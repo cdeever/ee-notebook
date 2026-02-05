@@ -5,7 +5,7 @@ weight: 10
 
 # ICs Are Not an Abstraction Level
 
-The abstraction ladder — primitive, block, subsystem, device, system — describes functional roles. A resistor is a primitive because it has one parameter governing one behavior. A voltage divider is a block because it combines primitives into a function with a transfer relationship. A regulated power supply is a subsystem because it meets a specification through internal coordination. These are descriptions of what something *does* and how it relates to the things around it.
+The abstraction layers — primitive, block, subsystem, device, system — describe functional roles. A resistor is a primitive because it has one parameter governing one behavior. A voltage divider is a block because it combines primitives into a function with a transfer relationship. A regulated power supply is a subsystem because it meets a specification through internal coordination. These are descriptions of what something *does* and how it relates to the things around it.
 
 An integrated circuit is a description of how something is *made*. It means the circuitry is fabricated on a single semiconductor die and housed in a package. This says nothing about functional complexity. A single-transistor MOSFET in a SOT-23 package is an IC in the manufacturing sense, but it's a primitive in the functional sense. An LM7805 voltage regulator is an IC that functions as a subsystem. A microcontroller is an IC that functions as a device — or even a small system, depending on perspective. The word "IC" spans the entire abstraction hierarchy.
 
