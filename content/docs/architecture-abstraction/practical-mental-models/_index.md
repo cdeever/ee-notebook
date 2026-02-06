@@ -16,6 +16,6 @@ The models in this section aren't theories or laws. They're tools — ways of lo
 
 - **[Healthy vs Broken at Each Layer]({{< relref "healthy-vs-broken-at-each-layer" >}})** — What "working correctly" looks like at each abstraction level, and the characteristic signatures of failure at each one.
 
-- **[Abstraction Smells]({{< relref "abstraction-smells" >}})** — Patterns that suggest the wrong abstraction is in use, relying on a broken one, or missing a level entirely.
+- **[Warning Signs]({{< relref "warning-signs" >}})** — Patterns that suggest the wrong abstraction is in use, relying on a broken one, or missing a level entirely.
 
 - **[Designing for Debuggability]({{< relref "designing-for-debuggability" >}})** — How architectural choices made during design determine whether a circuit can be diagnosed efficiently when it fails.

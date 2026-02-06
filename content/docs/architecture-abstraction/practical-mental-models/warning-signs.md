@@ -1,17 +1,17 @@
 ---
-title: "Abstraction Smells"
+title: "Warning Signs"
 weight: 30
 ---
 
-# Abstraction Smells
+# Warning Signs
 
 In software engineering, a "code smell" is a surface indication that something deeper may be wrong — not a definitive bug, but a pattern that warrants investigation. The concept translates directly to hardware abstraction: certain observable patterns in circuits, designs, and debugging sessions suggest that an abstraction is being used incorrectly, relied on beyond its validity, or missing entirely.
 
-Abstraction smells don't prove that something is wrong. A design with several abstraction smells may work perfectly. But smells correlate with fragility — a design that exhibits them is more likely to fail under conditions that deviate from nominal, more likely to be difficult to debug when it does fail, and more likely to break when modified.
+These warning signs don't prove that something is wrong. A design with several of them may work perfectly. But warning signs correlate with fragility — a design that exhibits them is more likely to fail under conditions that deviate from nominal, more likely to be difficult to debug when it does fail, and more likely to break when modified.
 
-Recognizing these smells during design review, debugging, and integration is a skill that improves with experience. Each smell points toward a specific kind of abstraction misuse, and the correction is usually to fix the abstraction — not to add more circuitry.
+Recognizing these warning signs during design review, debugging, and integration is a skill that improves with experience. Each one points toward a specific kind of abstraction misuse, and the correction is usually to fix the abstraction — not to add more circuitry.
 
-## Smell: "It Works If..."
+## "It Works If..."
 
 **Pattern:** A circuit's correct operation depends on a condition that's not part of its specification and not under its control.
 
@@ -25,7 +25,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Either enforce the condition explicitly (add a sequencing circuit, add temperature monitoring, implement arbitration) or redesign to not require it (tolerate slow ramp rates, derate for high temperature, handle bus contention).
 
-## Smell: "Don't Touch That"
+## "Don't Touch That"
 
 **Pattern:** A component, trace, or setting must not be changed despite there being no documented reason why.
 
@@ -38,7 +38,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Understand why the value, routing, or setting matters and document the dependency. If the dependency is real (this resistor sets the compensation, this trace is a transmission line, this register enables an undocumented feature), the documentation makes it maintainable. If the dependency is imagined (the value was never tested at other settings), testing may reveal more design freedom than assumed.
 
-## Smell: "It Only Fails in the System"
+## "It Only Fails in the System"
 
 **Pattern:** A subsystem works perfectly on the bench and fails in the integrated system, and the failure can't be attributed to any specific difference in operating conditions.
 
@@ -51,7 +51,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Identify the environmental conditions that differ between bench and system, and either add them to the subsystem's input specification (requiring the system to provide them) or harden the subsystem to tolerate the system's actual conditions.
 
-## Smell: "The Simulation Doesn't Match"
+## "The Simulation Doesn't Match"
 
 **Pattern:** Simulation results and bench measurements disagree, and the disagreement can't be explained by model accuracy.
 
@@ -64,7 +64,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Don't abandon simulation — refine the model. Add the physical mechanism that explains the discrepancy: parasitic capacitance, trace inductance, connector impedance, thermal coupling. If the mechanism can't be modeled, note the simulation's limitation and rely on bench measurement for that aspect.
 
-## Smell: "It Used to Work"
+## "It Used to Work"
 
 **Pattern:** A circuit that worked stops working without any deliberate change.
 
@@ -77,7 +77,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Identify what changed and why the circuit is sensitive to it. Then either widen the circuit's tolerance (redesign to be less sensitive to the parameter that changed) or narrow the input specification (require the condition that changed to be controlled).
 
-## Smell: "More Filtering Didn't Help"
+## "More Filtering Didn't Help"
 
 **Pattern:** Adding filtering, decoupling, or shielding to address a noise or interference problem doesn't reduce the symptom.
 
@@ -90,7 +90,7 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 **The fix:** Before adding more filtering, verify the coupling mechanism. Remove the existing filter and measure whether the noise changes — if it doesn't, the filter never addressed the actual path. Identify the actual coupling mechanism through systematic measurement (change one condition at a time) and address that mechanism specifically.
 
-## Smell: "It's Sensitive to Layout"
+## "It's Sensitive to Layout"
 
 **Pattern:** The circuit's behavior depends heavily on PCB layout details that the schematic doesn't describe.
 
@@ -105,12 +105,12 @@ Recognizing these smells during design review, debugging, and integration is a s
 
 ## Tips
 
-- Treat abstraction smells as diagnostic signals, not as problems to fix directly. The smell points to an underlying issue — fixing the smell without fixing the issue (removing the "don't touch" label without understanding the dependency) creates a worse situation than leaving the smell in place.
-- During design reviews, ask: "What conditions does this circuit depend on that aren't in its specification?" Every unspecified dependency is a potential "it works if..." smell waiting to manifest.
+- Treat warning signs as diagnostic signals, not as problems to fix directly. The warning sign points to an underlying issue — fixing the symptom without fixing the issue (removing the "don't touch" label without understanding the dependency) creates a worse situation than leaving it in place.
+- During design reviews, ask: "What conditions does this circuit depend on that aren't in its specification?" Every unspecified dependency is a potential "it works if..." situation waiting to manifest.
 - When debugging, ask: "Am I adding more of a fix that already didn't work?" Repeated application of the same class of fix (more filtering, more decoupling, more delay) without improvement is a strong signal that the mechanism is different from what's being addressed.
 
 ## Caveats
 
-- **Not every smell indicates a real problem** — Some circuits legitimately require specific layout, specific component values, or specific operating conditions. The smell is in the lack of documentation and understanding, not in the requirement itself. A circuit that requires a specific compensation resistor and has that requirement documented and justified doesn't smell.
-- **Smells can compound** — A circuit with one smell is probably fine. A circuit with three or four smells is fragile. The interaction between smells — an undocumented dependency that only matters at temperature, which only matters in the system — creates failure modes that are very difficult to predict or debug.
-- **Eliminating smells during debugging can introduce new problems** — Changing a "don't touch" component to a more robust value may fix one sensitivity but introduce another. The correct approach is to understand the full dependency before making changes.
+- **Not every warning sign indicates a real problem** — Some circuits legitimately require specific layout, specific component values, or specific operating conditions. The issue is the lack of documentation and understanding, not the requirement itself. A circuit that requires a specific compensation resistor and has that requirement documented and justified is fine.
+- **Warning signs can compound** — A circuit with one warning sign is probably fine. A circuit with three or four is fragile. The interaction between them — an undocumented dependency that only matters at temperature, which only matters in the system — creates failure modes that are very difficult to predict or debug.
+- **Eliminating warning signs during debugging can introduce new problems** — Changing a "don't touch" component to a more robust value may fix one sensitivity but introduce another. The correct approach is to understand the full dependency before making changes.
