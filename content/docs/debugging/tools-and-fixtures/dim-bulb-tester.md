@@ -106,6 +106,48 @@ If incandescent bulbs are hard to find in your area, look for:
 - Appliance bulbs (oven or refrigerator bulbs)
 - Heat lamps (though these run hot)
 
+## 12V Automotive Version
+
+The same principle works for 12V DC circuits: wire an incandescent bulb in series to limit current and provide visual fault indication. This is useful for testing car electronics, motorcycle circuits, battery chargers, DC power supplies, solar charge controllers, and any 12V system where you want protection against shorts.
+
+### Bulb Selection
+
+Use standard 12V automotive bulbs:
+
+| Bulb Type | Wattage | Approx Current | Good For |
+|-----------|---------|----------------|----------|
+| Side marker | 5W | ~0.4A | Small electronics, LED drivers |
+| Turn signal | 21W | ~1.75A | General 12V testing |
+| Brake light | 21W | ~1.75A | General 12V testing |
+| Dual-filament (21/5W) | 21W or 5W | Selectable | Flexibility |
+| Headlamp (low beam) | 55W | ~4.5A | Higher-current devices |
+| Headlamp (high beam) | 60–65W | ~5A | Higher-current devices |
+
+Dual-filament bulbs (like 1157/P21/5W) are handy—you can wire to either filament depending on the current limit you need.
+
+### Building Notes
+
+The 12V version is simpler than the mains version:
+
+- **No safety enclosure required** — 12V DC is not a shock hazard, though shorts can still cause burns and fire
+- **Simple connections** — alligator clips for quick hookup, or banana jacks for bench use
+- **Inline fuse recommended** — add an automotive blade fuse holder as backup protection; size the fuse above your bulb's current but below your power source's maximum
+- **Power source options** — bench supply set to 12–14V, car battery, or battery charger
+
+A basic setup is just a bulb socket with two leads: one to positive supply, one to the DUT's positive input, with the DUT's negative connected directly to supply negative.
+
+### Interpretation
+
+Same as the mains version:
+
+| Bulb Behavior | Meaning |
+|---------------|---------|
+| Dark or brief flicker | Healthy circuit, low current draw |
+| Dim glow | Normal operation, moderate current |
+| Bright (full brightness) | Fault or short—disconnect and investigate |
+
+The bulb limits fault current to its rated value, preventing damage to wiring, connectors, and the device under test.
+
 ## Safety
 
 - **This fixture operates at mains voltage.** Build it properly, use a grounded enclosure, and insulate all connections.
