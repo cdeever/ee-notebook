@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Measurement & Test
 
-Organized by what is being measured, not by which instrument gets picked up. Each subsection starts with a measurement situation — safety, probing, power rails, signals, noise — and works through the practical questions that come up at the bench.
+Organized by measurement situation — what you need to learn about the circuit — rather than starting from which instrument to pick up. Each subsection starts with a measurement situation — safety, probing, power rails, signals, noise — and works through the practical questions that come up at the bench.
 
 Subsections are ordered prerequisites-first: safety and probing technique before anything else, simple checks (continuity, components) before complex ones (signals, spectrum, protocols), and cross-cutting skills (noise, calibration) at the end.
 
@@ -34,4 +34,4 @@ Subsections are ordered prerequisites-first: safety and probing technique before
 
 - **[Calibration & Measurement Confidence]({{< relref "calibration-confidence" >}})** — Trusting the readings: accuracy, artifacts, calibration status, and measurement uncertainty.
 
-- **[Test Instruments]({{< relref "test-instruments" >}})** — Understanding instruments by type: key specs, what they mean, feature tiers, and which capability level different work demands.
+- **[Test Instruments]({{< relref "test-instruments" >}})** — Reference material for the instruments mentioned throughout: key specs, what they mean, feature tiers, and which capability level different work demands.

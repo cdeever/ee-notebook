@@ -45,5 +45,5 @@ The sections follow a loose layering. Physical constraints come first. Engineere
 
 **The practice layer** — verifying and fixing what gets built:
 
-- **[Measurement & Test]({{< relref "/docs/measurement" >}})** — Organized by what is being measured rather than by instrument. Methods for determining what is actually happening in a circuit.
+- **[Measurement & Test]({{< relref "/docs/measurement" >}})** — Organized by measurement situation, with instrument reference pages for deeper tool knowledge. Methods for determining what is actually happening in a circuit.
 - **[Debugging, Failure & Repair]({{< relref "/docs/debugging" >}})** — Troubleshooting strategies, common failure modes, and rework techniques. The discipline required when observed behavior disagrees with the expected model.
