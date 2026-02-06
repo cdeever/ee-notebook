@@ -14,6 +14,8 @@ Entries capture debugging strategies, common failure patterns, repair procedures
 
 ## Entries
 
+- **[Bench Tooling]({{< relref "bench-tooling" >}})** — Soldering stations, hot air, tweezers, magnification, cleaning supplies, and ESD protection
+
 - **[Failure Triage & First Response]({{< relref "triage-and-first-response" >}})** — Categorize the failure and choose the first measurement
 
 - **[Fault Isolation Strategies]({{< relref "fault-isolation" >}})** — Narrow the search space systematically
