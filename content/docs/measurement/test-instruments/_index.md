@@ -1,6 +1,6 @@
 ---
 title: "Test Instruments"
-weight: 110
+weight: 15
 bookCollapseSection: true
 ---
 
