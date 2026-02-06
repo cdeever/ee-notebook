@@ -21,7 +21,7 @@ The goal is **applied reasoning**: understanding when a rule applies, when it do
 
 ## How It's Organized
 
-The sections follow a loose layering. Physical constraints come first. Engineered behavior builds on those constraints. Design turns ideas into hardware. Measurement and debugging run through all of it.
+The sections follow a loose layering. Physical constraints come first. Engineered behavior builds on those constraints. Design turns ideas into hardware. Measurement, debugging, and repair reveal how that hardware behaves in the real world.
 
 **The physics layer** — rules that cannot be negotiated:
 
