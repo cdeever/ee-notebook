@@ -1,6 +1,11 @@
 ---
 title: "Frequency-Dependent Propagation"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Frequency-Dependent Propagation

@@ -1,6 +1,11 @@
 ---
 title: "Functional vs Non-Functional Requirements"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Functional vs Non-Functional Requirements

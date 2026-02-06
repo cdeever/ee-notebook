@@ -1,6 +1,11 @@
 ---
 title: "Inductors"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Inductors

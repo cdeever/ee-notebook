@@ -1,6 +1,11 @@
 ---
 title: "Design-for-Assembly Awareness"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Design-for-Assembly Awareness

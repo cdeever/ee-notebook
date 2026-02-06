@@ -1,6 +1,11 @@
 ---
 title: "Simulation as Proof of Concept"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Simulation as Proof of Concept

@@ -1,6 +1,11 @@
 ---
 title: "Device Tree & Hardware Description"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Device Tree & Hardware Description

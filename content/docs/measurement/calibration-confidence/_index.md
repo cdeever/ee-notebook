@@ -2,6 +2,11 @@
 title: "Calibration & Measurement Confidence"
 weight: 100
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Calibration & Measurement Confidence

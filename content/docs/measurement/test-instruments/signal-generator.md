@@ -1,6 +1,11 @@
 ---
 title: "Function / Signal Generator"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Function / Signal Generator

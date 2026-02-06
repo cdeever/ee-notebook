@@ -1,6 +1,11 @@
 ---
 title: "Isolation Transformer"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 An isolation transformer provides galvanic isolation between the mains power line and your equipment under test. The primary and secondary windings are electrically separate—there's no direct conductive path from line to load. This isolation is essential for safely probing mains-referenced circuits and for eliminating ground loops that can damage equipment or cause measurement errors.

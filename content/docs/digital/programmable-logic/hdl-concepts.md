@@ -1,6 +1,11 @@
 ---
 title: "HDL Concepts"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # HDL Concepts

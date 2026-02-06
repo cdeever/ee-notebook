@@ -1,6 +1,11 @@
 ---
 title: "Field-Expedient RF Measurement"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Field-Expedient RF Measurement

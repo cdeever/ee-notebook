@@ -1,6 +1,11 @@
 ---
 title: "Common Failure Modes & Patterns"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Common Failure Modes & Patterns

@@ -1,6 +1,11 @@
 ---
 title: "Interrupts"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Interrupts

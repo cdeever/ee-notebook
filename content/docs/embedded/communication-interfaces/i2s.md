@@ -1,6 +1,11 @@
 ---
 title: "I2S"
 weight: 65
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # I2S

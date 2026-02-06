@@ -1,6 +1,11 @@
 ---
 title: "Analog-to-Digital Converters"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Analog-to-Digital Converters

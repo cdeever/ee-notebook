@@ -1,6 +1,11 @@
 ---
 title: "Real-World Compromises & Tolerances"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Real-World Compromises & Tolerances

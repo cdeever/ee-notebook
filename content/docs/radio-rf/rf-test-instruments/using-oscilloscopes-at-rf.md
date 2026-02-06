@@ -1,6 +1,11 @@
 ---
 title: "Using Oscilloscopes at RF"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Using Oscilloscopes at RF

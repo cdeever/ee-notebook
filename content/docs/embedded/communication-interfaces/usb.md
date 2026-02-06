@@ -1,6 +1,11 @@
 ---
 title: "USB"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # USB

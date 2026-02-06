@@ -1,6 +1,11 @@
 ---
 title: "Designing for Substitution"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Designing for Substitution

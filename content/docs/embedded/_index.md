@@ -2,6 +2,11 @@
 title: "🔌 Embedded Systems"
 weight: 5
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Embedded Systems

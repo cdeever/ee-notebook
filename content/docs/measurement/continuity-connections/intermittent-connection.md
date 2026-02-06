@@ -1,6 +1,11 @@
 ---
 title: "Is This Connection Intermittent?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Connection Intermittent?

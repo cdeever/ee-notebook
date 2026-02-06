@@ -1,6 +1,11 @@
 ---
 title: "Knowing When the POC Is Done"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Knowing When the POC Is Done

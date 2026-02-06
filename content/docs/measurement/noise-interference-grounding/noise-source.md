@@ -1,6 +1,11 @@
 ---
 title: "Where Is This Noise Coming From?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Where Is This Noise Coming From?

@@ -1,6 +1,11 @@
 ---
 title: "Observability"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Observability

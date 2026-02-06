@@ -1,6 +1,11 @@
 ---
 title: "Manufacturability Basics"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Manufacturability Basics

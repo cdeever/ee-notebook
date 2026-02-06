@@ -1,6 +1,11 @@
 ---
 title: "When Software Beats Hardware"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # When Software Beats Hardware

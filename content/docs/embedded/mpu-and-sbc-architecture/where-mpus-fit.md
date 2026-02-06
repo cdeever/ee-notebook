@@ -1,6 +1,11 @@
 ---
 title: "Where MPUs Fit in Embedded Design"
 weight: 100
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Where MPUs Fit in Embedded Design

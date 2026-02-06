@@ -1,6 +1,11 @@
 ---
 title: "What Defines a Device Boundary"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What Defines a Device Boundary

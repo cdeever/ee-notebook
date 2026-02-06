@@ -1,6 +1,11 @@
 ---
 title: "Thyristors & Latching Devices"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Thyristors & Latching Devices

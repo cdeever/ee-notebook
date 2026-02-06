@@ -1,6 +1,11 @@
 ---
 title: "Lessons Learned from Real Builds"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Lessons Learned from Real Builds

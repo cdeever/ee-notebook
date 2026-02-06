@@ -1,6 +1,11 @@
 ---
 title: "Faults & Exceptions"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Faults & Exceptions

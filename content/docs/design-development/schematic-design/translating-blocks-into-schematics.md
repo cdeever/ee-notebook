@@ -1,6 +1,11 @@
 ---
 title: "Translating Blocks into Schematics"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Translating Blocks into Schematics

@@ -1,6 +1,11 @@
 ---
 title: "Single-Board Computers as Systems"
 weight: 90
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Single-Board Computers as Systems

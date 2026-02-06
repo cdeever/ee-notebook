@@ -1,6 +1,11 @@
 ---
 title: "Current Measurement & Probing"
 weight: 80
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Current Measurement & Probing

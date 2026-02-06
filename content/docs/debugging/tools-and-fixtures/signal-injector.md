@@ -1,6 +1,11 @@
 ---
 title: "Signal Injector"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A signal injector is a simple handheld tool that generates an audio-frequency signal (typically a square wave rich in harmonics) for tracing signal paths through amplifiers, receivers, and audio equipment. You inject the signal at various points in the circuit and listen for it at the output—when the signal disappears or becomes distorted, you've found the faulty stage.

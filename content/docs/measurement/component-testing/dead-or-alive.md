@@ -1,6 +1,11 @@
 ---
 title: "Is This Part Dead or Alive?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Part Dead or Alive?

@@ -1,6 +1,11 @@
 ---
 title: "Thévenin & Norton Equivalents"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Thévenin & Norton Equivalents

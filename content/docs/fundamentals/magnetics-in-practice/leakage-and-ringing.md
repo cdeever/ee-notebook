@@ -1,6 +1,11 @@
 ---
 title: "Leakage, Stray Capacitance & Ringing"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Leakage, Stray Capacitance & Ringing

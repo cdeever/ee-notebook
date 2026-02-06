@@ -1,6 +1,11 @@
 ---
 title: "Good Enough Criteria"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Good Enough Criteria

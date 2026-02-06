@@ -1,6 +1,11 @@
 ---
 title: "Is This Clock at the Right Frequency?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Clock at the Right Frequency?

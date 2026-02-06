@@ -1,6 +1,11 @@
 ---
 title: "Single-Transistor Amplifiers"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Single-Transistor Amplifiers

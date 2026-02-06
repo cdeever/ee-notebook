@@ -2,6 +2,11 @@
 title: "Design Constraints of Earlier Eras"
 weight: 20
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Design Constraints of Earlier Eras

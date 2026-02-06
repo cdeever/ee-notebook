@@ -1,6 +1,11 @@
 ---
 title: "CPU Cores & SoC Architecture"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # CPU Cores & SoC Architecture

@@ -1,6 +1,11 @@
 ---
 title: "ESR Meter"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # ESR Meter

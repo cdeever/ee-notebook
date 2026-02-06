@@ -1,6 +1,11 @@
 ---
 title: "Are Logic Levels Correct for This Voltage Domain?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Are Logic Levels Correct for This Voltage Domain?

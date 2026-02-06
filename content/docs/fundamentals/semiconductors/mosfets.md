@@ -1,6 +1,11 @@
 ---
 title: "MOSFETs"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # MOSFETs

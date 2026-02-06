@@ -1,6 +1,11 @@
 ---
 title: "Problem Definition vs Solution Bias"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Problem Definition vs Solution Bias

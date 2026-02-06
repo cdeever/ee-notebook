@@ -1,6 +1,11 @@
 ---
 title: "Core Architectures"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Core Architectures

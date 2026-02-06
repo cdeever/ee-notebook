@@ -1,6 +1,11 @@
 ---
 title: "Amplitude & Frequency Modulation"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Amplitude & Frequency Modulation

@@ -1,6 +1,11 @@
 ---
 title: "What SDR Actually Replaces"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What SDR Actually Replaces

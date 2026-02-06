@@ -2,6 +2,11 @@
 title: "Design for Manufacturing & Longevity"
 weight: 90
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Design for Manufacturing & Longevity

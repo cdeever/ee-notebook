@@ -1,6 +1,11 @@
 ---
 title: "Why External Components Still Matter"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Why External Components Still Matter

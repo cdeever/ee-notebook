@@ -1,6 +1,11 @@
 ---
 title: "BOM Drift"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # BOM Drift

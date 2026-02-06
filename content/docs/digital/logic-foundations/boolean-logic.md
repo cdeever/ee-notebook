@@ -1,6 +1,11 @@
 ---
 title: "Boolean Logic"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Boolean Logic

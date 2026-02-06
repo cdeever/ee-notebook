@@ -1,6 +1,11 @@
 ---
 title: "Ohm's Law"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Ohm's Law

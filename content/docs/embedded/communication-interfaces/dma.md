@@ -1,6 +1,11 @@
 ---
 title: "DMA Fundamentals"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # DMA Fundamentals

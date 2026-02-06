@@ -1,6 +1,11 @@
 ---
 title: "Is the Device ACKing / Responding?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is the Device ACKing / Responding?

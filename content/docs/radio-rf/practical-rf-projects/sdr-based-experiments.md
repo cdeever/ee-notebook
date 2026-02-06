@@ -1,6 +1,11 @@
 ---
 title: "SDR-Based Experiments"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # SDR-Based Experiments

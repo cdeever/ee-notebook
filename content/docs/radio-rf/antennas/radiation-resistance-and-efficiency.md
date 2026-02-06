@@ -1,6 +1,11 @@
 ---
 title: "Radiation Resistance & Efficiency"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Radiation Resistance & Efficiency

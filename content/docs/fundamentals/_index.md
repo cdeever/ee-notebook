@@ -2,6 +2,11 @@
 title: "⚡ Fundamentals"
 weight: 2
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Fundamentals

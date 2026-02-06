@@ -1,6 +1,11 @@
 ---
 title: "Turning Mistakes into Patterns"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Turning Mistakes into Patterns

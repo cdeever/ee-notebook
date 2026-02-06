@@ -1,6 +1,11 @@
 ---
 title: "Is the Gain Structure Correct Through the Signal Chain?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is the Gain Structure Correct Through the Signal Chain?

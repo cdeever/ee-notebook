@@ -1,6 +1,11 @@
 ---
 title: "Dim Bulb Tester"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A dim bulb tester is an incandescent light bulb wired in series between the mains outlet and the device under test. It acts as a current-limiting safety device: if the DUT draws excessive current (from a short or fault), the bulb lights brightly and limits current to its rated value instead of blowing fuses, tripping breakers, or causing further damage. If the DUT is healthy, the bulb glows dimly or stays dark.

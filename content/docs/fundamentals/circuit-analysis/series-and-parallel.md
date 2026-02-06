@@ -1,6 +1,11 @@
 ---
 title: "Series & Parallel Analysis"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Series & Parallel Analysis

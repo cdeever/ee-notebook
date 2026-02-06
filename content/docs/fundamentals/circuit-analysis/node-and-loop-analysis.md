@@ -1,6 +1,11 @@
 ---
 title: "Node & Loop Analysis"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Node & Loop Analysis

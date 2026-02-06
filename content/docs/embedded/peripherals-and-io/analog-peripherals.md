@@ -1,6 +1,11 @@
 ---
 title: "Analog Peripherals"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Analog Peripherals

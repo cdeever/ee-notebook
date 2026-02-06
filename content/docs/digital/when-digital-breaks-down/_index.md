@@ -2,6 +2,11 @@
 title: "When Digital Breaks Down"
 weight: 60
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # When Digital Breaks Down

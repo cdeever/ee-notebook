@@ -1,6 +1,11 @@
 ---
 title: "Is There a Ground Loop?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is There a Ground Loop?

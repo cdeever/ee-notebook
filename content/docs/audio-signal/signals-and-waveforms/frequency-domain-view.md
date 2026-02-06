@@ -1,6 +1,11 @@
 ---
 title: "Frequency-Domain View"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Frequency-Domain View

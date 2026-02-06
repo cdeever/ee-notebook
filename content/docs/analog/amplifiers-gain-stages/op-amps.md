@@ -1,6 +1,11 @@
 ---
 title: "Op-Amps"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Op-Amps

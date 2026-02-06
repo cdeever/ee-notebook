@@ -1,6 +1,11 @@
 ---
 title: "Integrated Analog Devices"
 weight: 15
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Integrated Analog Devices

@@ -1,6 +1,11 @@
 ---
 title: "Resistors"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Resistors

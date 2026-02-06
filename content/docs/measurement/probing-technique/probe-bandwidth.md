@@ -1,6 +1,11 @@
 ---
 title: "Is My Probe Bandwidth Sufficient?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is My Probe Bandwidth Sufficient?

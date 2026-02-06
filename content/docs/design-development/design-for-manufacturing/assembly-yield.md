@@ -1,6 +1,11 @@
 ---
 title: "Assembly Yield"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Assembly Yield

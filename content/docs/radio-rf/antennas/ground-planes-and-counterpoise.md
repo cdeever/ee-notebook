@@ -1,6 +1,11 @@
 ---
 title: "Ground Planes & Counterpoise"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Ground Planes & Counterpoise

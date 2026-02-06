@@ -1,6 +1,11 @@
 ---
 title: "Memory Map"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Memory Map

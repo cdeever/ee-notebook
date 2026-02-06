@@ -1,6 +1,11 @@
 ---
 title: "Signal Tracer"
 weight: 90
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A signal tracer is a high-gain audio amplifier with a probe, used to listen to signals at various points in a circuit. Touch the probe to a stage in an amplifier or receiver, and you hear whatever signal is present—amplified through the tracer's speaker. By moving from stage to stage, you follow the signal until it disappears or becomes distorted, pinpointing the faulty section.

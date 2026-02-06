@@ -1,6 +1,11 @@
 ---
 title: "Sampling Theory"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Sampling Theory

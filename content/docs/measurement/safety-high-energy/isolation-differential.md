@@ -1,6 +1,11 @@
 ---
 title: "Do I Need Isolation or Differential Measurement?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Do I Need Isolation or Differential Measurement?

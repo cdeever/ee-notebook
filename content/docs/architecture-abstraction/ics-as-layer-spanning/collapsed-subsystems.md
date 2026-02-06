@@ -1,6 +1,11 @@
 ---
 title: "Collapsed Subsystems"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Collapsed Subsystems

@@ -1,6 +1,11 @@
 ---
 title: "Combinational Logic"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Combinational Logic

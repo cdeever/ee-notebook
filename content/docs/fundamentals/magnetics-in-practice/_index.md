@@ -2,6 +2,11 @@
 title: "Magnetics in Practice"
 weight: 32
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Magnetics in Practice (Inductors & Transformers Beyond the Ideal)

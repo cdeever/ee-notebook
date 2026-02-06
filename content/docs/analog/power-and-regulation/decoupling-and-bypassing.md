@@ -1,6 +1,11 @@
 ---
 title: "Decoupling & Bypassing"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Decoupling & Bypassing

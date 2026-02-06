@@ -1,6 +1,11 @@
 ---
 title: "Avoiding Accidental Complexity"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Avoiding Accidental Complexity

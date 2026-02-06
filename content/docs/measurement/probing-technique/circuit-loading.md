@@ -1,6 +1,11 @@
 ---
 title: "Am I Loading the Circuit?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Am I Loading the Circuit?

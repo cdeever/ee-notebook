@@ -1,6 +1,11 @@
 ---
 title: "Latches & Flip-Flops"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Latches & Flip-Flops

@@ -1,6 +1,11 @@
 ---
 title: "Frequency vs Wavelength"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Frequency vs Wavelength

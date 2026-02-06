@@ -1,6 +1,11 @@
 ---
 title: "Safe Smoke Testing"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Safe Smoke Testing

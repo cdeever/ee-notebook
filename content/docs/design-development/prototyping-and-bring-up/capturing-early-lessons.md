@@ -1,6 +1,11 @@
 ---
 title: "Capturing Early Lessons"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Capturing Early Lessons

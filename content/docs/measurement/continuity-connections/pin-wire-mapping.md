@@ -1,6 +1,11 @@
 ---
 title: "Which Pin Maps to Which Wire?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Which Pin Maps to Which Wire?

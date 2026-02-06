@@ -2,6 +2,11 @@
 title: "Power & Regulation"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Power & Regulation

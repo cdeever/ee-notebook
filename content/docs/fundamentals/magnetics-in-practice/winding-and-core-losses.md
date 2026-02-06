@@ -1,6 +1,11 @@
 ---
 title: "Winding and Core Losses"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Winding and Core Losses

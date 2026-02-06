@@ -1,6 +1,11 @@
 ---
 title: "ESD & Transient Protection Basics"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # ESD & Transient Protection Basics

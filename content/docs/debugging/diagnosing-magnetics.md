@@ -1,6 +1,11 @@
 ---
 title: "Diagnosing Magnetics on the Bench"
 weight: 46
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Diagnosing Magnetics on the Bench

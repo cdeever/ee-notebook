@@ -1,6 +1,11 @@
 ---
 title: "Is Voltage Present?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is Voltage Present?

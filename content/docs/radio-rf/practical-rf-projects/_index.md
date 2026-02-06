@@ -2,6 +2,11 @@
 title: "Practical RF Projects & Case Studies"
 weight: 100
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Practical RF Projects & Case Studies

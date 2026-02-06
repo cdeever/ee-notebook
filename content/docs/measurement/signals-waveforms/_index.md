@@ -2,6 +2,11 @@
 title: "Signals & Waveforms"
 weight: 60
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Signals & Waveforms

@@ -1,6 +1,11 @@
 ---
 title: "Digital Multimeter (DMM)"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Digital Multimeter (DMM)

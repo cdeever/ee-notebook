@@ -2,6 +2,11 @@
 title: "Proof of Concept"
 weight: 15
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Proof of Concept

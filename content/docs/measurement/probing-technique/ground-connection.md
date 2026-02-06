@@ -1,6 +1,11 @@
 ---
 title: "Is My Ground Connection Adding Artifacts?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is My Ground Connection Adding Artifacts?

@@ -2,6 +2,11 @@
 title: "Practical Signal Reality"
 weight: 70
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Practical Signal Reality

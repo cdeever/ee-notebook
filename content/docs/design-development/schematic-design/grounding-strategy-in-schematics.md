@@ -1,6 +1,11 @@
 ---
 title: "Grounding Strategy in Schematics"
 weight: 25
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Grounding Strategy in Schematics

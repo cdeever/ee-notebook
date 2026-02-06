@@ -1,6 +1,11 @@
 ---
 title: "FPGAs"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # FPGAs

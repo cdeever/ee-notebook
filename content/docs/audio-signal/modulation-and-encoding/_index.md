@@ -2,6 +2,11 @@
 title: "Modulation & Encoding"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Modulation & Encoding

@@ -1,6 +1,11 @@
 ---
 title: "Component Dependencies & Datasheet-Driven Requirements"
 weight: 25
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Component Dependencies & Datasheet-Driven Requirements

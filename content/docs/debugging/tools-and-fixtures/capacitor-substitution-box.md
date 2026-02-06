@@ -1,6 +1,11 @@
 ---
 title: "Capacitor Substitution Box"
 weight: 120
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A capacitor substitution box provides selectable precision capacitance using rotary switches, similar to a decade resistance box but for capacitors. Dial in a value from picofarads to microfarads and substitute for a suspect capacitor, tune a filter, or experiment with time constants. Like its resistor counterpart, a capacitor substitution box speeds up troubleshooting and design by eliminating the search through parts bins.

@@ -1,6 +1,11 @@
 ---
 title: "Inrush Current & Startup Stress"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Inrush Current & Startup Stress

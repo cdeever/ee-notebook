@@ -1,6 +1,11 @@
 ---
 title: "Oscilloscope"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Oscilloscope

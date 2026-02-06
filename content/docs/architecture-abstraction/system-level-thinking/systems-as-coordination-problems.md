@@ -1,6 +1,11 @@
 ---
 title: "Systems as Coordination Problems"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Systems as Coordination Problems

@@ -1,6 +1,11 @@
 ---
 title: "What an Antenna Actually Does"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What an Antenna Actually Does

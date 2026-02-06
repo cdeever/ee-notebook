@@ -2,6 +2,11 @@
 title: "PCB Layout & Physical Integration"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # PCB Layout & Physical Integration

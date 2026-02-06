@@ -1,6 +1,11 @@
 ---
 title: "Operating Regions"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Operating Regions

@@ -2,6 +2,11 @@
 title: "MCU Architecture"
 weight: 10
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # MCU Architecture

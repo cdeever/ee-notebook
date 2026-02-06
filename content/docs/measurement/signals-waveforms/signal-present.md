@@ -1,6 +1,11 @@
 ---
 title: "Is the Signal Present at This Node?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is the Signal Present at This Node?

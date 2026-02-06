@@ -1,6 +1,11 @@
 ---
 title: "What's the Rise/Fall Time?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What's the Rise/Fall Time?

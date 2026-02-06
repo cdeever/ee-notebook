@@ -1,6 +1,11 @@
 ---
 title: "BJTs"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # BJTs

@@ -1,6 +1,11 @@
 ---
 title: "Digital Modulation & Data Encoding"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Digital Modulation & Data Encoding

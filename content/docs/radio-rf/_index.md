@@ -2,6 +2,11 @@
 title: "📡 Radio & RF"
 weight: 7
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Radio & RF

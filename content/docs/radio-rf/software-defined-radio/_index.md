@@ -2,6 +2,11 @@
 title: "Software-Defined Radio (SDR)"
 weight: 80
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Software-Defined Radio (SDR)

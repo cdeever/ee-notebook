@@ -1,6 +1,11 @@
 ---
 title: "Is This Stage Adding Distortion or Clipping?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Stage Adding Distortion or Clipping?

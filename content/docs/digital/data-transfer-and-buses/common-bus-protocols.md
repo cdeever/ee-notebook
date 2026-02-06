@@ -1,6 +1,11 @@
 ---
 title: "Common Bus Protocols"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Common Bus Protocols

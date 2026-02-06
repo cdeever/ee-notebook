@@ -1,6 +1,11 @@
 ---
 title: "LCR Meter / Component Tester"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # LCR Meter / Component Tester

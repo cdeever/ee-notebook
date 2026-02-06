@@ -1,6 +1,11 @@
 ---
 title: "Breadboarding Strategies"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Breadboarding Strategies

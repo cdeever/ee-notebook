@@ -1,6 +1,11 @@
 ---
 title: "Block Diagrams as Thinking Tools"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Block Diagrams as Thinking Tools

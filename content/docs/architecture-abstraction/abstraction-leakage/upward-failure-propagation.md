@@ -1,6 +1,11 @@
 ---
 title: "Upward Failure Propagation"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Upward Failure Propagation

@@ -1,6 +1,11 @@
 ---
 title: "Boot Chain: ROM to Bootloader to Kernel"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Boot Chain: ROM to Bootloader to Kernel

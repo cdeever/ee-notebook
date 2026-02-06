@@ -1,6 +1,11 @@
 ---
 title: "Is This Sensor Outputting the Expected Voltage/Current?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Sensor Outputting the Expected Voltage/Current?

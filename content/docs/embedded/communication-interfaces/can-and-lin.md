@@ -1,6 +1,11 @@
 ---
 title: "CAN & LIN"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # CAN & LIN

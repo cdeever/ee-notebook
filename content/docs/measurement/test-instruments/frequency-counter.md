@@ -1,6 +1,11 @@
 ---
 title: "Frequency Counter"
 weight: 75
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Frequency Counter

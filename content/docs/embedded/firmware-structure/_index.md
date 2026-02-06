@@ -2,6 +2,11 @@
 title: "Firmware Structure & Patterns"
 weight: 40
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Firmware Structure & Patterns

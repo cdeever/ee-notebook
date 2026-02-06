@@ -2,6 +2,11 @@
 title: "Device-Level Thinking"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Device-Level Thinking

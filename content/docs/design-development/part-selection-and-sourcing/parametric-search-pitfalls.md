@@ -1,6 +1,11 @@
 ---
 title: "Parametric Search Pitfalls"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Parametric Search Pitfalls

@@ -1,6 +1,11 @@
 ---
 title: "Simulation Before Commitment"
 weight: 35
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Simulation Before Commitment

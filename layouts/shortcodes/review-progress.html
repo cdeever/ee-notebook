@@ -1,0 +1,92 @@
+{{- $allPages := where .Site.RegularPages "Section" "docs" -}}
+{{- $unreviewed := 0 -}}
+{{- $inProgress := 0 -}}
+{{- $reviewed := 0 -}}
+{{- $noStatus := 0 -}}
+
+{{- range $allPages -}}
+  {{- $review := .Params.review -}}
+  {{- if $review -}}
+    {{- $status := $review.status | default "unreviewed" -}}
+    {{- if eq $status "unreviewed" -}}
+      {{- $unreviewed = add $unreviewed 1 -}}
+    {{- else if eq $status "in-progress" -}}
+      {{- $inProgress = add $inProgress 1 -}}
+    {{- else if eq $status "reviewed" -}}
+      {{- $reviewed = add $reviewed 1 -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $noStatus = add $noStatus 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $total := len $allPages -}}
+
+<div class="review-summary">
+<h2>Summary</h2>
+<table>
+<thead><tr><th>Status</th><th>Count</th><th>Percentage</th></tr></thead>
+<tbody>
+<tr><td>Reviewed</td><td>{{ $reviewed }}</td><td>{{ if gt $total 0 }}{{ div (mul $reviewed 100) $total }}%{{ else }}0%{{ end }}</td></tr>
+<tr><td>In Progress</td><td>{{ $inProgress }}</td><td>{{ if gt $total 0 }}{{ div (mul $inProgress 100) $total }}%{{ else }}0%{{ end }}</td></tr>
+<tr><td>Unreviewed</td><td>{{ $unreviewed }}</td><td>{{ if gt $total 0 }}{{ div (mul $unreviewed 100) $total }}%{{ else }}0%{{ end }}</td></tr>
+{{ if gt $noStatus 0 }}<tr><td>No Status</td><td>{{ $noStatus }}</td><td>{{ if gt $total 0 }}{{ div (mul $noStatus 100) $total }}%{{ else }}0%{{ end }}</td></tr>{{ end }}
+<tr><td><strong>Total</strong></td><td><strong>{{ $total }}</strong></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+{{ $sections := slice
+  (dict "path" "docs/measurement" "name" "Measurement & Test")
+  (dict "path" "docs/debugging" "name" "Debugging, Failure & Repair")
+  (dict "path" "docs/fundamentals" "name" "Fundamentals")
+  (dict "path" "docs/analog" "name" "Analog Electronics")
+  (dict "path" "docs/radio-rf" "name" "Radio & RF")
+  (dict "path" "docs/digital" "name" "Digital Electronics")
+  (dict "path" "docs/embedded" "name" "Embedded Systems")
+  (dict "path" "docs/audio-signal" "name" "Audio & Signal Processing")
+  (dict "path" "docs/design-development" "name" "Design & Development")
+  (dict "path" "docs/retro-legacy" "name" "Retro & Legacy Systems")
+  (dict "path" "docs/architecture-abstraction" "name" "Architecture & Abstraction")
+}}
+
+{{ range $sections }}
+  {{ $sectionPath := .path }}
+  {{ $sectionName := .name }}
+  {{ $pages := where $allPages "File.Dir" "in" (slice) }}
+  {{/* Filter pages belonging to this section */}}
+  {{ $sectionPages := slice }}
+  {{ range $allPages }}
+    {{ if hasPrefix .File.Path $sectionPath }}
+      {{ $sectionPages = $sectionPages | append . }}
+    {{ end }}
+  {{ end }}
+
+  {{ if gt (len $sectionPages) 0 }}
+<h2>{{ $sectionName }}</h2>
+<table>
+<thead><tr><th>Page</th><th>Status</th><th>Methods</th><th>Notes</th></tr></thead>
+<tbody>
+  {{ range $sectionPages }}
+    {{- $review := .Params.review -}}
+    {{- $status := "—" -}}
+    {{- $methods := "" -}}
+    {{- $notes := "" -}}
+    {{- if $review -}}
+      {{- $status = $review.status | default "unreviewed" -}}
+      {{- if $review.method -}}
+        {{- $methods = delimit $review.method ", " -}}
+      {{- end -}}
+      {{- $notes = $review.notes | default "" -}}
+    {{- end -}}
+<tr>
+  <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+  <td>{{ $status }}</td>
+  <td>{{ $methods }}</td>
+  <td>{{ $notes }}</td>
+</tr>
+  {{ end }}
+</tbody>
+</table>
+  {{ end }}
+{{ end }}

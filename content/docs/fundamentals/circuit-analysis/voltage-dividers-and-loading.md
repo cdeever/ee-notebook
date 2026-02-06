@@ -1,6 +1,11 @@
 ---
 title: "Voltage Dividers & Loading"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Voltage Dividers & Loading

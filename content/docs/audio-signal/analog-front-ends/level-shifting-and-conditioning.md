@@ -1,6 +1,11 @@
 ---
 title: "Level Shifting & Conditioning"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Level Shifting & Conditioning

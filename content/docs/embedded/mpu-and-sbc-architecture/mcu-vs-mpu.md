@@ -1,6 +1,11 @@
 ---
 title: "MCU vs MPU: Architectural Differences"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # MCU vs MPU: Architectural Differences

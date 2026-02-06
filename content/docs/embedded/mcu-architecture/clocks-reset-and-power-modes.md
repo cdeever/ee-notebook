@@ -1,6 +1,11 @@
 ---
 title: "Clocks, Reset & Power Modes"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Clocks, Reset & Power Modes

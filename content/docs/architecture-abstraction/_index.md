@@ -2,6 +2,11 @@
 title: "🏗️ Architecture & Abstraction"
 weight: 1
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Architecture & Abstraction

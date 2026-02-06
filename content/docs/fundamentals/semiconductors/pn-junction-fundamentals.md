@@ -1,6 +1,11 @@
 ---
 title: "PN Junction Fundamentals"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # PN Junction Fundamentals

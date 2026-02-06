@@ -1,6 +1,11 @@
 ---
 title: "Adjustable Load Bank"
 weight: 100
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 An adjustable load bank provides a controllable load for testing power supplies, batteries, chargers, and other power sources. Instead of guessing whether a supply can deliver its rated current, you connect a load bank, dial up the current, and measure what actually happens: voltage sag, ripple under load, thermal behavior, and protection circuit response.

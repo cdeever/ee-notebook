@@ -1,6 +1,11 @@
 ---
 title: "SPI & I2C"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # SPI & I2C

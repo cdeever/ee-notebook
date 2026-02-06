@@ -1,6 +1,11 @@
 ---
 title: "Startup & Initialization"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Startup & Initialization

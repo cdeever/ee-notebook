@@ -1,6 +1,11 @@
 ---
 title: "Practical SDR Tools & Workflows"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Practical SDR Tools & Workflows

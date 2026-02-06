@@ -1,6 +1,11 @@
 ---
 title: "Characteristic Impedance"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Characteristic Impedance

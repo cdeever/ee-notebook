@@ -1,6 +1,11 @@
 ---
 title: "Near-Field vs Far-Field"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Near-Field vs Far-Field

@@ -1,6 +1,11 @@
 ---
 title: "Speakers & Buzzers"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Speakers & Buzzers

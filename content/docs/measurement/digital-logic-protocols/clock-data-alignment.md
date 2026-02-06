@@ -1,6 +1,11 @@
 ---
 title: "Are Clock and Data Edges Aligned?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Are Clock and Data Edges Aligned?

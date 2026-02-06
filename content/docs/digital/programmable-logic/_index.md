@@ -2,6 +2,11 @@
 title: "Programmable Logic"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Programmable Logic

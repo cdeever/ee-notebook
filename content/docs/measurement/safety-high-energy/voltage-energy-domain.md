@@ -1,6 +1,11 @@
 ---
 title: "What Voltage/Energy Am I Dealing With?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What Voltage/Energy Am I Dealing With?

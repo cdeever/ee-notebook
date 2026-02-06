@@ -1,6 +1,11 @@
 ---
 title: "What's the ESR / Leakage / Gain?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What's the ESR / Leakage / Gain?

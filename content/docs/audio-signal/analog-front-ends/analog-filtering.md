@@ -1,6 +1,11 @@
 ---
 title: "Analog Filtering"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Analog Filtering

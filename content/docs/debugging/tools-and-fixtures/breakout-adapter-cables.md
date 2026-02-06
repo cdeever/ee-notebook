@@ -1,6 +1,11 @@
 ---
 title: "Breakout and Adapter Cables"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 Between your test equipment and the circuit you're probing, there's often a mechanical mismatch: scope probes don't fit into IC sockets, multimeter leads can't reach inside connectors, and function generator outputs won't plug into header pins. Breakout and adapter cables bridge these gaps. A well-stocked collection of adapters makes the difference between a quick measurement and a frustrating session of holding bare wires in place.

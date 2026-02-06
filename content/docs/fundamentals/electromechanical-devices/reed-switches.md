@@ -1,6 +1,11 @@
 ---
 title: "Reed Switches"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Reed Switches

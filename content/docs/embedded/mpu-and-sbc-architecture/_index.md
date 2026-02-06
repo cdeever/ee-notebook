@@ -2,6 +2,11 @@
 title: "MPU & SBC Architecture"
 weight: 15
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # MPU & SBC Architecture

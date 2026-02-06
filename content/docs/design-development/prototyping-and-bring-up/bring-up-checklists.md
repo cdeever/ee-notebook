@@ -1,6 +1,11 @@
 ---
 title: "Bring-Up Checklists"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Bring-Up Checklists

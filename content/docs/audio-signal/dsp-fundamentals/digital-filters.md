@@ -1,6 +1,11 @@
 ---
 title: "Digital Filters"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Digital Filters

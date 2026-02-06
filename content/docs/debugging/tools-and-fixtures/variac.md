@@ -1,6 +1,11 @@
 ---
 title: "Variac"
 weight: 80
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A variac (variable autotransformer) provides adjustable AC voltage from zero to line voltage—and often above. Turn the dial and the output voltage changes smoothly. This makes variacs essential for slowly bringing up repaired equipment, testing behavior at reduced or elevated voltages, and simulating brownout or overvoltage conditions.

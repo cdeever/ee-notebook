@@ -1,6 +1,11 @@
 ---
 title: "State Machines & Event Loops"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # State Machines & Event Loops

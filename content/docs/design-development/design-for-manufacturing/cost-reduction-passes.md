@@ -1,6 +1,11 @@
 ---
 title: "Cost-Reduction Passes"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Cost-Reduction Passes

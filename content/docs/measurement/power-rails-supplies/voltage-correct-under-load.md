@@ -1,6 +1,11 @@
 ---
 title: "Is Voltage Correct Under Load?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is Voltage Correct Under Load?

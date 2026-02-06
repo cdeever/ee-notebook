@@ -1,6 +1,11 @@
 ---
 title: "DMA in MPU Systems"
 weight: 80
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # DMA in MPU Systems

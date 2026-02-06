@@ -1,6 +1,11 @@
 ---
 title: "Upgrade Paths & Extensibility"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Upgrade Paths & Extensibility

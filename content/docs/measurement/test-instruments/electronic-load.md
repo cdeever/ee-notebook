@@ -1,6 +1,11 @@
 ---
 title: "Electronic Load"
 weight: 45
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Electronic Load

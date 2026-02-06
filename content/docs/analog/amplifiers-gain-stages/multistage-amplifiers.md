@@ -1,6 +1,11 @@
 ---
 title: "Multistage Amplifiers"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Multistage Amplifiers

@@ -1,6 +1,11 @@
 ---
 title: "Field Failure Modes by Component"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Field Failure Modes by Component

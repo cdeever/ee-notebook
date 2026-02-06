@@ -2,6 +2,11 @@
 title: "Propagation & the Real World"
 weight: 70
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Propagation & the Real World

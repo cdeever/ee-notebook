@@ -2,6 +2,11 @@
 title: "Noise, Stability & Reality"
 weight: 60
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Noise, Stability & Reality

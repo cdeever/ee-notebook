@@ -1,6 +1,11 @@
 ---
 title: "Noise & Signal Quality"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Noise & Signal Quality

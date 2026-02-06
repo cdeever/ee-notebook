@@ -2,6 +2,11 @@
 title: "🔢 Digital Electronics"
 weight: 4
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Digital Electronics

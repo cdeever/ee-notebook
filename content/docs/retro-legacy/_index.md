@@ -2,6 +2,11 @@
 title: "👾 Retro & Legacy Systems"
 weight: 8
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Retro & Legacy Systems

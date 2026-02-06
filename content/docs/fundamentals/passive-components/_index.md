@@ -2,6 +2,11 @@
 title: "Passive Components"
 weight: 30
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Passive Components

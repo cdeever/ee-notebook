@@ -2,6 +2,11 @@
 title: "System-Level Thinking"
 weight: 60
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # System-Level Thinking

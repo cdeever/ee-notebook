@@ -2,6 +2,11 @@
 title: "Practical Mental Models"
 weight: 70
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Practical Mental Models

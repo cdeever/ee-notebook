@@ -1,6 +1,11 @@
 ---
 title: "What Harmonics Are Present?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What Harmonics Are Present?

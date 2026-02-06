@@ -1,6 +1,11 @@
 ---
 title: "Amplifier Dummy Load"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Amplifier Dummy Load

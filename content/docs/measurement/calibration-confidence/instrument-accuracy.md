@@ -1,6 +1,11 @@
 ---
 title: "Is My Instrument Accurate Enough for This?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is My Instrument Accurate Enough for This?

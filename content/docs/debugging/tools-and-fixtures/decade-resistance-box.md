@@ -1,6 +1,11 @@
 ---
 title: "Decade Resistance Box"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A decade resistance box provides selectable precision resistance using rotary switches. Each switch controls one decade (1Ω, 10Ω, 100Ω, etc.), and the total resistance is the sum of all switch positions. Need 4,730Ω? Set the thousands dial to 4, hundreds to 7, tens to 3, and units to 0. The ability to dial in any resistance value instantly makes decade boxes invaluable for substitution testing, circuit simulation, and calibration.

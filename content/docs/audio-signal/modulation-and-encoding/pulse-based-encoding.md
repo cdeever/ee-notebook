@@ -1,6 +1,11 @@
 ---
 title: "Pulse-Based Encoding"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Pulse-Based Encoding

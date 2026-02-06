@@ -1,6 +1,11 @@
 ---
 title: "Reference Voltages"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Reference Voltages

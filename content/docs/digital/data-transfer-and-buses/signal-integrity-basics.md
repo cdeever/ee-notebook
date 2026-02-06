@@ -1,6 +1,11 @@
 ---
 title: "Signal Integrity Basics"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Signal Integrity Basics

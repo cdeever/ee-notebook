@@ -1,6 +1,11 @@
 ---
 title: "From Subsystem to Device"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # From Subsystem to Device

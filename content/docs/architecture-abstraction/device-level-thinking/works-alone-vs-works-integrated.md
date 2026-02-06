@@ -1,6 +1,11 @@
 ---
 title: "\"Works Alone\" vs \"Works Integrated\""
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # "Works Alone" vs "Works Integrated"

@@ -1,6 +1,11 @@
 ---
 title: "Can I Touch/Probe This Safely?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Can I Touch/Probe This Safely?

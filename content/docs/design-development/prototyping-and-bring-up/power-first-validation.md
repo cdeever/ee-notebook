@@ -1,6 +1,11 @@
 ---
 title: "Power-First Validation"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Power-First Validation

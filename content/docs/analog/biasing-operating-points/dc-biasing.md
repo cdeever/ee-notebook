@@ -1,6 +1,11 @@
 ---
 title: "DC Biasing"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # DC Biasing

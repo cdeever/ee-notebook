@@ -1,6 +1,11 @@
 ---
 title: "ECOs Without Bureaucracy"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # ECOs Without Bureaucracy

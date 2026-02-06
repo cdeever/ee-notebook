@@ -1,6 +1,11 @@
 ---
 title: "Signal Naming & Documentation Discipline"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Signal Naming & Documentation Discipline

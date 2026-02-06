@@ -1,6 +1,11 @@
 ---
 title: "Bulk Capacitance & Battery Behavior"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Bulk Capacitance & Battery Behavior

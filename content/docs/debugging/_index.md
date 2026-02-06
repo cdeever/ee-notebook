@@ -2,6 +2,11 @@
 title: "🐛 Debugging, Failure & Repair"
 weight: 11
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Debugging, Failure & Repair

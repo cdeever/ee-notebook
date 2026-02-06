@@ -1,6 +1,11 @@
 ---
 title: "Loopback Plugs"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A loopback plug connects a device's output back to its input, allowing you to test the interface without external equipment. If you send data out and receive it back correctly, you've verified that the transmitter, receiver, and their supporting circuitry all work. If you don't, you've isolated the problem to the local device rather than the cable, remote endpoint, or protocol stack.

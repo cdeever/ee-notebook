@@ -1,6 +1,11 @@
 ---
 title: "EMI/EMC Reality (When the Circuit Becomes a Radio)"
 weight: 5
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # EMI/EMC Reality (When the Circuit Becomes a Radio)

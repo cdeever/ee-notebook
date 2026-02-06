@@ -1,6 +1,11 @@
 ---
 title: "Connector Placement & Panel Design"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Connector Placement & Panel Design

@@ -1,6 +1,11 @@
 ---
 title: "Bench Power Supply"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Bench Power Supply

@@ -1,6 +1,11 @@
 ---
 title: "Common Antenna Types"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Common Antenna Types

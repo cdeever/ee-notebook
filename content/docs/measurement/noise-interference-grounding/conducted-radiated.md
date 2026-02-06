@@ -1,6 +1,11 @@
 ---
 title: "Is This Conducted or Radiated?"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is This Conducted or Radiated?

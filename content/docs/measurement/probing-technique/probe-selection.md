@@ -1,6 +1,11 @@
 ---
 title: "Which Probe Type for This Situation?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Which Probe Type for This Situation?

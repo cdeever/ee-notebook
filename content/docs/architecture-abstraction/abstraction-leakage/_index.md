@@ -2,6 +2,11 @@
 title: "Abstraction Leakage & Failure Propagation"
 weight: 40
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Abstraction Leakage & Failure Propagation

@@ -1,6 +1,11 @@
 ---
 title: "Energy, Information, Time, and Control"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Energy, Information, Time, and Control

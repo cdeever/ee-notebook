@@ -1,6 +1,11 @@
 ---
 title: "UART"
 weight: 5
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # UART

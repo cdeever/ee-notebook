@@ -1,6 +1,11 @@
 ---
 title: "Simple Transmitters & Receivers"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Simple Transmitters & Receivers

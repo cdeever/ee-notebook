@@ -1,6 +1,11 @@
 ---
 title: "Availability vs Ideal Specs"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Availability vs Ideal Specs

@@ -1,6 +1,11 @@
 ---
 title: "Debugging Oscillations, Noise & Spurs"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Debugging Oscillations, Noise & Spurs

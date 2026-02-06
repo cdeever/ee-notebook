@@ -2,6 +2,11 @@
 title: "System Architecture"
 weight: 20
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # System Architecture

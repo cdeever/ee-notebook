@@ -1,6 +1,11 @@
 ---
 title: "Thermal Considerations"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Thermal Considerations

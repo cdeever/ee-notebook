@@ -1,6 +1,11 @@
 ---
 title: "Reflections, Standing Waves & VSWR"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Reflections, Standing Waves & VSWR

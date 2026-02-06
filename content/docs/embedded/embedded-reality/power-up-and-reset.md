@@ -1,6 +1,11 @@
 ---
 title: "Power-Up & Reset"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Power-Up & Reset

@@ -1,6 +1,11 @@
 ---
 title: "SDR as a Learning Instrument"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # SDR as a Learning Instrument

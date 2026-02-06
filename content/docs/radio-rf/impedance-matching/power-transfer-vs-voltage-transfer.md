@@ -1,6 +1,11 @@
 ---
 title: "Power Transfer vs Voltage Transfer"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Power Transfer vs Voltage Transfer

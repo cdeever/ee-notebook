@@ -1,6 +1,11 @@
 ---
 title: "Does It Match the Expected Waveform?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Does It Match the Expected Waveform?

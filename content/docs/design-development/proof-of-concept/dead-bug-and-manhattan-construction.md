@@ -1,6 +1,11 @@
 ---
 title: "Dead-Bug & Manhattan Construction"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Dead-Bug & Manhattan Construction

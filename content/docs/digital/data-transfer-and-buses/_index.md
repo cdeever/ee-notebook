@@ -2,6 +2,11 @@
 title: "Data Transfer & Buses"
 weight: 40
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Data Transfer & Buses

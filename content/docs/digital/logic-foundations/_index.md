@@ -2,6 +2,11 @@
 title: "Logic Foundations"
 weight: 10
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Logic Foundations

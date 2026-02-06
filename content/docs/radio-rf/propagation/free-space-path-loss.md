@@ -1,6 +1,11 @@
 ---
 title: "Free-Space Path Loss"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Free-Space Path Loss

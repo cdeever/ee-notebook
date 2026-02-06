@@ -1,6 +1,11 @@
 ---
 title: "Reading RF Datasheets"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Reading RF Datasheets

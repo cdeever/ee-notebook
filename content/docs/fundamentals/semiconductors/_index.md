@@ -2,6 +2,11 @@
 title: "Semiconductors"
 weight: 40
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Semiconductors

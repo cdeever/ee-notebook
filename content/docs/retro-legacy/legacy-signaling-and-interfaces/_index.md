@@ -2,6 +2,11 @@
 title: "Legacy Signaling and Interfaces"
 weight: 50
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Legacy Signaling and Interfaces

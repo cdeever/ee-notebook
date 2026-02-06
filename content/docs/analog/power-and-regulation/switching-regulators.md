@@ -1,6 +1,11 @@
 ---
 title: "Switching Regulators"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Switching Regulators

@@ -1,6 +1,11 @@
 ---
 title: "Hardware Versioning Sanity"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Hardware Versioning Sanity

@@ -1,6 +1,11 @@
 ---
 title: "Layout as Part of Design, Not Cleanup"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Layout as Part of Design, Not Cleanup

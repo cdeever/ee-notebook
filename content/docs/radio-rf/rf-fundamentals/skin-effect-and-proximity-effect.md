@@ -1,6 +1,11 @@
 ---
 title: "Skin Effect & Proximity Effect"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Skin Effect & Proximity Effect

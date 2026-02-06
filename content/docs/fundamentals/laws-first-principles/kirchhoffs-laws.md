@@ -1,6 +1,11 @@
 ---
 title: "Kirchhoff's Laws"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Kirchhoff's Laws

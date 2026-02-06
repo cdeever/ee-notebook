@@ -1,6 +1,11 @@
 ---
 title: "How Internal Behavior Leaks Out of ICs"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # How Internal Behavior Leaks Out of ICs

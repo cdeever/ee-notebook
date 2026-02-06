@@ -1,6 +1,11 @@
 ---
 title: "Is Current Draw Expected?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is Current Draw Expected?

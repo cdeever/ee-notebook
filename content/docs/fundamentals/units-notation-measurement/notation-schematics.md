@@ -1,6 +1,11 @@
 ---
 title: "Notation & Schematics"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Notation & Schematics

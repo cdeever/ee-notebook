@@ -2,6 +2,11 @@
 title: "Laws & First Principles"
 weight: 10
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Laws & First Principles

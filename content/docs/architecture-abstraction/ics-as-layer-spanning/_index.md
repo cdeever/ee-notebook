@@ -2,6 +2,11 @@
 title: "Integrated Circuits as Layer-Spanning Artifacts"
 weight: 80
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Integrated Circuits as Layer-Spanning Artifacts

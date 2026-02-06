@@ -1,6 +1,11 @@
 ---
 title: "Zooming In and Out While Debugging"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Zooming In and Out While Debugging

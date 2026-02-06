@@ -1,6 +1,11 @@
 ---
 title: "Lumped vs Distributed Systems"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Lumped vs Distributed Systems

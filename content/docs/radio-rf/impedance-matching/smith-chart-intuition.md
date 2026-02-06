@@ -1,6 +1,11 @@
 ---
 title: "Smith Chart Intuition"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Smith Chart Intuition

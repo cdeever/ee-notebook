@@ -2,6 +2,11 @@
 title: "Digital Logic & Protocols"
 weight: 80
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Digital Logic & Protocols

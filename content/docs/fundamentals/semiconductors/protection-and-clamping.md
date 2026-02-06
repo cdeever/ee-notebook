@@ -1,6 +1,11 @@
 ---
 title: "Protection & Clamping Devices"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Protection & Clamping Devices

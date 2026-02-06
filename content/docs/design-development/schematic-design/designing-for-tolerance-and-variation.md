@@ -1,6 +1,11 @@
 ---
 title: "Designing for Tolerance & Variation"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Designing for Tolerance & Variation

@@ -1,6 +1,11 @@
 ---
 title: "Dynamic Range & Front-End Limits"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Dynamic Range & Front-End Limits

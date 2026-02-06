@@ -1,6 +1,11 @@
 ---
 title: "Revision Discipline"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Revision Discipline

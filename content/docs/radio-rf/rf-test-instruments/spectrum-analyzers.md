@@ -1,6 +1,11 @@
 ---
 title: "Spectrum Analyzers"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Spectrum Analyzers

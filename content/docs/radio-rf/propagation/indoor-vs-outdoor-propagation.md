@@ -1,6 +1,11 @@
 ---
 title: "Indoor vs Outdoor Propagation"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Indoor vs Outdoor Propagation

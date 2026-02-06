@@ -1,6 +1,11 @@
 ---
 title: "Parallel vs Serial Interfaces"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Parallel vs Serial Interfaces

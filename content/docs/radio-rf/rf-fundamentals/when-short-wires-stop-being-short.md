@@ -1,6 +1,11 @@
 ---
 title: "When Short Wires Stop Being Short"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # When Short Wires Stop Being Short

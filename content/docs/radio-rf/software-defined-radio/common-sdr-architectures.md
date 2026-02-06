@@ -1,6 +1,11 @@
 ---
 title: "Common SDR Architectures"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Common SDR Architectures

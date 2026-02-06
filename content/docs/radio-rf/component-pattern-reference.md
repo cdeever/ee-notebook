@@ -1,6 +1,11 @@
 ---
 title: "Components & Patterns"
 weight: 110
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Components & Patterns

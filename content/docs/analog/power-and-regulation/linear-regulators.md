@@ -1,6 +1,11 @@
 ---
 title: "Linear Regulators"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Linear Regulators

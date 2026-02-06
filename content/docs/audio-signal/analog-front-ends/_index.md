@@ -2,6 +2,11 @@
 title: "Analog Front Ends"
 weight: 20
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Analog Front Ends

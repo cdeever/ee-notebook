@@ -2,6 +2,11 @@
 title: "Embedded Reality"
 weight: 70
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Embedded Reality

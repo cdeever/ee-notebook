@@ -1,6 +1,11 @@
 ---
 title: "Measuring Antennas Without a Lab"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Measuring Antennas Without a Lab

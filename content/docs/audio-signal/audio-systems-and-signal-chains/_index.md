@@ -2,6 +2,11 @@
 title: "Audio Systems & Signal Chains"
 weight: 60
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Audio Systems & Signal Chains

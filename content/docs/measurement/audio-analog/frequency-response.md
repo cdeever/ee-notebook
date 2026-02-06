@@ -1,6 +1,11 @@
 ---
 title: "Is the Frequency Response Flat Where It Should Be?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is the Frequency Response Flat Where It Should Be?

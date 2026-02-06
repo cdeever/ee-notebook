@@ -1,6 +1,11 @@
 ---
 title: "MMU, Virtual Memory & Address Spaces"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # MMU, Virtual Memory & Address Spaces

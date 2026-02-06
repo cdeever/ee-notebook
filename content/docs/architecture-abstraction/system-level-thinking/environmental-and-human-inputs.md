@@ -1,6 +1,11 @@
 ---
 title: "Environmental and Human Inputs"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Environmental and Human Inputs

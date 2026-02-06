@@ -1,6 +1,11 @@
 ---
 title: "Current Shunt Fixture"
 weight: 110
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 A current shunt is a precision low-value resistor placed in series with a load to measure current. The voltage drop across the shunt is proportional to current (Ohm's law: V = IR), and you measure this voltage with a multimeter or oscilloscope. A dedicated shunt fixture—with connectors, binding posts, and known resistance values—makes current measurement fast and repeatable without modifying the circuit under test.

@@ -1,6 +1,11 @@
 ---
 title: "Early Design Reviews"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Early Design Reviews

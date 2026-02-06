@@ -1,6 +1,11 @@
 ---
 title: "Layout & Parasitics"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Layout & Parasitics

@@ -1,6 +1,11 @@
 ---
 title: "Mechanical Constraints"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Mechanical Constraints

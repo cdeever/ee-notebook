@@ -2,6 +2,11 @@
 title: "Biasing & Operating Points"
 weight: 30
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Biasing & Operating Points

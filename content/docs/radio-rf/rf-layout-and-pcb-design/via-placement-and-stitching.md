@@ -1,6 +1,11 @@
 ---
 title: "Via Placement & Stitching"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Via Placement & Stitching

@@ -1,6 +1,11 @@
 ---
 title: "GPIO"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # GPIO

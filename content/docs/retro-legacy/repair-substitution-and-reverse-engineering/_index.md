@@ -2,6 +2,11 @@
 title: "Repair, Substitution, and Reverse Engineering"
 weight: 70
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Repair, Substitution, and Reverse Engineering

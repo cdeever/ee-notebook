@@ -1,6 +1,11 @@
 ---
 title: "Is My Instrument Rated for This?"
 weight: 40
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is My Instrument Rated for This?

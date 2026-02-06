@@ -2,6 +2,11 @@
 title: "Electrical Assumptions in Legacy Systems"
 weight: 30
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Electrical Assumptions in Legacy Systems

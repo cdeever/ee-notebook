@@ -1,6 +1,11 @@
 ---
 title: "Automotive Electrical Reality (12V Is Not 12V)"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Automotive Electrical Reality (12V Is Not 12V)

@@ -1,6 +1,11 @@
 ---
 title: "Logic Families"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Logic Families

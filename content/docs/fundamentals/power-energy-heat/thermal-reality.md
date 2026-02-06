@@ -1,6 +1,11 @@
 ---
 title: "Thermal Reality"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Thermal Reality

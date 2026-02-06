@@ -1,6 +1,11 @@
 ---
 title: "What's the THD / Noise Floor?"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # What's the THD / Noise Floor?

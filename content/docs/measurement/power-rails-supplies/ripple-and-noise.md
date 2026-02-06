@@ -1,6 +1,11 @@
 ---
 title: "Ripple & Noise on the Rail"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Ripple & Noise on the Rail

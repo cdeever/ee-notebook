@@ -1,6 +1,11 @@
 ---
 title: "Why Abstractions Exist (and When They Break)"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Why Abstractions Exist (and When They Break)

@@ -1,6 +1,11 @@
 ---
 title: "Structuring Experiments to Get Answers"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Structuring Experiments to Get Answers

@@ -1,6 +1,11 @@
 ---
 title: "Rework & Repair Techniques"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Rework & Repair Techniques

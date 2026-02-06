@@ -1,6 +1,11 @@
 ---
 title: "Logic Analyzer"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Logic Analyzer

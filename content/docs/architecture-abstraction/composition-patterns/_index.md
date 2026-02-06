@@ -2,6 +2,11 @@
 title: "Composition Patterns"
 weight: 20
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Composition Patterns

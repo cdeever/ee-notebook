@@ -1,6 +1,11 @@
 ---
 title: "Is There Jitter, and Where Is It From?"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Is There Jitter, and Where Is It From?

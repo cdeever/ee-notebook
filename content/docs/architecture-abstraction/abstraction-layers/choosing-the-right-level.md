@@ -1,6 +1,11 @@
 ---
 title: "Choosing the Right Level to Think At"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Choosing the Right Level to Think At

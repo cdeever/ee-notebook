@@ -1,6 +1,11 @@
 ---
 title: "Selecting Magnetics by Application"
 weight: 60
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Selecting Magnetics by Application

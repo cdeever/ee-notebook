@@ -1,6 +1,11 @@
 ---
 title: "Common-Mode vs Differential-Mode"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Common-Mode vs Differential-Mode

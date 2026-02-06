@@ -1,6 +1,11 @@
 ---
 title: "Go & Return Paths"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Go & Return Paths

@@ -1,6 +1,11 @@
 ---
 title: "Constraints: Size, Power, Cost & Environment"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Constraints: Size, Power, Cost & Environment

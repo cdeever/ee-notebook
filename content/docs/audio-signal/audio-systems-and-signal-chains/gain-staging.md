@@ -1,6 +1,11 @@
 ---
 title: "Gain Staging"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Gain Staging

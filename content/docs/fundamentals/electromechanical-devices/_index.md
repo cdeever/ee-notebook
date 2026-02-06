@@ -2,6 +2,11 @@
 title: "Electromechanical Devices"
 weight: 35
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Electromechanical Devices

@@ -1,6 +1,11 @@
 ---
 title: "Could This Be a Measurement Artifact?"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Could This Be a Measurement Artifact?

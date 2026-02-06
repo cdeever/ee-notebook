@@ -1,6 +1,11 @@
 ---
 title: "State Machines"
 weight: 30
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # State Machines

@@ -2,6 +2,11 @@
 title: "Communication Interfaces"
 weight: 30
 bookCollapseSection: true
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Communication Interfaces

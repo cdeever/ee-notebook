@@ -1,6 +1,11 @@
 ---
 title: "Registers & Counters"
 weight: 20
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Registers & Counters

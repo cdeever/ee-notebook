@@ -1,6 +1,11 @@
 ---
 title: "When to Spin vs Patch"
 weight: 50
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # When to Spin vs Patch

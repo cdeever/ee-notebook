@@ -1,6 +1,11 @@
 ---
 title: "1-Wire & SMBus"
 weight: 80
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # 1-Wire & SMBus

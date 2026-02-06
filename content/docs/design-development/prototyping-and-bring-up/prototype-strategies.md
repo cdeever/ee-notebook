@@ -1,6 +1,11 @@
 ---
 title: "Prototype Strategies: Fast vs Faithful"
 weight: 10
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Prototype Strategies: Fast vs Faithful

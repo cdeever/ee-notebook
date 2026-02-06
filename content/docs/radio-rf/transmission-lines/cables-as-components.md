@@ -1,6 +1,11 @@
 ---
 title: "Cables as Components"
 weight: 70
+review:
+  status: unreviewed
+  method: []
+  notes: ""
+  date: ""
 ---
 
 # Cables as Components
