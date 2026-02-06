@@ -16,6 +16,8 @@ All of it seems simple until it needs to be applied to a real circuit on the ben
 
 - **[Signaling Models]({{< relref "signaling-models" >}})** — What is the signal and what is it measured against? Go & return paths, reference planes, single-ended vs differential, balanced vs unbalanced, and common-mode rejection.
 
+- **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
+
 - **[Power, Energy & Heat]({{< relref "power-energy-heat" >}})** — Where theory gets physical: power calculations, energy storage, and thermal limits.
 
 - **[Passive Components]({{< relref "passive-components" >}})** — Resistors, capacitors, inductors, and transformers beyond the ideal models.
@@ -25,7 +27,5 @@ All of it seems simple until it needs to be applied to a real circuit on the ben
 - **[Electromechanical Devices]({{< relref "electromechanical-devices" >}})** — Components where electrical signals create physical motion or sound: relays, reed switches, contactors, speakers, and buzzers.
 
 - **[Semiconductors]({{< relref "semiconductors" >}})** — Diodes, BJTs, MOSFETs, and thyristors: the behavioral primitives that make active circuits possible.
-
-- **[Circuit Analysis Techniques]({{< relref "circuit-analysis" >}})** — Series/parallel, voltage dividers, node/loop analysis, and Thevenin/Norton equivalents.
 
 - **[Units, Notation & Measurement]({{< relref "units-notation-measurement" >}})** — SI prefixes, schematic conventions, and what instruments actually report.

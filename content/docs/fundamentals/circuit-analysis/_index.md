@@ -1,6 +1,6 @@
 ---
 title: "Circuit Analysis Techniques"
-weight: 40
+weight: 18
 bookCollapseSection: true
 ---
 

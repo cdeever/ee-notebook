@@ -1,6 +1,6 @@
 ---
 title: "Semiconductors"
-weight: 50
+weight: 40
 bookCollapseSection: true
 ---
 
