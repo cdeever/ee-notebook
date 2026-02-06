@@ -12,8 +12,8 @@ This notebook bridges that gap. It's a working reference for electronics — not
 What you'll find here:
 
 - **Practical depth** — Each topic goes deep enough to apply correctly. Not just "Ohm's law" but when it misleads you. Not just "use a decoupling capacitor" but why placement matters and what happens when it's wrong.
-- **The traps and gotchas** — Where intuition breaks down, where measurements lie, where the textbook model quietly fails. These are collected explicitly so you can recognize them before they cost you hours.
-- **Theory tied to symptoms** — When a circuit misbehaves, the answer is usually in the fundamentals. Entries connect laws to the observable behaviors they explain — the reset that happens at load, the oscillation that appears only when warm, the voltage that doesn't match the schematic.
+- **Tips and Caveats** — Every entry includes tips for staying on the happy path and caveats where intuition breaks down, measurements mislead, or the textbook model quietly fails. These are collected explicitly so you recognize them before they cost you hours.
+- **In Practice** — When a circuit misbehaves, the answer is usually in the fundamentals. Entries connect theory to observable behavior at the bench — the reset that happens under load, the oscillation that appears only when warm, the voltage that doesn't match the schematic.
 
 The goal is **applied reasoning**: knowing when a rule applies, knowing when it doesn't, and understanding what your measurements are telling you when the numbers don't add up. That skill is what turns theory into working hardware.
 
