@@ -80,6 +80,15 @@ L1 sections (in weight order):
 | 100 | `calibration-confidence/` | Calibration & Measurement Confidence |
 | 110 | `test-instruments/` | Test Instruments |
 
+## Taxonomy Principle
+
+Organize content by **how engineers reason about behavior in circuits** — not by textbook device classification.
+
+This means:
+- Semiconductor devices (diodes, BJTs, MOSFETs, thyristors) live in Fundamentals as behavioral primitives
+- Circuit techniques using those devices (amplifiers, biasing, filters) live in their application domains (Analog, Digital, Power)
+- "Active vs passive" is not a useful organizing axis — behavior and reasoning patterns are
+
 ## Content Conventions
 
 - **Evergreen entries**: Entries get revised and expanded over time; they are not dated posts

@@ -298,7 +298,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Auto-ranging** — Instrument feature that automatically selects the measurement range. Convenient but can be slow when the signal crosses range boundaries.
 
 <a id="avalanche-breakdown"></a>
-**Avalanche breakdown** — Non-destructive reverse breakdown in a diode where carrier multiplication occurs at high electric field. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Avalanche breakdown** — Non-destructive reverse breakdown in a diode where carrier multiplication occurs at high electric field. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="axial-ratio"></a>
 **Axial ratio** — For circularly polarized antennas, the ratio of major to minor axis of the polarization ellipse; values closer to 1.0 indicate better circular polarization.
@@ -371,7 +371,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Bessel response** — Filter response with the best phase linearity and minimal step-response overshoot. See [Active Filters]({{< relref "/docs/analog/filters-frequency-behavior/active-filters" >}}).
 
 <a id="beta"></a>
-**Beta (β)** — The DC current gain of a BJT, defined as I_C / I_B. Varies widely between devices even of the same type. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Beta (β)** — The DC current gain of a BJT, defined as I_C / I_B. Varies widely between devices even of the same type. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="bga"></a>
 **BGA (Ball Grid Array)** — IC package with solder balls on the bottom surface instead of pins on the perimeter. High pin density but impossible to hand-solder and susceptible to thermal cycling fatigue.
@@ -398,7 +398,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Bitstream** — The binary configuration file that programs an FPGA's logic and routing.
 
 <a id="bjt"></a>
-**BJT (Bipolar Junction Transistor)** — A current-controlled semiconductor device with three terminals (base, collector, emitter) where small base current controls large collector current. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**BJT (Bipolar Junction Transistor)** — A current-controlled semiconductor device with three terminals (base, collector, emitter) where small base current controls large collector current. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 
 
@@ -425,7 +425,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Bodge wire** — A jumper wire added to a PCB after assembly to correct a design error, add a missing connection, or repair a broken trace.
 
 <a id="body-diode"></a>
-**Body diode** — The parasitic diode between source and drain in a MOSFET, conducting when drain voltage goes below source. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Body diode** — The parasitic diode between source and drain in a MOSFET, conducting when drain voltage goes below source. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="bom"></a>
 **BOM** — Bill of Materials — the list of every component, quantity, and reference designator needed to build a PCB assembly.
@@ -449,7 +449,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Branch** — A path between two nodes in a circuit, carrying a single current.
 
 <a id="bridge-rectifier"></a>
-**Bridge rectifier** — A four-diode configuration that converts AC to DC by conducting both polarities through two diodes each. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Bridge rectifier** — A four-diode configuration that converts AC to DC by conducting both polarities through two diodes each. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="bridged-mode"></a>
 **Bridged mode** — Amplifier configuration where two channels drive opposite ends of a load, doubling the voltage swing and quadrupling the power into the load.
@@ -564,7 +564,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Characteristic impedance (Z0)** — The impedance of a transmission line determined by its geometry and dielectric, typically 50 Ω or 100 Ω differential.
 
 <a id="charge-injection"></a>
-**Charge injection** — Transient voltage disturbance caused by capacitive coupling from the gate when a MOSFET switch toggles. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Charge injection** — Transient voltage disturbance caused by capacitive coupling from the gate when a MOSFET switch toggles. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="charge-pump"></a>
 **Charge pump** — A voltage converter using switched capacitors instead of inductors for energy transfer, simpler but lower power than inductor-based converters. See [Switching Regulators]({{< relref "/docs/analog/power-and-regulation/switching-regulators" >}}).
@@ -597,7 +597,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Clamp** — Protection component (typically a diode or TVS) that limits voltage excursions by conducting when a threshold is exceeded. Prevents overvoltage damage.
 
 <a id="clamping"></a>
-**Clamping** — Using a diode and capacitor to shift the DC level of an AC signal without changing its shape. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Clamping** — Using a diode and capacitor to shift the DC level of an AC signal without changing its shape. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 
 
@@ -609,7 +609,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="class-d-amplifier"></a>
 **Class-D amplifier** — Switching audio amplifier using PWM or PDM output stage at 85-95% efficiency; transistors operate fully on or off.
 <a id="clipping"></a>
-**Clipping** — Using diodes or other components to limit signal excursion by conducting when a threshold is exceeded. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Clipping** — Using diodes or other components to limit signal excursion by conducting when a threshold is exceeded. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 
 <a id="clock-distribution-ic"></a>
@@ -883,7 +883,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="dc-operating-point"></a>
 **DC operating point** — SPICE analysis solving for steady-state voltages and currents at every node with specified supply voltages applied.
 <a id="dc-restoration"></a>
-**DC restoration** — Another term for clamping, used especially in video circuits. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**DC restoration** — Another term for clamping, used especially in video circuits. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="dc-offset"></a>
 **DC offset** — Unwanted DC voltage present at an amplifier output that should be at zero volts with no signal applied; excessive DC offset can damage speakers or downstream loads.
@@ -916,7 +916,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="dead-code-elimination"></a>
 **Dead code elimination** — Linker optimization that discards unreferenced functions and data sections, saving flash space.
 <a id="dead-time"></a>
-**Dead time** — The interval between turning off one MOSFET and turning on the complementary MOSFET in a bridge circuit to prevent shoot-through. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Dead time** — The interval between turning off one MOSFET and turning on the complementary MOSFET in a bridge circuit to prevent shoot-through. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 
 <a id="dead-bug-construction"></a>
@@ -970,7 +970,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Dependent source** — A voltage or current source whose value is controlled by another voltage or current elsewhere in the circuit. Models transistors and op-amps in circuit analysis.
 
 <a id="depletion-mode-mosfet"></a>
-**Depletion-mode MOSFET** — A MOSFET that is normally on, conducting with zero gate voltage. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Depletion-mode MOSFET** — A MOSFET that is normally on, conducting with zero gate voltage. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="derating"></a>
 **Derating** — Reducing a component's maximum allowable power, voltage, or current as operating conditions (typically temperature) move away from the rated conditions. Essential for reliable designs.
@@ -1172,10 +1172,10 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ## E
 
 <a id="early-effect"></a>
-**Early effect** — The slight increase in collector current with higher V_CE caused by base-width modulation. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Early effect** — The slight increase in collector current with higher V_CE caused by base-width modulation. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="early-voltage"></a>
-**Early voltage** — A transistor parameter (V_A) that represents the extrapolated voltage at which collector current would become zero. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Early voltage** — A transistor parameter (V_A) that represents the extrapolated voltage at which collector current would become zero. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="earth-ground"></a>
 **Earth ground** — Physical connection to the earth, typically through the building's grounding system. Provides a safety reference and a path for fault current.
@@ -1238,7 +1238,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Endianness** — Byte ordering in multi-byte values. ARM Cortex-M is configurable but almost always little-endian; AVR is inherently little-endian.
 
 <a id="enhancement-mode-mosfet"></a>
-**Enhancement-mode MOSFET** — A MOSFET that is normally off, requiring gate voltage above threshold to conduct. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Enhancement-mode MOSFET** — A MOSFET that is normally off, requiring gate voltage above threshold to conduct. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="enob"></a>
 **ENOB** — Effective Number of Bits — actual useful resolution of an ADC after accounting for noise, typically 1–2 bits less than the stated resolution.
@@ -1274,7 +1274,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **EVM (Error Vector Magnitude)** — Measure of modulated signal quality by distance between ideal and actual symbol positions in the constellation.
 
 <a id="esd-protection"></a>
-**ESD protection** — Using clamping diodes to steer electrostatic discharge current away from sensitive inputs. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**ESD protection** — Using clamping diodes to steer electrostatic discharge current away from sensitive inputs. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="esl"></a>
 **ESL (Equivalent Series Inductance)** — Parasitic inductance in a capacitor from its leads, internal connections, and plate geometry. Determines the self-resonant frequency.
@@ -1320,7 +1320,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="faraday-rotation"></a>
 **Faraday rotation** — Rotation of a linearly polarized wave's plane as it passes through a magnetized medium like the ionosphere.
 <a id="fast-recovery-diode"></a>
-**Fast-recovery diode** — A diode optimized for low reverse recovery time, suitable for switching power supply applications. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Fast-recovery diode** — A diode optimized for low reverse recovery time, suitable for switching power supply applications. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="feedback-fraction"></a>
 **Feedback fraction (β)** — The portion of the output signal returned to the input through the feedback network. See [Feedback & Loop Intuition]({{< relref "/docs/analog/noise-stability-reality/feedback-and-loop-intuition" >}}).
@@ -1401,10 +1401,10 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Flyback diode** — Diode placed across an inductive load to provide a safe current path when the driving switch opens. Prevents voltage spikes from damaging the switch. Also called a freewheeling or snubber diode.
 
 <a id="forward-active"></a>
-**Forward active** — The operating region of a BJT where the base-emitter junction is forward biased and the base-collector junction is reverse biased. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Forward active** — The operating region of a BJT where the base-emitter junction is forward biased and the base-collector junction is reverse biased. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="forward-voltage"></a>
-**Forward voltage** — The voltage drop across a diode when current flows in the forward direction, typically 0.6-0.7 V for silicon and 0.2-0.4 V for Schottky diodes. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Forward voltage** — The voltage drop across a diode when current flows in the forward direction, typically 0.6-0.7 V for silicon and 0.2-0.4 V for Schottky diodes. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 
 <a id="fpb"></a>
@@ -1452,7 +1452,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Full adder** — A circuit that adds two 1-bit inputs plus a carry-in to produce a sum and carry-out.
 
 <a id="full-wave-rectifier"></a>
-**Full-wave rectifier** — A rectifier circuit using four diodes in a bridge configuration to convert both polarities of AC to DC. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Full-wave rectifier** — A rectifier circuit using four diodes in a bridge configuration to convert both polarities of AC to DC. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 ---
 
@@ -1559,7 +1559,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ## H
 
 <a id="h_fe"></a>
-**h_FE** — The hybrid parameter symbol for BJT current gain, equivalent to beta. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**h_FE** — The hybrid parameter symbol for BJT current gain, equivalent to beta. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 
 <a id="hairpin-match"></a>
@@ -1574,7 +1574,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Half-wave dipole** — Antenna with two quarter-wavelength conductors fed at the center; reference antenna with 0 dBd gain and approximately 73 Ω impedance.
 
 <a id="half-wave-rectifier"></a>
-**Half-wave rectifier** — A rectifier circuit using one diode to convert one polarity of an AC signal to DC. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Half-wave rectifier** — A rectifier circuit using one diode to convert one polarity of an AC signal to DC. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="hamming-window"></a>
 **Hamming window** — Windowing function for spectral analysis with moderate main lobe width and -43 dB sidelobe level.
@@ -1801,7 +1801,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **JTAG** — Joint Test Action Group — 4–5 wire debug and test interface predating SWD, still used on larger processors and FPGAs.
 
 <a id="junction-capacitance"></a>
-**Junction capacitance** — The capacitance of a reverse-biased diode that varies with the applied reverse voltage. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Junction capacitance** — The capacitance of a reverse-biased diode that varies with the applied reverse voltage. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 ---
 
@@ -1950,7 +1950,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Logic analyzer** — Test instrument that captures multiple digital signals simultaneously and displays decoded protocol information for SPI, I2C, UART, and other buses.
 
 <a id="logic-level-mosfet"></a>
-**Logic-level MOSFET** — A MOSFET designed to be fully on with 3.3 V or 5 V gate drive, without needing higher voltage. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Logic-level MOSFET** — A MOSFET designed to be fully on with 3.3 V or 5 V gate drive, without needing higher voltage. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 
 <a id="long-tailed-pair"></a>
@@ -2083,7 +2083,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Microstrip** — A PCB trace on an outer layer with a ground plane beneath, the most common controlled-impedance structure.
 
 <a id="miller-effect"></a>
-**Miller effect** — The multiplication of gate-drain capacitance by the voltage gain, slowing switching transitions and potentially causing oscillation. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Miller effect** — The multiplication of gate-drain capacitance by the voltage gain, slowing switching transitions and potentially causing oscillation. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="mimo"></a>
 **MIMO (Multiple-Input Multiple-Output)** — Antenna system using multiple antennas at both transmitter and receiver to increase capacity through spatial multiplexing.
@@ -2125,7 +2125,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Moore machine** — A state machine where outputs depend only on the current state.
 
 <a id="mosfet"></a>
-**MOSFET (Metal-Oxide-Semiconductor FET)** — A voltage-controlled transistor where gate voltage controls drain current through an insulated gate. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**MOSFET (Metal-Oxide-Semiconductor FET)** — A voltage-controlled transistor where gate voltage controls drain current through an insulated gate. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 
 
@@ -2645,7 +2645,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ## Q
 
 <a id="q-point"></a>
-**Q-point (quiescent point)** — The DC operating point of a transistor determined by the bias circuit. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Q-point (quiescent point)** — The DC operating point of a transistor determined by the bias circuit. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 
 <a id="qfh-antenna"></a>
@@ -2685,7 +2685,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="r-2r-ladder"></a>
 **R-2R ladder** — DAC resistor network using only two resistor values to produce binary-weighted output currents; simple, monotonic by design.
 <a id="r_ds_on"></a>
-**R_DS(on)** — The on-resistance of a MOSFET when fully enhanced, a key parameter for switching efficiency. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**R_DS(on)** — The on-resistance of a MOSFET when fully enhanced, a key parameter for switching efficiency. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="race-condition"></a>
 **Race condition** — Concurrency bug where the outcome depends on the timing of access to shared data across different execution contexts.
@@ -2808,10 +2808,10 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="return-loss-bridge"></a>
 **Return loss bridge** — RF Wheatstone bridge circuit that measures scalar return loss by comparing a DUT to a 50-ohm reference.
 <a id="reverse-polarity-protection"></a>
-**Reverse polarity protection** — Using a series or parallel diode to block current if the supply is connected backwards. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Reverse polarity protection** — Using a series or parallel diode to block current if the supply is connected backwards. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="reverse-recovery-time"></a>
-**Reverse recovery time** — The time during which a forward-conducting diode continues to conduct briefly in reverse while stored charge is swept out. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Reverse recovery time** — The time during which a forward-conducting diode continues to conduct briefly in reverse while stored charge is swept out. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="rework"></a>
 **Rework** — Manual modifications to a PCB after assembly: bodge wires, component swaps, cut traces. A normal part of prototype development but should be documented and incorporated into the next revision.
@@ -2881,7 +2881,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **S-parameters** — Scattering parameters measured by network analyzers describing how RF energy reflects and transmits at a device's ports.
 
 <a id="safe-operating-area"></a>
-**Safe Operating Area (SOA)** — The region in the I-V characteristic space where a transistor can safely operate without damage. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Safe Operating Area (SOA)** — The region in the I-V characteristic space where a transistor can safely operate without damage. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="sallen-key-filter"></a>
 **Sallen-Key filter** — The most common active filter topology using a single op-amp in non-inverting configuration with two reactive elements. See [Active Filters]({{< relref "/docs/analog/filters-frequency-behavior/active-filters" >}}).
@@ -2902,7 +2902,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Saturation region (BJT)** — The operating region where both junctions are forward biased and the transistor acts as a low-impedance switch. See [Operating Regions]({{< relref "/docs/analog/biasing-operating-points/operating-regions" >}}).
 
 <a id="schottky-diode"></a>
-**Schottky diode** — A diode with a metal-semiconductor junction that exhibits lower forward voltage drop and faster switching compared to conventional junction diodes. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Schottky diode** — A diode with a metal-semiconductor junction that exhibits lower forward voltage drop and faster switching compared to conventional junction diodes. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="scpi"></a>
 **SCPI** — Standard Commands for Programmable Instruments — an ASCII command syntax for remote control of test equipment over GPIB, USB, or LAN.
@@ -2911,7 +2911,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **SDR (Software-Defined Radio)** — Radio system where filtering, demodulation, and signal processing traditionally done in hardware is performed in software.
 
 <a id="second-breakdown"></a>
-**Second breakdown** — A failure mode where localized heating causes destructive current focusing in high-voltage, high-current BJTs. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Second breakdown** — A failure mode where localized heating causes destructive current focusing in high-voltage, high-current BJTs. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="selectivity"></a>
 **Selectivity** — Receiver's ability to reject signals outside the desired frequency range; determined by filter sharpness.
@@ -3010,7 +3010,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Slew rate** — The maximum rate at which an op-amp output can change voltage, typically expressed in V/µs. See [Op-Amps]({{< relref "/docs/analog/amplifiers-gain-stages/op-amps" >}}).
 
 <a id="small-signal-analysis"></a>
-**Small-signal analysis** — Linear circuit analysis describing how a device responds to small AC signals around a DC operating point. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Small-signal analysis** — Linear circuit analysis describing how a device responds to small AC signals around a DC operating point. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="smd-resistor-marking"></a>
 **SMD resistor marking** — Three or four digit code: for a 3-digit code, the first two digits are significant and the third is the exponent (e.g., "472" = 47 × 10² = 4,700 Ω).
@@ -3097,7 +3097,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Stiff source** — A voltage source with low output impedance, meaning its voltage barely changes when load current varies. The opposite of a high-impedance source.
 
 <a id="storage-time"></a>
-**Storage time** — The delay caused by excess base charge that must be removed before a saturated BJT can turn off. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Storage time** — The delay caused by excess base charge that must be removed before a saturated BJT can turn off. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="stripline"></a>
 **Stripline** — A PCB trace between two ground planes providing excellent field containment and controlled impedance.
@@ -3106,7 +3106,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Substitution test** — Replacing a suspect component with a known-good equivalent to determine if the original was faulty — a quick but destructive-to-undo test for soldered parts.
 
 <a id="sub-threshold-conduction"></a>
-**Sub-threshold conduction** — Exponential drain current below threshold voltage, exploited in ultra-low-power design. See [MOSFETs]({{< relref "/docs/analog/active-devices/mosfets" >}}).
+**Sub-threshold conduction** — Exponential drain current below threshold voltage, exploited in ultra-low-power design. See [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}).
 
 <a id="superloop-pattern"></a>
 **Superloop** — Simple main loop that polls sensors, updates state, and drives outputs in fixed sequence without interrupts or RTOS.
@@ -3245,7 +3245,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="thermal-via"></a>
 **Thermal via** — PCB via placed under a component thermal pad to conduct heat from the surface to inner copper planes for spreading.
 <a id="thermal-voltage"></a>
-**Thermal voltage (V_T)** — kT/q, approximately 26 mV at room temperature. Appears throughout semiconductor device equations. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Thermal voltage (V_T)** — kT/q, approximately 26 mV at room temperature. Appears throughout semiconductor device equations. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="thermoelectric-voltage"></a>
 **Thermoelectric voltage** — A small DC voltage generated at junctions of dissimilar metals (Seebeck effect), creating microvolt-level offsets in precision DC measurements.
@@ -3323,7 +3323,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Traceable calibration** — Calibration performed against standards with documented accuracy linked back to a national metrology institute through an unbroken chain of comparisons.
 
 <a id="transconductance"></a>
-**Transconductance (g_m)** — The ratio of output current change to input voltage change, equal to I_C / V_T for BJTs. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Transconductance (g_m)** — The ratio of output current change to input voltage change, equal to I_C / V_T for BJTs. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="transfer-curve"></a>
 **Transfer curve** — A plot of output versus input (often displayed using XY mode on an oscilloscope) showing the gain and linearity of an amplifier or circuit.
@@ -3371,7 +3371,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **TTL (Transistor-Transistor Logic)** — A logic family built from bipolar transistors, historically the dominant digital logic technology.
 
 <a id="tvs"></a>
-**TVS (Transient Voltage Suppressor)** — A specialized diode designed to absorb large transient energy pulses with well-defined clamping voltage. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**TVS (Transient Voltage Suppressor)** — A specialized diode designed to absorb large transient energy pulses with well-defined clamping voltage. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="two-flip-flop-synchronizer"></a>
 **Two-flip-flop synchronizer** — Two flip-flops in series used to safely synchronize signals between clock domains.
@@ -3442,7 +3442,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 <a id="vce-sat"></a>
 **V_CE(sat)** — Collector-emitter saturation voltage of a BJT when fully on; determines conduction loss in switching applications.
 <a id="varactor"></a>
-**Varactor** — A diode whose junction capacitance varies with reverse voltage, used for frequency tuning and modulation. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Varactor** — A diode whose junction capacitance varies with reverse voltage, used for frequency tuning and modulation. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="vco"></a>
 **VCO (Voltage Controlled Oscillator)** — An oscillator whose output frequency is controlled by an input voltage.
@@ -3505,7 +3505,7 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 **Voltage divider** — A network (typically two resistors in series) that produces an output voltage proportional to the input voltage. Output depends on the ratio of the resistances and is affected by load current. See [Voltage Dividers & Loading]({{< relref "/docs/fundamentals/circuit-analysis/voltage-dividers-and-loading" >}}).
 
 <a id="voltage-divider-bias"></a>
-**Voltage divider bias** — The standard BJT biasing topology using a voltage divider to set the base voltage and an emitter resistor to stabilize collector current. See [BJTs]({{< relref "/docs/analog/active-devices/bjts" >}}).
+**Voltage divider bias** — The standard BJT biasing topology using a voltage divider to set the base voltage and an emitter resistor to stabilize collector current. See [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}).
 
 <a id="voltage-headroom"></a>
 **Voltage headroom** — The available voltage range for signal swing between the supply rails and the device's saturation or cutoff limits. See [DC Biasing]({{< relref "/docs/analog/biasing-operating-points/dc-biasing" >}}).
@@ -3623,10 +3623,10 @@ A working reference of terms, abbreviations, and phrases used throughout this no
 ## Z
 
 <a id="zener-diode"></a>
-**Zener diode** — A diode designed to operate in reverse breakdown at a specific voltage, used for voltage references and simple regulators. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Zener diode** — A diode designed to operate in reverse breakdown at a specific voltage, used for voltage references and simple regulators. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="zener-regulator"></a>
-**Zener regulator** — A simple voltage regulator consisting of a Zener diode fed through a current-limiting resistor. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Zener regulator** — A simple voltage regulator consisting of a Zener diode fed through a current-limiting resistor. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 <a id="zephyr-os"></a>
 **Zephyr** — Modern embedded RTOS with device tree, driver framework, networking stacks, and Bluetooth support.

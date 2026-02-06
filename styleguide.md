@@ -312,13 +312,24 @@ If something doesn’t add up, the law isn’t wrong — the application is.
 
 ---
 
+## Taxonomy Principle
+
+Content is organized by **how engineers reason about behavior** — not by textbook classification.
+
+- **Fundamentals** = device understanding (what it is, how it behaves)
+- **Analog/Digital/Power** = usage depth (circuit techniques, design patterns)
+
+The traditional "active vs passive" split is avoided because it doesn't match how engineers think at the bench. A diode isn't "active" (no gain), but it's not passive like a resistor either. Organizing by behavioral reasoning resolves these ambiguities.
+
+---
+
 ## Final Principle
 
 This notebook is not about memorizing laws.
 
-It’s about building **applied reasoning**:
+It's about building **applied reasoning**:
 - knowing when a law applies
-- knowing when it doesn’t
-- understanding what real measurements and symptoms are telling you when the numbers don’t match
+- knowing when it doesn't
+- understanding what real measurements and symptoms are telling you when the numbers don't match
 
 That skill is what turns theory into working hardware.

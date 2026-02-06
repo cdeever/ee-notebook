@@ -5,7 +5,17 @@ type: docs
 
 # EE Notebook
 
-A working reference for electronics and electrical engineering — concepts, procedures, gotchas, and patterns organized for practical use. The goal is a single resource that spans the full landscape from fundamentals through design and repair, structured so any topic can scale from a concise overview into the depth that professional engineering demands. The emphasis is on selecting the right components and patterns, understanding why circuits behave the way they do, and building the knowledge and skills needed to design, troubleshoot, and repair real hardware.
+**The gap between knowing a law and applying it at the bench is where most learning happens.**
+
+This notebook bridges that gap. It's a working reference for electronics — not a textbook that stops at theory, and not a cookbook that skips the reasoning. Too many resources bury behavior under math, leaving you able to solve equations but not predict what a circuit will actually do. Here, the emphasis is on building intuition: how components behave, why circuits respond the way they do, and what changes when ideal assumptions don't hold. Every entry connects concepts to real measurements, expected behavior to actual symptoms, and ideal models to the messy reality of components on a board.
+
+What you'll find here:
+
+- **Practical depth** — Each topic goes deep enough to apply correctly. Not just "Ohm's law" but when it misleads you. Not just "use a decoupling capacitor" but why placement matters and what happens when it's wrong.
+- **The traps and gotchas** — Where intuition breaks down, where measurements lie, where the textbook model quietly fails. These are collected explicitly so you can recognize them before they cost you hours.
+- **Theory tied to symptoms** — When a circuit misbehaves, the answer is usually in the fundamentals. Entries connect laws to the observable behaviors they explain — the reset that happens at load, the oscillation that appears only when warm, the voltage that doesn't match the schematic.
+
+The goal is **applied reasoning**: knowing when a rule applies, knowing when it doesn't, and understanding what your measurements are telling you when the numbers don't add up. That skill is what turns theory into working hardware.
 
 ## How It's Organized
 
@@ -13,7 +23,7 @@ The sections follow a rough layering. Nature's constraints come first. Human-eng
 
 **The physics layer** — rules you can't negotiate with:
 
-- **[Fundamentals]({{< relref "/docs/fundamentals" >}})** — Ohm's law, Kirchhoff's laws, power and energy, passive component behavior, circuit analysis, and the unit system. The universal constraints that every circuit obeys whether you remember them or not.
+- **[Fundamentals]({{< relref "/docs/fundamentals" >}})** — Ohm's law, Kirchhoff's laws, power and energy, passive components, semiconductor devices, and circuit analysis. The universal constraints and behavioral primitives that every circuit is built from.
 
 **The engineering layer** — designed behavior built on top of those constraints:
 

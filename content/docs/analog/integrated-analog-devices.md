@@ -1,6 +1,6 @@
 ---
 title: "Integrated Analog Devices"
-weight: 50
+weight: 15
 ---
 
 # Integrated Analog Devices
@@ -33,7 +33,7 @@ The tradeoff: flexibility is lost. A discrete circuit can be modified, probed at
 
 ## What Changes When a Circuit Moves Into Silicon
 
-The building blocks inside an analog IC are the same devices covered in this section — [BJTs]({{< relref "bjts" >}}), [MOSFETs]({{< relref "mosfets" >}}), diodes, resistors, capacitors — but integration changes which parameters can be relied on and which cannot.
+The building blocks inside an analog IC are the same devices covered in [Semiconductors]({{< relref "/docs/fundamentals/semiconductors" >}}) — [BJTs]({{< relref "/docs/fundamentals/semiconductors/bjts" >}}), [MOSFETs]({{< relref "/docs/fundamentals/semiconductors/mosfets" >}}), diodes, resistors, capacitors — but integration changes which parameters can be relied on and which cannot.
 
 ### Matching Over Absolute Accuracy
 

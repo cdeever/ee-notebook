@@ -1,6 +1,6 @@
 ---
 title: "Thyristors & Latching Devices"
-weight: 40
+weight: 50
 ---
 
 # Thyristors & Latching Devices

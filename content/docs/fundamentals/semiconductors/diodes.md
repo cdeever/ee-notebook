@@ -1,6 +1,6 @@
 ---
 title: "Diodes"
-weight: 10
+weight: 20
 ---
 
 # Diodes

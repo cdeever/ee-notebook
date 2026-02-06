@@ -8,15 +8,15 @@ bookCollapseSection: true
 
 Human-engineered behavior built on continuous signals.
 
-Analog electronics is about shaping voltages and currents in a continuous domain — working with the grain of physics rather than forcing it into discrete states. This is where transistors, op-amps, diodes, amplifiers, filters, and voltage regulators come together to produce useful behavior.
+Analog electronics is about shaping voltages and currents in a continuous domain — working with the grain of physics rather than forcing it into discrete states. This is where amplifiers, filters, regulators, and signal conditioning circuits come together to produce useful behavior.
 
 Every analog design is a balance of competing tradeoffs: gain versus bandwidth, noise versus impedance, stability versus responsiveness, simplicity versus performance. There are no perfect solutions — only acceptable compromises.
 
-Entries here range from single-component behavior to complete circuit topologies, with an emphasis on intuition, biasing, and practical design over abstract theory. The [Fundamentals]({{< relref "/docs/fundamentals" >}}) section defines the underlying requirements; Analog Electronics explores how real circuits are built on top of them.
+This section focuses on **circuit techniques**: how to use semiconductor devices to build amplifiers, set bias points, shape frequency response, and regulate power. The devices themselves — diodes, BJTs, MOSFETs, thyristors — live in [Semiconductors]({{< relref "/docs/fundamentals/semiconductors" >}}) under Fundamentals. The [Fundamentals]({{< relref "/docs/fundamentals" >}}) section defines the underlying requirements; Analog Electronics explores how real circuits are built on top of them.
 
 ## Sections
 
-- **[Active Devices]({{< relref "active-devices" >}})** — Diodes, BJTs, and MOSFETs: how analog behavior is created from semiconductor junctions.
+- **[Integrated Analog Devices]({{< relref "integrated-analog-devices" >}})** — Op-amps, comparators, regulators, and references: what happens when analog circuits move into silicon.
 
 - **[Amplifiers & Gain Stages]({{< relref "amplifiers-gain-stages" >}})** — Single-transistor stages, op-amps, and multistage designs: turning small signals into usable ones.
 

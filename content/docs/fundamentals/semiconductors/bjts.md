@@ -1,6 +1,6 @@
 ---
 title: "BJTs"
-weight: 20
+weight: 30
 ---
 
 # BJTs

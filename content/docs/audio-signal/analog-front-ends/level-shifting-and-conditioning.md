@@ -37,7 +37,7 @@ When the signal is larger than the ADC's input range, it must be attenuated. Whe
 
 The ADC input is typically the most vulnerable node in the signal chain. Overvoltage from hot-plugging, ESD, power supply transients, or fault conditions can damage the converter permanently.
 
-**Clamp diodes** — Diodes to V_ref and ground (or to the supply rails) steer overvoltage current away from the ADC input. Most ADC inputs have internal ESD clamp diodes, but they're rated for brief transients, not sustained overvoltage. External Schottky diodes clamp faster and handle more energy. See [Diodes]({{< relref "/docs/analog/active-devices/diodes" >}}).
+**Clamp diodes** — Diodes to V_ref and ground (or to the supply rails) steer overvoltage current away from the ADC input. Most ADC inputs have internal ESD clamp diodes, but they're rated for brief transients, not sustained overvoltage. External Schottky diodes clamp faster and handle more energy. See [Diodes]({{< relref "/docs/fundamentals/semiconductors/diodes" >}}).
 
 **Series resistance** — A resistor in series with the ADC input limits current during overvoltage events. The clamp diodes conduct and the resistor drops the excess voltage. Typical values: 100 Ω to 10 kΩ. Too much resistance slows ADC acquisition; too little doesn't protect.
 
