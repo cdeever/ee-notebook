@@ -10,7 +10,7 @@ review:
 
 # Diodes
 
-A diode is the simplest active device — one junction, two terminals, and behavior that depends on which way current wants to flow. The ideal model (conducts forward, blocks reverse) is useful for first-pass understanding, but real diodes have forward voltage drops, reverse leakage, breakdown behavior, and dynamic characteristics that matter in practice.
+A diode is the simplest semiconductor device — one junction, two terminals, and behavior that depends on which way current wants to flow. The ideal model (conducts forward, blocks reverse) is useful for first-pass understanding, but real diodes have forward voltage drops, reverse leakage, breakdown behavior, and dynamic characteristics that matter in practice.
 
 ## The Ideal vs. Real Gap
 
