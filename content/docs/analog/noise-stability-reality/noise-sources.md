@@ -18,15 +18,7 @@ These noise sources are physical — they exist in every circuit because of the 
 
 ### Thermal Noise (Johnson-Nyquist Noise)
 
-Every resistor generates noise because electrons are in thermal motion. This is the most fundamental noise source.
-
-**V_noise = sqrt(4 x k x T x R x B)**
-
-Where:
-- k = Boltzmann's constant (1.38 x 10^-23 J/K)
-- T = absolute temperature (Kelvin)
-- R = resistance (ohms)
-- B = bandwidth (Hz)
+Every resistor generates noise because electrons are in thermal motion. This is the most fundamental noise source. The noise voltage is proportional to the square root of resistance, bandwidth, and temperature.
 
 **Key properties:**
 - White spectrum — equal power at all frequencies
@@ -38,11 +30,7 @@ Where:
 
 ### Shot Noise
 
-Caused by the discrete nature of electric charge. Whenever current flows across a potential barrier (a PN junction, a vacuum tube), individual charge carriers arrive at random intervals, creating noise.
-
-**I_noise = sqrt(2 x q x I_DC x B)**
-
-Where q = electron charge (1.6 x 10^-19 C) and I_DC is the DC current.
+Caused by the discrete nature of electric charge. Whenever current flows across a potential barrier (a PN junction, a vacuum tube), individual charge carriers arrive at random intervals, creating noise. The noise current is proportional to the square root of the DC current and the measurement bandwidth.
 
 **Key properties:**
 - White spectrum (like thermal noise)

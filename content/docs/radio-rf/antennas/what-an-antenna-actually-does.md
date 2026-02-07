@@ -79,14 +79,7 @@ When we say a dipole has 2.15 dBi gain, we mean it radiates 2.15 dB more power i
 
 ## Effective Aperture
 
-For a receiving antenna, effective aperture (A_e) describes how much space the antenna "captures" incoming radiation from. It's measured in square meters and relates gain to received power:
-
-A_e = G * lambda^2 / (4 * pi)
-
-A half-wave dipole at 144 MHz (lambda = 2.08 m) has:
-A_e = 1.64 * 2.08^2 / (4 * pi) = 0.565 m^2
-
-This means the dipole captures the power flowing through a 0.565 m^2 area of the incoming wave. A higher-gain antenna captures a larger area. This is why high-gain antennas seem to "amplify" weak signals — they're sampling a larger portion of the wavefront.
+For a receiving antenna, effective aperture (A_e) describes how much space the antenna "captures" incoming radiation from. It's measured in square meters and scales with both gain and the square of the wavelength. A half-wave dipole at 144 MHz captures roughly 0.56 m² of the incoming wave — more than its physical cross-section. A higher-gain antenna captures a larger area. This is why high-gain antennas seem to "amplify" weak signals — they're sampling a larger portion of the wavefront.
 
 At higher frequencies, lambda is smaller, so the effective aperture for the same gain antenna is smaller. This is why satellite dishes get physically larger for lower frequencies — more physical area is needed to maintain the same gain when the wavelength is longer.
 

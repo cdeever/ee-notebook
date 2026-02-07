@@ -14,13 +14,7 @@ Every sampled system runs on a clock, and every real clock has imperfections. Ji
 
 ## Aperture Jitter and SNR
 
-When an ADC samples a signal, the exact moment of sampling varies from the ideal by the jitter amount Δt. If the signal is changing at that moment, the timing error translates to an amplitude error:
-
-ΔV = dV/dt × Δt = 2πf × V_peak × Δt (for a sinusoid)
-
-The resulting SNR limit from jitter alone:
-
-SNR_jitter = -20 × log₁₀(2πf × Δt_rms)
+When an ADC samples a signal, the exact moment of sampling varies from the ideal by the jitter amount. If the signal is changing at that moment, the timing error translates to an amplitude error — proportional to both the signal's rate of change and the jitter magnitude. The resulting SNR limit depends on signal frequency and RMS jitter:
 
 **Jitter-limited SNR for common scenarios:**
 

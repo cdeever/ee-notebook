@@ -24,17 +24,7 @@ The depletion region is an insulator: no mobile carriers, no current (except for
 
 Applying a positive voltage to the P side relative to the N side (forward bias) shrinks the depletion region. The external voltage opposes the built-in field, reducing the barrier that prevents carrier flow. When the applied voltage approaches V_bi, current begins to flow — electrons from the N side and holes from the P side are injected across the junction.
 
-The forward current follows an exponential relationship:
-
-I = I_S × (e^(V / (n × V_T)) - 1)
-
-Where:
-- I_S is the saturation current (device-dependent, typically pA to nA for small-signal diodes)
-- V is the applied voltage
-- n is the ideality factor (1 to 2 depending on the device and current level)
-- V_T is the thermal voltage, kT/q ≈ 26 mV at room temperature
-
-This exponential relationship is why the forward voltage across a conducting junction is relatively constant despite large changes in current. Doubling the current only increases V_f by about 18 mV (at n=1). This is the origin of the "0.7 V diode drop" approximation for silicon — it's close enough for most currents, but the actual value varies with current and temperature.
+The forward current rises exponentially with voltage — a small increase in voltage produces a large increase in current. This is why the forward voltage across a conducting junction is relatively constant despite large changes in current. Doubling the current only increases V_f by about 18 mV. This is the origin of the "0.7 V diode drop" approximation for silicon — it's close enough for most currents, but the actual value varies with current and temperature.
 
 ## Reverse Bias
 
@@ -68,14 +58,7 @@ Junction behavior is strongly temperature-dependent:
 
 The depletion region acts as a parallel-plate capacitor: the P and N regions are the plates, and the depleted region is the dielectric. This **junction capacitance** varies with reverse voltage — wider depletion (higher reverse bias) means less capacitance.
 
-C_j = C_j0 / (1 + V_R/V_bi)^m
-
-Where:
-- C_j0 is the capacitance at zero bias
-- V_R is the reverse voltage
-- m is a constant (typically 0.3-0.5 for abrupt junctions)
-
-Varactor diodes exploit this voltage-dependent capacitance for tuning circuits. In switching applications, junction capacitance causes charge storage effects that limit switching speed — the capacitor must be charged and discharged each time the device changes state.
+As reverse voltage increases, the depletion region widens and capacitance drops — the relationship is nonlinear, with capacitance falling steeply at first and then more gradually. At zero bias, junction capacitance is at its maximum. Varactor diodes exploit this voltage-dependent capacitance for tuning circuits. In switching applications, junction capacitance causes charge storage effects that limit switching speed — the capacitor must be charged and discharged each time the device changes state.
 
 ## Minority Carrier Storage (Reverse Recovery)
 

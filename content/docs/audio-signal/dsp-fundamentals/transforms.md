@@ -70,11 +70,7 @@ A single FFT of a noisy signal has high variance — the noise floor fluctuates 
 
 ### dBFS Scaling
 
-In digital audio, spectral levels are referenced to full scale:
-
-Level_dBFS = 20 × log₁₀(|X[k]| / (N/2)) for a single tone
-
-where N/2 is the normalization for a full-scale sinusoid. A full-scale sine wave at exactly bin center reads 0 dBFS. Everything else reads negative.
+In digital audio, spectral levels are referenced to full scale (dBFS). A full-scale sine wave at exactly bin center reads 0 dBFS; everything else reads negative.
 
 **Beware:** Different FFT implementations normalize differently. Some divide by N, some by N/2, some don't normalize at all. Always verify the scaling by putting in a known signal and checking that the output makes sense.
 

@@ -67,11 +67,7 @@ This is why laminated steel cores use thin insulated laminations — breaking th
 
 ### The Steinmetz Equation
 
-Core loss is commonly estimated with the empirical Steinmetz equation:
-
-P_core = k × f^a × B_peak^b × Volume
-
-Where k, a, b are material constants from the datasheet (typically a ≈ 1.1–1.8, b ≈ 2.0–2.8). This gives core loss in watts for a given frequency and peak flux density. The exponents being greater than 1 mean that doubling the frequency or flux density more than doubles the loss — core loss scales aggressively.
+Core loss is commonly estimated with the empirical Steinmetz equation, which relates loss to frequency, peak flux density, and core volume using material-specific constants from the datasheet. The key behavior: core loss scales aggressively with both frequency and flux density — doubling either more than doubles the loss, because the exponents are greater than 1.
 
 ### Frequency Dependence in Practice
 

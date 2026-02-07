@@ -42,33 +42,11 @@ The last case is the most dangerous — metastability can propagate through a ch
 
 ## Metastability Resolution Time
 
-The probability that a flip-flop remains metastable decreases exponentially with time. Given a time window t_r after the clock edge:
-
-```
-P(metastable after t_r) ~ T_w / (T_clk) x e^(-t_r / tau)
-```
-
-Where:
-- T_w is the vulnerability window (related to the setup + hold time)
-- T_clk is the clock period
-- tau is the resolution time constant (a property of the flip-flop technology — faster processes have smaller tau)
-
-**Key insight:** The probability drops exponentially. Each additional nanosecond of resolution time reduces the probability by a large factor (typically 10x to 1000x, depending on the process). This is why synchronizers work — a two-stage synchronizer gives one full clock period for resolution, which is usually enough to reduce the failure probability to negligibly small values.
+The probability that a flip-flop remains metastable decreases exponentially with time. Each additional nanosecond of resolution time reduces the probability by a large factor (typically 10x to 1000x, depending on the process). The decay rate depends on the flip-flop technology — faster processes resolve more quickly. This exponential decay is why synchronizers work: a two-stage synchronizer gives one full clock period for resolution, which is usually enough to reduce the failure probability to negligibly small values.
 
 ## MTBF (Mean Time Between Failures)
 
-MTBF quantifies the reliability of a synchronization scheme. It is the average time between metastability-induced failures.
-
-```
-MTBF = 1 / (f_clk x f_data x T_w x e^(-t_r / tau))
-```
-
-Where:
-- f_clk = destination clock frequency
-- f_data = rate of data transitions on the asynchronous input
-- T_w = flip-flop's metastability vulnerability window
-- t_r = resolution time available (clock period minus setup time of the next stage)
-- tau = flip-flop's resolution time constant
+MTBF quantifies the reliability of a synchronization scheme — the average time between metastability-induced failures. It depends on the clock frequency, data transition rate, the flip-flop's vulnerability window, available resolution time, and the technology's resolution time constant. Higher clock frequencies dramatically reduce MTBF because there's less time for resolution. See [Formula Reference]({{< relref "/docs/formulas" >}}) for the full equation.
 
 **Practical MTBF targets:**
 - Consumer electronics: > 100 years

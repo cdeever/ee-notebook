@@ -16,9 +16,7 @@ Signal quality can be measured objectively with instruments and described subjec
 
 ### THD (Total Harmonic Distortion)
 
-The ratio of harmonic distortion power to fundamental signal power, expressed in dB or percent:
-
-THD = √(V₂² + V₃² + V₄² + …) / V₁
+The ratio of harmonic distortion power to fundamental signal power, expressed in dB or percent. It's the RSS (root sum of squares) of all harmonic voltages divided by the fundamental.
 
 | THD | Quality Level |
 |-----|--------------|

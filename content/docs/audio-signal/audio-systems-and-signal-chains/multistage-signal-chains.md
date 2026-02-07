@@ -37,11 +37,7 @@ The limiting stage here is the preamp — it has only 14 dB of headroom, while t
 
 ## Noise Accumulation: Friis for Signal Chains
 
-The Friis noise formula, originally from RF receiver design, applies to any cascaded amplifier chain:
-
-F_total = F₁ + (F₂ - 1)/G₁ + (F₃ - 1)/(G₁G₂) + …
-
-where F is the noise factor (linear, not dB) and G is the power gain of each stage. The practical takeaways:
+The Friis noise formula, originally from RF receiver design, applies to any cascaded amplifier chain. It shows that each stage's noise contribution is divided by the total gain preceding it. The practical takeaways:
 
 - **The first stage dominates** — If G₁ is large, all subsequent noise contributions are divided by G₁ and become negligible
 - **A noisy stage after high gain is harmless** — A 20 dB noise figure ADC after a 40 dB gain preamp contributes negligibly to total noise
